@@ -1,0 +1,29 @@
+<%- @meta = { :title => 'Oversigt over konti', :description => '' } -%>
+<div class="grid_9">
+	Du har konti: <%= @accounts.count %>
+	
+	<%= render :partial => 'new', :locals => { :account => @account } %>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Navn</th>
+			</tr>
+		</thead>
+  <% for account in @accounts %>
+		<tr>
+			<td><%= account.name %></td>
+		</tr>
+  <% end %>
+	</table>	
+	
+</div>
+
+<div class="grid_3">
+	<div class="sidebar">
+		<h3>Hvordan opretter jeg en konto?</h3>
+		<div>
+			TBD
+		</div>
+	</div>
+</div>

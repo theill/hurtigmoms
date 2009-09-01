@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :accounts, :as => 'konti'
   map.resources :postings, :as => 'posteringer'
 
 

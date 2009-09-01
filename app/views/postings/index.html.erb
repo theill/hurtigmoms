@@ -1,1 +1,58 @@
-posteringer - index
+<%- @meta = { :title => 'Oversigt over posteringer', :description => '', :blank_header => false } -%>
+<div class="grid_9">
+	
+	Du har posteringer: <%= @postings.count %>
+	
+	<%= render :partial => 'new', :locals => { :posting => @posting } %>
+	
+	<table>
+		<thead>
+			<tr>
+				<th>Dato</th>
+				<th>Tekst</th>
+				<th>Konto</th>
+				<th>Beløb</th>
+			</tr>
+		</thead>
+  <% for posting in @postings %>
+		<tr>
+			<td><%= posting.created_at.strftime("%d/%m-%Y") %></td>
+			<td><%=h posting.note %></td>
+			<td><%= posting.account.name if posting.account %></td>
+			<td><%= posting.amount %></td>
+		</tr>
+  <% end %>
+	</table>	
+	
+</div>
+
+<div class="grid_3">
+	<div class="sidebar">
+		<h3>Hvordan opretter jeg en postering?</h3>
+		<div>
+			<p>Den nemmeste måde er at sende en mail til bilag@hurtigmoms.dk
+			med dit bilag for posteringer. Et sted i mailen kan du benytte
+			følgende felter</p>
+			<p>
+				<code>
+					TEKST: [Køb af frimærker]<br />
+					BELØB: [250 DKK]<br />
+					KONTO: [Varekøb]
+				</code>
+			</p>
+			<p>
+				Systemet forstår også en mere naturlig beskrivelse af dit
+				bilag, fx kan du i "Emne" feltet skrive tekster såsom <code>
+				"Køb af frimærker til 500DKK"</code> for at oprette en 
+				postering der vil registrere et køb af frimærker på 500,-
+				inkl. moms.
+			</p>
+			<p>
+				Kan systemet ikke gætte hvordan bilaget skal tolkes, vil den
+				blive registreret i systemet på dags dato med emne feltet 
+				brugt som "Tekst" på posteringen. Posteringen vil herefter
+				være i en "kræver handling" state.
+			</p>
+		</div>
+	</div>
+</div>

@@ -120,12 +120,18 @@ div.action-bar {
 		}
 	
 
-#c {
-}
-
-#c .flash {
-	color: #090;
-}
+#c {}
+	#c .flash {
+		color: #090;
+	}
+	#c table {
+		width: 100%;
+	}
+	#c table th {
+		text-align: left;
+		font-size: 11px;
+		border-bottom: solid 1px #99f;
+	}
 
 #f {
 	border-top: solid 1px #e9e9e9;

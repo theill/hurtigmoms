@@ -14,36 +14,46 @@
 		<div id="h" class="menubar">
 			<div class="container_12">
 				<div class="grid_6 navigation">
-					<ul>
-						<li class="application-name">hurtigmoms</li>
-						<li><%= link_to("Hjem", root_path) %></li>
-						<li><%= link_to("Postering", postings_path) %></li>
-						<li><a href="/konti">Konti</a></li>
-					</ul>
+					<%- if signed_in? -%>
+						<ul>
+							<li class="application-name">hurtigmoms</li>
+							<li><%= link_to("Hjem", root_path) %></li>
+							<li><%= link_to("Posteringer", postings_path) %></li>
+							<li><%= link_to("Konti", accounts_path) %></li>
+						</ul>
+					<%- else -%>
+						<ul>
+							<li class="application-name">hurtigmoms</li>
+						</ul>
+					<%- end -%>
 				</div>
 				<div class="grid_6 search">
-					<ul>
-						<li>Log ud</li>
-						<!-- soon <li><div><form method="get"><input type="text" autocomplete="off" size="25" maxlength="100" placeholder="Search" title="Search" value="" tabindex="1" results="0" name="q" id="q"/></form></div></li> -->
-						<li>[Navn]</li>
-					</ul>
+					<%- if signed_in? -%>
+						<ul>
+							<li><%= link_to("Log ud", sign_out_path) %></li>
+							<!-- soon <li><div><form method="get"><input type="text" autocomplete="off" size="25" maxlength="100" placeholder="Search" title="Search" value="" tabindex="1" results="0" name="q" id="q"/></form></div></li> -->
+							<li><%= current_user.email %></li>
+						</ul>
+					<%- else -%>
+						<ul>
+							<li><%= link_to("Opret konto", sign_up_path) %></li>
+							<li><%= link_to("Log in", sign_in_path) %></li>
+						</ul>
+					<%- end -%>
 				</div>
 				<div class="clear"></div>
 			</div>
 		</div>
 		<div class="container_12">
 			<div id="c">
-				<%# format_flash(:notice) || format_flash(:error) -%>
-				<div class="grid_9">
-					<%- unless @meta.nil? || @meta[:title].blank? || @meta[:blank_header] -%>
-						<h1><%= @meta[:title] %><span class="description"><%= @meta[:description] %></span></h1>
-					<%- end -%>
-					
-					<%= yield %>
-				</div>
-				<div class="grid_3">
-					<%= yield :sidebar %>
-				</div>
+				<div class="flash"><%= flash[:notice] || flash[:error] %></div>
+				
+				<!-- <%- unless @meta.nil? || @meta[:title].blank? || @meta[:blank_header] -%>
+					<h1><%= @meta[:title] %><span class="description"><%= @meta[:description] %></span></h1>
+				<%- end -%> -->
+				
+				<%= yield %>
+				
 				<div class="clear"></div>
 			</div>
 			<div id="f">
