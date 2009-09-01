@@ -1,2 +1,145 @@
 /* base 'hurtig moms' stylesheet */
 
+body {
+	font-family: 'Lucida Grande', 'Bitstream Vera Sans', Tahoma, Verdana, Helvetica, Arial, 'Liberation Sans', FreeSans, Clean, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+}
+
+.req {
+	color: #f00;
+}
+
+form {
+}
+
+form h3 {
+	margin: 0;
+	font-size: 16px;
+}
+
+.hint {
+	color: #999;
+	font-size: 11px;
+	margin-top: 4px;
+	padding-left: 8px;
+}
+
+ul, li {
+	list-style-type: none;
+}
+
+div.action-bar {
+	background-color: #f3f3f3;
+	padding: 4px;
+}
+	div.action-bar a {
+		text-decoration: inherit;
+		color: inherit;
+		margin-left: 24px;
+	}
+
+	div.action-bar li {
+		float: left;
+		line-height: 24px;
+		margin-left: 0;
+	}
+	
+		div.action-bar .browse-files {
+			height: 24px;
+			margin-right: 8px;
+			background: transparent url(../images/drive-globe.png) no-repeat scroll 4px 4px;
+		}
+	
+		div.action-bar .browse-files div {
+			height: 24px;
+			width: 104px;
+			display: inline-block;
+			vertical-align: middle;
+			line-height: 24px;
+			position: absolute;
+			z-index: 9999;
+		}
+		
+		div.action-bar .clear-files {
+			margin-right: 8px;
+			background: transparent url(../images/slash.png) no-repeat scroll 4px 4px;
+		}
+
+#h {
+	background-color: #3B5998;
+	margin: 0 0 20px 0;
+}
+	#h.menubar {
+		font-size:11px;
+		line-height:normal;
+		font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+	}
+	
+	#h .application-name {
+		font-weight: normal;
+	}
+	
+	#h ul {
+		display:inline;
+		list-style-image:none;
+		list-style-position:outside;
+		list-style-type:none;
+		margin-left:0;
+		padding-left:0;
+	}
+	
+		#h ul li {
+			display:inline;
+			float:left;
+			color:#FFFFFF;
+			display:block;
+			font-weight:bold;
+			height:15px;
+			padding:7px 7px 6px 8px;
+			margin-left: 0;
+		}
+		
+			#h ul li a {
+				color: #fff;
+				text-decoration: none;
+			}
+
+	#h .navigation {
+		
+	}
+	
+	#h .search {}
+		#h .search li {
+			float: right;
+		}
+		#h .search a {
+			font-weight: normal;
+		}
+	
+
+#c {
+}
+
+#c .flash {
+	color: #090;
+}
+
+#f {
+	border-top: solid 1px #e9e9e9;
+	padding-top: 10px;
+	margin-top: 60px;
+	font-size: 11px;
+}
+
+.sidebar{}
+	.sidebar h3 {
+		font-size: 11px;
+		font-weight: bold;
+		margin-bottom: 8px;
+		padding-bottom: 2px;
+		border-bottom: solid 1px #ccc;
+	}
+

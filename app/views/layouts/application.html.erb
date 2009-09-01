@@ -11,32 +11,44 @@
 	</head>
 	
 	<body>
-		<div class="container_12">
-			<div id="hd">
-				<div class="grid_4 selector">
-					<div class="logo"><%= link_to(image_tag('logo.png', :title => 'lifestyleapps', :width => 140, :height => 40), dashboard_path) %></div>
+		<div id="h" class="menubar">
+			<div class="container_12">
+				<div class="grid_6 navigation">
+					<ul>
+						<li class="application-name">hurtigmoms</li>
+						<li><%= link_to("Hjem", root_path) %></li>
+						<li><%= link_to("Postering", postings_path) %></li>
+						<li><a href="/konti">Konti</a></li>
+					</ul>
 				</div>
-				<div class="grid_8 navigation">
-					<%= render :partial => "shared/navigation" -%>
-				</div> 
-				
-				<div class="clear">&nbsp;</div>
+				<div class="grid_6 search">
+					<ul>
+						<li>Log ud</li>
+						<!-- soon <li><div><form method="get"><input type="text" autocomplete="off" size="25" maxlength="100" placeholder="Search" title="Search" value="" tabindex="1" results="0" name="q" id="q"/></form></div></li> -->
+						<li>[Navn]</li>
+					</ul>
+				</div>
+				<div class="clear"></div>
 			</div>
-			
-			<div id="bd">
-				<%- unless @meta[:title].blank? || @meta[:blank_header] -%>
-					<h1><%= @meta[:title] %><span class="description"><%= @meta[:description] %></span></h1>
-				<%- end -%>
-				
-				<%= format_flash(:notice) || format_flash(:error) -%>
-				
-				<%= yield %>
-				
-				<div class="clear">&nbsp;</div>
-			</div>
-			
-			<div id="ft">
-			</div> 
 		</div>
+		<div class="container_12">
+			<div id="c">
+				<%# format_flash(:notice) || format_flash(:error) -%>
+				<div class="grid_9">
+					<%- unless @meta.nil? || @meta[:title].blank? || @meta[:blank_header] -%>
+						<h1><%= @meta[:title] %><span class="description"><%= @meta[:description] %></span></h1>
+					<%- end -%>
+					
+					<%= yield %>
+				</div>
+				<div class="grid_3">
+					<%= yield :sidebar %>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div id="f">
+				Service udbudt af <span class="company-name">Commanigy ApS</span>
+			</div>
+		</div>		
 	</body>
 </html>
