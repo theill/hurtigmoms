@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<title><%= @title -%></title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="imagetoolbar" content="no" />
+		<meta name="description" content="<%=h @description %>" />
+		<%= javascript_include_tag('jquery-1.3.2.min', 'application', :cache => true) %>
+		<%= stylesheet_link_tag('reset', 'text', '960', 'base', :cache => true) %>
+		<%= yield :head -%>
+	</head>
+	
+	<body>
+		<div class="container_12">
+			<div id="hd">
+				<div class="grid_4 selector">
+					<div class="logo"><%= link_to(image_tag('logo.png', :title => 'lifestyleapps', :width => 140, :height => 40), dashboard_path) %></div>
+				</div>
+				<div class="grid_8 navigation">
+					<%= render :partial => "shared/navigation" -%>
+				</div> 
+				
+				<div class="clear">&nbsp;</div>
+			</div>
+			
+			<div id="bd">
+				<%- unless @meta[:title].blank? || @meta[:blank_header] -%>
+					<h1><%= @meta[:title] %><span class="description"><%= @meta[:description] %></span></h1>
+				<%- end -%>
+				
+				<%= format_flash(:notice) || format_flash(:error) -%>
+				
+				<%= yield %>
+				
+				<div class="clear">&nbsp;</div>
+			</div>
+			
+			<div id="ft">
+			</div> 
+		</div>
+	</body>
+</html>
