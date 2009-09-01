@@ -1,0 +1,2 @@
+thoughtbot-factory_girl --version '>= 1.2.2' --source http://gems.github.com
+thoughtbot-clearance --version '>= 0.8.1' --source http://gems.github.com
