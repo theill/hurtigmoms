@@ -1,0 +1,6 @@
+<h2>Opret konto</h2>
+
+<% form_for @user do |form| %>
+  <%= render :partial => '/users/form', :object => form %>
+  <%= form.submit 'Opret konto', :disable_with => 'Please wait...' %>
+<% end %>

@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :accounts, :as => 'konti'
-  map.resources :postings, :as => 'posteringer'
+  map.resources :postings, :as => 'posteringer', :member => { :download => :get }
 
 
   # def map.controller_actions(controller, aktions)

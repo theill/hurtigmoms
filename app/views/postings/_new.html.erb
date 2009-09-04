@@ -4,6 +4,7 @@
 	<%= date_select :posting, :created_at %>
 	<%= f.text_field :note, :size => 20, :maxlength => 128 %>
 	<%= f.text_field :amount, :size => 20, :maxlength => 128 %>
+	<%= f.text_field :attachment_no, :size => 4, :maxlength => 4 %>
 
 	<%= f.select :account_id, grouped_accounts, {:prompt => "Vælg konto"} %>
 

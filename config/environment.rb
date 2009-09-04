@@ -1,7 +1,7 @@
 # Be sure to restart your server when you modify this file
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.3' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -21,6 +21,7 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "thoughtbot-factory_girl", :version => '>= 1.2.2', :lib => "factory_girl", :source => "http://gems.github.com"
   config.gem "thoughtbot-clearance", :version => '>= 0.8.2', :lib => 'clearance', :source  => 'http://gems.github.com'
+  config.gem 'thoughtbot-paperclip', :version => '>= 2.3.1', :lib => 'paperclip', :source => 'http://gems.github.com'
   
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

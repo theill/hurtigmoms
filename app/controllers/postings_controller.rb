@@ -88,4 +88,10 @@ class PostingsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def download
+    @posting = current_user.postings.find(params[:id])
+    
+    redirect_to @posting.authenticated_url
+  end
 end
