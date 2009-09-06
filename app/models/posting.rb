@@ -9,6 +9,7 @@ class Posting < ActiveRecord::Base
     :path => ":attachment/:id/:style.:extension",
     :bucket => 'hurtigmoms'
   
+  validates_uniqueness_of :attachment_no, :scope => :user_id
   validates_presence_of :account_id
   validates_presence_of :amount
   validates_presence_of :attachment_no
@@ -18,6 +19,10 @@ class Posting < ActiveRecord::Base
   
   def authenticated_url(expires_in = 10.seconds)
     AWS::S3::S3Object.url_for(attachment.path, attachment.bucket_name, :expires_in => expires_in, :use_ssl => attachment.s3_protocol == 'https')
+  end
+  
+  def after_initialize
+    self.set_attachment_no
   end
   
   protected

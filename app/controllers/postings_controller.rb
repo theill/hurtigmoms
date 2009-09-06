@@ -4,7 +4,7 @@ class PostingsController < ApplicationController
   # GET /postings
   # GET /postings.xml
   def index
-    @postings = current_user.postings.all
+    @postings = current_user.postings.all :order => 'created_at DESC'
 
     @posting = current_user.postings.new
 

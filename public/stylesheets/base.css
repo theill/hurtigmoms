@@ -8,6 +8,12 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: normal;
 }
 
+h1 span {
+	color: #999;
+	font-size: 16px;
+	margin-left: 8px;
+}
+
 .req {
 	color: #f00;
 }
@@ -18,6 +24,10 @@ form {
 form h3 {
 	margin: 0;
 	font-size: 16px;
+}
+
+fieldset label {
+	display: block;
 }
 
 .hint {

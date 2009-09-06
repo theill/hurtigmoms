@@ -2,4 +2,42 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  application:
+    name: hurtigmoms
+  
+  buttons:
+    save: Save
+    cancel: Cancel
+    wait: Please wait...
+
+  user:
+    company: Company
+    cvr: CVR
+    email: Email
+    password: Password
+    password_confirmation: Confirm password
+
+  users:
+    new:
+      title: Pricing &amp; sign up
+      description: Currently this is free but we will add premium services in the future.
+      buttons:
+        save: Sign up
+
+    edit:
+      title: Settings
+
+
+  sessions:
+    new:
+      sign_in: Sign in
+  
+  layouts:
+    application:
+      home: Home
+      postings: Postings
+      accounts: Accounts
+      sign_in: Sign in
+      sign_out: Sign out
+      sign_up: Pricing &amp; sign up
+      tour: Tour

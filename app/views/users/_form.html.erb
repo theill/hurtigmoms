@@ -1,0 +1,21 @@
+<%= form.error_messages %>
+
+<fieldset>
+  <%= form.label :company, t('user.company') %>
+  <%= form.text_field :company %>
+</fieldset>
+
+<fieldset>
+  <%= form.label :email, t('user.email') %>
+  <%= form.text_field :email %>
+</fieldset>
+
+<fieldset>
+  <%= form.label :password, t('user.password') %>
+  <%= form.password_field :password %>
+</fieldset>
+
+<fieldset>
+  <%= form.label :password_confirmation, t('user.password_confirmation') %>
+  <%= form.password_field :password_confirmation %>
+</fieldset>

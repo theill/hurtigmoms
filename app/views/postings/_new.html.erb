@@ -1,12 +1,12 @@
 <% form_for(posting, :html => {:autocomplete => 'off'}) do |f| -%>
 	<%= error_messages_for :posting %>
 
-	<%= date_select :posting, :created_at %>
-	<%= f.text_field :note, :size => 20, :maxlength => 128 %>
-	<%= f.text_field :amount, :size => 20, :maxlength => 128 %>
-	<%= f.text_field :attachment_no, :size => 4, :maxlength => 4 %>
-
-	<%= f.select :account_id, grouped_accounts, {:prompt => "Vælg konto"} %>
+	Dato: <%= date_select :posting, :created_at %>
+	Note: <%= f.text_field :note, :size => 20, :maxlength => 128 %>
+	Beløb: <%= f.text_field :amount, :size => 20, :maxlength => 128 %>
+	Bilag: <%= f.text_field :attachment_no, :size => 4, :maxlength => 4 %>
+	
+	Konto: <%= f.select :account_id, grouped_accounts, {:prompt => "Vælg konto"} %>
 
 	<%= submit_tag("Tilføj") %></td>
 <% end -%>

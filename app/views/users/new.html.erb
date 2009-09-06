@@ -1,6 +1,6 @@
-<h2>Opret konto</h2>
+<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
 
 <% form_for @user do |form| %>
   <%= render :partial => '/users/form', :object => form %>
-  <%= form.submit 'Opret konto', :disable_with => 'Please wait...' %>
+  <%= form.submit t('.buttons.save'), :disable_with => t('buttons.wait') %>
 <% end %>

@@ -2,14 +2,22 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :accounts, :as => 'konti'
   map.resources :postings, :as => 'posteringer', :member => { :download => :get }
 
-
   # def map.controller_actions(controller, aktions)
   #   aktions.each do |action|
   #     self.send("#{controller}_#{action}", "#{action}", :controller => controller, :action => action)
   #   end
   # end
 
-  # map.controller_actions 'about', %w[about api terms privacy twitter ubiquity im tour stats]
+  map.resources :users do |users|
+    users.resource :password, :controller => 'clearance/passwords', :only => [:create, :edit, :update]
+    users.resource :confirmation, :controller => 'clearance/confirmations', :only => [:new, :create]
+  end
+  
+  map.tour 'tour', :controller => 'about', :action => 'tour'
+  map.help 'hjaelp', :controller => 'about', :action => 'help'
+  map.contact 'kontakt', :controller => 'about', :action => 'contact'
+
+  # map.controller_actions 'about', %w[tour help contact]
 
   map.root :controller => 'about'
 

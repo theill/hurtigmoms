@@ -1,17 +1,17 @@
-<h2>Log ind</h2>
+<h1><%= t('.sign_in') %></h1>
 
 <% form_for :session, :url => session_path do |form| %>
-  <div class="text_field">
-    <%= form.label :email %>
+	<fieldset>
+    <%= form.label :email, t('user.email') %>
     <%= form.text_field :email %>
-  </div>
-  <div class="text_field">
-    <%= form.label :password %>
+	</fieldset>
+	<fieldset>
+    <%= form.label :password, t('user.password') %>
     <%= form.password_field :password %>
-  </div>
-  <div class="submit_field">
-    <%= form.submit "Sign in", :disable_with => "Please wait..." %>
-  </div>
+	</fieldset>
+	<fieldset>
+    <%= form.submit "Sign in", :disable_with => t('buttons.wait') %>
+		</fieldset>
 <% end %>
 
 <ul>
