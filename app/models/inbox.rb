@@ -11,7 +11,7 @@ class Inbox
         puts "Looking up message #{message_id}"
         msg = imap.fetch(message_id, "RFC822")
         parse(msg.first.attr["RFC822"])
-        # imap.store(message_id, "+FLAGS", [:Deleted])
+        imap.store(message_id, "+FLAGS", [:Deleted])
       rescue Exception => e
         puts "upsi #{e.message}"
         # Rails.logger.error "[" + Time.now.to_s + "] " + e.message
