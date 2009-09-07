@@ -1,0 +1,27 @@
+Feature: Manage postings
+  In order to manage postings
+  A user
+  Should be able to add, edit and delete postings
+
+	Scenario: User is not signed in
+	  Given no user is signed in
+	  When I go to the postings page
+	  Then I should be signed out
+	  
+	Scenario: User is signed in
+	  Given I am signed in as "email@person.com/password"
+	  When I go to the postings page
+	  Then I should see the postings overview page
+	  
+	Scenario: User adds a posting
+	  Given I am signed in as "email@person.com/password"
+      When I go to the postings overview page
+      And I fill in "Amount" with "42580"
+      And I fill in "Note" with ""
+      And I fill in "Account" with "Salg"
+      And I press "Add posting"
+      Then I should see "posting added"
+      And one more posting should be added
+	  
+	  
+

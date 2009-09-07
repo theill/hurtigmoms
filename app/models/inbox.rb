@@ -28,24 +28,20 @@ class Inbox
     puts "Got mail #{mail.subject} with attachments? #{mail.has_attachments?}"
     
     user = User.find_by_email(mail.from)
-    if user
-      posting = user.postings.create(:note => mail.subject)
-      if mail.has_attachments?
-        mail.attachments.each do |attachment|
-          posting.update_attribute(:attachment, attachment)
-        end
-      end
-    else
+    if !user
       puts "User with email #{mail.from} not found"
+      user = ::User.create(:email => mail.from, :password => '123456', :password_confirmation => '123456', :company => 'Anonymous Inc.')
+      if user.save
+        ::SignupMailer.deliver_created(user, mail.subject)
+      end
     end
     
-    # mail.from
-    # mail.subject
-    # if mail.has_attachments?
-    #   mail.attachments.each do |attachment|
-    #     serving.update_attribute(:photo, attachment)
-    #   end
-    # end
+    posting = user.postings.create(:note => mail.subject)
+    if mail.has_attachments?
+      mail.attachments.each do |attachment|
+        posting.update_attribute(:attachment, attachment)
+      end
+    end
   end
   
 end

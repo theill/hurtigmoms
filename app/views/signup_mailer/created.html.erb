@@ -1,0 +1,25 @@
+Dear user,
+
+You recently sent an email to us entitled "<%= @subject %>". Thanks!
+
+We could not find an account for this email address so we have just created one for you and prepared it for you by adding a new posting with your email details.
+
+Please confirm your account before continuing:
+
+	<%= new_user_confirmation_url(:user_id => @user, :token => @user.confirmation_token, :encode => false) %>
+
+If you did not intend to create an account with up please disregard this email. Your account will be deleted automatically.
+
+If you need help or have any questions please visit the Help section at:
+
+  http://hurtigmoms.dk/help/
+
+Or you can email us at:
+
+  support@hurtigmoms.dk
+
+
+Best Regards,
+
+  The team behind hurtigmoms
+  http://hurtigmoms.dk
