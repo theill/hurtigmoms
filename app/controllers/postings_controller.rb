@@ -51,10 +51,12 @@ class PostingsController < ApplicationController
         flash[:notice] = 'Posting was successfully created.'
         format.html { redirect_to(postings_url) }
         format.xml  { render :xml => @posting, :status => :created, :location => @posting }
+        format.json { render :json => [] }
         format.js   { flash[:notice] = "Ny postering tilføjet" }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @posting.errors, :status => :unprocessable_entity }
+        format.json { render :json => [] }
         format.js
       end
     end

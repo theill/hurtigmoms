@@ -1,7 +1,5 @@
 <%- @meta = { :title => 'Oversigt over konti', :description => '' } -%>
 <div class="grid_9">
-	Du har konti: <%= @accounts.length %>
-	
 	<%= render :partial => 'new', :locals => { :account => @account } %>
 
 	<table>

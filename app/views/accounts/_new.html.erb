@@ -6,5 +6,5 @@
 	<%= f.select :account_type, [['Købskonto', '1'], ['Salgskonto', '2']], {:prompt => "Vælg type"} %>
 	<%= f.select :vat_type, [['Momsfrit', '1'], ['Dansk moms 25%', '2'], ['Varekøb i udlandet', '3']], {:prompt => "Vælg momstype"} %>
 
-	<%= submit_tag("Tilføj") %></td>
+  <%= f.submit t('.buttons.save'), :disable_with => t('buttons.wait') %>
 <% end -%>

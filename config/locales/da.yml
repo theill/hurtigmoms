@@ -33,7 +33,13 @@ da:
 
     edit:
       title: Indstillinger
+      description: ''
 
+  accounts:
+    new:
+      buttons:
+        save: Opret konto
+  
   postings:
     new:
       buttons:
