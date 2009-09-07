@@ -22,6 +22,7 @@ Rails::Initializer.run do |config|
   config.gem "thoughtbot-factory_girl", :version => '>= 1.2.2', :lib => "factory_girl", :source => "http://gems.github.com"
   config.gem "thoughtbot-clearance", :version => '>= 0.8.2', :lib => 'clearance', :source  => 'http://gems.github.com'
   config.gem 'thoughtbot-paperclip', :version => '>= 2.3.1', :lib => 'paperclip', :source => 'http://gems.github.com'
+  config.gem 'openrain-action_mailer_tls', :lib => 'smtp_tls.rb', :source => 'http://gems.github.com'
   
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
