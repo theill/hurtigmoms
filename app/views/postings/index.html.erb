@@ -1,9 +1,9 @@
 <%- @meta = { :title => 'Oversigt over posteringer', :description => '', :blank_header => false } -%>
 <div class="grid_9">
-	
-	Du har posteringer: <%= @postings.length %>
-	
-	<%= render :partial => 'new', :locals => { :posting => @posting } %>
+
+	<div id="new">
+		<%= render :partial => 'new', :locals => { :posting => @posting } %>
+	</div>
 	
 	<table>
 		<thead>

@@ -17,6 +17,13 @@ en:
     password: Password
     password_confirmation: Confirm password
 
+  posting:
+    created_at: Date
+    note: Note
+    amount: Amount
+    attachment_no: Attachment no
+    account_id: Account
+
   users:
     new:
       title: Pricing &amp; sign up
@@ -27,6 +34,10 @@ en:
     edit:
       title: Settings
 
+  postings:
+    new:
+      buttons:
+        save: Create posting
 
   sessions:
     new:

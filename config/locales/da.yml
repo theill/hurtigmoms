@@ -17,6 +17,13 @@ da:
     password: Kodeord
     password_confirmation: Bekræft kodeord
     
+  posting:
+    created_at: Dato
+    note: Note
+    amount: Beløb
+    attachment_no: Bilag
+    account_id: Konto
+    
   users:
     new:
       title: Opret konto
@@ -27,6 +34,10 @@ da:
     edit:
       title: Indstillinger
 
+  postings:
+    new:
+      buttons:
+        save: Opret postering
 
   sessions:
     new:
