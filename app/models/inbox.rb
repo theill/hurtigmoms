@@ -25,7 +25,7 @@ class Inbox
   
   def parse(msg)
     mail = TMail::Mail.parse(msg)
-    puts "Got mail #{mail.subject} with attachments? #{mail.has_attachments?}"
+    puts "Got mail #{mail.subject} from #{mail.from} #{mail.has_attachments? ? 'with' : 'without'} attachments"
     
     user = User.find_by_email(mail.from)
     if !user
@@ -36,7 +36,7 @@ class Inbox
       end
     end
     
-    posting = user.postings.create(:note => mail.subject)
+    posting = user.postings.create!(:note => mail.subject, :account_id => 1, :amount => 0)
     if mail.has_attachments?
       mail.attachments.each do |attachment|
         posting.update_attribute(:attachment, attachment)

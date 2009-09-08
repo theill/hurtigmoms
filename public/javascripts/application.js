@@ -2,15 +2,9 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 $(function() {
-
-	function processJson(data) { 
-	    // 'data' is the json object returned from the server 
-	    alert(data.message); 
-	}
-
+	
 	$('#new_posting').ajaxForm({
-		dataType: 'json',
-		success: processJson
+		dataType: 'json'
 	});
 	
 /*	$('#new_posting').submit(function() {
