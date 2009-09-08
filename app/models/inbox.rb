@@ -36,7 +36,11 @@ class Inbox
       end
     end
     
-    posting = user.postings.create!(:note => mail.subject, :account_id => 1, :amount => 0)
+    # do Harvest amount parsing
+    parsed_amount = (mail.body || "").scan(/amount:\W?(\$)?([\d|\.]*)\W?\(?(DKK|USD|NOK|SEK|EUR)?\)?/i).flatten
+    amount = (parsed_amount.length > 1) ? parsed_amount[1] : "0.0"
+    
+    posting = user.postings.create!(:note => mail.subject, :account_id => 1, :amount => amount)
     if mail.has_attachments?
       mail.attachments.each do |attachment|
         posting.update_attribute(:attachment, attachment)
