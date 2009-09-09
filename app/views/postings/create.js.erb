@@ -6,3 +6,10 @@
 // $("#new_task")[0].reset();
 // $("#new_task").focusFirstFormElement();
 // $("#new_task").find('input.submit').attr('disabled', '');
+
+$("#postings").prepend("<%= escape_javascript(render(@posting)) %>");
+$("#<%= dom_id(@posting) %>").effect("highlight");
+$("#new_posting")[0].reset();//.focusFirstFormElement();
+$("#new_posting").find('input.submit').attr('disabled', '');
+
+// $("#email_email").attr("value", "");

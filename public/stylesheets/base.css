@@ -136,11 +136,16 @@ div.action-bar {
 	}
 	#c table {
 		width: 100%;
+		font-size: 11px;
 	}
 	#c table th {
 		text-align: left;
-		font-size: 11px;
-		border-bottom: solid 1px #99f;
+		border-bottom: solid 3px #ccc;
+		padding: 4px;
+	}
+	#c table td {
+		border: solid 1px #ccc;
+		padding: 2px 6px;
 	}
 
 #f {
@@ -159,3 +164,6 @@ div.action-bar {
 		border-bottom: solid 1px #ccc;
 	}
 
+#new_posting {
+	-moz-column-count: 3;
+}

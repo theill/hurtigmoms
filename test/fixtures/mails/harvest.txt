@@ -1,0 +1,88 @@
+Delivered-To: bilag@hurtigmoms.dk
+Received: by 10.231.33.10 with SMTP id f10cs264985ibd;
+        Tue, 8 Sep 2009 05:17:34 -0700 (PDT)
+Received: by 10.223.2.69 with SMTP id 5mr5890530fai.88.1252412253110;
+        Tue, 08 Sep 2009 05:17:33 -0700 (PDT)
+Return-Path: <peter@commanigy.com>
+Received: from mail-bw0-f221.google.com (mail-bw0-f221.google.com [209.85.218.221])
+        by mx.google.com with ESMTP id 21si6868309fxm.33.2009.09.08.05.17.32;
+        Tue, 08 Sep 2009 05:17:32 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning peter@commanigy.com does not designate 209.85.218.221 as permitted sender) client-ip=209.85.218.221;
+Authentication-Results: mx.google.com; spf=softfail (google.com: domain of transitioning peter@commanigy.com does not designate 209.85.218.221 as permitted sender) smtp.mail=peter@commanigy.com
+Received: by bwz21 with SMTP id 21so1917864bwz.40
+        for <bilag@hurtigmoms.dk>; Tue, 08 Sep 2009 05:17:32 -0700 (PDT)
+Received: by 10.103.84.15 with SMTP id m15mr6602022mul.105.1252412251779;
+        Tue, 08 Sep 2009 05:17:31 -0700 (PDT)
+Return-Path: <peter@commanigy.com>
+Received: from mail-bw0-f221.google.com (mail-bw0-f221.google.com [209.85.218.221])
+        by mx.google.com with ESMTPS id s10sm992175muh.55.2009.09.08.05.17.29
+        (version=SSLv3 cipher=RC4-MD5);
+        Tue, 08 Sep 2009 05:17:31 -0700 (PDT)
+Received: by bwz21 with SMTP id 21so1917836bwz.40
+        for <bilag@hurtigmoms.dk>; Tue, 08 Sep 2009 05:17:29 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.204.143.151 with SMTP id v23mr13220760bku.169.1252412249241; 
+	Tue, 08 Sep 2009 05:17:29 -0700 (PDT)
+In-Reply-To: <4aa630381ee71_7de63fc1bd6b91bc75d7@mdb.getharvest.com.tmail>
+References: <4aa630381ee71_7de63fc1bd6b91bc75d7@mdb.getharvest.com.tmail>
+From: Peter Theill <email@person.com>
+Date: Tue, 8 Sep 2009 14:17:08 +0200
+Message-ID: <701dc5890909080517k34985a08le9e32f9bc58f8afd@mail.gmail.com>
+Subject: Fwd: Harvest Subscription
+To: bilag@hurtigmoms.dk
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Peter Theill
+Commanigy
+Frederiksholms Kanal 4
+DK-1220 Copenhagen K
+email: peter@commanigy.com
+web: http://commanigy.com
+mobile: +45 6171 5096
+mobile (intl): +1 (304) 584-3455
+
+
+
+
+---------- Forwarded message ----------
+From: Harvest Billing <support@getharvest.com>
+Date: Tue, Sep 8, 2009 at 12:21
+Subject: Harvest Subscription
+To: peter@commanigy.com
+
+
+Thank you for using HARVEST, the simple time-tracking solution. Please
+find below the invoice for your subscription. =C2=A0Your HARVEST account is
+http://commanigy.harvestapp.com
+
+Please note HARVEST charges will appear as IRIDESCO (HARVEST's
+parent company) on your credit card statement.
+
+Iridesco, LLC.
+Harvest Time Tracking
+224 Centre St., 3rd Fl.
+New York, NY 10013 USA
+
+
+Date: 04 Sep 2009
+Bill to: Peter Theill, Commanigy
+
+Services:
+
+Harvest Plan: Solo
+Amount: $12.00 (USD)
+Payment Method : Visa ending in 9061
+
+Thank you for your business.
+
+If you have any questions, please contact us at support@getharvest.com
+
+Cheers,
+Harvest Team
+--
+Check http://www.getharvest.com/blog for the latest updates on Harvest.
+Follow http://twitter.com/harvest for Harvest announcements.
+This is an automated message from Harvest.
+
+Message Reference: 102144/Z20AJS/12375/70282

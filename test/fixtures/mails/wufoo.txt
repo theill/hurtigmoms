@@ -1,0 +1,113 @@
+Delivered-To: bilag@hurtigmoms.dk
+Received: by 10.231.33.10 with SMTP id f10cs305240ibd;
+        Wed, 9 Sep 2009 00:02:22 -0700 (PDT)
+Received: by 10.223.143.79 with SMTP id t15mr6929825fau.6.1252479741521;
+        Wed, 09 Sep 2009 00:02:21 -0700 (PDT)
+Return-Path: <peter@commanigy.com>
+Received: from mail-fx0-f208.google.com (mail-fx0-f208.google.com [209.85.220.208])
+        by mx.google.com with ESMTP id 21si910373fkx.56.2009.09.09.00.02.21;
+        Wed, 09 Sep 2009 00:02:21 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning peter@commanigy.com does not designate 209.85.220.208 as permitted sender) client-ip=209.85.220.208;
+Authentication-Results: mx.google.com; spf=softfail (google.com: domain of transitioning peter@commanigy.com does not designate 209.85.220.208 as permitted sender) smtp.mail=peter@commanigy.com
+Received: by mail-fx0-f208.google.com with SMTP id 4so3648269fxm.40
+        for <bilag@hurtigmoms.dk>; Wed, 09 Sep 2009 00:02:21 -0700 (PDT)
+Received: by 10.223.143.79 with SMTP id t15mr6779362fau.13.1252479740921;
+        Wed, 09 Sep 2009 00:02:20 -0700 (PDT)
+Return-Path: <peter@commanigy.com>
+Received: from mail-bw0-f221.google.com (mail-bw0-f221.google.com [209.85.218.221])
+        by mx.google.com with ESMTPS id 35sm1277009fkt.46.2009.09.09.00.02.19
+        (version=SSLv3 cipher=RC4-MD5);
+        Wed, 09 Sep 2009 00:02:20 -0700 (PDT)
+Received: by bwz21 with SMTP id 21so2555031bwz.40
+        for <bilag@hurtigmoms.dk>; Wed, 09 Sep 2009 00:02:19 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.223.24.151 with SMTP id v23mr6819414fab.44.1252479739301; Wed, 
+	09 Sep 2009 00:02:19 -0700 (PDT)
+In-Reply-To: <20090801080337.925F82602B@wufoo-web-001.wufoo.com>
+References: <20090801080337.925F82602B@wufoo-web-001.wufoo.com>
+From: Peter Theill <peter@commanigy.com>
+Date: Wed, 9 Sep 2009 09:01:59 +0200
+Message-ID: <701dc5890909090001m52ade015ydc6f5d0c49cf84a4@mail.gmail.com>
+Subject: Fwd: Infinity Box Invoice - Wufoo Subscription # 100820
+To: bilag@hurtigmoms.dk
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Peter Theill
+Commanigy
+Frederiksholms Kanal 4
+DK-1220 Copenhagen K
+email: peter@commanigy.com
+web: http://commanigy.com
+mobile: +45 6171 5096
+mobile (intl): +1 (304) 584-3455
+
+
+
+
+---------- Forwarded message ----------
+From: Wufoo Billing <billing@wufoo.com>
+Date: Sat, Aug 1, 2009 at 10:03
+Subject: Infinity Box Invoice - Wufoo Subscription # 100820
+To: info@commanigy.com
+
+
+Infinity Box Inc. - Wufoo Invoice
+
+Thank you for your payment! This email confirms that your credit card
+ending in 9061 has been charged $9.95 and covers usage from August 01,
+2009 to September 01, 2009.
+
+This credit card transaction will appear on your credit card statement
+as "Infinity Box Inc." Please keep a copy of this invoice for your
+records and for future reference.
+
+If you would like to stop payments, please log into Wufoo and head to
+the Account section where you can downgrade or delete your account at
+any time.
+
+Thanks again for using Wufoo!
+
+The Infinity Box Team
+
+INVOICE
+
+----------------------------------------------
+
+August 01, 2009
+
+Transaction ID:# 100820
+
+----------------------------------------------
+
+Infinity Box Inc.
+12157 W. Linebaugh Ave. PMB 327
+Tampa, FL 33626
+
+Bill To:
+Peter Theill
+Adelgade 17, 3.
+1304
+Denmark
+
+DESCRIPTION:
+
+Wufoo Monthly Subscription
+From : August 01, 2009 to Sept ember 01, 2009
+
+PRICE:
+
+$ 9.95
+
+AMOUNT PAID:
+
+$ 9.95
+
+If you have any questions, you can always check out our documentation,
+or feel free to send them our way.
+
+--
+The Wufoo Team
+
+=C2=A9 Infinity Box Inc =C2=B7 12157 W. Linebaugh Ave. PMB 327, Tampa, FL 3=
+3626

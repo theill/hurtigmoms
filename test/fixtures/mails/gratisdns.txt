@@ -1,0 +1,73 @@
+Delivered-To: bilag@hurtigmoms.dk
+Received: by 10.231.33.10 with SMTP id f10cs305233ibd;
+        Wed, 9 Sep 2009 00:02:10 -0700 (PDT)
+Received: by 10.102.165.11 with SMTP id n11mr7142979mue.5.1252479729339;
+        Wed, 09 Sep 2009 00:02:09 -0700 (PDT)
+Return-Path: <peter@commanigy.com>
+Received: from mail-bw0-f221.google.com (mail-bw0-f221.google.com [209.85.218.221])
+        by mx.google.com with ESMTP id 19si1128898fxm.52.2009.09.09.00.02.08;
+        Wed, 09 Sep 2009 00:02:09 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning peter@commanigy.com does not designate 209.85.218.221 as permitted sender) client-ip=209.85.218.221;
+Authentication-Results: mx.google.com; spf=softfail (google.com: domain of transitioning peter@commanigy.com does not designate 209.85.218.221 as permitted sender) smtp.mail=peter@commanigy.com
+Received: by bwz21 with SMTP id 21so2554908bwz.40
+        for <bilag@hurtigmoms.dk>; Wed, 09 Sep 2009 00:02:08 -0700 (PDT)
+Received: by 10.223.15.86 with SMTP id j22mr6714733faa.47.1252479728100;
+        Wed, 09 Sep 2009 00:02:08 -0700 (PDT)
+Return-Path: <peter@commanigy.com>
+Received: from mail-fx0-f208.google.com (mail-fx0-f208.google.com [209.85.220.208])
+        by mx.google.com with ESMTPS id 22sm1290684fkq.53.2009.09.09.00.02.07
+        (version=SSLv3 cipher=RC4-MD5);
+        Wed, 09 Sep 2009 00:02:07 -0700 (PDT)
+Received: by fxm4 with SMTP id 4so3648344fxm.40
+        for <bilag@hurtigmoms.dk>; Wed, 09 Sep 2009 00:02:07 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.223.5.18 with SMTP id 18mr6777453fat.58.1252479727285; Wed, 09 
+	Sep 2009 00:02:07 -0700 (PDT)
+In-Reply-To: <20090903070257.9AE02CD909B@nina.gratisdns.dk>
+References: <20090903070257.9AE02CD909B@nina.gratisdns.dk>
+From: Peter Theill <peter@commanigy.com>
+Date: Wed, 9 Sep 2009 09:01:47 +0200
+Message-ID: <701dc5890909090001v75801772t72fc9b119caea127@mail.gmail.com>
+Subject: Fwd: Din faktura: 213573
+To: bilag@hurtigmoms.dk
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Peter Theill
+Commanigy
+Frederiksholms Kanal 4
+DK-1220 Copenhagen K
+email: peter@commanigy.com
+web: http://commanigy.com
+mobile: +45 6171 5096
+mobile (intl): +1 (304) 584-3455
+
+
+
+
+---------- Forwarded message ----------
+From: GratisDNS Robot <donotreply@gratisdns.dk>
+Date: 2009/9/3
+Subject: Din faktura: 213573
+To: peter@theill.com
+
+
+(Automatisk besked, besvarelse ikke n=C3=B8dvendig)
+
+Din ordre er f=C3=A6rdigbehandlet.
+
+Andre produkter fra Larsen Data:
+Webhotel: http://www.netplads.dk
+SSL certifikater: http://www.digitaltcertifikat.dk
+Mail hosting: http://www.mxhotel.dk
+Server hosting: www.emotix.dk
+
+=C2=A0Du kan se din faktura her, udskriv den med det samme, tak:
+
+http://www.gratisdns.dk/faktura.phtml?SKGID=3D348176e7773561a285bfd012533f2=
+21caf42a9
+
+S=C3=A5fremt din faktura er ubetalt, s=C3=A5 vil du blive opkr=C3=A6vet det=
+te seperat.
+
+MvH, Larsen Data

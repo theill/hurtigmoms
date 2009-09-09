@@ -5,7 +5,7 @@
 		<%= render :partial => 'new', :locals => { :posting => @posting } %>
 	</div>
 	
-	<table>
+	<table id="postings">
 		<thead>
 			<tr>
 				<th>Dato</th>
@@ -15,15 +15,7 @@
 				<th>Bilag</th>
 			</tr>
 		</thead>
-  <% for posting in @postings %>
-		<tr>
-			<td><%= posting.created_at.strftime("%d/%m-%Y") %></td>
-			<td><%=h posting.note %></td>
-			<td><%=h posting.account.name if posting.account %></td>
-			<td><%= posting.amount %></td>
-			<td><%= posting.attachment_no %><%= link_to('vis', download_posting_path(posting)) if posting.attachment? %></td>
-		</tr>
-  <% end %>
+	<%= render @postings %>
 	</table>	
 	
 </div>

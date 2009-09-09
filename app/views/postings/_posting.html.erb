@@ -1,0 +1,7 @@
+<tr id="<%= dom_id(posting) %>">
+	<td><%= posting.created_at.strftime("%d/%m-%Y") %></td>
+	<td><%=h posting.note %></td>
+	<td><%=h posting.account.name if posting.account %></td>
+	<td><%= posting.amount %></td>
+	<td><%= posting.attachment_no %><%= link_to('vis', download_posting_path(posting)) if posting.attachment? %></td>
+</tr>

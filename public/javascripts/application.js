@@ -4,7 +4,7 @@
 $(function() {
 	
 	$('#new_posting').ajaxForm({
-		dataType: 'json'
+		dataType: 'script'
 	});
 	
 /*	$('#new_posting').submit(function() {
