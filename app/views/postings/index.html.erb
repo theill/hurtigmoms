@@ -1,21 +1,29 @@
 <%- @meta = { :title => 'Oversigt over posteringer', :description => '', :blank_header => false } -%>
 <div class="grid_9">
-
-	<div id="new">
-		<%= render :partial => 'new', :locals => { :posting => @posting } %>
-	</div>
-	
 	<table id="postings">
 		<thead>
 			<tr>
+				<th></th>
 				<th>Dato</th>
+				<th>Bilag</th>
 				<th>Tekst</th>
 				<th>Konto</th>
 				<th>Beløb</th>
-				<th>Bilag</th>
 			</tr>
 		</thead>
-	<%= render @postings %>
+		<thead>
+			<tr>
+				<th colspan="6" style="border: solid 1px #ccc; background-color: #eee">
+					<div style="text-align: center">Ønsker du at tilføje posteringer nu? <input id="add-new-posting" type="button" value="Ja, tak" /></div>
+					<div id="new-posting-container" class="columns" style="display: none">
+						<%= render :partial => 'new', :locals => { :posting => @posting } %>
+					</div>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%= render @postings %>
+		</tbody>
 	</table>	
 	
 </div>

@@ -20,73 +20,65 @@ class PostingsController < ApplicationController
     @posting = current_user.postings.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
       format.xml  { render :xml => @posting }
     end
   end
-
+  
   # GET /postings/new
   # GET /postings/new.xml
   def new
     @posting = current_user.postings.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @posting }
     end
   end
-
+  
   # GET /postings/1/edit
   def edit
     @posting = current_user.postings.find(params[:id])
   end
-
+  
   # POST /postings
   # POST /postings.xml
   def create
     @posting = current_user.postings.new(params[:posting])
-
+    
     respond_to do |format|
       if @posting.save
-        flash[:notice] = 'Posting was successfully created.'
-        format.html { redirect_to(postings_url) }
         format.xml  { render :xml => @posting, :status => :created, :location => @posting }
-        format.js   { flash[:notice] = "Ny postering tilføjet" }
+        format.js
       else
-        format.html { render :action => "new" }
         format.xml  { render :xml => @posting.errors, :status => :unprocessable_entity }
         format.js
       end
     end
   end
-
+  
   # PUT /postings/1
   # PUT /postings/1.xml
   def update
     @posting = current_user.postings.find(params[:id])
-
+    
     respond_to do |format|
       if @posting.update_attributes(params[:posting])
-        flash[:notice] = 'Posting was successfully updated.'
-        format.html { redirect_to(@posting) }
         format.xml  { head :ok }
         format.js
       else
-        format.html { render :action => "edit" }
         format.xml  { render :xml => @posting.errors, :status => :unprocessable_entity }
         format.js
       end
     end
   end
-
+  
   # DELETE /postings/1
   # DELETE /postings/1.xml
   def destroy
     @posting = current_user.postings.find(params[:id])
     @posting.destroy
-
+    
     respond_to do |format|
-      format.html { redirect_to(postings_url) }
       format.xml  { head :ok }
       format.js
     end

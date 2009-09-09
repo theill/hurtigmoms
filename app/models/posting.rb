@@ -9,11 +9,10 @@ class Posting < ActiveRecord::Base
     :path => ":attachment/:id/:style.:extension",
     :bucket => 'hurtigmoms'
   
-  validates_uniqueness_of :attachment_no, :scope => :user_id
+  # validates_uniqueness_of :attachment_no, :scope => :user_id
   validates_presence_of :account_id
   validates_presence_of :amount
   validates_presence_of :attachment_no
-  # validates_attachment_presence :attachment
   
   before_validation_on_create :set_attachment_no
   

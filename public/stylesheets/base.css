@@ -165,7 +165,12 @@ div.action-bar {
 		border-bottom: solid 1px #ccc;
 	}
 
-#new_posting {
+.columns {
 	-moz-column-count: 3;
 	-webkit-column-count: 3;
 }
+
+#postings {}
+	#postings .posting .account_no {
+		color: #999;
+	}

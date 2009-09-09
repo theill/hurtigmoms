@@ -17,10 +17,8 @@ Feature: Manage postings
 		When I go to the postings page
 		And I fill in "Amount" with "42580"
 		And I fill in "Note" with ""
-		And I fill in "Account" with "Salg"
+		And I fill in "Account" with "Salg, indland"
 		And I press "Create posting"
-		Then I should see "Posting was successfully created"
-		And one more posting should be added
-	  
+		Then one more posting should be added
 	  
 

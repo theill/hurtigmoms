@@ -1,15 +1,9 @@
-// $("#progressive-rendering").fadeOut();
-// 
-// $("#recent-task").text('<%= escape_javascript(flash.delete(:notice)) %>');
-// $("#recent-task").css({display: 'block', marginLeft: 0}).fadeIn("slow").animate({marginLeft: "12em", opacity: 1}, { duration: 2000, queue: false }).animate({opacity: 1.0}, 1000).fadeOut("slow");
-// 
-// $("#new_task")[0].reset();
-// $("#new_task").focusFirstFormElement();
-// $("#new_task").find('input.submit').attr('disabled', '');
-
 $("#postings").prepend("<%= escape_javascript(render(@posting)) %>");
 $("#<%= dom_id(@posting) %>").effect("highlight");
-$("#new_posting")[0].reset();//.focusFirstFormElement();
-$("#new_posting").find('input.submit').attr('disabled', '');
 
-// $("#email_email").attr("value", "");
+// reset form
+$("#posting_amount, #posting_note").val('');
+$("#posting_attachment_no").val('<%= @posting.attachment_no + 1 %>');
+
+$("#new_posting").focusFirstFormElement();
+$("#new_posting").find('input.submit').attr('disabled', '');
