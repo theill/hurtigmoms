@@ -13,6 +13,7 @@ ActionController::Routing::Routes.draw do |map|
     users.resource :confirmation, :controller => 'clearance/confirmations', :only => [:new, :create]
   end
   
+  map.api 'api', :controller => 'about', :action => 'api'
   map.tour 'tour', :controller => 'about', :action => 'tour'
   map.help 'hjaelp', :controller => 'about', :action => 'help'
   map.contact 'kontakt', :controller => 'about', :action => 'contact'

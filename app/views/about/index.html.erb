@@ -1,8 +1,20 @@
 <%- @meta = { :title => 'hurtig moms - saa gaar det hurtigt', :description => '', :blank_header => true } -%>
+<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
+
 <div class="grid_12">
+	<%= render '/shared/navigation' %>
+
+	<h4>Understøttede formater</h4>
 	<p>
-		så går det hurtigt!
+		Hurtigmoms kigger intelligent på de mails der modtages og udtrækker
+		faktura dato, beløb, valuta samt beskrivelse inden der indsættes en
+		posting på dit regnskab.
 	</p>
-	
-	<%= render '/shared/navigation' %>	
+	<ul>
+		<li>Harvest</li>
+		<li>Github</li>
+	</ul>
+	<p>
+		Skriv til os hvis du ønsker at din mail kan forstås af hurtigmoms.
+	</p>
 </div>

@@ -38,7 +38,7 @@ class PostingsController < ApplicationController
 
   # GET /postings/1/edit
   def edit
-    @posting = Posting.find(params[:id])
+    @posting = current_user.postings.find(params[:id])
   end
 
   # POST /postings
@@ -70,9 +70,11 @@ class PostingsController < ApplicationController
         flash[:notice] = 'Posting was successfully updated.'
         format.html { redirect_to(@posting) }
         format.xml  { head :ok }
+        format.js
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @posting.errors, :status => :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -86,6 +88,7 @@ class PostingsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(postings_url) }
       format.xml  { head :ok }
+      format.js
     end
   end
   

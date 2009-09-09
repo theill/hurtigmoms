@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   
   validates_presence_of :company
   # validates_format_of :cvr, :with => /^[\w\d]+$/, :allow_nil => true, :allow_blank => true
-  validates_length_of :cvr, :is => 8, :allow_nil => true
+  validates_length_of :cvr, :is => 8, :allow_nil => true, :allow_blank => true
   
   protected
   

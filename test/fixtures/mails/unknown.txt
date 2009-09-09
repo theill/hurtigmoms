@@ -28,10 +28,16 @@ References: <20090903070257.9AE02CD909B@nina.gratisdns.dk>
 From: John Doe <john.doe@hurtigmoms.test>
 Date: Wed, 9 Sep 2009 09:01:47 +0200
 Message-ID: <701dc5890909090001v75801772t72fc9b119caea127@mail.gmail.com>
-Subject: Fwd: Din faktura: 213573
+Subject: Fwd: Something I bought
 To: bilag@hurtigmoms.dk
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+
+Denne mail har nogle specielle felter, saa vi har mulighed for at hente dem og ud bruge dem i stedet:
+
+Amount: 5420
+Date: 2009-03-02
+
 
 Peter Theill
 Commanigy

@@ -1,7 +1,11 @@
-<tr id="<%= dom_id(posting) %>">
-	<td><%= posting.created_at.strftime("%d/%m-%Y") %></td>
+<tr id="<%= dom_id(posting) %>" class="posting">
+	<td>
+		<%= link_to('E', edit_posting_path(posting), :class => 'edit') %>
+		<%= link_to('X', posting, :class => 'delete') %>
+		<%= posting.created_at.strftime("%d/%m-%Y") %>
+	</td>
 	<td><%=h posting.note %></td>
 	<td><%=h posting.account.name if posting.account %></td>
-	<td><%= posting.amount %></td>
-	<td><%= posting.attachment_no %><%= link_to('vis', download_posting_path(posting)) if posting.attachment? %></td>
+	<td><%= number_to_currency(posting.amount, :unit => posting.currency) %></td>
+	<td><%= link_to_attachment(posting) %></td>
 </tr>

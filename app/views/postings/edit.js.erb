@@ -1,0 +1,4 @@
+$("#<%= dom_id(@posting) %>").replaceWith("<%= escape_javascript(render(:partial => 'postings/edit', :locals => {:posting => @posting})) %>");
+// $("#<%= dom_id(@posting) %> #task_name").select().focus();
+
+$("#<%= dom_id(@posting) %> form").ajaxForm({	dataType: "script" });

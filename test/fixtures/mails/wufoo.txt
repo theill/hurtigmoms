@@ -25,7 +25,7 @@ Received: by 10.223.24.151 with SMTP id v23mr6819414fab.44.1252479739301; Wed,
 	09 Sep 2009 00:02:19 -0700 (PDT)
 In-Reply-To: <20090801080337.925F82602B@wufoo-web-001.wufoo.com>
 References: <20090801080337.925F82602B@wufoo-web-001.wufoo.com>
-From: Peter Theill <peter@commanigy.com>
+From: John Doe <john.doe@hurtigmoms.test>
 Date: Wed, 9 Sep 2009 09:01:59 +0200
 Message-ID: <701dc5890909090001m52ade015ydc6f5d0c49cf84a4@mail.gmail.com>
 Subject: Fwd: Infinity Box Invoice - Wufoo Subscription # 100820

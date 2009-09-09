@@ -25,7 +25,7 @@ Received: by 10.204.143.151 with SMTP id v23mr13220760bku.169.1252412249241;
 	Tue, 08 Sep 2009 05:17:29 -0700 (PDT)
 In-Reply-To: <4aa630381ee71_7de63fc1bd6b91bc75d7@mdb.getharvest.com.tmail>
 References: <4aa630381ee71_7de63fc1bd6b91bc75d7@mdb.getharvest.com.tmail>
-From: Peter Theill <email@person.com>
+From: John Doe <john.doe@hurtigmoms.test>
 Date: Tue, 8 Sep 2009 14:17:08 +0200
 Message-ID: <701dc5890909080517k34985a08le9e32f9bc58f8afd@mail.gmail.com>
 Subject: Fwd: Harvest Subscription

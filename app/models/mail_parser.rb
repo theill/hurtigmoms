@@ -7,12 +7,11 @@ class MailParser
     
     parsed_attributes = recognize_and_parse_mail(mail)
     
-    account = user.accounts.find_by_account_no_and_account_type('1308', parsed_attributes[:account_type])
+    # only supporting 'buying' at the moment
+    account = user.accounts.find_by_account_no_and_account_type('1308', Account::ACCOUNT_TYPES[:buying])
+    parsed_attributes.merge!(:account_id => account)
     
-    posting = user.postings.create! :note => parsed_attributes[:description],
-      :account_id => account,
-      :amount => parsed_attributes[:amount],
-      :created_at => parsed_attributes[:created_at]
+    posting = user.postings.create! parsed_attributes
     associate_attachments(posting, mail) if mail.has_attachments?
   end
   
@@ -34,23 +33,35 @@ class MailParser
   def recognize_and_parse_mail(mail)
     amount = 0.0
     date = Time.now.utc.to_datetime
-    currency = 'USD'
+    currency = 'DKK'
     
     if (mail.body && mail.body.include?('support@getharvest.com'))
       # do Harvest amount parsing
       parsed_amount = mail.body.scan(/amount:\W?(\$)?([\d|\.]*)\W?\(?(DKK|USD|NOK|SEK|EUR)?\)?/i).flatten
-      amount = (parsed_amount.length > 1) ? parsed_amount[1] : "0.0"
-      
-      currency = parsed_amount[2] if (parsed_amount.length > 2)
+      amount = (parsed_amount[1] if parsed_amount.length > 1) || amount
+      currency = (parsed_amount[2] if parsed_amount.length > 2) || currency
       
       parsed_date = mail.body.scan(/date:\W?(\d\d \w{3} \w{4})/i).flatten
-      puts parsed_date
       date = (parsed_date.length > 0) ? parsed_date[0].to_datetime : Time.now.utc.to_datetime
-      puts date
+    elsif (mail.body && mail.body.include?('support@github.com'))
+      # do github amount parsing
+      parsed_amount = mail.body.scan(/amount:\W?(DKK|USD|NOK|SEK|EUR)?\W?\$?([\d|\.]*)/i).flatten
+      amount = (parsed_amount[1] if parsed_amount.length > 1) || amount
+      currency = (parsed_amount[0] if parsed_amount.length > 0) || currency
+      
+      parsed_date = mail.body.scan(/GITHUB RECEIPT - (\d\d? \w{3} \w{4})/i).flatten
+      date = (parsed_date.length > 0) ? parsed_date[0].to_datetime : Time.now.utc.to_datetime
+    else
+      parsed_amount = mail.body.scan(/amount:\W?\$?([\d|\.]*)\W?(DKK|USD|NOK|SEK|EUR)?/i).flatten
+      amount = (parsed_amount[0] if parsed_amount.length > 0) || amount
+      currency = (parsed_amount[1] if parsed_amount.length > 1) || currency
+      
+      parsed_date = mail.body.scan(/date:\W?(\d{4}-\d{2}-\d{2})/i).flatten
+      date = (parsed_date.length > 0) ? parsed_date[0].to_datetime : Time.now.utc.to_datetime
     end
     
     description = mail.subject.gsub(/^Fwd: /, '')
     
-    { :amount => amount, :currency => currency, :account_type => Account::ACCOUNT_TYPES[:buying], :description => description, :created_at => date }
+    { :amount => amount, :currency => currency, :note => description, :created_at => date }
   end
 end

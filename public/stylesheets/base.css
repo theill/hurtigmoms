@@ -37,10 +37,6 @@ fieldset label {
 	padding-left: 8px;
 }
 
-ul, li {
-	list-style-type: none;
-}
-
 div.action-bar {
 	background-color: #f3f3f3;
 	padding: 4px;
@@ -117,6 +113,11 @@ div.action-bar {
 				text-decoration: none;
 			}
 
+				#h ul li > a:hover {
+					color: #fff;
+					text-decoration: underline;
+				}
+
 	#h .navigation {
 		
 	}
@@ -166,4 +167,5 @@ div.action-bar {
 
 #new_posting {
 	-moz-column-count: 3;
+	-webkit-column-count: 3;
 }

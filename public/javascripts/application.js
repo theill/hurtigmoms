@@ -3,8 +3,24 @@
 
 $(function() {
 	
-	$('#new_posting').ajaxForm({
-		dataType: 'script'
+	$("#new_posting").ajaxForm({
+		dataType: "script"
+	});
+
+/*	$("#tasks .task .name a.edit").live("click", function() {
+		$.get($(this).attr('href'), null, null, "script");
+		return false;
+	});
+*/	
+	$(".edit").live("click", function() { $.get(this.href, null, null, "script"); return false; });
+	$(".delete").live("click", function() {
+		jQuery.ajax({
+			type: "DELETE",
+			url: this.href,
+			data: null,
+			dataType: "script"
+		});
+		return false;
 	});
 	
 /*	$('#new_posting').submit(function() {

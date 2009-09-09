@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090909091551) do
+ActiveRecord::Schema.define(:version => 20090909123934) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -31,7 +31,8 @@ ActiveRecord::Schema.define(:version => 20090909091551) do
     t.string   "attachment_file_name"
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
-    t.integer  "attachment_no",           :default => 0, :null => false
+    t.integer  "attachment_no",                        :default => 0,     :null => false
+    t.string   "currency",                :limit => 3, :default => "DKK"
   end
 
   create_table "users", :force => true do |t|

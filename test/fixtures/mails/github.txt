@@ -25,7 +25,7 @@ Received: by 10.223.57.210 with SMTP id d18mr6829277fah.106.1252479713737;
 	Wed, 09 Sep 2009 00:01:53 -0700 (PDT)
 In-Reply-To: <4a964c78d1290_6a3515934555ef043021c@xc88-s00022.tmail>
 References: <4a964c78d1290_6a3515934555ef043021c@xc88-s00022.tmail>
-From: Peter Theill <peter@commanigy.com>
+From: John Doe <john.doe@hurtigmoms.test>
 Date: Wed, 9 Sep 2009 09:01:31 +0200
 Message-ID: <701dc5890909090001v485f9b9apf99e69894934fbb0@mail.gmail.com>
 Subject: Fwd: [GitHub] Payment Receipt

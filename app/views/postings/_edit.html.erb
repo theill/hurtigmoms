@@ -1,0 +1,35 @@
+<tr id="<%= dom_id(posting) %>" class="posting">
+	<td colspan="5">
+		<% form_for(posting, :html => {:autocomplete => 'off'}) do |f| -%>
+			<%= error_messages_for :posting %>
+
+			<fieldset>
+				<%= f.label :created_at, t('posting.created_at') %>
+				<%= date_select :posting, :created_at %>
+			</fieldset>
+
+			<fieldset>
+				<%= f.label :note, t('posting.note') %>
+				<%= f.text_field :note, :size => 20, :maxlength => 128 %>
+			</fieldset>
+
+			<fieldset>
+				<%= f.label :amount, t('posting.amount') %>
+				<%= f.text_field :amount, :size => 20, :maxlength => 128 %>
+				<span id="vat">-</span>
+			</fieldset>
+
+			<fieldset>
+				<%= f.label :attachment_no, t('posting.attachment_no') %>
+				<%= f.text_field :attachment_no, :size => 4, :maxlength => 4 %>
+			</fieldset>
+
+			<fieldset>
+				<%= f.label :account_id, t('posting.account_id') %>
+				<%= f.select :account_id, grouped_accounts, {:prompt => "Vælg konto"} %>
+			</fieldset>
+
+		  <%= f.submit t('.buttons.save') %>
+		<% end -%>
+	</td>
+</tr>

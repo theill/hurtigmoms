@@ -44,7 +44,10 @@ da:
     new:
       buttons:
         save: Opret postering
-
+    edit:
+      buttons:
+        save: Opdater postering
+        
   sessions:
     new:
       sign_in: Log ind
@@ -53,7 +56,15 @@ da:
     help:
       title: Hjælp
       description: Ofte stillede spørgsmål, tips og tricks
-  
+    
+    api:
+      title: API
+      description: Benyt hurtigmoms funktionalitet med dine egne applikationer
+      
+    index:
+      title: hurtigmoms
+      description: så går det hurtigt!
+        
   layouts:
     application:
       home: Hjem
@@ -63,6 +74,8 @@ da:
       sign_out: Log ud
       sign_up: Priser &amp; oprettelse
       tour: Tour
+      api: API
+      help: Hjælp
 
       
       
