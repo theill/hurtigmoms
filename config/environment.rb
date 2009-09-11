@@ -46,10 +46,10 @@ Rails::Initializer.run do |config|
   config.i18n.default_locale = :da
   
   config.after_initialize do
-    Delayed::Job.all.each do |old_job|
-      old_job.destroy
-    end
-    Delayed::Job.enqueue Inbox.new
+    # Delayed::Job.all.each do |old_job|
+    #   old_job.destroy
+    # end
+    # Delayed::Job.enqueue Inbox.new
   end
 end
 
