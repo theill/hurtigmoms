@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   include Clearance::User
   
-  has_many :postings
-  has_many :accounts
+  has_many :postings, :dependent => :destroy
+  has_many :accounts, :dependent => :destroy
   
   after_create :setup_default_accounts
   
