@@ -44,6 +44,13 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   config.i18n.default_locale = :da
+  
+  config.after_initialize do
+    Delayed::Job.all.each do |old_job|
+      old_job.destroy
+    end
+    Delayed::Job.enqueue Inbox.new
+  end
 end
 
 DO_NOT_REPLY = "bilag@hurtigmoms.dk"

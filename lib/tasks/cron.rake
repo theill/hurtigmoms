@@ -1,3 +1,3 @@
 task :cron => :environment do
-	::Inbox.new.fetch
+	::Inbox.new.perform
 end
