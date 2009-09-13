@@ -1,0 +1,249 @@
+Delivered-To: bilag@hurtigmoms.dk
+Received: by 10.231.33.10 with SMTP id f10cs191180ibd;
+        Sun, 13 Sep 2009 01:49:35 -0700 (PDT)
+Received: by 10.103.48.26 with SMTP id a26mr1586874muk.83.1252831774628;
+        Sun, 13 Sep 2009 01:49:34 -0700 (PDT)
+Return-Path: <peter@commanigy.com>
+Received: from fg-out-1718.google.com (fg-out-1718.google.com [72.14.220.157])
+        by mx.google.com with ESMTP id s11si11055118mue.46.2009.09.13.01.49.34;
+        Sun, 13 Sep 2009 01:49:34 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning peter@commanigy.com does not designate 72.14.220.157 as permitted sender) client-ip=72.14.220.157;
+Authentication-Results: mx.google.com; spf=softfail (google.com: domain of transitioning peter@commanigy.com does not designate 72.14.220.157 as permitted sender) smtp.mail=peter@commanigy.com
+Received: by fg-out-1718.google.com with SMTP id d23so627083fga.10
+        for <bilag@hurtigmoms.dk>; Sun, 13 Sep 2009 01:49:33 -0700 (PDT)
+Received: by 10.86.210.32 with SMTP id i32mr3762074fgg.60.1252831773423;
+        Sun, 13 Sep 2009 01:49:33 -0700 (PDT)
+Return-Path: <peter@commanigy.com>
+Received: from mail-bw0-f221.google.com (mail-bw0-f221.google.com [209.85.218.221])
+        by mx.google.com with ESMTPS id 12sm2771202fgg.26.2009.09.13.01.49.32
+        (version=SSLv3 cipher=RC4-MD5);
+        Sun, 13 Sep 2009 01:49:32 -0700 (PDT)
+Received: by bwz21 with SMTP id 21so1698235bwz.40
+        for <bilag@hurtigmoms.dk>; Sun, 13 Sep 2009 01:49:31 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.204.25.73 with SMTP id y9mr3946557bkb.40.1252831770129; Sun, 
+	13 Sep 2009 01:49:30 -0700 (PDT)
+In-Reply-To: <CMSER02bb4dc1e42ac049068491ccef7b18c3f2@CMSER02>
+References: <CMSER02bb4dc1e42ac049068491ccef7b18c3f2@CMSER02>
+From: John Doe <john.doe@hurtigmoms.test>
+Date: Sun, 13 Sep 2009 10:49:10 +0200
+Message-ID: <701dc5890909130149x2ea303a1mb20249f73a731108@mail.gmail.com>
+Subject: Fwd: Campaign Monitor: Invoice for delivery of ConquerCam 2.8.1 
+	released
+To: bilag@hurtigmoms.dk
+Content-Type: multipart/alternative; boundary=00032555aa469f369c047371a055
+
+--00032555aa469f369c047371a055
+Content-Type: text/plain; charset=UTF-8
+
+Peter Theill
+Commanigy
+Frederiksholms Kanal 4
+DK-1220 Copenhagen K
+email: peter@commanigy.com
+web: http://commanigy.com
+mobile: +45 6171 5096
+mobile (intl): +1 (304) 584-3455
+
+
+---------- Forwarded message ----------
+From: Campaign Monitor <info@campaignmonitor.com>
+Date: Sat, Aug 29, 2009 at 00:52
+Subject: Campaign Monitor: Invoice for delivery of ConquerCam 2.8.1 released
+To: "peter@commanigy.com" <peter@commanigy.com>
+
+
+   Invoice for email campaign delivery
+
+Peter,
+
+Your email campaign (ConquerCam 2.8.1 released) sent for Commanigy was
+successfully sent to all 3143 recipients. You were charged a total of *
+$36.43*.
+
+Order Number
+839689
+
+Order Date
+
+29 Aug 2009
+  Billed to
+
+*Commanigy*
+Peter Theill
+Order details
+
+Product
+
+Total
+
+Deliver email campaign to 3143 recipients
+
+*$36.43*
+ Your credit card statement
+
+Please note, this transaction will appear on your credit card statement
+from:
+
+*CAMPAIGNMONITOR.COM*
+Thanks for sending with Campaign Monitor
+
+Campaign Monitor - Login to your account <http://commanigy.createsend.com/>
+
+--00032555aa469f369c047371a055
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<br clear=3D"all">Peter Theill<br>Commanigy<br>Frederiksholms Kanal 4<br>DK=
+-1220 Copenhagen K<br>email: <a href=3D"mailto:peter@commanigy.com">peter@c=
+ommanigy.com</a><br>web: <a href=3D"http://commanigy.com">http://commanigy.=
+com</a><br>
+
+mobile: +45 6171 5096<br>mobile (intl): +1 (304) 584-3455<br>
+<br><br><div class=3D"gmail_quote">---------- Forwarded message ----------<=
+br>From: <b class=3D"gmail_sendername">Campaign Monitor</b> <span dir=3D"lt=
+r">&lt;<a href=3D"mailto:info@campaignmonitor.com">info@campaignmonitor.com=
+</a>&gt;</span><br>
+
+Date: Sat, Aug 29, 2009 at 00:52<br>Subject: Campaign Monitor: Invoice for =
+delivery of ConquerCam 2.8.1 released<br>To: &quot;<a href=3D"mailto:peter@=
+commanigy.com">peter@commanigy.com</a>&quot; &lt;<a href=3D"mailto:peter@co=
+mmanigy.com">peter@commanigy.com</a>&gt;<br>
+
+<br><br>
+
+  =20
+  =20
+
+<div>
+
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+   <tbody><tr>
+      <td style=3D"margin-top: 30px;" align=3D"center">
+        =20
+         <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"5=
+09">
+            <tbody><tr>
+               <td style=3D"padding-bottom: 10px;" colspan=3D"2" align=3D"l=
+eft" valign=3D"bottom"><h2 style=3D"margin: 0pt; padding: 0pt; color: rgb(5=
+7, 57, 57); font-family: Arial; font-size: 24px; font-weight: bold;">Invoic=
+e for email campaign delivery</h2>
+
+</td>
+            </tr>
+            <tr>
+               <td style=3D"border-top: 5px solid rgb(175, 175, 175); borde=
+r-bottom: 5px solid rgb(235, 235, 235); padding-bottom: 30px; padding-top: =
+20px;" colspan=3D"2" align=3D"left">
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" w=
+idth=3D"100%">
+                     <tbody><tr>
+                        <td style=3D"padding-right: 45px;" valign=3D"top" w=
+idth=3D"300"><p style=3D"margin: 0pt; padding: 0pt; color: rgb(0, 0, 0); fo=
+nt-family: Arial; font-size: 12px; font-weight: normal; line-height: 17px;"=
+>Peter,<br>
+
+<br>
+                           Your email campaign (ConquerCam 2.8.1 released) =
+sent for Commanigy was successfully sent to all 3143 recipients. You were c=
+harged a total of <b>$36.43</b>.</p></td>
+                        <td valign=3D"top">
+                           <p style=3D"margin: 0pt 0pt 4px; padding: 0pt; c=
+olor: rgb(113, 113, 113); font-family: Arial; font-size: 12px; font-weight:=
+ normal;">Order Number</p>
+                           <h2 style=3D"margin: 0pt 0pt 12px; padding: 0pt;=
+ color: rgb(57, 57, 57); font-family: Arial; font-size: 20px; font-weight: =
+bold;">839689</h2>
+                           <p style=3D"margin: 0pt 0pt 4px; padding: 0pt; c=
+olor: rgb(113, 113, 113); font-family: Arial; font-size: 12px; font-weight:=
+ normal;">Order Date</p>
+                           <p style=3D"margin: 0pt 0pt 4px; padding: 0pt; c=
+olor: rgb(113, 113, 113); font-family: Arial; font-size: 12px; font-weight:=
+ normal;">29 Aug 2009</p>
+                        </td>
+                     </tr>
+                  </tbody></table>=09
+
+				  <h3 style=3D"margin: 25px 0pt 10px; padding: 0pt; color: rgb(57, 57, =
+57); font-family: Arial; font-size: 16px; font-weight: bold;">Billed to</h3=
+>
+				  <p style=3D"margin: 0pt; padding: 0pt; color: rgb(113, 113, 113); fon=
+t-family: Arial; font-size: 12px; font-weight: normal;"><b>Commanigy</b><br=
+>Peter Theill</p>
+                 =20
+                  <h3 style=3D"margin: 35px 0pt 10px; padding: 0pt; color: =
+rgb(57, 57, 57); font-family: Arial; font-size: 16px; font-weight: bold;">O=
+rder details</h3>
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" w=
+idth=3D"100%">
+                     <tbody><tr>
+                        <th style=3D"border-bottom: 1px solid rgb(163, 163,=
+ 163); padding-bottom: 6px;" align=3D"left" width=3D"315"><p style=3D"margi=
+n: 0pt; padding: 0pt; color: rgb(163, 163, 163); font-family: Arial; font-s=
+ize: 12px; font-weight: normal;">
+
+Product</p></th>
+                        <th style=3D"border-bottom: 1px solid rgb(163, 163,=
+ 163); padding-bottom: 6px;" align=3D"left" width=3D"74"><p style=3D"margin=
+: 0pt; padding: 0pt; color: rgb(163, 163, 163); font-family: Arial; font-si=
+ze: 12px; font-weight: normal;">
+
+Total</p></th>
+                     </tr>
+                     <tr>
+                        <td style=3D"border-bottom: 5px solid rgb(235, 235,=
+ 235); padding-bottom: 8px; margin-right: 20px; padding-top: 8px;" align=3D=
+"left" valign=3D"top"><p style=3D"margin: 0pt; padding: 0pt; color: rgb(113=
+, 113, 113); font-family: Arial; font-size: 12px; font-weight: normal;">
+
+Deliver email campaign to 3143 recipients</p></td>
+                        <td style=3D"border-bottom: 5px solid rgb(235, 235,=
+ 235); padding-bottom: 8px; padding-top: 8px;" align=3D"left" valign=3D"top=
+"><p style=3D"margin: 0pt; padding: 0pt; color: rgb(113, 113, 113); font-fa=
+mily: Arial; font-size: 12px; font-weight: normal;">
+
+<b>$36.43</b></p></td>
+                     </tr>
+                  </tbody></table>
+                 =20
+                  <h3 style=3D"margin: 40px 0pt 10px; padding: 0pt; color: =
+rgb(57, 57, 57); font-family: Arial; font-size: 16px; font-weight: bold;">Y=
+our credit card statement</h3>
+                  <p style=3D"margin: 0pt; padding: 0pt; color: rgb(106, 10=
+6, 106); font-family: Arial; font-size: 12px; font-weight: normal;">Please =
+note, this transaction will appear on your credit card statement from:<br>
+
+<br><i style=3D"margin: 5px; background-color: rgb(250, 255, 94); font-weig=
+ht: bold;"><a href=3D"http://CAMPAIGNMONITOR.COM" target=3D"_blank">CAMPAIG=
+NMONITOR.COM</a></i></p>
+				=09
+				  <h3 style=3D"margin: 30px 0pt 10px; padding: 0pt; color: rgb(57, 57, =
+57); font-family: Arial; font-size: 16px; font-weight: bold;">Thanks for se=
+nding with Campaign Monitor</h3>=09
+				=09
+
+               </td>
+            </tr>
+            <tr>
+               <td style=3D"padding-top: 20px;" align=3D"left" valign=3D"bo=
+ttom">
+                  <p style=3D"margin: 0pt; padding: 0pt; color: rgb(176, 17=
+6, 176); font-family: Arial; font-size: 12px; font-weight: normal;">Campaig=
+n Monitor - <a href=3D"http://commanigy.createsend.com/" style=3D"color: rg=
+b(43, 108, 181); font-family: Arial; font-size: 12px; font-weight: normal;"=
+ target=3D"_blank">Login to your account</a></p>
+
+
+               </td>
+            </tr>
+         </tbody></table>
+        =20
+      </td>
+   </tr>
+</tbody></table>
+
+</div>
+
+</div><br>
+
+--00032555aa469f369c047371a055--
