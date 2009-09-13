@@ -12,12 +12,10 @@ class Inbox
     imap.search(["NOT", "DELETED"]).each do |message_id|
       begin
         Rails.logger.debug("Processing message #{message_id}")
-        # puts "Looking up message #{message_id}"
         msg = imap.fetch(message_id, "RFC822")
         mp.parse(TMail::Mail.parse(msg.first.attr["RFC822"]))
         imap.store(message_id, "+FLAGS", [:Deleted])
       rescue Exception => e
-        # puts "failed to process message #{e.message}"
         Rails.logger.error "Failed to process message #{message_id} at #{Time.now.utc}. Error: #{e.message}"
       end
     end

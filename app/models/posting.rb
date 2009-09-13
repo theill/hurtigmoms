@@ -10,11 +10,13 @@ class Posting < ActiveRecord::Base
     :bucket => 'hurtigmoms'
   
   # validates_uniqueness_of :attachment_no, :scope => :user_id
+  validates_presence_of :user_id
   validates_presence_of :account_id
   validates_presence_of :amount
   validates_presence_of :attachment_no
+  validates_presence_of :currency
   
-  before_validation_on_create :set_attachment_no
+  before_validation_on_create :set_attachment_no, :set_currency
   
   def authenticated_url(expires_in = 10.seconds)
     AWS::S3::S3Object.url_for(attachment.path, attachment.bucket_name, :expires_in => expires_in, :use_ssl => attachment.s3_protocol == 'https')
@@ -28,6 +30,10 @@ class Posting < ActiveRecord::Base
   
   def set_attachment_no
     self.attachment_no = (self.user.postings.maximum(:attachment_no) || 0) + 1 if self.attachment_no == 0
+  end
+  
+  def set_currency
+    self.currency = 'DKK' if self.currency.nil?
   end
   
 end

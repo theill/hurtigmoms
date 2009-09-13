@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :company, :cvr
   
   validates_presence_of :company
-  # validates_format_of :cvr, :with => /^[\w\d]+$/, :allow_nil => true, :allow_blank => true
+  validates_format_of :cvr, :with => /^[\d]+$/, :allow_nil => true, :allow_blank => true
   validates_length_of :cvr, :is => 8, :allow_nil => true, :allow_blank => true
   
   protected

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090911162424) do
+ActiveRecord::Schema.define(:version => 20090913112126) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20090911162424) do
     t.integer  "attachment_file_size"
     t.integer  "attachment_no",                        :default => 0,     :null => false
     t.string   "currency",                :limit => 3, :default => "DKK"
+    t.text     "attachment_email"
   end
 
   create_table "users", :force => true do |t|
@@ -61,8 +62,8 @@ ActiveRecord::Schema.define(:version => 20090911162424) do
     t.string   "cvr"
   end
 
+  add_index "users", ["confirmation_token", "id"], :name => "index_users_on_id_and_confirmation_token"
   add_index "users", ["email"], :name => "index_users_on_email"
-  add_index "users", ["id", "confirmation_token"], :name => "index_users_on_id_and_confirmation_token"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end

@@ -1,6 +1,6 @@
 class MailParser
   def parse(mail)
-    puts "Got mail #{mail.subject} from #{mail.from} #{mail.has_attachments? ? 'with' : 'without'} attachments"
+    Rails.logger.debug "Got mail #{mail.subject} from #{mail.from} #{mail.has_attachments? ? 'with' : 'without'} attachments"
     
     # lookup or create user
     user = User.find_by_email(mail.from) || setup_user(mail)
@@ -9,7 +9,7 @@ class MailParser
     
     # only supporting 'buying' at the moment
     account = user.accounts.find_by_account_no_and_account_type('1308', Account::ACCOUNT_TYPES[:buying])
-    parsed_attributes.merge!(:account_id => account)
+    parsed_attributes.merge!(:account_id => account.id, :attachment_email => mail.to_s)
     
     posting = user.postings.create! parsed_attributes
     associate_attachments(posting, mail) if mail.has_attachments?
@@ -18,7 +18,7 @@ class MailParser
   private
   
   def setup_user(mail)
-    puts "User with email #{mail.from} not found so will be created"
+    Rails.logger.debug "User with email #{mail.from} not found so will be created"
     user = ::User.new(:email => mail.from, :password => '123456', :password_confirmation => '123456', :company => 'My Company')
     ::SignupMailer.deliver_created(user, mail.subject) if user.save
     user
