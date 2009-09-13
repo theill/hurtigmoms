@@ -21,6 +21,7 @@ class PostingsController < ApplicationController
 
     respond_to do |format|
       format.xml  { render :xml => @posting }
+      format.js
     end
   end
   

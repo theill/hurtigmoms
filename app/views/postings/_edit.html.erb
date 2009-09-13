@@ -12,12 +12,12 @@
 
 				<fieldset>
 					<%= f.label :note, t('posting.note') %>
-					<%= f.text_field :note, :size => 20, :maxlength => 128 %>
+					<%= f.text_field :note, :size => 20, :maxlength => 250 %>
 				</fieldset>
 
 				<fieldset>
-					<%= f.label :amount, t('posting.amount') %> (<%= posting.currency %>)
-					<%= f.text_field :amount, :size => 20, :maxlength => 128 %>
+					<%= f.label :amount, (t('posting.amount') + ' (' + posting.currency + ')') %>
+					<%= f.text_field :amount, :size => 10, :maxlength => 10 %>
 					<span id="vat">-</span>
 				</fieldset>
 
@@ -31,7 +31,7 @@
 					<%= f.select :account_id, grouped_accounts, {:prompt => "Vælg konto"} %>
 				</fieldset>
 
-			  <%= f.submit t('.buttons.save') %>
+				<%= f.submit t('.buttons.save') %> <%= link_to t('.buttons.cancel'), posting_path(posting, :format => :js), :class => 'show' %>
 			</div>
 		<% end -%>
 	</td>

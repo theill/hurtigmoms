@@ -46,7 +46,8 @@ da:
         save: Opret postering
     edit:
       buttons:
-        save: Opdater postering
+        save: Gem
+        cancel: Luk
         
   sessions:
     new:
