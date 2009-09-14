@@ -23,7 +23,17 @@ da:
     amount: Beløb
     attachment_no: Bilag
     account_id: Konto
+
+  mails:
+    signup:
+      created: Du har fået en ny konto på hurtigmoms.dk
     
+  clearance:
+    models:
+      clearance_mailer:
+        change_password: Udskiftning af kodeord
+        confirmation: Bekræftelse af oprettede konto
+        
   users:
     new:
       title: Opret konto
