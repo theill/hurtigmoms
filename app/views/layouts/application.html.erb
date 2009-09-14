@@ -16,7 +16,7 @@
 				<div class="grid_6 navigation">
 					<%- if signed_in? -%>
 						<ul>
-							<li class="application-name"><%= [current_user.company, t('application.name')].reject(&:blank?).first %></li>
+							<li class="application-name"><%= company_title %></li>
 							<li><%= link_to(t('.home'), root_path) %></li>
 							<li><%= link_to(t('.postings'), postings_path) %></li>
 							<li><%= link_to(t('.accounts'), accounts_path) %></li>

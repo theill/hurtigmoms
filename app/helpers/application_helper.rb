@@ -1,4 +1,3 @@
-# Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   def title
     @meta[:title] if @meta
@@ -6,5 +5,9 @@ module ApplicationHelper
   
   def description
     @meta[:description] if @meta
+  end
+  
+  def company_title
+  	[current_user.company, I18n.t('application.name')].reject(&:blank?).first
   end
 end
