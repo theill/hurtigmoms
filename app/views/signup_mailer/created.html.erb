@@ -1,6 +1,6 @@
 Kære bruger,
 
-Du har for nylig sendt en mail til os med titlen "<%= @subject %>". Tak!
+Du har for nylig sendt en mail til os med titlen "<%= @original_subject %>". Tak!
 
 Da vi ikke har kunne finde en konto for e-mail adressen "<%= @user.email %>", har vi valgt at oprette en ny til dig - vi har endda allerede tilføjet en postering med indholdet af din e-mail.
 
@@ -8,7 +8,12 @@ Er du ny bruger beder vi dig venligst bekræfte din konto før du fortsætter ved a
 
   <%= new_user_confirmation_url(:user_id => @user, :token => @user.confirmation_token, :encode => false) %>
 
-Hvis du allerede har en konto hos os og har sendt dit bilag fra en forkert konto kan du se bort fra denne mail. I stedet skal du sende dit bilag til os igen fra den e-mail adresse du benyttede, da du oprettede din konto.
+Til fremtidig reference er dine login informationer:
+
+  E-mail:  <%= @user.email %>
+  Kodeord: <%= @password %>
+
+Har du allerede en konto hos os men har sendt dit bilag fra en forkert konto, kan du se bort fra denne mail. I stedet skal du sende dit bilag til os igen fra den e-mail adresse du benyttede, da du oprettede din konto.
 
 Hvis du har brug for hjælp eller har spørgsmål kan du besøge afsnittet "Hjælp" på:
 

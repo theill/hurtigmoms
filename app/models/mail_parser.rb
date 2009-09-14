@@ -19,9 +19,17 @@ class MailParser
   
   def setup_user(mail)
     Rails.logger.debug "User with email #{mail.from} not found so will be created"
-    user = ::User.new(:email => mail.from, :password => '123456', :password_confirmation => '123456', :company => 'My Company')
-    ::SignupMailer.deliver_created(user, mail.subject) if user.save
+    pwd = generate_password
+    user = ::User.new(:email => mail.from, :password => pwd, :password_confirmation => pwd, :company => 'My Company')
+    ::SignupMailer.deliver_created(user, pwd, mail.subject) if user.save
     user
+  end
+  
+  def generate_password(length=6)
+    chars = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ23456789'
+    password = ''
+    length.times { |i| password << chars[rand(chars.length)] }
+    password
   end
   
   def associate_attachments(posting, mail)
