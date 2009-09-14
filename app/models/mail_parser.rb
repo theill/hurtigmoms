@@ -20,7 +20,7 @@ class MailParser
   def setup_user(mail)
     Rails.logger.debug "User with email #{mail.from} not found so will be created"
     pwd = generate_password
-    user = ::User.new(:email => mail.from, :password => pwd, :password_confirmation => pwd, :company => 'My Company')
+    user = ::User.new(:email => mail.from.to_s, :password => pwd, :password_confirmation => pwd, :company => 'Mit firma')
     ::SignupMailer.deliver_created(user, pwd, mail.subject) if user.save
     user
   end
