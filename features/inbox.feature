@@ -30,6 +30,15 @@ Feature: Inbox mail parsing
 		And I should see "29/08-2009"
 		And I should see "USD36.43"
 
+	Scenario: Parsing a Spotify mail
+		Given I have signed in with "john.doe@hurtigmoms.test/password"
+		Given I sent mail from Spotify
+		When I go to the postings page
+		Then I should see "1 month (Spotify Premium)"
+		And I should not see "Fwd: Spotify Receipt"
+		And I should see "14/09-2009"
+		And I should see "DKK 99.00"
+
 	Scenario: Parsing an unknown mail
 		Given I have signed in with "john.doe@hurtigmoms.test/password"
 		Given I sent mail from unknown
