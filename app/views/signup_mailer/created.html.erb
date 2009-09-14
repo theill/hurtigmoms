@@ -1,25 +1,25 @@
-Dear user,
+Kære bruger,
 
-You recently sent an email to us entitled "<%= @subject %>". Thanks!
+Du har for nylig sendt en mail til os med titlen "<%= @subject %>". Tak!
 
-We could not find an account for this email address so we have just created one for you and prepared it for you by adding a new posting with your email details.
+Da vi ikke har kunne finde en konto for e-mail adressen "<%= @user.email %>", har vi valgt at oprette en ny til dig - vi har endda allerede tilføjet en postering med indholdet af din e-mail.
 
-Please confirm your account before continuing:
+Er du ny bruger beder vi dig venligst bekræfte din konto før du fortsætter ved at klikke på nedenstående link:
 
-	<%= new_user_confirmation_url(:user_id => @user, :token => @user.confirmation_token, :encode => false) %>
+  <%= new_user_confirmation_url(:user_id => @user, :token => @user.confirmation_token, :encode => false) %>
 
-If you did not intend to create an account with up please disregard this email. Your account will be deleted automatically.
+Hvis du allerede har en konto hos os og har sendt dit bilag fra en forkert konto kan du se bort fra denne mail. I stedet skal du sende dit bilag til os igen fra den e-mail adresse du benyttede, da du oprettede din konto.
 
-If you need help or have any questions please visit the Help section at:
+Hvis du har brug for hjælp eller har spørgsmål kan du besøge afsnittet "Hjælp" på:
 
-  http://hurtigmoms.dk/help/
+  http://hurtigmoms.dk/hjaelp/
 
-Or you can email us at:
+Ellers er du også velkommen til at kontakte os direkte via e-mail på:
 
   support@hurtigmoms.dk
 
 
-Best Regards,
+Med venlig hilsen,
 
-  The team behind hurtigmoms
+  huuuuuuuurtigmoms mandskabet
   http://hurtigmoms.dk
