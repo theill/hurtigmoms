@@ -1,0 +1,81 @@
+Delivered-To: bilag@hurtigmoms.dk
+Received: by 10.231.33.10 with SMTP id f10cs256554ibd;
+        Mon, 14 Sep 2009 13:04:48 -0700 (PDT)
+Received: by 10.103.37.33 with SMTP id p33mr2378474muj.132.1252958687282;
+        Mon, 14 Sep 2009 13:04:47 -0700 (PDT)
+Return-Path: <peter@commanigy.com>
+Received: from mail-fx0-f208.google.com (mail-fx0-f208.google.com [209.85.220.208])
+        by mx.google.com with ESMTP id 25si24835004mul.26.2009.09.14.13.04.46;
+        Mon, 14 Sep 2009 13:04:47 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning peter@commanigy.com does not designate 209.85.220.208 as permitted sender) client-ip=209.85.220.208;
+Authentication-Results: mx.google.com; spf=softfail (google.com: domain of transitioning peter@commanigy.com does not designate 209.85.220.208 as permitted sender) smtp.mail=peter@commanigy.com
+Received: by fxm4 with SMTP id 4so2621243fxm.40
+        for <bilag@hurtigmoms.dk>; Mon, 14 Sep 2009 13:04:46 -0700 (PDT)
+Received: by 10.204.160.73 with SMTP id m9mr5498870bkx.214.1252958685788;
+        Mon, 14 Sep 2009 13:04:45 -0700 (PDT)
+Return-Path: <peter@commanigy.com>
+Received: from mail-fx0-f208.google.com (mail-fx0-f208.google.com [209.85.220.208])
+        by mx.google.com with ESMTPS id h2sm9517194fkh.36.2009.09.14.13.04.43
+        (version=SSLv3 cipher=RC4-MD5);
+        Mon, 14 Sep 2009 13:04:44 -0700 (PDT)
+Received: by fxm4 with SMTP id 4so2621180fxm.40
+        for <bilag@hurtigmoms.dk>; Mon, 14 Sep 2009 13:04:43 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.204.11.18 with SMTP id r18mr5508262bkr.15.1252958678327; Mon, 
+	14 Sep 2009 13:04:38 -0700 (PDT)
+In-Reply-To: <20090914195825.E0C51217C6F5@alexa.lon.spotify.net>
+References: <20090914195825.E0C51217C6F5@alexa.lon.spotify.net>
+From: John Doe <john.doe@hurtigmoms.test>
+Date: Mon, 14 Sep 2009 22:04:18 +0200
+Message-ID: <701dc5890909141304v292af70er415cb5d6c8b64a2b@mail.gmail.com>
+Subject: Fwd: Spotify Receipt
+To: bilag@hurtigmoms.dk
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Peter Theill
+Commanigy
+Frederiksholms Kanal 4
+DK-1220 Copenhagen K
+email: peter@commanigy.com
+web: http://commanigy.com
+mobile: +45 6171 5096
+mobile (intl): +1 (304) 584-3455
+
+
+
+
+---------- Forwarded message ----------
+From: Spotify <no-reply@spotify.com>
+Date: Mon, Sep 14, 2009 at 21:58
+Subject: Spotify Receipt
+To: peter@theill.com
+
+
+Dear theill,
+
+Thank you for purchasing Spotify premium. This is your receipt.
+
+Email address: =C2=A0peter@theill.com
+Date: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 2009-09-14 19:58:25.487121
+Order ID: =C2=A0 =C2=A0 =C2=A0 521611012
+Payment type: =C2=A0 VISA
+
+Retailer: =C2=A0 =C2=A0 =C2=A0 Spotify Ltd
+VAT number: =C2=A0 =C2=A0 GB 943 6840 02
+
+Items bought: =C2=A0 1 month (Spotify Premium)
+Item price: =C2=A0 =C2=A0 86,09 kr
+VAT 15.0%: =C2=A0 =C2=A0 =C2=A012,91 kr
+Total: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A099,00 kr
+
+Your Spotify premium service will be automatically renewed
+every month until cancelled via your profile page.
+(https://www.spotify.com/en/account/subscription/)
+
+We hope you enjoy using Spotify!
+
+The Spotify Team
+
+
+This is an automated message, please do not reply.

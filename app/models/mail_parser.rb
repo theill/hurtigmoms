@@ -47,7 +47,7 @@ class MailParser
     description = (mail.subject || '').gsub(/^Fwd: /i, '').gsub(/^Fw: /i, '').gsub(/^Re: /i, '').gsub(/^VS: /i, '').gsub(/^SV: /i, '')
     
     # remove additional whitespaces
-    description = description.split.join(' ')
+    description = description.split.join(' ').gsub(/=C2=A0/, ' ')
     
     if (mail.body && mail.body.include?('support@getharvest.com'))
       # do Harvest parsing
@@ -81,6 +81,20 @@ class MailParser
       
       # get date (of order)
       parsed_date = mail.body.scan(/Order Date\s*(\d{1,} \w{3} \d{4})/).flatten
+      date = (parsed_date.length > 0) ? parsed_date[0].to_datetime : Time.now.utc.to_datetime
+    elsif (mail.body && mail.body.include?('no-reply@spotify.com'))
+      # do Spotify parsing
+      
+      # what kind of item did we buy?
+      description = mail.body.gsub(/=C2=A0/, ' ').scan(/^Items bought:\s*(.*)/).flatten.to_s
+      
+      # get amount (only support kr)
+      parsed_amount = mail.body.gsub(/=C2=A0/, ' ').scan(/^Total:\s*(\d*[,\.]\d*)\s*kr/i).flatten
+      puts "ss = " + parsed_amount.to_s
+      amount = (parsed_amount[0].gsub(/,/, '.') if parsed_amount.length > 0) || amount
+      currency = 'DKK'
+      
+      parsed_date = mail.body.gsub(/=C2=A0/, ' ').scan(/^Date:\s*(\d{4}-\d{2}-\d{2})/).flatten
       date = (parsed_date.length > 0) ? parsed_date[0].to_datetime : Time.now.utc.to_datetime
     else
       parsed_amount = mail.body.scan(/amount:\W?\$?([\d|\.]*)\W?(DKK|USD|NOK|SEK|EUR)?/i).flatten
