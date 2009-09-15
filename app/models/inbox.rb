@@ -7,7 +7,7 @@ class Inbox
     mp = MailParser.new
     
     imap = Net::IMAP.new('imap.gmail.com', 993, true)
-    imap.login('bilag@hurtigmoms.dk', '653976')
+    imap.login(ActionMailer::Base.smtp_settings[:user_name], ActionMailer::Base.smtp_settings[:password])
     imap.select('INBOX')
     imap.search(["NOT", "DELETED"]).each do |message_id|
       begin
@@ -22,7 +22,7 @@ class Inbox
     imap.expunge
     imap.logout
     
-    Delayed::Job.enqueue ::Inbox.new, 0, 1.minute.from_now
+    # recheck inbox in one minute
+    Delayed::Job.enqueue(::Inbox.new, 0, 1.minute.from_now)
   end
-
 end

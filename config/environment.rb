@@ -47,9 +47,10 @@ Rails::Initializer.run do |config|
   
   config.after_initialize do
     if Delayed::Job.table_exists?
-      Delayed::Job.all.each do |old_job|
-        old_job.destroy
-      end
+      # clean existing jobs to avoid running inbox checks multiple times
+      Delayed::Job.delete_all
+      
+      # queue initial inbox check
       Delayed::Job.enqueue Inbox.new
     end
   end
