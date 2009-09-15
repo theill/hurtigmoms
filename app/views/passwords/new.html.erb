@@ -1,15 +1,11 @@
-<h2>Change your password</h2>
-
-<p>
-  We will email you a link to change your password.
-</p>
+<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
 
 <% form_for :password, :url => passwords_path do |form| %>
   <div class="text_field">
-    <%= form.label :email, "Email address" %>
+    <%= form.label :email, t('user.email') %>
     <%= form.text_field :email %>
   </div>
   <div class="submit_field">
-    <%= form.submit "Reset password", :disable_with => "Please wait..." %>
+    <%= form.submit t('.buttons.reset'), :disable_with => t('buttons.wait') %>
   </div>
 <% end %>

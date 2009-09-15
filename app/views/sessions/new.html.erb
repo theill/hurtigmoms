@@ -1,24 +1,20 @@
 <h1><%= t('.sign_in') %></h1>
 
 <% form_for :session, :url => session_path do |form| %>
-	<fieldset>
+  <fieldset>
     <%= form.label :email, t('user.email') %>
     <%= form.text_field :email %>
-	</fieldset>
-	<fieldset>
+  </fieldset>
+  <fieldset>
     <%= form.label :password, t('user.password') %>
     <%= form.password_field :password %>
-	</fieldset>
-	<fieldset>
+  </fieldset>
+  <fieldset>
     <%= form.submit "Sign in", :disable_with => t('buttons.wait') %>
-		</fieldset>
+  </fieldset>
 <% end %>
 
 <ul>
-  <li>
-    <%= link_to "Sign up", new_user_path %>
-  </li>
-  <li>
-    <%= link_to "Forgot password?", new_password_path %>
-  </li>
+  <li><%= link_to t('users.new.title'), new_user_path %></li>
+  <li><%= link_to t('.forgot_password'), new_password_path %></li>
 </ul>

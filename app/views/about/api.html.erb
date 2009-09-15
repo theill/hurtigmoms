@@ -13,28 +13,43 @@
 		Vores API er ikke begrænset til noget bestemt programmeringssprog og kan 
 		bruges i alle sprog, der understøtter at sende data via HTTP POST.
 	</p>
+	
+	<h4>Hvordan fungerer det?</h4>
+	<p>
+		En metode kaldes altid ved hjælp af en HTTP-POST-anmodning. Hvis kaldet er 
+		vellykket, returneres et resultat, som regel en kort succes besked eller 
+		data i XML-format. Hvis opkaldet mislykkes, returneres en fejlmeddelelse.
+	</p>
 
-	<!-- <h4>How does it work?</h4>
-	<p>A method is always called through a HTTP POST request. If a call is successful, it returns a result, usually a short success message or data in XML format. If the call fails, it returns an error message.</p>
-
-	<p>You call an API method like this:</p>
-
-	<div class="link">
-	<p>http://<strong>machine_id</strong>.invoicemachine.com/api/<strong>method</strong></p>
-	</div>
-
-	<h4>Authentication</h4>
-	<p>Access to the API requires authentication. For security reasons, we use a unique API Token instead of your account password. This API Token should be posted as a parameter of the call. You can find your API Token under the Account Overview in the Account section. Please note that in order for the authentication to be successful, the Machine ID (sub domain) in the URL must match the API token for that account.</p>
-
-	<p>The API Token is a unique string and looks similar to this:</p>
+	<p>
+		Du kalder en API metode således:
+	</p>
 
 	<div class="link">
-	<p>c86cea54c71sbb05a5f8297bed641944</p>
+		<p>http://api.hurtigmoms.dk/<strong>metode</strong></p>
 	</div>
 
-	<h4>Need some help?</h4>
-	<p>Please feel free to <a href="http://invoicemachine.com/contact">contact us</a> if you have any questions or find any bugs.</p> -->
+	<h4>Autentificering</h4>
+	<p>
+		Adgang til APIet kræver godkendelse. Af sikkerhedsmæssige årsager, bruger vi 
+		en unik API token i stedet for din konto. Denne API token skal angives som en 
+		parameter på kaldet. Du kan finde din API token under Kontooversigt i Konto 
+		afsnittet.
+	</p>
 
+	<p>
+		API-token er en unik streng og ser ud som dette:
+	</p>
+
+	<div class="link">
+		<p>c86cea54c71sbb05a5f8297bed641944</p>
+	</div>
+
+	<h4>Brug for hjælp? </h4>
+	<p>
+		Du er velkommen til at <a href="/kontakt">kontakte os</a>, hvis du har spørgsmål 
+		eller finder nogen fejl.
+	</p>
 </div>
 
 <div class="grid_3">

@@ -62,7 +62,21 @@ da:
   sessions:
     new:
       sign_in: Log ind
-  
+      forgot_password: Glemt kodeord?
+
+  passwords:
+    new:
+      title: Skift kodeord
+      description: Du vil modtage et link for at nulstille dit kodeord.
+      buttons:
+        reset: Nulstil kodeord
+      
+    edit:
+      title: Skift kodeord
+      description: Dit kodeord er blevet nulstillet. Angiv dit nye kodeord nu.
+      buttons:
+        save: Gem nyt kodeord
+        
   about:
     help:
       title: Hjælp
