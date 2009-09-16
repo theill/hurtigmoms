@@ -89,12 +89,21 @@ class MailParser
       description = mail.body.gsub(/=C2=A0/, ' ').scan(/^Items bought:\s*(.*)/).flatten.to_s
       
       # get amount (only support kr)
-      parsed_amount = mail.body.gsub(/=C2=A0/, ' ').scan(/^Total:\s*(\d*[,\.]\d*)\s*kr/i).flatten
-      puts "ss = " + parsed_amount.to_s
+      parsed_amount = mail.body.gsub(/=C2=A0/, ' ').scan(/^Total:[^\d]*(\d*[,\.]\d*)\s*kr/i).flatten
       amount = (parsed_amount[0].gsub(/,/, '.') if parsed_amount.length > 0) || amount
       currency = 'DKK'
       
-      parsed_date = mail.body.gsub(/=C2=A0/, ' ').scan(/^Date:\s*(\d{4}-\d{2}-\d{2})/).flatten
+      parsed_date = mail.body.gsub(/=C2=A0/, ' ').scan(/^Date:.*(\d{4}-\d{2}-\d{2})/).flatten
+      date = (parsed_date.length > 0) ? parsed_date[0].to_datetime : Time.now.utc.to_datetime
+    elsif (mail.body && mail.body.include?('billing@37signals.com'))
+      
+      description = mail.body.scan(/Price[\n]-*.*([^\$]*)/i).flatten.to_s.gsub(/-/, '').gsub(/>/, '').squish
+      
+      parsed_amount = mail.body.scan(/Amount PAID:\s*\$(\d{1,}\.\d{1,})/i).flatten
+      amount = (parsed_amount[0] if parsed_amount.length > 0) || amount
+      currency = 'USD'
+      
+      parsed_date = mail.body.scan(/INVOICE.*(\d{4}-\d{2}-\d{2})/im).flatten
       date = (parsed_date.length > 0) ? parsed_date[0].to_datetime : Time.now.utc.to_datetime
     else
       parsed_amount = mail.body.scan(/amount:\W?\$?([\d|\.]*)\W?(DKK|USD|NOK|SEK|EUR)?/i).flatten

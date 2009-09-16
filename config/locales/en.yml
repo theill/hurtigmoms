@@ -24,6 +24,16 @@ en:
     attachment_no: Attachment no
     account_id: Account
 
+  mails:
+    signup:
+      created: You have created a hurtigmoms account
+
+  clearance:
+    models:
+      clearance_mailer:
+        change_password: Change password
+        confirmation: Confirmation of created account
+
   users:
     new:
       title: Pricing &amp; sign up
@@ -33,6 +43,7 @@ en:
 
     edit:
       title: Settings
+      description: ''
 
   postings:
     new:

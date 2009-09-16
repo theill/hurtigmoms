@@ -1,0 +1,232 @@
+Delivered-To: bilag@hurtigmoms.dk
+Received: by 10.231.33.10 with SMTP id f10cs280418ibd;
+        Tue, 15 Sep 2009 02:13:09 -0700 (PDT)
+Received: by 10.204.136.217 with SMTP id s25mr6089977bkt.149.1253005987923;
+        Tue, 15 Sep 2009 02:13:07 -0700 (PDT)
+Return-Path: <daniel@hamsterboy.dk>
+Received: from mail-fx0-f208.google.com (mail-fx0-f208.google.com [209.85.220.208])
+        by mx.google.com with ESMTP id 24si8570629bwz.63.2009.09.15.02.13.06;
+        Tue, 15 Sep 2009 02:13:07 -0700 (PDT)
+Received-SPF: neutral (google.com: 209.85.220.208 is neither permitted nor denied by best guess record for domain of daniel@hamsterboy.dk) client-ip=209.85.220.208;
+Authentication-Results: mx.google.com; spf=neutral (google.com: 209.85.220.208 is neither permitted nor denied by best guess record for domain of daniel@hamsterboy.dk) smtp.mail=daniel@hamsterboy.dk
+Received: by fxm4 with SMTP id 4so2939367fxm.40
+        for <bilag@hurtigmoms.dk>; Tue, 15 Sep 2009 02:13:06 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.103.126.33 with SMTP id d33mr3099355mun.109.1253005985682; 
+	Tue, 15 Sep 2009 02:13:05 -0700 (PDT)
+In-Reply-To: <4a93eb631ee23_2d2c13b56a42233e@qb-01.tmail>
+References: <4a93eb631ee23_2d2c13b56a42233e@qb-01.tmail>
+Date: Tue, 15 Sep 2009 11:13:05 +0200
+Message-ID: <ac8838ea0909150213q2478222du8f8a26b148933239@mail.gmail.com>
+Subject: Re: [Invoice] Basecamp Monthly Subscription #1402045
+From: John Doe <john.doe@hurtigmoms.test>
+To: bilag@hurtigmoms.dk
+Content-Type: multipart/alternative; boundary=0016e65b3ffcad94f504739a3057
+
+--0016e65b3ffcad94f504739a3057
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Aug 25, 2009 at 3:47 PM, <billing@37signals.com> wrote:
+
+> Thank you for using Basecamp.
+>
+> This is an INVOICE for your Basecamp account
+> hamsterboy.basecamphq.com
+>
+> SUMMARY
+> Your credit card (XXXX-XXXX-XXXX-8680) has been charged $24.
+> This charge covers your account until September 24, 2009.
+> You will be billed again at that time for the next 30 days.
+>
+> NEED TO CANCEL?
+> If you wish to cancel your Basecamp account, log in to:
+> http://hamsterboy.basecamphq.com/account
+> Then scroll down to the "Need to cancel your account?"
+> section. Once you cancel you won't be charged again, but you
+> are responsible for charges already incurred.
+>
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> INVOICE
+> 2009-08-25                           Transaction ID: 1402045
+> ............................................................
+>
+> IMPORTANT NOTE:
+> The charge for Basecamp will appear on your credit card
+> statement from "37SIGNALS-CHARGE.COM".
+>
+> 37signals, LLC.
+> 400 North May Street #301
+> Chicago, IL 60622 USA
+>
+> Bill to:
+> Daniel Aakj=E6r S=F8rensen
+>
+> Quantity     Description                               Price
+> ------------------------------------------------------------
+> 1 month      Basecamp Basic Plan                      $24.00
+>             From Aug 25 2009 to Sep 24 2009.
+>
+>                                       =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>                                         Amount PAID: $24.00
+>                     Credit card billed: XXXX-XXXX-XXXX-8680
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>
+> WANT TO UPGRADE, DOWNGRADE, OR CHANGE YOUR CREDIT CARD?
+> You can upgrade, downgrade, change your credit card at:
+> http://hamsterboy.basecamphq.com/account
+>
+> WANT TO EARN CASH PROMOTING BASECAMP?
+> Check out the 37signals Affiliate Program:
+> https://affiliate.37signals.com
+>
+>
+> QUESTIONS ABOUT REFUNDS?
+> Please review our refund policy:
+> http://www.37signals.com/refund
+>
+> MORE SMALL BUSINESS SOFTWARE
+> You may also want to check out some of our
+> other products for small business. You'll find
+> them at http://www.37signals.com
+>
+> QUESTIONS OR CONCERNS?
+> If you have a billing question visit:
+> https://www.37signals.com/billing
+> If you have any other questions visit:
+> http://www.basecampHQ.com/help/support
+>
+> THANK YOU
+> Thanks again for your business!
+> http://www.37signals.com
+> ...........................................................
+>
+
+
+
+--=20
+Med venlig hilsen
+
+Daniel Aakj=E6r S=F8rensen
+
+M=F8llehusvej 14, st. 3
+4000 Roskilde
+
+Web: www.hamsterboy.dk
+My work: megamonster.deviantart.com
+E-mail: daniel@hamsterboy.dk
+Tel:  +45 2533 7548
+
+--0016e65b3ffcad94f504739a3057
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<br><br><div class=3D"gmail_quote">On Tue, Aug 25, 2009 at 3:47 PM,  <span =
+dir=3D"ltr">&lt;<a href=3D"mailto:billing@37signals.com">billing@37signals.=
+com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex;">
+Thank you for using Basecamp.<br>
+<br>
+This is an INVOICE for your Basecamp account<br>
+<a href=3D"http://hamsterboy.basecamphq.com" target=3D"_blank">hamsterboy.b=
+asecamphq.com</a><br>
+<br>
+SUMMARY<br>
+Your credit card (XXXX-XXXX-XXXX-8680) has been charged $24.<br>
+This charge covers your account until September 24, 2009.<br>
+You will be billed again at that time for the next 30 days.<br>
+<br>
+NEED TO CANCEL?<br>
+If you wish to cancel your Basecamp account, log in to:<br>
+<a href=3D"http://hamsterboy.basecamphq.com/account" target=3D"_blank">http=
+://hamsterboy.basecamphq.com/account</a><br>
+Then scroll down to the &quot;Need to cancel your account?&quot;<br>
+section. Once you cancel you won&#39;t be charged again, but you<br>
+are responsible for charges already incurred.<br>
+<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+INVOICE<br>
+2009-08-25 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 Transaction =
+ID: 1402045<br>
+............................................................<br>
+<br>
+IMPORTANT NOTE:<br>
+The charge for Basecamp will appear on your credit card<br>
+statement from &quot;<a href=3D"http://37SIGNALS-CHARGE.COM" target=3D"_bla=
+nk">37SIGNALS-CHARGE.COM</a>&quot;.<br>
+<br>
+37signals, LLC.<br>
+400 North May Street #301<br>
+Chicago, IL 60622 USA<br>
+<br>
+Bill to:<br>
+Daniel Aakj=E6r S=F8rensen<br>
+<br>
+Quantity =A0 =A0 Description =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 Price<br>
+------------------------------------------------------------<br>
+1 month =A0 =A0 =A0Basecamp Basic Plan =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0$24.00<br>
+ =A0 =A0 =A0 =A0 =A0 =A0 From Aug 25 2009 to Sep 24 2009.<br>
+<br>
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 Amount PAID: $24.00<br>
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 Credit card billed: XXXX-XXXX-XXXX=
+-8680<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+<br>
+WANT TO UPGRADE, DOWNGRADE, OR CHANGE YOUR CREDIT CARD?<br>
+You can upgrade, downgrade, change your credit card at:<br>
+<a href=3D"http://hamsterboy.basecamphq.com/account" target=3D"_blank">http=
+://hamsterboy.basecamphq.com/account</a><br>
+<br>
+WANT TO EARN CASH PROMOTING BASECAMP?<br>
+Check out the 37signals Affiliate Program:<br>
+<a href=3D"https://affiliate.37signals.com" target=3D"_blank">https://affil=
+iate.37signals.com</a><br>
+<br>
+<br>
+QUESTIONS ABOUT REFUNDS?<br>
+Please review our refund policy:<br>
+<a href=3D"http://www.37signals.com/refund" target=3D"_blank">http://www.37=
+signals.com/refund</a><br>
+<br>
+MORE SMALL BUSINESS SOFTWARE<br>
+You may also want to check out some of our<br>
+other products for small business. You&#39;ll find<br>
+them at <a href=3D"http://www.37signals.com" target=3D"_blank">http://www.3=
+7signals.com</a><br>
+<br>
+QUESTIONS OR CONCERNS?<br>
+If you have a billing question visit:<br>
+<a href=3D"https://www.37signals.com/billing" target=3D"_blank">https://www=
+.37signals.com/billing</a><br>
+If you have any other questions visit:<br>
+<a href=3D"http://www.basecampHQ.com/help/support" target=3D"_blank">http:/=
+/www.basecampHQ.com/help/support</a><br>
+<br>
+THANK YOU<br>
+Thanks again for your business!<br>
+<a href=3D"http://www.37signals.com" target=3D"_blank">http://www.37signals=
+.com</a><br>
+...........................................................<br>
+</blockquote></div><br><br clear=3D"all"><br>-- <br>Med venlig hilsen<br><b=
+r>Daniel Aakj=E6r S=F8rensen<br><br>M=F8llehusvej 14, st. 3<br>4000 Roskild=
+e<br><br>Web: <a href=3D"http://www.hamsterboy.dk">www.hamsterboy.dk</a><br=
+>My work: <a href=3D"http://megamonster.deviantart.com">megamonster.deviant=
+art.com</a><br>
+E-mail: <a href=3D"mailto:daniel@hamsterboy.dk">daniel@hamsterboy.dk</a><br=
+>Tel: =A0+45 2533 7548<br>
+
+--0016e65b3ffcad94f504739a3057--
