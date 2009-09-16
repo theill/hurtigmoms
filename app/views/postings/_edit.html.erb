@@ -22,7 +22,7 @@
 				</fieldset>
 
 				<fieldset>
-					<%= f.label :attachment_no, t('posting.attachment_no') %>
+					<%= f.label :attachment_no, t('posting.attachment_no') %> <%= link_to_attachment(posting) %>
 					<%= f.text_field :attachment_no, :size => 4, :maxlength => 4 %>
 				</fieldset>
 

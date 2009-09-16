@@ -8,6 +8,8 @@ class Posting < ActiveRecord::Base
     :url => ':s3_domain_url',
     :path => ":attachment/:id/:style.:extension",
     :bucket => 'hurtigmoms'
+    
+  STATES = { :accepted => 'A', :pending => 'P', :deleted => 'D' }
   
   # validates_uniqueness_of :attachment_no, :scope => :user_id
   validates_presence_of :user_id
@@ -15,6 +17,9 @@ class Posting < ActiveRecord::Base
   validates_presence_of :amount
   validates_presence_of :attachment_no
   validates_presence_of :currency
+  
+  named_scope :total_buying, :joins => :account, :conditions => ['accounts.account_type = ?', Account::ACCOUNT_TYPES[:buying]]
+  named_scope :total_selling, :joins => :account, :conditions => ['accounts.account_type = ?', Account::ACCOUNT_TYPES[:selling]]
   
   before_validation_on_create :set_attachment_no, :set_currency
   

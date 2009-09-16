@@ -4,21 +4,24 @@ class PostingsController < ApplicationController
   # GET /postings
   # GET /postings.xml
   def index
-    @postings = current_user.postings.all :order => 'created_at DESC'
-
+    @postings = current_user.postings.all(:include => :account, :order => 'created_at DESC')
+    
+    @total_selling = current_user.postings.total_selling.sum(:amount)
+    @total_buying = current_user.postings.total_buying.sum(:amount)
+    
     @posting = current_user.postings.new
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @postings }
     end
   end
-
+  
   # GET /postings/1
   # GET /postings/1.xml
   def show
     @posting = current_user.postings.find(params[:id])
-
+    
     respond_to do |format|
       format.xml  { render :xml => @posting }
       format.js

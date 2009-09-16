@@ -33,7 +33,7 @@
 						<ul>
 							<li><%= link_to(t('.sign_out'), sign_out_path) %></li>
 							<!-- soon <li><div><form method="get"><input type="text" autocomplete="off" size="25" maxlength="100" placeholder="Search" title="Search" value="" tabindex="1" results="0" name="q" id="q"/></form></div></li> -->
-							<li><%= link_to(h(current_user.email), edit_user_path(current_user)) %></li>
+							<li><%= link_to(t('.settings'), edit_user_path(current_user)) %></li>
 						</ul>
 					<%- else -%>
 						<%= render :partial => 'shared/navigation' %>
