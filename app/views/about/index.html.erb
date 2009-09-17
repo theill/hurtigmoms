@@ -1,24 +1,33 @@
 <%- @meta = { :title => 'hurtig moms - saa gaar det hurtigt', :description => '', :blank_header => true } -%>
-<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
 
-<div class="grid_12 ">
+<div class="grid_12">
   <div class="intro">
-    hurtig online bogføring for den helt lille virksomhed
+  	hurtig bogføring for den lille virksomhed
   </div>
   
   <p>
     Har du behov for et online bogføringssystem der ikke kræver, man 
-    er revisor? Så er hurtigmoms lige noget for dig!
+    er revisor? Så er <b>hurtigmoms</b> lige noget for dig!
   </p>
-  
-  <p>
-    <%= link_to(t('layouts.application.sign_up'), sign_up_path) %>
-  </p>
-  
-	<p>
-	  Jeg har allerede en konto. <%= link_to(t('layouts.application.sign_in'), sign_in_path) %>
-	</p>
+ 
+	<div class="grid_6 alpha">
+	  <p>
+	    <%= link_to('Opret gratis konto', sign_up_path, :class => 'button') %>
+	  </p>
+		<p>
+			Send os enten et af dine bilag på <code>bilag@hurtigmoms.dk</code> og 
+			vi opretter en konto til dig eller benyt den simple <%= link_to('registrering', sign_up_path) %>.
+		</p>
+	</div>
 	
+	<div class="grid_6 omega">
+		<p>
+			<%= link_to('Jeg har allerede en konto', sign_in_path, :class => 'button') %>
+		</p>
+	</div>
+  
+	
+	<!--
 	<h4>Unik understøttelse for emails</h4>
 	<p>
 		Hurtigmoms har en unik funktion der gør det muligt at kigge intelligent på 
@@ -32,5 +41,6 @@
 	  Indtil videre understøttes Harvest, GitHub, Campaign Monitor, GratisDNS, 
 	  Basecamp og Spotify, men der tilføjes nye hver dag. Skriv til os hvis du 
 	  ønsker at din mail kan forstås af hurtigmoms.
-	</p
+	</p>
+	-->
 </div>

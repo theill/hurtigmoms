@@ -5,6 +5,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: "Cambria", "Georgia", "Times New Roman", Times, Sans-Serif;
 	font-weight: normal;
 }
 
@@ -175,8 +176,17 @@ div.action-bar {
 		color: #999;
 	}
 	
-body.frontpage {}
+body.frontpage {
+	border-top: solid 6px #3B5998;
+}
+
   body.frontpage .intro {
+		margin-top: 20px;
     font-family: "Cambria","Georgia","Times New Roman",Times,sans-serif;
     font-size: 36px;
   }
+
+	body.frontpage .button {
+		font-family: "Cambria","Georgia","Times New Roman",Times,sans-serif;
+		font-size: 20px;
+	}
