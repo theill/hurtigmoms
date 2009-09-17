@@ -1,22 +1,36 @@
 <%- @meta = { :title => 'hurtig moms - saa gaar det hurtigt', :description => '', :blank_header => true } -%>
 <h1><%= t('.title') %><span><%= t('.description') %></span></h1>
 
-<div class="grid_12">
-	<%= render '/shared/navigation' %>
-
-	<h4>Understøttede formater</h4>
+<div class="grid_12 ">
+  <div class="intro">
+    hurtig online bogføring for den helt lille virksomhed
+  </div>
+  
+  <p>
+    Har du behov for et online bogføringssystem der ikke kræver, man 
+    er revisor? Så er hurtigmoms lige noget for dig!
+  </p>
+  
+  <p>
+    <%= link_to(t('layouts.application.sign_up'), sign_up_path) %>
+  </p>
+  
 	<p>
-		Hurtigmoms kigger intelligent på de mails der modtages og udtrækker
-		faktura dato, beløb, valuta samt beskrivelse inden der indsættes en
-		posting på dit regnskab.
+	  Jeg har allerede en konto. <%= link_to(t('layouts.application.sign_in'), sign_in_path) %>
 	</p>
-	<ul>
-		<li>Harvest</li>
-		<li>GitHub</li>
-		<li>Campaign Monitor</li>
-		<li>Basecamp</li>
-	</ul>
+	
+	<h4>Unik understøttelse for emails</h4>
 	<p>
-		Skriv til os hvis du ønsker at din mail kan forstås af hurtigmoms.
+		Hurtigmoms har en unik funktion der gør det muligt at kigge intelligent på 
+		mails du videresender til os. Hvis du fx sender din månedlige "Basecamp" 
+		faktura udtrækkes automatisk faktura dato, beløb, valuta samt beskrivelse 
+		fra mailen og denne indsættes som en ny postering på dit regnskab. Vi sætter
+		endda typen som værende "Varekøb, udland" så moms ikke bliver tillagt.
 	</p>
+	
+	<p>
+	  Indtil videre understøttes Harvest, GitHub, Campaign Monitor, GratisDNS, 
+	  Basecamp og Spotify, men der tilføjes nye hver dag. Skriv til os hvis du 
+	  ønsker at din mail kan forstås af hurtigmoms.
+	</p
 </div>

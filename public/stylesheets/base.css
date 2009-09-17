@@ -174,3 +174,9 @@ div.action-bar {
 	#postings .posting .account_no {
 		color: #999;
 	}
+	
+body.frontpage {}
+  body.frontpage .intro {
+    font-family: "Cambria","Georgia","Times New Roman",Times,sans-serif;
+    font-size: 36px;
+  }
