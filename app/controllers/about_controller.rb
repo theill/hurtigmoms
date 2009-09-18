@@ -1,5 +1,9 @@
 class AboutController < ApplicationController
   def index
-    render :layout => 'frontpage' unless signed_in?
+    if signed_in?
+      @action_required = current_user.postings.count(:all, :conditions => ['state = ?', Posting::STATES[:pending]]) > 0
+    else
+      render :layout => 'frontpage'
+    end
   end
 end

@@ -11,4 +11,8 @@ module PostingsHelper
       '%04d' % posting.attachment_no
     end
   end
+  
+  def state_class(posting)
+    Posting::STATES.find { |k, v| v == posting.state }[0].to_s
+  end
 end

@@ -16,6 +16,8 @@ en:
     email: Email
     password: Password
     password_confirmation: Confirm password
+    updated:
+      success: Settings saved
 
   posting:
     created_at: Date

@@ -38,6 +38,20 @@ fieldset label {
 	padding-left: 8px;
 }
 
+.blank-state {
+	background-color: #f9f9f9;
+	border: solid 1px #e9e9e9;
+	padding: 16px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#ffffff));
+}
+
+.action-required {
+	background-color: #f9d9d9;
+	border: solid 1px #e9d9d9;
+	padding: 16px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f9e9e9), to(#ffffff));
+}
+
 div.action-bar {
 	background-color: #f3f3f3;
 	padding: 4px;
@@ -77,6 +91,7 @@ div.action-bar {
 
 #h {
 	background-color: #3B5998;
+	border-bottom: solid 1px #333;
 	margin: 0 0 20px 0;
 }
 	#h.menubar {
@@ -174,6 +189,9 @@ div.action-bar {
 #postings {}
 	#postings .posting .account_no {
 		color: #999;
+	}
+	#postings .posting.pending {
+		background-color: #ffcccc;
 	}
 	
 body.frontpage {

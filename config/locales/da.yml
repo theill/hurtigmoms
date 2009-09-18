@@ -16,6 +16,8 @@ da:
     email: E-mail
     password: Kodeord
     password_confirmation: Bekræft kodeord
+    updated:
+      success: Indstillingerne er gemt
     
   posting:
     created_at: Dato

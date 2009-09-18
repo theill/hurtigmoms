@@ -1,5 +1,23 @@
-<%- @meta = { :title => 'hurtig moms - saa gaar det hurtigt', :description => '', :blank_header => true } -%>
+<%- @meta = { :title => 'hurtig moms - bogføring for den lille virksomhed', :description => '', :blank_header => true } -%>
 
+<%- if signed_in? -%>
+	<h1>Oversigt</h1>
+	
+	<%- if @action_required -%>
+		<div class="action-required">
+			<p>
+				Du har <%= link_to("posteringer", postings_path) %> der kræver handling.
+			</p>
+		</div>
+	<%- else -%>
+		<div class="blank-state">
+			<p>
+				Du har ingen beskeder eller punkter der kræver handling.
+			</p>
+		</div>
+	<%- end -%>
+	
+<%- else -%>
 <div class="grid_12">
   <div class="intro">
   	hurtig bogføring for den lille virksomhed
@@ -44,3 +62,4 @@
 	</p>
 	-->
 </div>
+<%- end -%>
