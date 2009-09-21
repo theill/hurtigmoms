@@ -49,7 +49,7 @@ $(function() {
 	// generic
 	$(".edit").live("click", function() { $.get(this.href, null, null, "script"); return false; });
 	$(".delete").live("click", function() {
-	  if (prompt('Are you sure?')) {
+	  if (confirm('Er du sikker på du ønsker at slette denne?')) {
 	    $.ajax({ type: "DELETE", url: this.href, data: null, dataType: "script" });
     }
 	  return false;
