@@ -48,6 +48,11 @@ $(function() {
 	
 	// generic
 	$(".edit").live("click", function() { $.get(this.href, null, null, "script"); return false; });
-	$(".delete").live("click", function() { $.ajax({ type: "DELETE", url: this.href, data: null, dataType: "script" }); return false; });
+	$(".delete").live("click", function() {
+	  if (prompt('Are you sure?')) {
+	    $.ajax({ type: "DELETE", url: this.href, data: null, dataType: "script" });
+    }
+	  return false;
+  });
 	$(".show").live("click", function() { $.get(this.href, null, null, "script"); return false; });
 });
