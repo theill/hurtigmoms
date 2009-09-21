@@ -1,16 +1,16 @@
 <h1><%= t('.sign_in') %></h1>
 
-<% form_for :session, :url => session_path do |form| %>
+<% form_for :session, :url => session_path do |f| %>
   <fieldset>
-    <%= form.label :email, t('user.email') %>
-    <%= form.text_field :email %>
+    <%= f.label :email, t('user.email') %>
+    <%= f.text_field :email %>
   </fieldset>
   <fieldset>
-    <%= form.label :password, t('user.password') %>
-    <%= form.password_field :password %>
+    <%= f.label :password, t('user.password') %>
+    <%= f.password_field :password %>
   </fieldset>
   <fieldset>
-    <%= form.submit "Sign in", :disable_with => t('buttons.wait') %>
+    <%= f.submit "Sign in", :disable_with => t('buttons.wait') %>
   </fieldset>
 <% end %>
 

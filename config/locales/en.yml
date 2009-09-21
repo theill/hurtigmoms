@@ -26,6 +26,10 @@ en:
     attachment_no: Attachment no
     account_id: Account
 
+  account:
+    name: Name
+    account_no: Account No.
+
   mails:
     signup:
       created: You have created a hurtigmoms account
@@ -47,14 +51,50 @@ en:
       title: Settings
       description: ''
 
+  accounts:
+    new:
+      buttons:
+        save: Create account
+  
   postings:
     new:
       buttons:
         save: Create posting
+    edit:
+      buttons:
+        save: Save
+        cancel: Close
 
   sessions:
     new:
       sign_in: Sign in
+      forgot_password: Forgot password?
+
+  passwords:
+    new:
+      title: Change password
+      description: You will receive a link for resetting your password.
+      buttons:
+        reset: Reset password
+      
+    edit:
+      title: Change password
+      description: Your password will be reset. Please type a new one now.
+      buttons:
+        save: Save new password
+
+  about:
+    help:
+      title: Help
+      description: Frequently asked questions, tips and tricks
+    
+    api:
+      title: API
+      description: Use hurtigmoms functionality with your own applications
+      
+    index:
+      title: hurtigmoms
+      description: fast accounting!
   
   layouts:
     application:

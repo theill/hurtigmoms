@@ -1,11 +1,11 @@
 <h1><%= t('.title') %><span><%= t('.description') %></span></h1>
 
 <% form_for :password, :url => passwords_path do |form| %>
-  <div class="text_field">
+	<fieldset>
     <%= form.label :email, t('user.email') %>
     <%= form.text_field :email %>
-  </div>
-  <div class="submit_field">
+  </fieldset>
+	<fieldset>
     <%= form.submit t('.buttons.reset'), :disable_with => t('buttons.wait') %>
-  </div>
+  </fieldset>
 <% end %>

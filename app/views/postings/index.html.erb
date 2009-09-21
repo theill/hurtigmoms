@@ -14,11 +14,11 @@
 		<thead>
 			<tr>
 				<th></th>
-				<th>Dato</th>
-				<th>Bilag</th>
-				<th>Tekst</th>
-				<th>Konto</th>
-				<th>Beløb</th>
+				<th><%= t('posting.created_at') %></th>
+				<th><%= t('posting.attachment_no') %></th>
+				<th><%= t('posting.note') %></th>
+				<th><%= t('posting.account_id') %></th>
+				<th><%= t('posting.amount') %></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -38,7 +38,7 @@
 		<h3>Hvordan opretter jeg en postering?</h3>
 		<div>
 			<p>Den nemmeste måde er at sende en mail til bilag@hurtigmoms.dk
-			med dit bilag for posteringer. Et sted i mailen kan du benytte
+			med dit bilag for posteringen. Et sted i mailen kan du benytte
 			følgende felter</p>
 			<p>
 				<code>
@@ -48,6 +48,7 @@
 					NOTE:    [Køb af frimærker]<br />
 				</code>
 			</p>
+			<!--
 			<p>
 				Systemet forstår også en mere naturlig beskrivelse af dit
 				bilag, fx kan du i "Emne" feltet skrive tekster såsom <code>
@@ -55,6 +56,7 @@
 				postering der vil registrere et køb af frimærker på 500,-
 				inkl. moms.
 			</p>
+		  -->
 			<p>
 				Kan systemet ikke gætte hvordan bilaget skal tolkes, vil den
 				blive registreret i systemet på dags dato med emne feltet 

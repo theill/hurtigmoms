@@ -25,6 +25,10 @@ da:
     amount: Beløb
     attachment_no: Bilag
     account_id: Konto
+    
+  account:
+    name: Navn
+    account_no: Kontonummer
 
   mails:
     signup:

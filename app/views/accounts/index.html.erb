@@ -5,8 +5,8 @@
 	<table>
 		<thead>
 			<tr>
-				<th>Navn</th>
-				<th>Konto Nr</th>
+				<th><%= t('account.name') %></th>
+				<th><%= t('account.account_no') %></th>
 			</tr>
 		</thead>
   <% for account in @accounts %>
@@ -16,7 +16,6 @@
 		</tr>
   <% end %>
 	</table>	
-	
 </div>
 
 <div class="grid_3">
