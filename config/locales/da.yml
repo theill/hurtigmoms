@@ -52,11 +52,19 @@ da:
       description: ''
 
   accounts:
+    index:
+      title: Oversigt over konti
+      description: ''
+      
     new:
       buttons:
         save: Opret konto
   
   postings:
+    index:
+      title: Oversigt over posteringer
+      description: ''
+      
     new:
       buttons:
         save: Opret postering

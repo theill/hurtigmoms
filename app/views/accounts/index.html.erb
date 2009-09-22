@@ -1,4 +1,6 @@
-<%- @meta = { :title => 'Oversigt over konti', :description => '' } -%>
+<%- @meta = { :title => t('.title'), :description => t('.descriptino') } -%>
+<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
+
 <div class="grid_9">
 	<%= render :partial => 'new', :locals => { :account => @account } %>
 
