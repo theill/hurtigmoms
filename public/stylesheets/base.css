@@ -193,6 +193,11 @@ div.action-bar {
 	#postings .posting.pending {
 		background-color: #ffcccc;
 	}
+  	#postings .posting #vat {
+  	  background-color: #666;
+  	  color: #fff;
+  	  padding: 4px;
+  	}
 	
 body.frontpage {
 	border-top: solid 6px #3B5998;
