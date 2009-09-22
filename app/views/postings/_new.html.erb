@@ -12,8 +12,8 @@
 	</fieldset>
 
 	<fieldset>
-		<%= f.label :amount, (t('posting.amount') + ' (' + posting.currency + ')') %>
-		<%= f.text_field :amount, :size => 10, :maxlength => 10 %>
+		<%= f.label :amount, t('posting.amount') %>
+		<%= f.text_field :amount, :size => 10, :maxlength => 10 %> <%= f.select :currency, ['DKK', 'USD'] %>
 		<span id="vat">-</span>
 	</fieldset>
 
