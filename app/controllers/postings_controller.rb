@@ -89,6 +89,9 @@ class PostingsController < ApplicationController
   end
   
   def download
+    # http://docs.google.com/viewer
+		# <a href="http://docs.google.com/viewer?url=<%= @posting.authenticated_url %>&embedded=true">vis bilag</a>
+
     @posting = current_user.postings.find(params[:id])
     
     redirect_to @posting.authenticated_url
