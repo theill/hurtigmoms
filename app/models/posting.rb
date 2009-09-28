@@ -31,6 +31,10 @@ class Posting < ActiveRecord::Base
     self.set_attachment_no
   end
   
+  def next_attachment_no
+    self.attachment_no + 1
+  end
+  
   protected
   
   def set_attachment_no

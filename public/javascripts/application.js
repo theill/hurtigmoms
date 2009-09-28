@@ -1,6 +1,8 @@
 /**
  * =hurtigmoms
  * 
+ * TODO: VAT amount is relative to selected account.
+ * 
  */
 
 hurtigmoms = {
@@ -43,10 +45,14 @@ jQuery.fn.focusFirstFormElement = function() {
 $(function() {
 	// postings
 	$("#new_posting").ajaxForm({ dataType: "script" });
-	$("#add-new-posting").click(function() { $("#new-posting-container").show(); $(this).parent().remove(); $("#new_posting").focusFirstFormElement(); });
+	$("#add-new-posting").click(function() {
+	  $("#new-posting-container").show();
+	  $(this).parent().remove();
+	  $("#new_posting").focusFirstFormElement();
+	});
 	$("#posting_amount").keyup(function() { $("#vat").text(hurtigmoms.posting.vat(this.value)); });
 	
-	// generic
+	// generic events
 	$(".edit").live("click", function() { $.get(this.href, null, null, "script"); return false; });
 	$(".delete").live("click", function() {
 	  if (confirm('Er du sikker på du ønsker at slette denne?')) {
