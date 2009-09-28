@@ -3,7 +3,7 @@ $("#<%= dom_id(@posting) %>").effect("highlight");
 
 // reset form
 $("#posting_amount, #posting_note").val('');
-$("#posting_attachment_no").val('<%= @posting.attachment_no + 1 %>');
+$("#posting_attachment_no").val('<%= @posting.next_attachment_no %>');
 
 $("#new_posting").focusFirstFormElement();
 $("#new_posting").find('input.submit').attr('disabled', '');
