@@ -11,7 +11,7 @@
 				</fieldset>
 
 				<fieldset>
-					<%= f.label :note, t('posting.note') %>
+					<%= f.label :note, t('posting.note') + (posting.attachment_email.blank? ? '' : (' - ' + link_to('vis e-mail', '#', :class => 'show-attachment-email'))) %>
 					<%= f.text_field :note, :size => 20, :maxlength => 250 %>
 				</fieldset>
 
@@ -22,7 +22,7 @@
 				</fieldset>
 
 				<fieldset>
-					<%= f.label :attachment_no, t('posting.attachment_no') %> <%= link_to_attachment(posting) %>
+					<%= f.label :attachment_no, t('posting.attachment_no') + (@posting.attachment? ? (' - ' + link_to('vis', '#', :class => 'show-attachment') + ' eller ' + link_to('hent', download_posting_path(@posting))) : '') %>
 					<%= f.text_field :attachment_no, :size => 4, :maxlength => 4 %>
 				</fieldset>
 
@@ -30,9 +30,18 @@
 					<%= f.label :account_id, t('posting.account_id') %>
 					<%= f.select :account_id, grouped_accounts, {:prompt => "Vælg konto"} %>
 				</fieldset>
-
 				<%= f.submit t('.buttons.save') %> <%= link_to t('.buttons.cancel'), posting_path(posting, :format => :js), :class => 'show' %>
 			</div>
+			<%- if posting.attachment? -%>
+				<div class="attachment">
+					<iframe width="100%" height="480" src="<%= posting.google_viewer_url %>"></iframe>
+				</div>
+			<%- end -%>
+			<%- unless posting.attachment_email.blank? -%>
+				<div class="attachment-email">
+					<pre><%= posting.attachment_email %></pre>
+				</div>
+			<%- end -%>
 		<% end -%>
 	</td>
 </tr>

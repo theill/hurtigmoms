@@ -1,9 +1,9 @@
 <tr id="<%= dom_id(posting) %>" class="posting <%= state_class(posting) %>">
 	<td><%= link_to('E', edit_posting_path(posting), :class => 'edit') %>
 	<%= link_to('X', posting, :class => 'delete') %></td>
-	<td><%= posting.created_at.strftime("%d/%m-%Y") %></td>
 	<td><%= link_to_attachment(posting) %></td>
 	<td><%=h posting.note %></td>
+	<td><%= posting.created_at.strftime("%d/%m-%Y") %></td>
 	<td><%= ("<span class=\"account_no\">#{posting.account.account_no}</span> #{h(posting.account.name)}") if posting.account %></td>
 	<td><%= number_to_currency(posting.amount, :unit => posting.currency) %></td>
 </tr>

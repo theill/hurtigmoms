@@ -3,3 +3,18 @@ $("#<%= dom_id(@posting) %>").replaceWith("<%= escape_javascript(render(:partial
 
 $("#<%= dom_id(@posting) %> form").ajaxForm({	dataType: "script" });
 $("#<%= dom_id(@posting) %> #posting_amount").keyup(function() { $("#<%= dom_id(@posting) %> #vat").text(hurtigmoms.posting.vat(this.value)); });
+
+<%- if @posting.attachment? -%>
+	$("#<%= dom_id(@posting) %> .show-attachment").click(function() {
+		$("#<%= dom_id(@posting) %> .attachment").show();
+		return false;
+	});
+<%- end -%>
+
+<%- unless @posting.attachment_email.blank? -%>
+	$("#<%= dom_id(@posting) %> .show-attachment-email").click(function() {
+		$("#<%= dom_id(@posting) %> .attachment-email").show();
+		return false;
+	});
+<%- end -%>
+

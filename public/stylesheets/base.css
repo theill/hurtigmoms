@@ -187,17 +187,32 @@ div.action-bar {
 }
 
 #postings {}
-	#postings .posting .account_no {
-		color: #999;
-	}
-	#postings .posting.pending {
-		background-color: #ffcccc;
-	}
+	#postings .posting {} 
+		#postings .posting .account_no {
+			color: #999;
+		}
+		
   	#postings .posting #vat {
   	  background-color: #666;
   	  color: #fff;
   	  padding: 4px;
   	}
+
+		#postings .posting.pending {
+			background-color: #ffcccc;
+		}
+		
+		#postings .posting .attachment {
+			display: none;
+		}
+
+		#postings .posting .attachment-email {
+			display: none;
+			height: 480px;
+			width: 650px;
+			overflow: auto;
+			background-color: #f9f9f9;
+		}
 	
 body.frontpage {
 	border-top: solid 6px #3B5998;

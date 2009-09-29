@@ -25,6 +25,7 @@ da:
     amount: Beløb
     attachment_no: Bilag
     account_id: Konto
+    state: Status
     
   account:
     name: Navn
