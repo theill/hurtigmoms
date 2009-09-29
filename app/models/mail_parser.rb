@@ -96,6 +96,7 @@ class MailParser
       parsed_date = mail.body.gsub(/=C2=A0/, ' ').scan(/^Date:.*(\d{4}-\d{2}-\d{2})/).flatten
       date = (parsed_date.length > 0) ? parsed_date[0].to_datetime : Time.now.utc.to_datetime
     elsif (mail.body && mail.body.include?('billing@37signals.com'))
+      # do Basecamp parsing
       
       description = mail.body.scan(/Price[\n]-*.*([^\$]*)/i).flatten.to_s.gsub(/-/, '').gsub(/>/, '').squish
       
@@ -113,7 +114,13 @@ class MailParser
       parsed_date = mail.body.scan(/date:\W?(\d{4}-\d{2}-\d{2})/i).flatten
       date = (parsed_date.length > 0) ? parsed_date[0].to_datetime : Time.now.utc.to_datetime
     end
-        
-    { :amount => amount, :currency => currency, :note => description, :created_at => date }
+    
+    if (amount.blank? || amount.to_f == 0.0 || currency.blank? || date.blank?)
+      state = Pending::STATES[:pending]
+    else
+      state = Pending::STATES[:accepted]
+    end
+    
+    { :amount => amount, :currency => currency, :note => description, :created_at => date, :state => state }
   end
 end
