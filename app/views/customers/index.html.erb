@@ -1,0 +1,30 @@
+<%- @meta = { :title => t('.title'), :description => t('.descriptino') } -%>
+<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
+
+<div class="grid_9">
+	<%= link_to 'New customer', new_customer_path %>
+	
+	<table>
+	  <tr>
+	    <th>Name</th>
+	    <th>Description</th>
+	  </tr>
+
+	<% @customers.each do |customer| %>
+	  <tr>
+	    <td><%= link_to(h(customer.name), edit_customer_path(customer)) %></td>
+	    <td><%=h customer.description %></td>
+	    <td><%= link_to 'Destroy', customer, :confirm => 'Are you sure?', :method => :delete %></td>
+	  </tr>
+	<% end %>
+	</table>
+</div>
+
+<div class="grid_3">
+	<div class="sidebar">
+		<h3>Hvordan opretter jeg en kunde?</h3>
+		<div>
+			TBD
+		</div>
+	</div>
+</div>

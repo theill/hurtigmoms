@@ -29,6 +29,15 @@ en:
   account:
     name: Name
     account_no: Account No.
+    account_type: Account type
+    vat_type: VAT type
+    account_type_buy: Buy
+    account_type_sell: Sell
+    account_type_unknown: -
+    vat_type_standard: Standard
+    vat_type_none: None
+    vat_type_other_country: Other country
+    vat_type_unknown: -
 
   mails:
     signup:

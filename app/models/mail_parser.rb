@@ -8,7 +8,7 @@ class MailParser
     parsed_attributes = recognize_and_parse_mail(mail)
     
     # only supporting 'buying' at the moment
-    account = user.accounts.find_by_account_no_and_account_type('1308', Account::ACCOUNT_TYPES[:buying])
+    account = user.accounts.find_by_account_no_and_account_type('1308', Account::ACCOUNT_TYPES[:buy])
     parsed_attributes.merge!(:account_id => account.id, :attachment_email => mail.to_s)
     
     posting = user.postings.create! parsed_attributes

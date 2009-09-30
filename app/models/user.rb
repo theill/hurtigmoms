@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   
   has_many :postings, :dependent => :destroy
   has_many :accounts, :dependent => :destroy
+  has_many :customers, :dependent => :destroy
   
   after_create :setup_default_accounts
   
@@ -19,7 +20,7 @@ class User < ActiveRecord::Base
       ['0137', 'Salg, EU-lande', Account::VAT_TYPES[:other_country]],
       ['0138', 'Salg, øvrige lande', Account::VAT_TYPES[:other_country]]
     ].each do |account_no, name, vat|
-      self.accounts.create(:name => name, :account_no => account_no, :vat_type => vat, :account_type => Account::ACCOUNT_TYPES[:selling])
+      self.accounts.create(:name => name, :account_no => account_no, :vat_type => vat, :account_type => Account::ACCOUNT_TYPES[:sell])
     end
 
     [ ['1300', 'Varekøb, indland', Account::VAT_TYPES[:standard]], 
@@ -37,7 +38,7 @@ class User < ActiveRecord::Base
       ['3660', 'Faglitteratur', Account::VAT_TYPES[:standard]],
       ['3661', 'Avis', Account::VAT_TYPES[:none]]
     ].each do |account_no, name, vat|
-      self.accounts.create(:name => name, :account_no => account_no, :vat_type => vat, :account_type => Account::ACCOUNT_TYPES[:buying])
+      self.accounts.create(:name => name, :account_no => account_no, :vat_type => vat, :account_type => Account::ACCOUNT_TYPES[:buy])
     end
   end
   

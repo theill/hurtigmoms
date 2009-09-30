@@ -4,34 +4,59 @@
 		<% form_for(posting, :html => {:autocomplete => 'off'}) do |f| -%>
 			<%= error_messages_for :posting %>
 			
-			<div class="columns">
-				<fieldset>
-					<%= f.label :created_at, t('posting.created_at') %>
-					<%= date_select :posting, :created_at %>
-				</fieldset>
-
-				<fieldset>
-					<%= f.label :note, t('posting.note') + (posting.attachment_email.blank? ? '' : (' - ' + link_to('vis e-mail', '#', :class => 'show-attachment-email'))) %>
-					<%= f.text_field :note, :size => 20, :maxlength => 250 %>
-				</fieldset>
-
-				<fieldset>
-					<%= f.label :amount, t('posting.amount') %>
-					<%= f.text_field :amount, :size => 10, :maxlength => 10 %> <%= f.select :currency, ['DKK', 'USD', 'EUR'] %>
-					<span id="vat">-</span>
-				</fieldset>
-
-				<fieldset>
-					<%= f.label :attachment_no, t('posting.attachment_no') + (@posting.attachment? ? (' - ' + link_to('vis', '#', :class => 'show-attachment') + ' eller ' + link_to('hent', download_posting_path(@posting))) : '') %>
-					<%= f.text_field :attachment_no, :size => 4, :maxlength => 4 %>
-				</fieldset>
-
-				<fieldset>
-					<%= f.label :account_id, t('posting.account_id') %>
-					<%= f.select :account_id, grouped_accounts, {:prompt => "Vælg konto"} %>
-				</fieldset>
-				<%= f.submit t('.buttons.save') %> <%= link_to t('.buttons.cancel'), posting_path(posting, :format => :js), :class => 'show' %>
-			</div>
+			<table>
+				<tr>
+					<td>
+						<fieldset>
+							<label>Fra</label>
+							TBD
+						</fieldset>
+					</td>
+					<td>
+						<fieldset>
+							<%= f.label :created_at, t('posting.created_at') %>
+							<%= date_select :posting, :created_at %>
+						</fieldset>
+					</td>
+					<td>
+						<fieldset>
+							<%= f.label :amount, t('posting.amount') %>
+							<%= f.text_field :amount, :size => 10, :maxlength => 10 %> <%= f.select :currency, ['DKK', 'USD', 'EUR'] %>
+						</fieldset>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<fieldset>
+							<%= f.label :account_id, t('posting.account_id') %>
+							<%= f.select :account_id, grouped_accounts, {:prompt => "Vælg konto"} %>
+						</fieldset>
+					</td>
+					<td>
+						<fieldset>
+							<%= f.label :attachment_no, t('posting.attachment_no') + (@posting.attachment? ? (' - ' + link_to('vis', '#', :class => 'show-attachment') + ' eller ' + link_to('hent', download_posting_path(@posting))) : '') %>
+							<%= f.text_field :attachment_no, :size => 4, :maxlength => 4 %>
+						</fieldset>
+					</td>
+					<td>
+						<fieldset>
+							<label>Moms</label>
+							<span id="vat">-</span>
+						</fieldset>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<fieldset>
+							<%= f.label :note, t('posting.note') + (posting.attachment_email.blank? ? '' : (' - ' + link_to('vis e-mail', '#', :class => 'show-attachment-email'))) %>
+							<%= f.text_area :note, :rows => 4, :cols => 60 %>
+						</fieldset>
+					</td>
+				</tr>
+			</table>
+			
+			<%= f.submit t('.buttons.save') %> <%= link_to t('buttons.cancel'), posting_path(posting, :format => :js), :class => 'show' %>
+			
 			<%- if posting.attachment? -%>
 				<div class="attachment">
 					<iframe width="100%" height="480" src="<%= posting.google_viewer_url %>"></iframe>

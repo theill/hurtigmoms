@@ -30,6 +30,15 @@ da:
   account:
     name: Navn
     account_no: Kontonummer
+    account_type: Konto type
+    vat_type: Moms type
+    account_type_buy: Køb
+    account_type_sell: Salg
+    account_type_unknown: -
+    vat_type_standard: Standard
+    vat_type_none: Ingen
+    vat_type_other_country: Udland
+    vat_type_unknown: -
 
   mails:
     signup:
@@ -72,7 +81,11 @@ da:
     edit:
       buttons:
         save: Gem
-        cancel: Luk
+
+  customers:
+    index:
+      title: Oversigt over kunder
+      description: ''
         
   sessions:
     new:
@@ -110,6 +123,8 @@ da:
       home: Hjem
       postings: Posteringer
       accounts: Konti
+      reports: Rapporter
+      customers: Kunder
       sign_in: Log ind
       sign_out: Log ud
       sign_up: Priser &amp; oprettelse

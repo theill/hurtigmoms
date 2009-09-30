@@ -102,6 +102,8 @@ div.action-bar {
 	
 	#h .application-name {
 		font-weight: normal;
+		margin-right: 20px;
+		text-shadow: 0px 0px 6px #000;
 	}
 	
 	#h ul {
@@ -137,6 +139,9 @@ div.action-bar {
 	#h .navigation {
 		
 	}
+		#h .navigation .selected {
+			background-color: #4B69A8;
+		}
 	
 	#h .search {}
 		#h .search li {
@@ -213,7 +218,9 @@ div.action-bar {
 			overflow: auto;
 			background-color: #f9f9f9;
 		}
-	
+	#postings .edit_posting table td {
+		border-width: 0;
+	}
 body.frontpage {
 	border-top: solid 6px #3B5998;
 }

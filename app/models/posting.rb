@@ -18,8 +18,8 @@ class Posting < ActiveRecord::Base
   validates_presence_of :attachment_no
   validates_presence_of :currency
   
-  named_scope :total_buying, :joins => :account, :conditions => ['accounts.account_type = ?', Account::ACCOUNT_TYPES[:buying]]
-  named_scope :total_selling, :joins => :account, :conditions => ['accounts.account_type = ?', Account::ACCOUNT_TYPES[:selling]]
+  named_scope :total_buying, :joins => :account, :conditions => ['accounts.account_type = ?', Account::ACCOUNT_TYPES[:buy]]
+  named_scope :total_selling, :joins => :account, :conditions => ['accounts.account_type = ?', Account::ACCOUNT_TYPES[:sell]]
   
   before_validation_on_create :set_attachment_no, :set_currency
   

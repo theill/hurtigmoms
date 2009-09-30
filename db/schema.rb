@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090916184459) do
+ActiveRecord::Schema.define(:version => 20090930185737) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(:version => 20090916184459) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "account_no"
+  end
+
+  create_table "customers", :force => true do |t|
+    t.integer  "user_id",     :null => false
+    t.string   "name",        :null => false
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -63,8 +71,8 @@ ActiveRecord::Schema.define(:version => 20090916184459) do
     t.string   "cvr"
   end
 
+  add_index "users", ["confirmation_token", "id"], :name => "index_users_on_id_and_confirmation_token"
   add_index "users", ["email"], :name => "index_users_on_email"
-  add_index "users", ["id", "confirmation_token"], :name => "index_users_on_id_and_confirmation_token"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end
