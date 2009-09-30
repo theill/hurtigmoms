@@ -116,9 +116,9 @@ class MailParser
     end
     
     if (amount.blank? || amount.to_f == 0.0 || currency.blank? || date.blank?)
-      state = Pending::STATES[:pending]
+      state = Posting::STATES[:pending]
     else
-      state = Pending::STATES[:accepted]
+      state = Posting::STATES[:accepted]
     end
     
     { :amount => amount, :currency => currency, :note => description, :created_at => date, :state => state }
