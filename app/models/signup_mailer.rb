@@ -1,5 +1,5 @@
 class SignupMailer < ActionMailer::Base
-  default_url_options[:host] = HOST
+  default_url_options[:host] = App::HOST
   
   def created(user, password, original_subject)
     from       DO_NOT_REPLY

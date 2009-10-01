@@ -46,10 +46,10 @@ fieldset label {
 }
 
 .action-required {
-	background-color: #f9d9d9;
-	border: solid 1px #e9d9d9;
+	background-color: #ffdddd;
+/*	border: solid 4px #ffcfcf;*/
 	padding: 16px;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f9e9e9), to(#ffffff));
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffdddd), to(#ffffff));
 }
 
 div.action-bar {
@@ -202,9 +202,19 @@ div.action-bar {
   	  color: #fff;
   	  padding: 4px;
   	}
+		#postings .posting .actions {
+			width: 20px;
+		}
+		
+			#postings .posting .actions div {
+				display: none;
+			}
+			#postings .posting.hover .actions div {
+				display: block;
+			}
 
 		#postings .posting.pending {
-			background-color: #ffcccc;
+			background-color: #ffeeee;
 		}
 		
 		#postings .posting .attachment {
