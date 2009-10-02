@@ -18,3 +18,61 @@ $("#<%= dom_id(@posting) %> #posting_amount").keyup(function() { $("#<%= dom_id(
 	});
 <%- end -%>
 
+// initialise the "Select date" link
+$('#date-pick')
+	.datePicker(
+		// associate the link with a date picker
+		{
+			createButton:false,
+			startDate:'01/01/2005',
+			endDate:'31/12/2010'
+		}
+	).bind(
+		// when the link is clicked display the date picker
+		'click',
+		function() {
+			updateSelects($(this).dpGetSelected()[0]);
+			$(this).dpDisplay();
+			return false;
+		}
+	).bind(
+		// when a date is selected update the SELECTs
+		'dateSelected',
+		function(e, selectedDate, $td, state) {
+			updateSelects(selectedDate);
+		}
+	).bind(
+		'dpClosed',
+		function(e, selected) {
+			updateSelects(selected[0]);
+		}
+	);
+
+var updateSelects = function(selectedDate) {
+	var selectedDate = new Date(selectedDate);
+	$('#posting_created_at_3i option[value=' + selectedDate.getDate() + ']').attr('selected', 'selected');
+	$('#posting_created_at_2i option[value=' + (selectedDate.getMonth()+1) + ']').attr('selected', 'selected');
+	$('#posting_created_at_1i option[value=' + (selectedDate.getFullYear()) + ']').attr('selected', 'selected');
+}
+
+// listen for when the selects are changed and update the picker
+$('#posting_created_at_3i, #posting_created_at_2i, #posting_created_at_1i')
+	.bind(
+		'change',
+		function()
+		{
+			var d = new Date(
+						$('#posting_created_at_1i').val(),
+						$('#posting_created_at_2i').val()-1,
+						$('#posting_created_at_3i').val()
+					);
+			$('#date-pick').dpSetSelected(d.asString());
+		}
+	);
+
+// default the position of the selects to today
+var today = new Date();
+updateSelects(today.getTime());
+
+// and update the datePicker to reflect it...
+$('#posting_created_at_3i').trigger('change');

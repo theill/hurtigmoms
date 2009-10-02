@@ -1,8 +1,21 @@
 <%- @meta = { :title => t('.title'), :description => t('.descriptino') } -%>
 <h1><%= t('.title') %><span><%= t('.description') %></span></h1>
 
+<%- if @customers.empty? -%>
+
+	<p>
+		Du har ingen kunder registret i systemet.
+	</p>
+	
+	<p>
+		<%= link_to 'Opret ny kunde', new_customer_path %>
+	</p>
+
+<%- else -%>
+
 <div class="grid_9">
 	<%= link_to 'New customer', new_customer_path %>
+	
 	
 	<table>
 	  <tr>
@@ -28,3 +41,5 @@
 		</div>
 	</div>
 </div>
+
+<%- end -%>
