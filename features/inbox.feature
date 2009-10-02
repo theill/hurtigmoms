@@ -48,7 +48,7 @@ Feature: Inbox mail parsing
 		And I should see "25/08-2009"
 		And I should see "USD24.00"
 
-	Scenario: Parsing an unknown mail
+	Scenario: Parsing any mail with amount in its body
 		Given I have signed in with "john.doe@hurtigmoms.test/password"
 		Given I sent mail from unknown
 		When I go to the postings page
@@ -57,3 +57,11 @@ Feature: Inbox mail parsing
 		And I should see "02/03-2009"
 		And I should see "DKK5,420.00"
 
+	Scenario: Parsing any mail with 'Total' in its body
+		Given I have signed in with "john.doe@hurtigmoms.test/password"
+		Given I sent mail from unknown_with_total
+		When I go to the postings page
+		Then I should see "Amazon Web Services Billing Statement Available"
+		And I should not see "Fwd: Amazon Web Services Billing Statement Available"
+		And I should see "01/10-2009"
+		And I should see "USD0.05"

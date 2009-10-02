@@ -1,0 +1,73 @@
+Delivered-To: bilag@hurtigmoms.dk
+Received: by 10.231.33.74 with SMTP id g10cs36143ibd;
+        Thu, 1 Oct 2009 22:55:29 -0700 (PDT)
+Received: by 10.204.162.143 with SMTP id v15mr817487bkx.50.1254462928480;
+        Thu, 01 Oct 2009 22:55:28 -0700 (PDT)
+Return-Path: <peter@commanigy.com>
+Received: from fg-out-1718.google.com (fg-out-1718.google.com [72.14.220.159])
+        by mx.google.com with ESMTP id 12si978686bwz.46.2009.10.01.22.55.27;
+        Thu, 01 Oct 2009 22:55:28 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning peter@commanigy.com does not designate 72.14.220.159 as permitted sender) client-ip=72.14.220.159;
+Authentication-Results: mx.google.com; spf=softfail (google.com: domain of transitioning peter@commanigy.com does not designate 72.14.220.159 as permitted sender) smtp.mail=peter@commanigy.com
+Received: by fg-out-1718.google.com with SMTP id e21so1872727fga.10
+        for <bilag@hurtigmoms.dk>; Thu, 01 Oct 2009 22:55:27 -0700 (PDT)
+Received: by 10.86.231.13 with SMTP id d13mr1951338fgh.41.1254462927359;
+        Thu, 01 Oct 2009 22:55:27 -0700 (PDT)
+Return-Path: <peter@commanigy.com>
+Received: from mail-bw0-f221.google.com (mail-bw0-f221.google.com [209.85.218.221])
+        by mx.google.com with ESMTPS id 3sm878094fge.29.2009.10.01.22.55.26
+        (version=SSLv3 cipher=RC4-MD5);
+        Thu, 01 Oct 2009 22:55:27 -0700 (PDT)
+Received: by bwz21 with SMTP id 21so739519bwz.40
+        for <bilag@hurtigmoms.dk>; Thu, 01 Oct 2009 22:55:26 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.204.160.86 with SMTP id m22mr805018bkx.82.1254462926196; Thu, 
+	01 Oct 2009 22:55:26 -0700 (PDT)
+In-Reply-To: <117625.75921254440342648.JavaMail.em-build@na-mm-relay.amazon.com>
+References: <117625.75921254440342648.JavaMail.em-build@na-mm-relay.amazon.com>
+From: John Doe <john.doe@hurtigmoms.test>
+Date: Tue, 1 Oct 2009 07:55:06 +0200
+Message-ID: <701dc5890910012255r5a0519c6i5c49f8d425250a58@mail.gmail.com>
+Subject: Fwd: Amazon Web Services Billing Statement Available
+To: bilag@hurtigmoms.dk
+Content-Type: text/plain; charset=UTF-8
+
+Peter Theill
+Commanigy
+Frederiksholms Kanal 4, 3.
+DK-1220 Copenhagen K
+email: peter@commanigy.com
+web: http://commanigy.com
+mobile: +45 6171 5096
+mobile (intl): +1 (304) 584-3455
+
+
+
+
+---------- Forwarded message ----------
+From: Amazon Web Services <webservices@amazon.com>
+Date: Thu, Oct 1, 2009 at 01:39
+Subject: Amazon Web Services Billing Statement Available
+To: "peter@theill.com" <peter@theill.com>
+
+
+Greetings from Amazon Web Services,
+
+This e-mail confirms that your latest billing statement is available
+on the AWS web site. Your account will be charged the following:
+
+Total: $0.05
+
+Please see the Account Activity area of the AWS web site for detailed
+account information:
+
+http://aws-portal.amazon.com/gp/aws/developer/account/index.html?action=activity-summary
+
+Thank you for your continuing interest in Amazon Web Services.
+
+Sincerely,
+
+Amazon Web Services
+
+This message was produced and distributed by Amazon Web Services LLC,
+1200 12th Avenue South, Seattle, Washington 98144-2734

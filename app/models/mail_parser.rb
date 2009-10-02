@@ -107,12 +107,15 @@ class MailParser
       parsed_date = mail.body.scan(/INVOICE.*(\d{4}-\d{2}-\d{2})/im).flatten
       date = (parsed_date.length > 0) ? parsed_date[0].to_datetime : Time.now.utc.to_datetime
     else
-      parsed_amount = mail.body.scan(/amount:\W?\$?([\d|\.]*)\W?(DKK|USD|NOK|SEK|EUR)?/i).flatten
-      amount = (parsed_amount[0] if parsed_amount.length > 0) || amount
-      currency = (parsed_amount[1] if parsed_amount.length > 1) || currency
+      # parsed_amount = mail.body.scan(/amount:\W?\$?([\d|\.]*)\W?(DKK|USD|NOK|SEK|EUR)?/i).flatten
+      # amount = (parsed_amount[0] if parsed_amount.length > 0) || amount
+      # currency = (parsed_amount[1] if parsed_amount.length > 1) || currency
       
-      parsed_date = mail.body.scan(/date:\W?(\d{4}-\d{2}-\d{2})/i).flatten
-      date = (parsed_date.length > 0) ? parsed_date[0].to_datetime : Time.now.utc.to_datetime
+      ga, gc = guess_amount(mail.body)
+      amount = ga || amount
+      currency = gc || currency
+      
+      date = guess_date(mail.body) || Time.now.utc.to_datetime
     end
     
     if (amount.blank? || amount.to_f == 0.0 || currency.blank? || date.blank?)
@@ -122,5 +125,30 @@ class MailParser
     end
     
     { :amount => amount, :currency => currency, :note => description, :created_at => date, :state => state }
+  end
+  
+  def guess_date(body)
+    t = body.scan(/date:\W?(\d{4}-\d{2}-\d{2})/i).flatten
+    if (t.length > 0)
+      date = t[0].to_datetime rescue nil
+    end
+    return date unless date.nil?
+    
+    t = body.scan(/date:\W?(.*)/i).flatten
+    if (t.length > 0)
+      date = t[0].to_datetime rescue nil
+    end
+    return date unless date.nil?
+    
+    nil
+  end
+  
+  def guess_amount(body)
+    parsed_amount = body.scan(/amount:\W?\$?([\d|\.|\,]*)\W?(DKK|USD|NOK|SEK|EUR)?/i).flatten
+    amount = (parsed_amount[0] if parsed_amount.length > 0)
+    currency = (parsed_amount[1] if parsed_amount.length > 1)
+    return [amount, currency] if amount && currency
+    
+    [nil, nil]
   end
 end

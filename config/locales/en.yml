@@ -66,6 +66,10 @@ en:
         save: Create account
   
   postings:
+    index:
+      title: Postings overview
+      description: ''
+
     new:
       buttons:
         save: Create posting
@@ -110,10 +114,12 @@ en:
       home: Home
       postings: Postings
       accounts: Accounts
+      reports: Reports
+      customers: Customers
       sign_in: Sign in
       sign_out: Sign out
       sign_up: Pricing &amp; sign up
       tour: Tour
       api: API
       help: Help
-      settings: Indstillinger
+      settings: Settings
