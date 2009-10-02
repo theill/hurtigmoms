@@ -51,11 +51,7 @@ $(function() {
 	  $("#new_posting").focusFirstFormElement();
 	});
 	$("#posting_amount").keyup(function() { $("#vat").text(hurtigmoms.posting.vat(this.value)); });
-	$("#postings .posting").hover(function() { 
-		$(this).addClass("hover");
-		 }, function() { 
-			$(this).removeClass("hover");
-		 });
+	$("#postings .posting").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
 	
 	// generic events
 	$(".edit").live("click", function() { $.get(this.href, null, null, "script"); return false; });

@@ -1,9 +1,12 @@
 $("#postings").prepend("<%= escape_javascript(render(@posting)) %>");
 $("#<%= dom_id(@posting) %>").effect("highlight");
 
+$("#<%= dom_id(@posting) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
+
 // reset form
 $("#posting_amount, #posting_note").val('');
 $("#posting_attachment_no").val('<%= @posting.next_attachment_no %>');
+$("#new_posting #vat").text('');
 
 $("#new_posting").focusFirstFormElement();
 $("#new_posting").find('input.submit').attr('disabled', '');
