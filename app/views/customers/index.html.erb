@@ -1,5 +1,18 @@
 <%- @meta = { :title => t('.title'), :description => t('.descriptino') } -%>
+(denne side er under udvikling)
 <h1><%= t('.title') %><span><%= t('.description') %></span></h1>
+
+<style type="text/css">
+#colorBox{}
+	#cboxContent{background:#fff;}
+		#cboxLoadedContent{margin-bottom:0px;}
+		#cboxLoadingOverlay{background-position: center center;}
+</style>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".colorbox").colorbox({width: 670, initialWidth: 670, close: ''});
+	});
+</script>
 
 <%- if @customers.empty? -%>
 
@@ -8,28 +21,25 @@
 	</p>
 	
 	<p>
-		<%= link_to 'Opret ny kunde', new_customer_path %>
+		<%= link_to 'Ny kunde', new_customer_path, :class => 'colorbox button' %>
 	</p>
 
 <%- else -%>
 
 <div class="grid_9">
-	<%= link_to 'New customer', new_customer_path %>
+	<%= link_to 'Ny kunde', new_customer_path, :class => 'colorbox new-customer button' %>
 	
-	
-	<table>
-	  <tr>
-	    <th>Name</th>
-	    <th>Description</th>
-	  </tr>
-
-	<% @customers.each do |customer| %>
-	  <tr>
-	    <td><%= link_to(h(customer.name), edit_customer_path(customer)) %></td>
-	    <td><%=h customer.description %></td>
-	    <td><%= link_to 'Destroy', customer, :confirm => 'Are you sure?', :method => :delete %></td>
-	  </tr>
-	<% end %>
+	<table id="customers">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Name</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%= render @customers %>
+		</tbody>
 	</table>
 </div>
 

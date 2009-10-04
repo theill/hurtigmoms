@@ -18,14 +18,17 @@ class CustomersController < ApplicationController
     @customer = current_user.customers.new
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @customer }
+      format.html { render :partial => 'new' } # new.html.erb
     end
   end
 
   # GET /customers/1/edit
   def edit
     @customer = current_user.customers.find(params[:id])
+    
+    respond_to do |format|
+      format.html { render :layout => false }
+    end
   end
 
   # POST /customers
@@ -38,9 +41,11 @@ class CustomersController < ApplicationController
         flash[:notice] = 'Customer was successfully created.'
         format.html { redirect_to(customers_url) }
         format.xml  { render :xml => @customer, :status => :created, :location => @customer }
+        format.js
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @customer.errors, :status => :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -55,9 +60,11 @@ class CustomersController < ApplicationController
         flash[:notice] = 'Customer was successfully updated.'
         format.html { redirect_to(customers_url) }
         format.xml  { head :ok }
+        format.js
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @customer.errors, :status => :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -70,7 +77,7 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(customers_url) }
-      format.xml  { head :ok }
+      format.js
     end
   end
 end
