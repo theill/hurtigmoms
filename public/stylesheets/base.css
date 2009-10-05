@@ -208,7 +208,7 @@ div.action-bar {
 			color: #999;
 		}
 		
-  	#postings .posting #vat {
+  	#postings .posting .amount-vat {
   	  background-color: #666;
   	  color: #fff;
   	  padding: 4px;

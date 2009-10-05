@@ -22,7 +22,7 @@
 					<td>
 						<fieldset>
 							<%= f.label :amount, t('posting.amount') %>
-							<%= f.text_field :amount, :size => 10, :maxlength => 10 %> <%= f.select :currency, ['DKK', 'USD', 'EUR'] %>
+							<%= f.text_field :amount, :size => 10, :maxlength => 10, :class => 'amount-no-vat' %> <%= f.select :currency, ['DKK', 'USD', 'EUR'] %>
 						</fieldset>
 					</td>
 				</tr>
@@ -42,7 +42,7 @@
 					<td>
 						<fieldset>
 							<label>Moms</label>
-							<span id="vat">-</span>
+							<span id="vat" class="amount-vat">-</span>
 						</fieldset>
 					</td>
 				</tr>

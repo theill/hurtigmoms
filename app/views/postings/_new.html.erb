@@ -13,8 +13,7 @@
 
 	<fieldset>
 		<%= f.label :amount, t('posting.amount') %>
-		<%= f.text_field :amount, :size => 10, :maxlength => 10 %> <%= f.select :currency, ['DKK', 'USD', 'EUR'] %>
-		<span id="vat">-</span>
+		<%= f.text_field :amount, :size => 10, :maxlength => 10, :class => 'amount-no-vat' %> <%= f.select :currency, ['DKK', 'USD', 'EUR'] %>
 	</fieldset>
 
 	<fieldset>
@@ -25,6 +24,11 @@
 	<fieldset>
 		<%= f.label :account_id, t('posting.account_id') %>
 		<%= f.select :account_id, grouped_accounts, {:prompt => "Vælg konto"} %>
+	</fieldset>
+	
+	<fieldset>
+		<label>Moms</label>
+		<span class="amount-vat">-</span>
 	</fieldset>
 
   <%= f.submit t('.buttons.save') %>

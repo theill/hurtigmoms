@@ -3,14 +3,13 @@
  * 
  * TODO: VAT amount is relative to selected account.
  * 
- * 
  */
 
 hurtigmoms = {
 	locale: 'da',
 	
 	convertNumber: function(number, from, to) {
-		// FIXME: do proper formatting ;)
+		// FIXME: do proper formatting
 		
 		if (to == 'en') {
 			return number.replace(',', '.');
@@ -51,11 +50,15 @@ $(function() {
 		$(this).parent().remove();
 		$("#new_posting").focusFirstFormElement();
 	});
-	$("#posting_amount").keyup(function() { $("#vat").text(hurtigmoms.posting.vat(this.value)); });
 	$("#postings .posting").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
 	
-	// generic events
+  $(".amount-no-vat").live("keyup", function() {
+    $(this).closest("form").find(".amount-vat").text(hurtigmoms.posting.vat(this.value));
+  });
+	
+	// bind all generic events
 	$(".close").live("click", function() { $.fn.colorbox.close(); return false; });
+	$(".show").live("click", function() { $.get(this.href, null, null, "script"); return false; });
 	$(".edit").live("click", function() { $.get(this.href, null, null, "script"); return false; });
 	$(".delete").live("click", function() {
 	  if (confirm('Er du sikker på du ønsker at slette denne?')) {
@@ -63,5 +66,4 @@ $(function() {
     }
 	  return false;
   });
-	$(".show").live("click", function() { $.get(this.href, null, null, "script"); return false; });
 });

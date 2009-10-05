@@ -10,5 +10,5 @@
 
   // rebind events
   $("#<%= dom_id(@posting) %> form").ajaxForm({	dataType: "script" });
-  $("#<%= dom_id(@posting) %> #posting_amount").keyup(function() { $("#<%= dom_id(@posting) %> #vat").text(hurtigmoms.posting.vat(this.value)); });
+  //$("#<%= dom_id(@posting) %> #posting_amount").keyup(function() { $("#<%= dom_id(@posting) %> #vat").text(hurtigmoms.posting.vat(this.value)); });
 <%- end %>
