@@ -4,7 +4,11 @@
   
   $("#<%= dom_id(@posting) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
 <%- else -%>
+  // render edit form (again but now with errors)
   $("#<%= dom_id(@posting) %>").replaceWith("<%= escape_javascript(render(:partial => 'edit', :locals => { :posting => @posting })) %>");
   $("#<%= dom_id(@posting) %>").effect("highlight");
-	alert('not updated');
+
+  // rebind events
+  $("#<%= dom_id(@posting) %> form").ajaxForm({	dataType: "script" });
+  $("#<%= dom_id(@posting) %> #posting_amount").keyup(function() { $("#<%= dom_id(@posting) %> #vat").text(hurtigmoms.posting.vat(this.value)); });
 <%- end %>

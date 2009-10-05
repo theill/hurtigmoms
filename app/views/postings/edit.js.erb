@@ -1,6 +1,6 @@
 $("#<%= dom_id(@posting) %>").replaceWith("<%= escape_javascript(render(:partial => 'postings/edit', :locals => {:posting => @posting})) %>");
-// $("#<%= dom_id(@posting) %> #task_name").select().focus();
 
+// bind events
 $("#<%= dom_id(@posting) %> form").ajaxForm({	dataType: "script" });
 $("#<%= dom_id(@posting) %> #posting_amount").keyup(function() { $("#<%= dom_id(@posting) %> #vat").text(hurtigmoms.posting.vat(this.value)); });
 
@@ -20,15 +20,11 @@ $("#<%= dom_id(@posting) %> #posting_amount").keyup(function() { $("#<%= dom_id(
 
 // initialise the "Select date" link
 $('#date-pick')
-	.datePicker(
-		// associate the link with a date picker
-		{
-			createButton:false,
-			startDate:'01/01/2005',
-			endDate:'31/12/2010'
-		}
-	).bind(
-		// when the link is clicked display the date picker
+	.datePicker({
+    createButton: false,
+		startDate: '01/01/2005',
+		endDate: '31/12/2010'
+	}).bind(
 		'click',
 		function() {
 			updateSelects($(this).dpGetSelected()[0]);
@@ -36,7 +32,6 @@ $('#date-pick')
 			return false;
 		}
 	).bind(
-		// when a date is selected update the SELECTs
 		'dateSelected',
 		function(e, selectedDate, $td, state) {
 			updateSelects(selectedDate);
@@ -59,15 +54,14 @@ var updateSelects = function(selectedDate) {
 $('#posting_created_at_3i, #posting_created_at_2i, #posting_created_at_1i')
 	.bind(
 		'change',
-		function()
-		{
+		function() {
 			var d = new Date(
-						$('#posting_created_at_1i').val(),
-						$('#posting_created_at_2i').val()-1,
-						$('#posting_created_at_3i').val()
-					);
+  			$('#posting_created_at_1i').val(),
+  			$('#posting_created_at_2i').val()-1,
+  			$('#posting_created_at_3i').val()
+				);
 			$('#date-pick').dpSetSelected(d.asString());
-		}
+	  }
 	);
 
 // default the position of the selects to today
