@@ -36,7 +36,7 @@
 					<td>
 						<fieldset>
 						  <%- if posting.attachment? -%><%= link_to('vis(pop)', posting.google_viewer_url, :class => 'colorbox') %><%- end -%>
-							<%= f.label :attachment_no, t('posting.attachment_no') + (@posting.attachment? ? (' - ' + link_to('vis', '#', :class => 'show-attachment') + ' eller ' + link_to('hent', download_posting_path(@posting))) : '') %>
+							<%= f.label :attachment_no, t('posting.attachment_no') + (posting.attachment? ? (' - ' + link_to('vis', '#', :class => 'show-attachment') + ' eller ' + link_to('hent', download_posting_path(posting))) : '') %>
 							<%= f.text_field :attachment_no, :size => 4, :maxlength => 4 %>
 						</fieldset>
 					</td>
