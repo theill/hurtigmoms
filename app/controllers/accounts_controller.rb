@@ -31,7 +31,8 @@ class AccountsController < ApplicationController
   # DELETE /accounts/1
   def destroy
     @account = current_user.accounts.find(params[:id])
-    @account.destroy
+    # change state of this account
+#    @account.destroy
     
     respond_to do |format|
       format.js
