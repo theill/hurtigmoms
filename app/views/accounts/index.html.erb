@@ -8,6 +8,7 @@
 	<table>
 		<thead>
 			<tr>
+			  <th></th>
 				<th><%= t('account.account_no') %></th>
 				<th><%= t('account.name') %></th>
 				<th><%= t('account.account_type') %></th>
@@ -15,15 +16,9 @@
 				<th><%= t('account.revenue') %></th>
 			</tr>
 		</thead>
-	  <% for account in @accounts %>
-			<tr>
-				<td><%= account.account_no %></td>
-				<td><%= account.name %></td>
-				<td><%= type_of_account(account) %></td>
-				<td><%= type_of_vat(account) %></td>
-				<td><%= 'TBD' %></td>
-			</tr>
-	  <% end %>
+		<tbody>
+      <%= render @accounts %>
+		</tbody>
 	</table>
 	<%- end -%>
 </div>
