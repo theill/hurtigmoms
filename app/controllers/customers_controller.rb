@@ -27,7 +27,7 @@ class CustomersController < ApplicationController
     @customer = current_user.customers.find(params[:id])
     
     respond_to do |format|
-      format.html { render :layout => false }
+      format.html { render :partial => 'edit' }
     end
   end
 
