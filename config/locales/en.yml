@@ -25,6 +25,7 @@ en:
     amount: Amount
     attachment_no: Attachment no
     account_id: Account
+    state: State
 
   account:
     name: Name
