@@ -51,7 +51,10 @@ $(function() {
   });
 	
 	// bind all generic events
-	$(".close").live("click", function() { $.fn.colorbox.close(); return false; });
+	$(".close").live("click", function() {
+		$(this).closest("tr").remove();
+		return false;
+	});
 	$(".show").live("click", function() { $.get(this.href, null, null, "script"); return false; });
 	
 	$(".edit").live("click", function() {

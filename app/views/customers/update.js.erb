@@ -1,12 +1,10 @@
 <%- if @customer.errors.empty? %>
-	$.fn.colorbox.close();
 
 	$("#<%= dom_id(@customer) %>").replaceWith("<%= escape_javascript(render(@customer)) %>");
 	$("#<%= dom_id(@customer) %>").effect("highlight");
 
 	$("#<%= dom_id(@customer) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
 
-	$("#<%= dom_id(@customer) %> .colorbox").colorbox({width: 640, initialWidth: 640, close: ''});
 <%- else -%>
 	alert('not updated');
 <%- end %>

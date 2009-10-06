@@ -50,7 +50,6 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
-        flash[:notice] = 'Customer was successfully created.'
         format.html { redirect_to(customers_url) }
         format.xml  { render :xml => @customer, :status => :created, :location => @customer }
         format.js
@@ -69,7 +68,6 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.update_attributes(params[:customer])
-        flash[:notice] = 'Customer was successfully updated.'
         format.html { redirect_to(customers_url) }
         format.xml  { head :ok }
         format.js

@@ -9,6 +9,7 @@ en:
     save: Save
     cancel: Cancel
     wait: Please wait...
+    close: Close
 
   user:
     company: Company

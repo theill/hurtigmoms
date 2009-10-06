@@ -1,16 +1,8 @@
 <%- if @customer.errors.empty? %>
-	$.fn.colorbox.close();
-
 	$("#customers").prepend("<%= escape_javascript(render(@customer)) %>");
 	$("#<%= dom_id(@customer) %>").effect("highlight");
 
 	$("#<%= dom_id(@customer) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
 <%- else -%>
-	$("#cboxLoadedContent").replaceWith("<%= escape_javascript(render :partial => 'new', :locals => { :customer =>@customer }) %>");
-	$("#colorbox").bind("cbox_complete", function(e) {
-		$(".<%= dom_id(@customer) %> form").ajaxForm({ dataType: "script" });
-		$(".<%= dom_id(@customer) %> form").focusFirstFormElement();
-	});
-<%- end %>
 
-$("#<%= dom_id(@customer) %> .colorbox").colorbox({width: 640, initialWidth: 640, close: ''});
+<%- end %>
