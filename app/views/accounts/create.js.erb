@@ -1,0 +1,17 @@
+<%- if @account.errors.empty? %>
+	$("#accounts").prepend("<%= escape_javascript(render(@account)) %>");
+	$("#<%= dom_id(@account) %>").effect("highlight");
+	
+	$("#<%= dom_id(@account) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
+	
+  // reset form
+//  $("#new_account #customer_name, #new_customer #customer_description").val('');
+	$("#new_account").focusFirstFormElement();  
+<%- else -%>
+	// render new form (again but now with errors)
+	$("#<%= dom_id(@account) %>").replaceWith("<%= escape_javascript(render(:partial => 'edit', :locals => { :account => @account })) %>");
+	$("#<%= dom_id(@account) %>").effect("highlight", {color: "#ff9999"});
+
+	// rebind events
+	$("#<%= dom_id(@account) %> form").ajaxForm({ dataType: "script" });
+<%- end %>

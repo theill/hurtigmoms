@@ -3,6 +3,15 @@
 	$("#<%= dom_id(@customer) %>").effect("highlight");
 
 	$("#<%= dom_id(@customer) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
+	
+  // reset form
+  $("#new_customer #customer_name, #new_customer #customer_description").val('');
+	$("#new_customer").focusFirstFormElement();  
 <%- else -%>
+	// render new form (again but now with errors)
+	$("#<%= dom_id(@customer) %>").replaceWith("<%= escape_javascript(render(:partial => 'new', :locals => { :customer => @customer })) %>");
+	$("#<%= dom_id(@customer) %>").effect("highlight", {color: "#ff9999"});
 
+	// rebind events
+	$("#<%= dom_id(@customer) %> form").ajaxForm({ dataType: "script" });
 <%- end %>

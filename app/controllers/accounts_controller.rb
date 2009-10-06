@@ -42,9 +42,11 @@ class AccountsController < ApplicationController
       if @account.save
         format.html { redirect_to(accounts_url) }
         format.xml  { render :xml => @account, :status => :created, :location => @account }
+        format.js
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @account.errors, :status => :unprocessable_entity }
+        format.js
       end
     end
   end

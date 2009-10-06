@@ -17,4 +17,6 @@
   $("#<%= dom_id(@posting) %>").replaceWith("<%= escape_javascript(render(:partial => 'new', :locals => { :posting => @posting })) %>");
   $("#<%= dom_id(@posting) %>").effect("highlight", {color: "#ff9999"});
   
+	// rebind events
+	$("#<%= dom_id(@posting) %> form").ajaxForm({ dataType: "script" });
 <%- end %>
