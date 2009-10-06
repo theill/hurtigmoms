@@ -203,6 +203,15 @@ div.action-bar {
 	-webkit-column-count: 3;
 }
 
+table tr.row-loading {
+	height: 150px;
+	background: transparent url(/images/loading.gif) no-repeat center center;
+}
+
+table tr.row-loading td {
+	opacity: .2;
+}
+
 table tr.row-editing div.box {
 	background-color: #f9fff9;
 	border: solid 1px #999;

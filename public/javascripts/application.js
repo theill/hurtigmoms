@@ -53,7 +53,13 @@ $(function() {
 	// bind all generic events
 	$(".close").live("click", function() { $.fn.colorbox.close(); return false; });
 	$(".show").live("click", function() { $.get(this.href, null, null, "script"); return false; });
-	$(".edit").live("click", function() { $.get(this.href, null, null, "script"); return false; });
+	
+	$(".edit").live("click", function() {
+		$(this).closest("tr").toggleClass('row-loading');//.find("td").replaceWith("<td></td>");
+		$.get(this.href, null, null, "script");
+		return false;
+	});
+	
 	$(".delete").live("click", function() {
 	  if (confirm('Er du sikker på du ønsker at slette denne?')) {
 	    $.ajax({ type: "DELETE", url: this.href, data: null, dataType: "script" });
