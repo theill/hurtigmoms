@@ -31,7 +31,6 @@ class AccountsController < ApplicationController
 
   # GET /accounts/1/edit
   def edit
-    sleep 2
     @account = current_user.accounts.find(params[:id])
   end
   

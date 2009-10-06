@@ -1,35 +1,63 @@
-<% form_for(posting, :html => {:autocomplete => 'off'}) do |f| -%>
-	<%= error_messages_for :posting %>
-	
-	<fieldset>
-		<%= f.label :created_at, t('posting.created_at') %>
-		<%= date_select :posting, :created_at %>
-	</fieldset>
+<tr id="<%= dom_id(posting) %>" class="posting row-editing">
+	<td colspan="6">
+		<div class="box">
+		<% form_for(posting, :html => {:autocomplete => 'off'}) do |f| -%>
+			<%= error_messages_for :posting %>
 
-	<fieldset>
-		<%= f.label :note, t('posting.note') %>
-		<%= f.text_field :note, :size => 20, :maxlength => 128 %>
-	</fieldset>
+			<table>
+				<tr>
+					<td>
+						<fieldset>
+							<label>Fra (virker ikke)</label>
+							<%# f.text_field :customer_id %>
+							<input type="asdf" />
+						</fieldset>
+					</td>
+					<td>
+						<fieldset>
+							<%= f.label :created_at, t('posting.created_at') %>
+							<%= date_select :posting, :created_at %><a id="date-pick" href="#"><%= image_tag('calendar-select.png') %></a>
+						</fieldset>
+					</td>
+					<td>
+						<fieldset>
+							<%= f.label :amount, t('posting.amount') %>
+							<%= f.text_field :amount, :size => 10, :maxlength => 10, :class => 'amount-no-vat' %> <%= f.select :currency, ['DKK', 'USD', 'EUR'] %>
+						</fieldset>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<fieldset>
+							<%= f.label :account_id, t('posting.account_id') %>
+							<%= f.select :account_id, grouped_accounts, {:prompt => "Vælg konto"} %>
+						</fieldset>
+					</td>
+					<td>
+						<fieldset>
+							<%= f.label :attachment_no, t('posting.attachment_no') + (posting.attachment? ? (' - ' + link_to('vis', '#', :class => 'show-attachment') + ' eller ' + link_to('hent', download_posting_path(posting))) : '') %>
+							<%= f.text_field :attachment_no, :size => 4, :maxlength => 4 %>
+						</fieldset>
+					</td>
+					<td>
+						<fieldset>
+							<label>Moms</label>
+							<span id="vat" class="amount-vat">-</span>
+						</fieldset>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<fieldset>
+							<%= f.label :note, t('posting.note') + (posting.attachment_email.blank? ? '' : (' - ' + link_to('vis e-mail', '#', :class => 'show-attachment-email'))) %>
+							<%= f.text_area :note, :rows => 4, :cols => 60 %>
+						</fieldset>
+					</td>
+				</tr>
+			</table>
 
-	<fieldset>
-		<%= f.label :amount, t('posting.amount') %>
-		<%= f.text_field :amount, :size => 10, :maxlength => 10, :class => 'amount-no-vat' %> <%= f.select :currency, ['DKK', 'USD', 'EUR'] %>
-	</fieldset>
-
-	<fieldset>
-		<%= f.label :attachment_no, t('posting.attachment_no') %>
-		<%= f.text_field :attachment_no, :size => 4, :maxlength => 4 %>
-	</fieldset>
-
-	<fieldset>
-		<%= f.label :account_id, t('posting.account_id') %>
-		<%= f.select :account_id, grouped_accounts, {:prompt => "Vælg konto"} %>
-	</fieldset>
-	
-	<fieldset>
-		<label>Moms</label>
-		<span class="amount-vat">-</span>
-	</fieldset>
-
-  <%= f.submit t('.buttons.save') %>
-<% end -%>
+		  <%= f.submit t('.buttons.save') %> <%= link_to('Close', '#', :class => 'close') %>
+		<% end -%>
+		</div>
+	</td>
+</tr>

@@ -27,7 +27,9 @@
 <%- else -%>
 
 <div class="grid_9">
-	<%= link_to 'Ny kunde', new_customer_path, :class => 'colorbox new-customer button' %>
+	<div class="quick-buttons">
+		<%= link_to 'Tilføj kunde', new_customer_path, :class => 'colorbox new-customer button' %>
+	</div>	
 	
 	<table id="customers">
 		<thead>

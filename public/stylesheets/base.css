@@ -28,13 +28,14 @@ form h3 {
 }
 
 a.button {
-	background-color: #004080;
-	border: outset 1px #0060a0;
-	padding: 5px 10px;
+	background-color: #3B5998;
+	border: outset 1px #3B5998;
+	padding: 5px 15px;
 	text-decoration: none;
 	text-transform: uppercase;
-	font-size: 11px;
-	text-shadow: 1px 1px 1px #0060a0;
+	font-size: 10px;
+	text-shadow: 1px 1px 1px #000;
+	letter-spacing: 1px;
 	color: #fff;
 }
 
@@ -202,6 +203,21 @@ div.action-bar {
 	-webkit-column-count: 3;
 }
 
+table tr.row-editing div.box {
+	background-color: #f9fff9;
+	border: solid 1px #999;
+	margin: -5px;
+	padding: 10px;
+}
+	table tr.row-editing td {
+		border: solid 1px #ccc;
+		padding: 0 !important; /* override default padding */
+	}
+
+.quick-buttons {
+	margin-bottom: 20px;
+}
+
 #postings {}
 	#postings .posting {} 
 		#postings .posting .account_no {
@@ -239,9 +255,10 @@ div.action-bar {
 			overflow: auto;
 			background-color: #f9f9f9;
 		}
-	#postings .edit_posting table td {
+	#postings .edit_posting table td, #postings .new_posting table td {
 		border-width: 0;
 	}
+
 body.frontpage {
 	border-top: solid 6px #3B5998;
 }

@@ -1,0 +1,4 @@
+$("#postings").prepend("<%= escape_javascript(render(:partial => 'new', :locals => {:posting => @posting})) %>");
+
+// bind events
+$("#<%= dom_id(@posting) %> form").ajaxForm({ dataType: "script" });

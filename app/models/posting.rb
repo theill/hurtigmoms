@@ -22,6 +22,7 @@ class Posting < ActiveRecord::Base
   named_scope :total_selling, :joins => :account, :conditions => ['accounts.account_type = ?', Account::ACCOUNT_TYPES[:sell]]
   
   before_validation_on_create :set_attachment_no, :set_currency
+  before_save :reset_state
   
   def authenticated_url(expires_in = 10.seconds)
     AWS::S3::S3Object.url_for(attachment.path, attachment.bucket_name, :expires_in => expires_in, :use_ssl => attachment.s3_protocol == 'https')
@@ -47,6 +48,14 @@ class Posting < ActiveRecord::Base
   
   def set_currency
     self.currency = 'DKK' if self.currency.nil?
+  end
+  
+  def reset_state
+    if (self.amount.blank? || self.amount.to_f == 0.0 || self.currency.blank? || self.created_at.blank?)
+      self.state = Posting::STATES[:pending]
+    else
+      self.state = Posting::STATES[:accepted]
+    end
   end
   
 end

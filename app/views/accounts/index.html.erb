@@ -2,9 +2,11 @@
 <h1><%= t('.title') %><span><%= t('.description') %></span></h1>
 
 <div class="grid_9">
-	<%= link_to 'Tilføj konto', new_account_path, :class => 'button show' %>
-	<%= link_to 'Tilføj bankkonto', new_account_path, :class => 'button' %>
-
+	<div class="quick-buttons">
+		<%= link_to 'Tilføj konto', new_account_path, :class => 'button show' %>
+		<%= link_to 'Tilføj bankkonto', new_account_path, :class => 'button' %>
+	</div>
+	
 	<table id="accounts">
 		<thead>
 			<tr>

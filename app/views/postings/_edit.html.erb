@@ -1,6 +1,6 @@
-<tr id="<%= dom_id(posting) %>" class="posting">
-	<td></td>
-	<td colspan="5">
+<tr id="<%= dom_id(posting) %>" class="posting row-editing">
+	<td colspan="6">
+		<div class="box">
 		<% form_for(posting, :html => {:autocomplete => 'off'}) do |f| -%>
 			<%= error_messages_for :posting %>
 			
@@ -69,5 +69,6 @@
 				</div>
 			<%- end -%>
 		<% end -%>
+		</div>
 	</td>
 </tr>

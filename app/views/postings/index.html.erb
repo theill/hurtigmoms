@@ -2,17 +2,11 @@
 <h1><%= t('.title') %><span><%= t('.description') %></span></h1>
 
 <div class="grid_12">
+	<div class="quick-buttons">
+		<%= link_to 'Tilføj postering', new_posting_path, :class => 'button show' %>
+	</div>
+	
 	<table id="postings">
-		<thead>
-			<tr>
-				<th colspan="6" style="border: solid 1px #ccc; background-color: #eee">
-					<div style="text-align: center">Ønsker du at tilføje posteringer nu? <input id="add-new-posting" type="button" value="Ja, tak" /></div>
-					<div id="new-posting-container" class="columns" style="display: none">
-						<%= render :partial => 'new', :locals => { :posting => @posting } %>
-					</div>
-				</th>
-			</tr>
-		</thead>
 		<thead>
 			<tr>
 				<th></th>

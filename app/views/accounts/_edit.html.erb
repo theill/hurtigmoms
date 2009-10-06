@@ -1,30 +1,31 @@
-<tr id="<%= dom_id(account) %>" class="account">
-	<td></td>
-  <td colspan="5">
+<tr id="<%= dom_id(account) %>" class="account row-editing">
+  <td colspan="6">
+		<div class="box">
 		<% form_for(account, :html => {:autocomplete => 'off'}) do |f| -%>
 			<%= error_messages_for :account %>
 			
 			<fieldset>
-				<%= f.label :name %>
+				<%= f.label :name, t('account.name') %>
 				<%= f.text_field :name, :size => 20, :maxlength => 128 %>
 			</fieldset>
 			
 			<fieldset>
-				<%= f.label :account_type %>
-				<%= f.select :account_type, [['Købskonto', '1'], ['Salgskonto', '2']], {:prompt => "Vælg type"} %>
+				<%= f.label :account_type, t('account.account_type') %>
+				<%= f.select :account_type, [['Købskonto', '1'], ['Salgskonto', '2']], {:prompt => "Vælg konto type"} %>
 			</fieldset>
 			
 			<fieldset>
-				<label>Kode:</label>
-				[ missing field ]
+				<%= f.label :account_no, t('account.account_no') %>
+				<%= f.text_field :account_no %>
 			</fieldset>
 			
 			<fieldset>
-				<%= f.label :vat_type %>
+				<%= f.label :vat_type, t('account.vat_type') %>
 				<%= f.select :vat_type, [['Momsfrit', '1'], ['Dansk moms 25%', '2'], ['Varekøb i udlandet', '3']], {:prompt => "Vælg momstype"} %>
 			</fieldset>
 			
-		  <%= f.submit t('buttons.save') %> <%= link_to t('buttons.cancel'), account_path(account, :format => :js), :class => 'show' %>
+		  <%= f.submit t('buttons.save') %> <%- if account.new_record? -%><%= link_to 'luk', '#', :class => 'close' %><% else %><%= link_to t('buttons.cancel'), account_path(account, :format => :js), :class => 'show' %><% end %>
 		<% end -%>
+		</div>
 	</td>
 </tr>

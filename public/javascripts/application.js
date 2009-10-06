@@ -44,12 +44,6 @@ jQuery.fn.focusFirstFormElement = function() {
 
 $(function() {
 	// postings
-	$("#new_posting").ajaxForm({ dataType: "script" });
-	$("#add-new-posting").click(function() {
-		$("#new-posting-container").show();
-		$(this).parent().remove();
-		$("#new_posting").focusFirstFormElement();
-	});
 	$("#postings .posting").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
 	
 	$(".amount-no-vat").live("keyup", function() {

@@ -36,6 +36,7 @@ class PostingsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @posting }
+      format.js
     end
   end
   

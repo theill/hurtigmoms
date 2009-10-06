@@ -4,3 +4,11 @@ Consider using state plugin:
 
   http://api.pluginaweek.org/state_machine/
 
+
+
+= Ideer
+
+ * Naar en raekke er aktiv, skal den vaere trukket en smule ud som fx det ses paa
+   iPhone interfacet, naar man flytter en raekke op/ned
+ * Naar en ny raekke tilfoejes skal den vises i toppen men 'head' paa tabellen 
+   skal ikke vises over .. den skal vises under
