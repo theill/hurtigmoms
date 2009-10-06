@@ -28,14 +28,14 @@ form h3 {
 }
 
 a.button {
-	background-color: #9bf;
-	border: outset 1px #69d;
+	background-color: #004080;
+	border: outset 1px #0060a0;
 	padding: 5px 10px;
 	text-decoration: none;
 	text-transform: uppercase;
 	font-size: 11px;
-	text-shadow: 1px 1px 1px #fff;
-	color: #000;
+	text-shadow: 1px 1px 1px #0060a0;
+	color: #fff;
 }
 
 fieldset label {

@@ -1,0 +1,30 @@
+<tr id="<%= dom_id(account) %>" class="account">
+	<td></td>
+  <td colspan="5">
+		<% form_for(account, :html => {:autocomplete => 'off'}) do |f| -%>
+			<%= error_messages_for :account %>
+			
+			<fieldset>
+				<%= f.label :name %>
+				<%= f.text_field :name, :size => 20, :maxlength => 128 %>
+			</fieldset>
+			
+			<fieldset>
+				<%= f.label :account_type %>
+				<%= f.select :account_type, [['Købskonto', '1'], ['Salgskonto', '2']], {:prompt => "Vælg type"} %>
+			</fieldset>
+			
+			<fieldset>
+				<label>Kode:</label>
+				[ missing field ]
+			</fieldset>
+			
+			<fieldset>
+				<%= f.label :vat_type %>
+				<%= f.select :vat_type, [['Momsfrit', '1'], ['Dansk moms 25%', '2'], ['Varekøb i udlandet', '3']], {:prompt => "Vælg momstype"} %>
+			</fieldset>
+			
+		  <%= f.submit t('buttons.save') %> <%= link_to t('buttons.cancel'), account_path(account, :format => :js), :class => 'show' %>
+		<% end -%>
+	</td>
+</tr>

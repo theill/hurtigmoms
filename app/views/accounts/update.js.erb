@@ -1,0 +1,14 @@
+<%- if @account.errors.empty? -%>
+	$("#<%= dom_id(@account) %>").replaceWith("<%= escape_javascript(render(@account)) %>");
+	$("#<%= dom_id(@account) %>").effect("highlight");
+
+	// FIXME: move to live handler (use livequery?)
+	$("#<%= dom_id(@account) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
+<%- else -%>
+	// render edit form (again but now with errors)
+	$("#<%= dom_id(@account) %>").replaceWith("<%= escape_javascript(render(:partial => 'edit', :locals => { :account => @account })) %>");
+	$("#<%= dom_id(@account) %>").effect("highlight", {color: "#ff9999"});
+
+	// rebind events
+	$("#<%= dom_id(@account) %> form").ajaxForm({	dataType: "script" });
+<%- end -%>

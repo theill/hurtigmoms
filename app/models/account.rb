@@ -10,5 +10,6 @@ class Account < ActiveRecord::Base
   validates_presence_of :account_type
   validates_presence_of :vat_type
   
+  attr_accessible :name, :account_type, :vat_type, :account_no
   
 end

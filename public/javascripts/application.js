@@ -52,7 +52,7 @@ $(function() {
 	});
 	$("#postings .posting").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
 	
-  $(".amount-no-vat").live("keyup", function() {
+	$(".amount-no-vat").live("keyup", function() {
     $(this).closest("form").find(".amount-vat").text(hurtigmoms.posting.vat(this.value));
   });
 	

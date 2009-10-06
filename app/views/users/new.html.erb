@@ -2,5 +2,5 @@
 
 <% form_for @user do |f| %>
   <%= render :partial => '/users/form', :object => f %>
-  <%= f.submit t('.buttons.save'), :disable_with => t('buttons.wait') %>
+  <%= f.submit t('.buttons.save') %>
 <% end %>
