@@ -1,18 +1,5 @@
 <%- @meta = { :title => t('.title'), :description => t('.descriptino') } -%>
-(denne side er under udvikling)
 <h1><%= t('.title') %><span><%= t('.description') %></span></h1>
-
-<style type="text/css">
-#colorBox{}
-	#cboxContent{background:#fff;}
-		#cboxLoadedContent{margin-bottom:0px;}
-		#cboxLoadingOverlay{background-position: center center;}
-</style>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$(".colorbox").colorbox({width: 670, initialWidth: 670, close: ''});
-	});
-</script>
 
 <%- if @customers.empty? -%>
 
@@ -21,14 +8,14 @@
 	</p>
 	
 	<p>
-		<%= link_to 'Ny kunde', new_customer_path, :class => 'colorbox button' %>
+		<%= link_to 'Tilføj kunde', new_customer_path, :class => 'button show' %>
 	</p>
 
 <%- else -%>
 
 <div class="grid_9">
 	<div class="quick-buttons">
-		<%= link_to 'Tilføj kunde', new_customer_path, :class => 'colorbox new-customer button' %>
+		<%= link_to 'Tilføj kunde', new_customer_path, :class => 'new-customer button show' %>
 	</div>	
 	
 	<table id="customers">

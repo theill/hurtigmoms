@@ -1,0 +1,4 @@
+$("#<%= dom_id(@customer) %>").replaceWith("<%= escape_javascript(render(:partial => 'edit', :locals => {:customer => @customer})) %>");
+
+// bind events
+$("#<%= dom_id(@customer) %> form").ajaxForm({	dataType: "script" });

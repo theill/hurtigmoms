@@ -12,6 +12,16 @@ class CustomersController < ApplicationController
     end
   end
 
+  # GET /customers/1
+  def show
+    @customer = current_user.customers.find(params[:id])
+    
+    respond_to do |format|
+      format.xml  { render :xml => @customer }
+      format.js
+    end
+  end
+
   # GET /customers/new
   # GET /customers/new.xml
   def new
@@ -19,6 +29,7 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       format.html { render :partial => 'new' } # new.html.erb
+      format.js
     end
   end
 
@@ -28,6 +39,7 @@ class CustomersController < ApplicationController
     
     respond_to do |format|
       format.html { render :partial => 'edit' }
+      format.js
     end
   end
 

@@ -29,7 +29,7 @@ da:
     
   account:
     name: Navn
-    account_no: Kontonummer
+    account_no: Konto
     account_type: Konto type
     vat_type: Moms type
     account_type_buy: Køb
