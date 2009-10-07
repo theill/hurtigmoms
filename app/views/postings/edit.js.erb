@@ -64,13 +64,13 @@ $('#date-pick')
 
 var updateSelects = function(selectedDate) {
 	var selectedDate = new Date(selectedDate);
-	$('#posting_created_at_3i option[value=' + selectedDate.getDate() + ']').attr('selected', 'selected');
-	$('#posting_created_at_2i option[value=' + (selectedDate.getMonth()+1) + ']').attr('selected', 'selected');
-	$('#posting_created_at_1i option[value=' + (selectedDate.getFullYear()) + ']').attr('selected', 'selected');
+	$('#<%= dom_id(@posting) %> #posting_created_at_3i option[value=' + selectedDate.getDate() + ']').attr('selected', 'selected');
+	$('#<%= dom_id(@posting) %> #posting_created_at_2i option[value=' + (selectedDate.getMonth()+1) + ']').attr('selected', 'selected');
+	$('#<%= dom_id(@posting) %> #posting_created_at_1i option[value=' + (selectedDate.getFullYear()) + ']').attr('selected', 'selected');
 }
 
 // listen for when the selects are changed and update the picker
-$('#posting_created_at_3i, #posting_created_at_2i, #posting_created_at_1i')
+$('#<%= dom_id(@posting) %> #posting_created_at_3i, #<%= dom_id(@posting) %> #posting_created_at_2i, #<%= dom_id(@posting) %> #posting_created_at_1i')
 	.bind(
 		'change',
 		function() {
@@ -84,8 +84,8 @@ $('#posting_created_at_3i, #posting_created_at_2i, #posting_created_at_1i')
 	);
 
 // default the position of the selects to today
-var today = new Date();
-updateSelects(today.getTime());
+// var today = new Date();
+// updateSelects(today.getTime());
 
 // and update the datePicker to reflect it...
-$('#posting_created_at_3i').trigger('change');
+$('#<%= dom_id(@posting) %> #posting_created_at_3i').trigger('change');
