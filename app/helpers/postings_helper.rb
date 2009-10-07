@@ -18,7 +18,7 @@ module PostingsHelper
   
   # extract first line of note
   def note_for_overview(posting)
-    first_line = (posting.note || '').lines.first || ''
+    first_line = (posting.note || '').gsub(/.*/).first || ''
     
     if posting.customer
       "<span class=\"customer-name\">#{h(posting.customer.name)}</span> " + first_line
