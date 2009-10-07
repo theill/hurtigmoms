@@ -1,5 +1,7 @@
 $("#postings").prepend("<%= escape_javascript(render(:partial => 'new', :locals => {:posting => @posting})) %>");
 
+$("form.new_posting").focusFirstFormElement();
+
 // FIXME: bind events (similar to 'edit' refactor)
 $("#<%= dom_id(@posting) %> form").ajaxForm({ dataType: "script" });
 

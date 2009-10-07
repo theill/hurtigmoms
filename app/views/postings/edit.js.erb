@@ -1,5 +1,7 @@
 $("#<%= dom_id(@posting) %>").replaceWith("<%= escape_javascript(render(:partial => 'postings/edit', :locals => {:posting => @posting})) %>");
 
+$("form.edit_posting").focusFirstFormElement();
+
 // bind events
 $("#<%= dom_id(@posting) %> form").ajaxForm({	dataType: "script" });
 //$("#<%= dom_id(@posting) %> #posting_amount").keyup(function() { $("#<%= dom_id(@posting) %> #vat").text(hurtigmoms.posting.vat(this.value)); });
