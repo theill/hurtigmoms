@@ -1,6 +1,7 @@
 class Posting < ActiveRecord::Base
   belongs_to :user
   belongs_to :account
+  belongs_to :customer
   has_attached_file :attachment,
     :storage => :s3,
     :s3_credentials => File.join(Rails.root, 'config', 'amazon_s3.yml'),
@@ -22,8 +23,14 @@ class Posting < ActiveRecord::Base
   named_scope :total_selling, :joins => :account, :conditions => ['accounts.account_type = ?', Account::ACCOUNT_TYPES[:sell]]
   
   before_validation_on_create :set_attachment_no, :set_currency
-  before_save :reset_state
+  before_save :reset_state, :set_customer
   
+  attr_accessor :customer_name
+  
+  def customer_name
+    @customer_name || (self.customer.name if self.customer)
+  end
+    
   def authenticated_url(expires_in = 10.seconds)
     AWS::S3::S3Object.url_for(attachment.path, attachment.bucket_name, :expires_in => expires_in, :use_ssl => attachment.s3_protocol == 'https')
   end
@@ -56,6 +63,10 @@ class Posting < ActiveRecord::Base
     else
       self.state = Posting::STATES[:accepted]
     end
+  end
+  
+  def set_customer
+    self.customer = self.user.customers.find_or_create_by_name(self.customer_name) unless self.customer_name.blank?
   end
   
 end

@@ -7,6 +7,7 @@
 
 hurtigmoms = {
 	locale: 'da',
+	customers_url: '/kunder/search',
 	
 	convertNumber: function(number, from, to) {
 		// FIXME: do proper formatting

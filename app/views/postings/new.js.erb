@@ -1,4 +1,21 @@
 $("#postings").prepend("<%= escape_javascript(render(:partial => 'new', :locals => {:posting => @posting})) %>");
 
-// bind events
+// FIXME: bind events (similar to 'edit' refactor)
 $("#<%= dom_id(@posting) %> form").ajaxForm({ dataType: "script" });
+
+$("#posting_customer_name").autocomplete(hurtigmoms.customers_url, {
+	dataType: 'json',
+	max: 25,
+	scroll: true,
+	scrollHeight: 190,
+	parse: function(data) {
+		var rows = new Array();
+		for (var i = 0; i < Math.min(data.length, 25); i++) {
+			rows[i] = { data: data[i].customer, value: data[i].customer.id, result: data[i].customer.name };
+		}
+		return rows;
+	},
+	formatItem: function(item, idx, total) {
+		return "<div class=\"company\">" + item.name + "</div>";
+	}
+});

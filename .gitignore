@@ -1,4 +1,4 @@
 .DS_Store
 log/
 *.eprj
-db/development.sqlite3
+db/*.sqlite3

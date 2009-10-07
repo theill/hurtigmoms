@@ -8,9 +8,8 @@
 				<tr>
 					<td>
 						<fieldset>
-							<label>Fra (virker ikke)</label>
-							<%# f.text_field :customer_id %>
-							<input type="asdf" />
+							<%= f.label :customer_id, t('posting.customer_id') %>
+							<%= f.text_field :customer_name %>
 						</fieldset>
 					</td>
 					<td>
@@ -21,7 +20,7 @@
 					</td>
 					<td>
 						<fieldset>
-							<%= f.label :amount, t('posting.amount') %>
+							<%= f.label :amount, t('posting.amount') + ' <span class="req">*</span>' %>
 							<%= f.text_field :amount, :size => 10, :maxlength => 10, :class => 'amount-no-vat' %> <%= f.select :currency, ['DKK', 'USD', 'EUR'] %>
 						</fieldset>
 					</td>
@@ -29,7 +28,7 @@
 				<tr>
 					<td>
 						<fieldset>
-							<%= f.label :account_id, t('posting.account_id') %>
+							<%= f.label :account_id, t('posting.account_id') + ' <span class="req">*</span>' %>
 							<%= f.select :account_id, grouped_accounts, {:prompt => "Vælg konto"} %>
 						</fieldset>
 					</td>

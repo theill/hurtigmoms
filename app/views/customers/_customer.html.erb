@@ -1,5 +1,4 @@
 <tr id="<%= dom_id(customer) %>" class="customer">
 	<td class="actions"><div><%= link_to('E', edit_customer_path(customer), :class => 'edit') %> <%= link_to('X', customer, :class => 'delete') %></div></td>
 	<td><%=h customer.name %></td>
-	<td><%=h customer.description %></td>
 </tr>

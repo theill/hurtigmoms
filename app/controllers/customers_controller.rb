@@ -90,4 +90,12 @@ class CustomersController < ApplicationController
       format.js
     end
   end
+  
+  def search
+    @customers = current_user.customers.all(:conditions => ['lower(name) LIKE ?', params[:q].downcase + '%'])
+
+    respond_to do |format|
+      format.json { render :json => @customers }
+    end
+  end
 end

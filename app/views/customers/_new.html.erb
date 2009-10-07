@@ -3,18 +3,18 @@
 		<div class="box">
 			<%- form_for(customer) do |f| -%>
 			  <%= f.error_messages %>
-
-			  <p>
-			    <%= f.label :name %><br />
-			    <%= f.text_field :name %>
-			  </p>
-			  <p>
-			    <%= f.label :description %><br />
-			    <%= f.text_area :description, :rows => 4 %>
-			  </p>
-			  <p>
-			    <%= f.submit 'Create' %> <%= link_to(t('buttons.close'), '#', :class => 'close') %>
-			  </p>
+				
+				<fieldset>
+					<%= f.label :name, t('customer.name') %>
+					<%= f.text_field :name %>
+				</fieldset>
+				<fieldset>
+					<%= f.label :description, t('customer.description') %>
+					<%= f.text_area :description, :rows => 4 %>
+				</fieldset>
+				<p>
+					<%= f.submit t('buttons.save') %> <%= link_to(t('buttons.close'), '#', :class => 'close') %>
+				</p>
 			<%- end -%>
 		</div>
 	</td>

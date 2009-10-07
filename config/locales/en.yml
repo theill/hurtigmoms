@@ -27,6 +27,7 @@ en:
     attachment_no: Attachment no
     account_id: Account
     state: State
+    customer_id: Customer
 
   account:
     name: Name
@@ -41,6 +42,10 @@ en:
     vat_type_other_country: Other country
     vat_type_unknown: -
 
+  customer:
+    name: Name
+    description: Description
+    
   mails:
     signup:
       created: You have created a hurtigmoms account

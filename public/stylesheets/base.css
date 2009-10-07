@@ -19,6 +19,8 @@ h1 span {
 	color: #f00;
 }
 
+errorExplanation
+
 form {
 }
 
@@ -62,6 +64,20 @@ fieldset label {
 /*	border: solid 4px #ffcfcf;*/
 	padding: 16px;
 	background: -webkit-gradient(linear, left top, left bottom, from(#ffdddd), to(#ffffff));
+}
+
+.errorExplanation {
+	background-color: #fee;
+	border: 1px solid #edd;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+	.errorExplanation h2 {
+		font-size: 16px;
+	}
+
+.fieldWithErrors {
+	display: inline;
 }
 
 div.action-bar {
@@ -234,6 +250,9 @@ table tr.row-editing div.box {
 		#postings .posting .account_no {
 			color: #999;
 		}
+		#postings .posting .customer-name {
+			color: #797;
+		}
 		
   	#postings .posting .amount-vat {
   	  background-color: #666;
@@ -268,6 +287,16 @@ table tr.row-editing div.box {
 		}
 	#postings .edit_posting table td, #postings .new_posting table td {
 		border-width: 0;
+	}
+
+#accounts {}
+	#accounts .account .actions {
+		width: 20px;
+	}
+
+#customers {}
+	#customers .customer .actions {
+		width: 20px;
 	}
 
 body.frontpage {

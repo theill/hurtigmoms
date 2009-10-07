@@ -27,6 +27,7 @@ da:
     attachment_no: Bilag
     account_id: Konto
     state: Status
+    customer_id: Kunde
     
   account:
     name: Navn
@@ -40,6 +41,10 @@ da:
     vat_type_none: Ingen
     vat_type_other_country: Udland
     vat_type_unknown: -
+  
+  customer:
+    name: Navn
+    description: Beskrivelse
 
   mails:
     signup:
