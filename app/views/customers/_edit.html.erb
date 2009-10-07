@@ -13,7 +13,7 @@
 			    <%= f.text_area :description, :rows => 4 %>
 			  </fieldset>
 			  <p>
-			    <%= f.submit t('buttons.save') %> <%= link_to t('buttons.cancel'), customer_path(customer, :format => :js), :class => 'show' %>
+			    <%= f.submit t('buttons.save') %> <%= link_to t('buttons.close'), customer_path(customer, :format => :js), :class => 'show' %>
 			  </p>
 			<% end %>
 		</div>

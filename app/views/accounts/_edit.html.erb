@@ -24,7 +24,9 @@
 				<%= f.select :vat_type, [['Momsfrit', '1'], ['Dansk moms 25%', '2'], ['Varekøb i udlandet', '3']], {:prompt => "Vælg momstype"} %>
 			</fieldset>
 			
-		  <%= f.submit t('buttons.save') %> <%- if account.new_record? -%><%= link_to t('buttons.close'), '#', :class => 'close' %><% else %><%= link_to t('buttons.cancel'), account_path(account, :format => :js), :class => 'show' %><% end %>
+			<p>
+				<%= f.submit t('buttons.save') %> <%- if account.new_record? -%><%= link_to t('buttons.close'), '#', :class => 'close' %><% else %><%= link_to t('buttons.close'), account_path(account, :format => :js), :class => 'show' %><% end %>
+			</p>
 		<% end -%>
 		</div>
 	</td>

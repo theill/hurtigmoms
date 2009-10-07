@@ -47,6 +47,10 @@ class Posting < ActiveRecord::Base
     self.attachment_no + 1
   end
   
+  def pdf?
+    self.attachment? && self.attachment_content_type == 'application/pdf'
+  end
+  
   protected
   
   def set_attachment_no

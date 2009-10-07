@@ -229,7 +229,7 @@ table tr.row-loading td {
 }
 
 table tr.row-editing div.box {
-	background-color: #f9fff9;
+	background-color: #fcfcfc;
 	border: solid 1px #999;
 	margin: -5px;
 	padding: 10px;
@@ -272,6 +272,7 @@ table tr.row-editing div.box {
 
 		#postings .posting.pending {
 			background-color: #ffeeee;
+			font-weight: bold;
 		}
 		
 		#postings .posting .attachment {

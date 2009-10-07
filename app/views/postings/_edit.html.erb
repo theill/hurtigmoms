@@ -34,8 +34,14 @@
 					</td>
 					<td>
 						<fieldset>
-							<%= f.label :attachment_no, t('posting.attachment_no') + (posting.attachment? ? (' - ' + link_to('vis', '#', :class => 'show-attachment') + ' eller ' + link_to('hent', download_posting_path(posting))) : '') %>
+							<%= f.label :attachment_no, t('posting.attachment_no') %>
 							<%= f.text_field :attachment_no, :size => 4, :maxlength => 4 %>
+							<%- if posting.pdf? -%>
+								<%= link_to('vis pdf', '#', :class => 'show-attachment') %>
+							<%- end -%>
+							<%- if posting.attachment? -%>
+								<%= link_to('hent', download_posting_path(posting)) %>
+							<%- end -%>
 						</fieldset>
 					</td>
 					<td>
@@ -55,7 +61,7 @@
 				</tr>
 			</table>
 			
-			<%= f.submit t('.buttons.save') %> <%= link_to t('buttons.cancel'), posting_path(posting, :format => :js), :class => 'show' %>
+			<%= f.submit t('.buttons.save') %> <%= link_to t('buttons.close'), posting_path(posting, :format => :js), :class => 'show' %>
 			
 			<%- if posting.attachment? -%>
 				<div class="attachment">
