@@ -217,6 +217,8 @@ table tr.row-editing div.box {
 	border: solid 1px #999;
 	margin: -5px;
 	padding: 10px;
+	-moz-box-shadow: 0 0 10px #999;
+	-webkit-box-shadow: 0 0 10px #999;
 }
 	table tr.row-editing td {
 		border: solid 1px #ccc;
