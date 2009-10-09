@@ -28,6 +28,8 @@ da:
     account_id: Konto
     state: Status
     customer_id: Kunde
+    amount_in: Indsat
+    amount_out: Hævet
     
   account:
     name: Navn

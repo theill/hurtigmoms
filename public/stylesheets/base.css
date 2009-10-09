@@ -246,6 +246,15 @@ table tr.row-editing div.box {
 }
 
 #postings {}
+	#postings thead .account-type {
+		color: #779;
+	}
+	#postings tfoot {
+		border-top: solid 2px #ccc;
+	}
+		#postings tfoot td.dimmed {
+			background-color: #eee;
+		}
 	#postings .posting {} 
 		#postings .posting .account_no {
 			color: #999;

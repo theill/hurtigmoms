@@ -10,22 +10,41 @@
 		<thead>
 			<tr>
 				<th></th>
+				<th><%= t('posting.created_at') %></th>
 				<th><%= t('posting.attachment_no') %></th>
 				<th><%= t('posting.note') %></th>
-				<th><%= t('posting.created_at') %></th>
 				<th><%= t('posting.account_id') %></th>
-				<th><%= t('posting.amount') %></th>
+				<th><span class="account-type">Bank</span> <%= t('posting.amount_in') %></th>
+				<th><span class="account-type">Bank</span> <%= t('posting.amount_out') %></th>
 			</tr>
 		</thead>
+		<tfoot>
+			<tr>
+				<td colspan="4" rowspan="4"></td>
+				<td>Bevægelse</td>
+				<td><%= @total_selling %></td>
+				<td><%= @total_buying %></td>
+			</tr>
+			<tr>
+				<td>Beholdning, start</td>
+				<td>x</td>
+				<td class="dimmed"></td>
+			</tr>
+			<tr>
+				<td>Beholdning, slut</td>
+				<td class="dimmed"></td>
+				<td>y</td>
+			</tr>
+			<tr>
+				<td>Balance</td>
+				<td>sum(up)</td>
+				<td>sum(up)</td>
+			</tr>
+		</tfoot>
 		<tbody>
 		<%= render @postings %>
 		</tbody>
 	</table>
-	
-	<ul>
-		<li>Totalt salg: <%= @total_selling %></li>
-		<li>Totalt køb: <%= @total_buying %></li>
-	</ul>
 	
 </div>
 
