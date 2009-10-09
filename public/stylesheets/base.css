@@ -61,7 +61,7 @@ fieldset label {
 
 .action-required {
 	background-color: #ffdddd;
-/*	border: solid 4px #ffcfcf;*/
+	border: solid 1px #ffcfcf;
 	padding: 16px;
 	background: -webkit-gradient(linear, left top, left bottom, from(#ffdddd), to(#ffffff));
 }
@@ -281,7 +281,6 @@ table tr.row-editing div.box {
 
 		#postings .posting.pending {
 			background-color: #ffeeee;
-			font-weight: bold;
 		}
 		
 		#postings .posting .attachment {

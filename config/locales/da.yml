@@ -90,6 +90,11 @@ da:
       buttons:
         save: Gem
 
+  reports:
+    index:
+      title: Oversigt over rapporter
+      description: ''
+
   customers:
     index:
       title: Oversigt over kunder

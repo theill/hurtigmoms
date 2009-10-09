@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   validates_format_of :cvr, :with => /^[\d]+$/, :allow_nil => true, :allow_blank => true
   validates_length_of :cvr, :is => 8, :allow_nil => true, :allow_blank => true
   
+  def default_currency
+    'DKK'
+  end
+  
   protected
   
   def setup_default_accounts

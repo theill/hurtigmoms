@@ -22,23 +22,23 @@
 			<tr>
 				<td colspan="4" rowspan="4"></td>
 				<td>Bevægelse</td>
-				<td><%= @total_selling %></td>
-				<td><%= @total_buying %></td>
+				<td><%= number_to_currency(@total_selling, :unit => current_user.default_currency) %></td>
+				<td><%= number_to_currency(@total_buying, :unit => current_user.default_currency) %></td>
 			</tr>
 			<tr>
 				<td>Beholdning, start</td>
-				<td>x</td>
+				<td><%= number_to_currency(0, :unit => current_user.default_currency) %></td>
 				<td class="dimmed"></td>
 			</tr>
 			<tr>
 				<td>Beholdning, slut</td>
 				<td class="dimmed"></td>
-				<td>y</td>
+				<td><%= number_to_currency(@total_selling + 0 - @total_buying, :unit => current_user.default_currency) %></td>
 			</tr>
 			<tr>
 				<td>Balance</td>
-				<td>sum(up)</td>
-				<td>sum(up)</td>
+				<td><%= number_to_currency(@total_selling + 0, :unit => current_user.default_currency) %></td>
+				<td><%= number_to_currency(@total_buying + (@total_selling + 0 - @total_buying), :unit => current_user.default_currency) %></td>
 			</tr>
 		</tfoot>
 		<tbody>
