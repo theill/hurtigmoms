@@ -28,6 +28,8 @@ en:
     account_id: Account
     state: State
     customer_id: Customer
+    amount_in: In
+    amount_out: Out
 
   account:
     name: Name

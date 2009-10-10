@@ -147,6 +147,17 @@ class MailParser
     parsed_amount = body.scan(/amount:\W?\$?([\d|\.|\,]*)\W?(DKK|USD|NOK|SEK|EUR)?/i).flatten
     amount = (parsed_amount[0] if parsed_amount.length > 0)
     currency = (parsed_amount[1] if parsed_amount.length > 1)
+    return [amount, currency] if amount #&& currency
+
+    parsed_amount = body.scan(/total:\W?\$?([\d|\.|\,]*)\W?(DKK|USD|NOK|SEK|EUR)?/i).flatten
+    amount = (parsed_amount[0] if parsed_amount.length > 0)
+    currency = (parsed_amount[1] if parsed_amount.length > 1)
+    return [amount, currency] if amount && currency
+    
+    parsed_amount = body.scan(/total:\W?(\$)?([\d|\.|\,]*)/i).flatten
+    amount = (parsed_amount[1] if parsed_amount.length > 1)
+    currency = (parsed_amount[0] if parsed_amount.length > 0)
+    currency = 'USD' if currency = "$"
     return [amount, currency] if amount && currency
     
     [nil, nil]
