@@ -297,7 +297,7 @@ table tr.row-editing div.box {
 		#postings .posting .attachment-email {
 			display: none;
 			height: 480px;
-			width: 650px;
+			width: 800px;
 			overflow: auto;
 			background-color: #f9f9f9;
 		}
