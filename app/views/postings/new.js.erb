@@ -1,6 +1,8 @@
-$("#postings").prepend("<%= escape_javascript(render(:partial => 'new', :locals => {:posting => @posting})) %>");
+$("#postings").prepend("<%= escape_javascript(render(:partial => 'edit', :locals => {:posting => @posting})) %>");
 
 $("form.new_posting").focusFirstFormElement();
+
+$(".amount-no-vat").trigger("keyup");
 
 // FIXME: bind events (similar to 'edit' refactor)
 $("#<%= dom_id(@posting) %> form").ajaxForm({ dataType: "script" });
@@ -21,3 +23,56 @@ $("#posting_customer_name").autocomplete(hurtigmoms.customers_url, {
 		return "<div class=\"company\">" + item.name + "</div>";
 	}
 });
+
+// initialise the "Select date" link
+$('#date-pick')
+	.datePicker({
+    createButton: false,
+		startDate: '01/01/2005',
+		endDate: '31/12/2010'
+	}).bind(
+		'click',
+		function() {
+			updateSelects($(this).dpGetSelected()[0]);
+			$(this).dpDisplay();
+			return false;
+		}
+	).bind(
+		'dateSelected',
+		function(e, selectedDate, $td, state) {
+			updateSelects(selectedDate);
+		}
+	).bind(
+		'dpClosed',
+		function(e, selected) {
+			updateSelects(selected[0]);
+		}
+	);
+
+var updateSelects = function(selectedDate) {
+	var selectedDate = new Date(selectedDate);
+	$('#<%= dom_id(@posting) %> #posting_created_at_3i option[value=' + selectedDate.getDate() + ']').attr('selected', 'selected');
+	$('#<%= dom_id(@posting) %> #posting_created_at_2i option[value=' + (selectedDate.getMonth()+1) + ']').attr('selected', 'selected');
+	$('#<%= dom_id(@posting) %> #posting_created_at_1i option[value=' + (selectedDate.getFullYear()) + ']').attr('selected', 'selected');
+}
+
+// listen for when the selects are changed and update the picker
+$('#<%= dom_id(@posting) %> #posting_created_at_3i, #<%= dom_id(@posting) %> #posting_created_at_2i, #<%= dom_id(@posting) %> #posting_created_at_1i')
+	.bind(
+		'change',
+		function() {
+			var d = new Date(
+  			$('#posting_created_at_1i').val(),
+  			$('#posting_created_at_2i').val()-1,
+  			$('#posting_created_at_3i').val()
+				);
+			$('#date-pick').dpSetSelected(d.asString());
+	  }
+	);
+
+// default the position of the selects to today
+// var today = new Date();
+// updateSelects(today.getTime());
+
+// and update the datePicker to reflect it...
+$('#<%= dom_id(@posting) %> #posting_created_at_3i').trigger('change');

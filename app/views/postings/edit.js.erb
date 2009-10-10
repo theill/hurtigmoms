@@ -2,9 +2,10 @@ $("#<%= dom_id(@posting) %>").replaceWith("<%= escape_javascript(render(:partial
 
 $("form.edit_posting").focusFirstFormElement();
 
+$(".amount-no-vat").trigger("keyup");
+
 // bind events
 $("#<%= dom_id(@posting) %> form").ajaxForm({	dataType: "script" });
-//$("#<%= dom_id(@posting) %> #posting_amount").keyup(function() { $("#<%= dom_id(@posting) %> #vat").text(hurtigmoms.posting.vat(this.value)); });
 
 $("#posting_customer_name").autocomplete(hurtigmoms.customers_url, {
 	dataType: 'json',

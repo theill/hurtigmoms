@@ -34,7 +34,6 @@ class PostingsController < ApplicationController
     @posting = current_user.postings.new
     
     respond_to do |format|
-      format.html # new.html.erb
       format.xml  { render :xml => @posting }
       format.js
     end
@@ -43,6 +42,11 @@ class PostingsController < ApplicationController
   # GET /postings/1/edit
   def edit
     @posting = current_user.postings.find(params[:id])
+    
+    respond_to do |format|
+      format.xml  { render :xml => @posting }
+      format.js
+    end
   end
   
   # POST /postings
