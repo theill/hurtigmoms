@@ -8,7 +8,8 @@ class MailParser
     parsed_attributes = recognize_and_parse_mail(mail)
     
     # only supporting 'buying' at the moment
-    account = user.accounts.find_by_account_no_and_account_type('1308', Account::ACCOUNT_TYPES[:buy])
+    account_no = (parsed_attributes[:currency] == 'DKK' ? '1300' : '1308')
+    account = user.accounts.find_by_account_no_and_account_type(account_no, Account::ACCOUNT_TYPES[:buy])
     parsed_attributes.merge!(:account_id => account.id, :attachment_email => mail.to_s)
     
     posting = user.postings.create! parsed_attributes
@@ -157,7 +158,18 @@ class MailParser
     parsed_amount = body.scan(/total:\W?(\$)?([\d|\.|\,]*)/i).flatten
     amount = (parsed_amount[1] if parsed_amount.length > 1)
     currency = (parsed_amount[0] if parsed_amount.length > 0)
-    currency = 'USD' if currency = "$"
+    currency = 'USD' if currency == "$"
+    return [amount, currency] if amount && currency
+
+    parsed_amount = body.scan(/beløb:\W?(kr\.)\W?([\d|\.|\,]*)/i).flatten
+    amount = (parsed_amount[1] if parsed_amount.length > 1)
+    currency = (parsed_amount[0] if parsed_amount.length > 0)
+    if (currency == 'kr.')
+      currency = 'DKK'
+      # replace "15.498,75" with "15498.75"
+      amount = amount.gsub(/\./, '')
+      amount = amount.gsub(/\,/, '.')
+    end
     return [amount, currency] if amount && currency
     
     [nil, nil]

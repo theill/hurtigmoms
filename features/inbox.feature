@@ -11,7 +11,16 @@ Feature: Inbox mail parsing
 		And I should not see "Fwd: Harvest Subscription"
 		And I should see "04/09-2009"
 		And I should see "USD12.00"
-  
+ 
+	Scenario: Parsing a Harvest invoice mail
+		Given I have signed in with "john.doe@hurtigmoms.test/password"
+		Given I sent mail from harvest_danish
+		When I go to the postings page
+		Then I should see "Faktura #2009020 fra Commanigy"
+		And I should not see "Fwd: Faktura #2009020 fra Commanigy"
+		And I should see "08/10-2009"
+		And I should see "DKK15,468.75"
+
 	Scenario: Parsing a GitHub mail
 		Given I have signed in with "john.doe@hurtigmoms.test/password"
 		Given I sent mail from GitHub
