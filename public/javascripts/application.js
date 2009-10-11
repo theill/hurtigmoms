@@ -46,6 +46,10 @@ jQuery.fn.focusFirstFormElement = function() {
 $(function() {
 	// postings
 	$("#postings .posting").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
+	$("#postings .posting.hover").live("click", function() {
+		$(this).find(".edit").trigger("click");
+		return false;
+	});
 	
 	$(".amount-no-vat").live("keyup", function() {
 		$(this).closest("form").find(".amount-vat").text(hurtigmoms.posting.vat(this.value));

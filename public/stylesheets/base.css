@@ -37,6 +37,10 @@ a.button {
 	text-shadow: 1px 1px 1px #000;
 	letter-spacing: 1px;
 	color: #fff;
+
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3B5998), to(#4B69A8));
 }
 
 fieldset label {
@@ -48,6 +52,10 @@ fieldset label {
 	font-size: 11px;
 	margin-top: 4px;
 	padding-left: 8px;
+}
+
+.hide {
+	display: none;
 }
 
 .blank-state {
@@ -62,6 +70,22 @@ fieldset label {
 	border: solid 1px #ffcfcf;
 	padding: 16px;
 	background: -webkit-gradient(linear, left top, left bottom, from(#ffdddd), to(#ffffff));
+}
+
+.income {
+	color: #339900;
+}
+
+.expense {
+	color: #990000;
+}
+
+.coh {
+	color: #3399CC;
+}
+
+td.number {
+	text-align: right;
 }
 
 .errorExplanation {
@@ -196,6 +220,7 @@ div.action-bar {
 	#c table td {
 		border: solid 1px #ccc;
 		padding: 2px 6px;
+		vertical-align: top;
 	}
 
 #f {
@@ -219,14 +244,17 @@ div.action-bar {
 	-webkit-column-count: 3;
 }
 
-table tr.row-loading td {
-	height: 150px;
-	background: transparent url(/images/loading.gif) no-repeat center center;
-}
+table tr.row-loading {}
+	table tr.row-loading td {
+/*		background: transparent url(/images/loading.gif) no-repeat center center;*/
+	}
+	table tr.row-loading .actions .buttons-container .buttons {
+		display: none;
+	}
 
-table tr.row-loading td {
-	opacity: .2;
-}
+	table tr.row-loading td {
+		opacity: .2;
+	}
 
 table tr.row-editing div.box {
 	background-color: #fcfcfc;
@@ -247,6 +275,18 @@ table tr.row-editing div.box {
 		border: solid 1px #ccc;
 		padding: 0 !important; /* override default padding */
 	}
+	table tr.row-editing .inline-actions {
+		float: right;
+		display: inline;
+	}
+		table tr.row-editing .inline-actions .delete {
+			color: #CC0000;
+			padding: 2px;
+		}
+			table tr.row-editing .inline-actions .delete:hover {
+				background-color: #CC0000;
+				color: white;
+			}
 
 .quick-buttons {
 	margin-bottom: 20px;
@@ -275,14 +315,20 @@ table tr.row-editing div.box {
   	  color: #fff;
   	  padding: 4px;
   	}
-		#postings .posting .actions {
-			width: 20px;
-		}
-		
-			#postings .posting .actions div {
+		#postings .posting .actions { }
+			#postings .posting .actions .buttons-container {
+				width: 32px;
 				display: none;
+				position: absolute;
 			}
-			#postings .posting.hover .actions div {
+			#postings .posting .actions .buttons-container .buttons {
+				left: -16px;
+			}
+			#postings .posting.hover td {
+				background-color: #ffe;
+				cursor: pointer;
+			}
+			#postings .posting.hover .actions .buttons-container {
 				display: block;
 			}
 
@@ -328,4 +374,21 @@ body.frontpage {
 	body.frontpage .button {
 		font-family: "Cambria","Georgia","Times New Roman",Times,sans-serif;
 		font-size: 20px;
+	}
+
+#reports {}
+	#reports dl.report-details {
+		margin: 0;
+	}
+	#reports dl.report-details dt {
+		font-size:10px;
+		margin:0 1px 0 0;
+		padding:10px 10px 0;
+	}
+	#reports dl.report-details dd {
+		color:#000000;
+		font-size:18px;
+		font-weight:bold;
+		margin:0 1px 1px 0;
+		padding:0 10px 10px;
 	}

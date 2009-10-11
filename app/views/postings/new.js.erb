@@ -1,7 +1,5 @@
 $("#postings").prepend("<%= escape_javascript(render(:partial => 'edit', :locals => {:posting => @posting})) %>");
 
-$("form.new_posting").focusFirstFormElement();
-
 $(".amount-no-vat").trigger("keyup");
 
 // FIXME: bind events (similar to 'edit' refactor)
@@ -23,6 +21,9 @@ $("#posting_customer_name").autocomplete(hurtigmoms.customers_url, {
 		return "<div class=\"company\">" + item.name + "</div>";
 	}
 });
+
+// important to set this -after- autocomplete field
+$("form.new_posting").focusFirstFormElement();
 
 // initialise the "Select date" link
 $('#date-pick')

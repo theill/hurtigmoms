@@ -1,5 +1,5 @@
 <tr id="<%= dom_id(posting) %>" class="posting row-editing">
-	<td colspan="7">
+	<td colspan="6">
 		<div class="box">
 		<% form_for(posting, :html => {:autocomplete => 'off'}) do |f| -%>
 			<%= error_messages_for :posting %>
@@ -75,6 +75,8 @@
 				  <%= f.submit t('.buttons.save') %> <%= link_to(t('buttons.close'), postings_path, :class => 'close') %>
 				<%- else -%>
 					<%= f.submit t('.buttons.save') %> <%= link_to t('buttons.close'), posting_path(posting, :format => :js), :class => 'show' %>
+					
+					<div class="inline-actions"><%= link_to(t('buttons.delete'), posting, :class => 'delete') %> denne postering</div>
 				<%- end -%>
 			</div>
 		<%- end -%>

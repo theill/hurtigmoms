@@ -19,13 +19,17 @@ class Posting < ActiveRecord::Base
   validates_presence_of :attachment_no
   validates_presence_of :currency
   
-  named_scope :total_buying, :joins => :account, :conditions => ['accounts.account_type = ?', Account::ACCOUNT_TYPES[:buy]]
-  named_scope :total_selling, :joins => :account, :conditions => ['accounts.account_type = ?', Account::ACCOUNT_TYPES[:sell]]
-  
+  named_scope :total_buying, lambda { |year| { :joins => :account, :conditions => ['EXTRACT (YEAR FROM postings.created_at) = ? AND accounts.account_type = ?', year, Account::ACCOUNT_TYPES[:buy]] } }
+  named_scope :total_selling, lambda { |year| { :joins => :account, :conditions => ['EXTRACT (YEAR FROM postings.created_at) = ? AND accounts.account_type = ?', year, Account::ACCOUNT_TYPES[:sell]] } }
+
   before_validation_on_create :set_attachment_no, :set_currency
   before_save :reset_state, :set_customer
   
   attr_accessor :customer_name
+  
+  def month
+    self.created_at.strftime('%m')
+  end
   
   def customer_name
     @customer_name || (self.customer.name if self.customer)
@@ -40,7 +44,7 @@ class Posting < ActiveRecord::Base
   end
   
   def after_initialize
-    self.set_attachment_no
+    self.set_attachment_no if defined?(self.attachment_no)
   end
   
   def next_attachment_no

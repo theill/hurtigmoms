@@ -1,6 +1,6 @@
 <h1><%= t('.sign_in') %></h1>
 
-<% form_for :session, :url => session_path do |f| %>
+<% form_for(:session, {:url => session_path, :html => { :id => 'new_session'}}) do |f| %>
   <fieldset>
     <%= f.label :email, t('user.email') %>
     <%= f.text_field :email %>
@@ -18,3 +18,11 @@
   <li><%= link_to t('users.new.title'), new_user_path %></li>
   <li><%= link_to t('.forgot_password'), new_password_path %></li>
 </ul>
+
+<% content_for :head do %>
+	<script type="text/javascript">
+		$(function() {
+			$("#new_session").focusFirstFormElement();
+		});
+	</script>
+<% end %>

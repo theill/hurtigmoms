@@ -10,6 +10,7 @@ da:
     cancel: Annuller
     wait: Vent venligst...
     close: Luk
+    delete: Slet
 
   user:
     company: Firmanavn
@@ -71,8 +72,8 @@ da:
 
   accounts:
     index:
-      title: Oversigt over konti
-      description: ''
+      title: Konti
+      description: Alle
       
     new:
       buttons:
@@ -80,8 +81,8 @@ da:
   
   postings:
     index:
-      title: Oversigt over posteringer
-      description: ''
+      title: Posteringer
+      description: Hele året
       
     new:
       buttons:
@@ -92,8 +93,8 @@ da:
 
   reports:
     index:
-      title: Oversigt over rapporter
-      description: ''
+      title: Rapporter
+      description: 'Indtægter &amp; udgifter'
 
   customers:
     index:

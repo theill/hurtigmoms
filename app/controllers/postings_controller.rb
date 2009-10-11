@@ -6,8 +6,10 @@ class PostingsController < ApplicationController
   def index
     @postings = current_user.postings.all(:include => :account, :order => 'created_at DESC')
     
-    @total_selling = current_user.postings.total_selling.sum(:amount)
-    @total_buying = current_user.postings.total_buying.sum(:amount)
+    @total_selling = current_user.postings.total_selling(2009).sum(:amount)
+    @total_buying = current_user.postings.total_buying(2009).sum(:amount)
+    
+    @bank_initial = 0
     
     @posting = current_user.postings.new
     

@@ -1,11 +1,107 @@
 <%- @meta = { :title => t('.title'), :description => t('.description') } -%>
-<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
 
-<ul>
-	<li>Omsætning fordelt på kunder</li>
-	<li>Udgifter fordel på kunder</li>
-	<li>Omsætning fordelt på måneder</li>
-	<li>Udgifter fordelt på måneder</li>
-	<li>Købsmoms fordelt på måneder</li>
-	<li>Salgsmoms fordelt på måneder</li>
-</ul>
+<% content_for :head do %>
+	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+	<script type="text/javascript">
+	  google.load("visualization", "1", {packages:["columnchart"]});
+	  google.setOnLoadCallback(drawChart);
+		
+		var chart;
+		
+	  function drawChart() {
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'Måned');
+			data.addColumn('number', 'Salg');
+			data.addColumn('number', 'Køb');
+			
+			data.addRows([<%= @total_months.collect { |row| "['#{t('date.abbr_month_names')[row[:month].to_i]}', #{row[:income_amount]}, #{row[:expenses_amount]}], " } %>]);
+			
+			chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+			chart.draw(data, {width: 700, height: 240, is3D: false, legend: 'none', colors: ['#8DC176', '#BF7576']});
+			
+	    // Add our over/out handlers.
+	    google.visualization.events.addListener(chart, 'onmouseover', barMouseOver);
+	    google.visualization.events.addListener(chart, 'onmouseout', barMouseOut);
+		}
+		
+	  function barMouseOver(e) {
+	    chart.setSelection([e]);
+	  }
+
+	  function barMouseOut(e) {
+	    chart.setSelection([{'row': null, 'column': null}]);
+	  }
+		
+	</script>
+<% end %>
+
+<div class="grid_9 alpha">
+	<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
+	
+	<div id="chart_div" style="width: 700px; height: 240px; margin-bottom: 20px; background: transparent url(/images/loading.gif) no-repeat center center;"></div>
+
+	<div id="reports">
+	<table width="700" cellspacing="0" cellpadding="0">
+	<tbody>
+		<tr>
+		<td>
+			<dl class="report-details">
+				<dt>Start beholdning</dt>
+				<dd><span class="coh">125,000.00</span></dd>
+			</dl>
+		</td>
+		<td>
+			<dl class="report-details">
+				<dt>Samlede indtægter</dt>
+				<dd><span class="income"><%= number_to_currency(@total_income, :unit => current_user.default_currency) %></span></dd>
+			</dl>
+		</td>
+		<td>
+			<dl class="report-details">
+			<dt>Samlede udgifter</dt>
+				<dd><span class="expense"><%= number_to_currency(@total_expenses, :unit => current_user.default_currency) %></span></dd>				
+			</dl>
+		</td>
+		<td>
+			<dl class="report-details">
+				<dt>Slut beholdning</dt>
+				<dd><span class="coh">176,988.00</span></dd>
+			</dl>
+		</td>
+	</tr>
+	</tbody>
+	</table>
+	</div>
+	
+	<table width="100%" cellspacing="0" cellpadding="0" class="list">
+		<thead>
+			<tr>
+				<th>Måned</th>
+				<th><span class="income">Indtægter</span></th>
+				<th><span class="expense">Udgifter</span></th>
+				<th><span class="coh">Beholdning</span> <small>Start af perioden</small></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @total_months.each do |row| %>
+				<tr>
+					<td class="day"><%= t('date.month_names')[row[:month].to_i].capitalize %></td>
+					<td class="number"><%= number_to_currency(row[:income_amount], :unit => current_user.default_currency) %></td>
+					<td class="number"><%= number_to_currency(row[:expenses_amount], :unit => current_user.default_currency) %></td>
+					<td class="number">125,000.00</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>	
+</div>
+
+<div class="grid_3">
+	<ul>
+		<li>Omsætning fordelt på kunder</li>
+		<li>Udgifter fordel på kunder</li>
+		<li>Omsætning fordelt på måneder</li>
+		<li>Udgifter fordelt på måneder</li>
+		<li>Købsmoms fordelt på måneder</li>
+		<li>Salgsmoms fordelt på måneder</li>
+	</ul>
+</div>

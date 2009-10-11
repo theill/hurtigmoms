@@ -1,9 +1,8 @@
 <tr id="<%= dom_id(posting) %>" class="posting <%= state_class(posting) %>">
-	<td class="actions"><div><%= link_to('E', edit_posting_path(posting), :class => 'edit') %> <%= link_to('X', posting, :class => 'delete') %></div></td>
-	<td><%=h posting.created_at.strftime("%d/%m-%Y") %></td>
+	<td class="actions"><div class="buttons-container"><div class="buttons"><%= link_to(image_tag('navigation-000-frame.png'), edit_posting_path(posting), :class => 'edit hide') %></div></div><%=h posting.created_at.strftime("%d/%m-%Y") %></td>
 	<td><%= link_to_attachment(posting) %></td>
 	<td><%= note_for_overview(posting) %></td>
 	<td><%= ("<span class=\"account_no\">#{posting.account.account_no}</span> #{h(posting.account.name)}") if posting.account %></td>
-	<td><%= number_to_currency(posting.amount, :unit => posting.currency) if posting.account.account_type == Account::ACCOUNT_TYPES[:sell] %></td>
-	<td><%= number_to_currency(posting.amount, :unit => posting.currency) if posting.account.account_type == Account::ACCOUNT_TYPES[:buy]  %></td>
+	<td class="number"><%= number_to_currency(posting.amount, :unit => posting.currency) if posting.account.account_type == Account::ACCOUNT_TYPES[:sell] %></td>
+	<td class="number"><%= number_to_currency(posting.amount, :unit => posting.currency) if posting.account.account_type == Account::ACCOUNT_TYPES[:buy]  %></td>
 </tr>
