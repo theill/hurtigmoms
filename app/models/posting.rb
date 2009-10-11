@@ -42,11 +42,7 @@ class Posting < ActiveRecord::Base
   def google_viewer_url
     "http://docs.google.com/viewer?url=#{CGI::escape(self.authenticated_url)}&embedded=true"
   end
-  
-  def after_initialize
-    self.set_attachment_no if defined?(self.attachment_no)
-  end
-  
+    
   def next_attachment_no
     self.attachment_no + 1
   end
@@ -55,11 +51,11 @@ class Posting < ActiveRecord::Base
     self.attachment? && self.attachment_content_type == 'application/pdf'
   end
   
-  protected
-  
   def set_attachment_no
     self.attachment_no = (self.user.postings.maximum(:attachment_no) || 0) + 1 if self.attachment_no == 0
   end
+
+  protected
   
   def set_currency
     self.currency = 'DKK' if self.currency.nil?

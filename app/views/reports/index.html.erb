@@ -76,10 +76,10 @@
 	<table width="100%" cellspacing="0" cellpadding="0" class="list">
 		<thead>
 			<tr>
-				<th>Måned</th>
-				<th><span class="income">Indtægter</span></th>
-				<th><span class="expense">Udgifter</span></th>
-				<th><span class="coh">Beholdning</span> <small>Start af perioden</small></th>
+				<th width="25%">Måned</th>
+				<th width="25%"><span class="income">Indtægter</span></th>
+				<th width="25%"><span class="expense">Udgifter</span></th>
+				<th width="25%"><span class="coh">Beholdning</span> <small>Start af perioden</small></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -88,7 +88,7 @@
 					<td class="day"><%= t('date.month_names')[row[:month].to_i].capitalize %></td>
 					<td class="number"><%= number_to_currency(row[:income_amount], :unit => current_user.default_currency) %></td>
 					<td class="number"><%= number_to_currency(row[:expenses_amount], :unit => current_user.default_currency) %></td>
-					<td class="number">125,000.00</td>
+					<td class="number"><%= number_to_currency(125000, :unit => current_user.default_currency) %></td>
 				</tr>
 			<% end %>
 		</tbody>

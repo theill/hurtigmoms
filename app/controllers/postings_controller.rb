@@ -11,8 +11,6 @@ class PostingsController < ApplicationController
     
     @bank_initial = 0
     
-    @posting = current_user.postings.new
-    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @postings }
@@ -34,6 +32,7 @@ class PostingsController < ApplicationController
   # GET /postings/new.xml
   def new
     @posting = current_user.postings.new
+    @posting.set_attachment_no
     
     respond_to do |format|
       format.xml  { render :xml => @posting }

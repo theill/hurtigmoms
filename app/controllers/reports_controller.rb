@@ -15,7 +15,6 @@ class ReportsController < ApplicationController
     (1..12).each do |i|
       income = total_income_months.find { |a| a[:month] == i.to_s }
       expenses = total_expenses_months.find { |a| a[:month] == i.to_s }
-      Rails.logger.debug("income = #{income.nil?}")
       @total_months << {
         :month => i.to_s,
         :income_amount => (income[:amount] if income) || '0.0',

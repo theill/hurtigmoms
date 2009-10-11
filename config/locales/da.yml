@@ -94,7 +94,7 @@ da:
   reports:
     index:
       title: Rapporter
-      description: 'Indtægter &amp; udgifter'
+      description: 'Indtægter &amp; udgifter i indeværende år'
 
   customers:
     index:

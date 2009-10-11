@@ -2,16 +2,18 @@
   $("#postings").prepend("<%= escape_javascript(render(@posting)) %>");
   $("#<%= dom_id(@posting) %>").effect("highlight");
   
-  // FIXME: move to live handler (use livequery?)
-  $("#<%= dom_id(@posting) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
+	// FIXME: move to live handler (use livequery?)
+	$("#<%= dom_id(@posting) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
+
+	$("tr#new_posting").remove();
   
   // reset form
-  $("#posting_amount, #posting_note").val('');
-  $("#posting_attachment_no").val('<%= @posting.next_attachment_no %>');
-  $("#new_posting .amount-vat").text('');
-  
-  $("#new_posting").focusFirstFormElement();
-  $("#new_posting").find('input.submit').attr('disabled', '');
+  // $("#posting_amount, #posting_note").val('');
+  // $("#posting_attachment_no").val('<%= @posting.next_attachment_no %>');
+  // $("#new_posting .amount-vat").text('');
+  // 
+  // $("#new_posting").focusFirstFormElement();
+  // $("#new_posting").find('input.submit').attr('disabled', '');
 <%- else -%>
   // render new form (again but now with errors)
   $("#<%= dom_id(@posting) %>").replaceWith("<%= escape_javascript(render(:partial => 'edit', :locals => { :posting => @posting })) %>");
@@ -19,4 +21,27 @@
   
 	// rebind events
 	$("#<%= dom_id(@posting) %> form").ajaxForm({ dataType: "script" });
+	
+	$("#posting_customer_name").autocomplete(hurtigmoms.customers_url, {
+		dataType: 'json',
+		max: 25,
+		scroll: true,
+		scrollHeight: 190,
+		parse: function(data) {
+			return $.map(eval(data), function(row) {
+				return {
+					data: row.customer,
+					value: '' + row.customer.id,
+					result: row.customer.name
+				}
+			});
+		},
+		formatItem: function(customer, idx, total) {
+			return "<div class=\"company\">" + customer.name + "</div>";
+		}
+	});
+
+	// important to set this -after- autocomplete field
+	$("#<%= dom_id(@posting) %> form").focusFirstFormElement();
+	
 <%- end %>
