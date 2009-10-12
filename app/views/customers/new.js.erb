@@ -1,4 +1,6 @@
-$("#customers").prepend("<%= escape_javascript(render(:partial => 'new', :locals => {:customer => @customer})) %>");
+$("#customers").prepend("<%= escape_javascript(render(:partial => 'edit', :locals => {:customer => @customer})) %>");
+
+$("form.new_customer").focusFirstFormElement();
 
 // bind events
 $("#<%= dom_id(@customer) %> form").ajaxForm({ dataType: "script" });

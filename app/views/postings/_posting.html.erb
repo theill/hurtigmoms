@@ -1,4 +1,4 @@
-<tr id="<%= dom_id(posting) %>" class="posting <%= state_class(posting) %>">
+<tr id="<%= dom_id(posting) %>" class="posting <%= state_class(posting) %> row">
 	<td class="actions"><div class="buttons-container"><div class="buttons"><%= link_to(image_tag('navigation-000-frame.png'), edit_posting_path(posting), :class => 'edit hide') %></div></div><%=h posting.created_at.strftime("%d/%m-%Y") %></td>
 	<td><%= link_to_attachment(posting) %></td>
 	<td><%= note_for_overview(posting) %></td>

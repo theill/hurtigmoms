@@ -7,10 +7,9 @@
 		<%= link_to 'Tilføj bankkonto', new_account_path, :class => 'button' %>
 	</div>
 	
-	<table id="accounts">
+	<table id="accounts" class="editable-table">
 		<thead>
 			<tr>
-			  <th></th>
 				<th><%= t('account.account_no') %></th>
 				<th><%= t('account.name') %></th>
 				<th><%= t('account.account_type') %></th>

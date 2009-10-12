@@ -202,12 +202,35 @@ div.action-bar {
 		#h .search a {
 			font-weight: normal;
 		}
-	
+
+#flash {
+	height: 40px;
+	font-size: 11px;
+	color: #fff;
+	margin-top: -20px;
+	padding-top: 10px;
+	margin-bottom: 20px;
+}
+
+#flash.success, #flash.notice {
+	background-color: #8DC176;
+	border-bottom: solid 1px #7DB166;
+}
+	#flash.success .grid_12, #flash.notice .grid_12 {
+		background: transparent url(../images/tick-circle-frame.png) no-repeat 0 0;
+		padding-left: 20px;
+	}
+
+#flash.failure {
+	background-color: #BF7576;
+	border-bottom: solid 1px #AF6566;
+}
+	#flash.failure .grid_12 {
+		background: transparent url(../images/exclamation-red-frame.png) no-repeat 0 0;
+		padding-left: 20px;
+	}
 
 #c {}
-	#c .flash {
-		color: #090;
-	}
 	#c table {
 		width: 100%;
 		font-size: 11px;
@@ -315,22 +338,6 @@ table tr.row-editing div.box {
   	  color: #fff;
   	  padding: 4px;
   	}
-		#postings .posting .actions { }
-			#postings .posting .actions .buttons-container {
-				width: 32px;
-				display: none;
-				position: absolute;
-			}
-			#postings .posting .actions .buttons-container .buttons {
-				left: -16px;
-			}
-			#postings .posting.hover td {
-				background-color: #ffe;
-				cursor: pointer;
-			}
-			#postings .posting.hover .actions .buttons-container {
-				display: block;
-			}
 
 		#postings .posting.pending {
 			background-color: #ffeeee;
@@ -360,6 +367,25 @@ table tr.row-editing div.box {
 	#customers .customer .actions {
 		width: 20px;
 	}
+
+.editable-table .row .actions { }
+	.editable-table .row .actions .buttons-container {
+		width: 32px;
+		display: none;
+		position: absolute;
+	}
+	.editable-table .row .actions .buttons-container .buttons {
+		left: -16px;
+	}
+	.editable-table .row.hover td {
+		background-color: #ffe;
+		cursor: pointer;
+	}
+	.editable-table .row.hover .actions .buttons-container {
+		display: block;
+	}
+
+
 
 body.frontpage {
 	border-top: solid 6px #3B5998;

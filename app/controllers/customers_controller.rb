@@ -28,7 +28,7 @@ class CustomersController < ApplicationController
     @customer = current_user.customers.new
 
     respond_to do |format|
-      format.html { render :partial => 'new' } # new.html.erb
+      format.html { render :partial => 'edit' } # new.html.erb
       format.js
     end
   end

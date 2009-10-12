@@ -1,4 +1,6 @@
 $("#accounts").prepend("<%= escape_javascript(render(:partial => 'edit', :locals => {:account => @account})) %>");
 
+$("form.new_account").focusFirstFormElement();
+
 // bind events
 $("#<%= dom_id(@account) %> form").ajaxForm({ dataType: "script" });

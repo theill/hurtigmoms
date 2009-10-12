@@ -44,9 +44,8 @@ jQuery.fn.focusFirstFormElement = function() {
 };
 
 $(function() {
-	// postings
-	$("#postings .posting").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
-	$("#postings .posting.hover").live("click", function() {
+	$(".editable-table .row").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
+	$(".editable-table .row.hover").live("click", function() {
 		$(this).find(".edit").trigger("click");
 		return false;
 	});

@@ -1,5 +1,5 @@
 <tr id="<%= dom_id(customer) %>" class="customer row-editing">
-	<td colspan="3">
+	<td>
 		<div class="box">
 			<% form_for(customer) do |f| %>
 			  <%= f.error_messages %>
@@ -12,9 +12,17 @@
 					<%= f.label :description, t('customer.description') %>
 			    <%= f.text_area :description, :rows => 4 %>
 			  </fieldset>
-			  <p>
-			    <%= f.submit t('buttons.save') %> <%= link_to t('buttons.close'), customer_path(customer, :format => :js), :class => 'show' %>
-			  </p>
+
+				<div class="inline-buttons">
+					<%- if customer.new_record? -%>
+					  <%= f.submit t('buttons.save') %> <%= link_to(t('buttons.close'), customers_path, :class => 'close') %>
+					<%- else -%>
+						<%= f.submit t('buttons.save') %> <%= link_to t('buttons.close'), customer_path(customer, :format => :js), :class => 'show' %>
+
+						<div class="inline-actions"><%= link_to(t('buttons.delete'), customer, :class => 'delete') %> denne kunde</div>
+					<%- end -%>
+				</div>
+			
 			<% end %>
 		</div>
 	</td>

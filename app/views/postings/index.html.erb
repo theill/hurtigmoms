@@ -6,7 +6,7 @@
 		<%= link_to 'Tilføj postering', new_posting_path, { :class => 'button show', :id => 'add-new-posting' } %>
 	</div>
 	
-	<table id="postings">
+	<table id="postings" class="editable-table">
 		<thead>
 			<tr>
 				<th><%= t('posting.created_at') %></th>

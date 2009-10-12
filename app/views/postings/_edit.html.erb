@@ -27,7 +27,7 @@
 					<td>
 						<fieldset>
 							<%= f.label :amount, t('posting.amount') + ' <span class="req">*</span>'  %>
-							<%= f.text_field :amount, :size => 10, :maxlength => 10, :class => 'amount-no-vat' %> <%= f.select :currency, ['DKK', 'USD', 'EUR'] %>
+							<%= f.text_field :amount, :size => 10, :maxlength => 10, :class => 'amount-no-vat' %> <%= f.select :currency, Currency::SUPPORTED %>
 						</fieldset>
 					</td>
 				</tr>

@@ -1,4 +1,6 @@
 $("#<%= dom_id(@account) %>").replaceWith("<%= escape_javascript(render(:partial => 'edit', :locals => {:account => @account})) %>");
 
+$("#<%= dom_id(@account) %> form").focusFirstFormElement();
+
 // bind events
 $("#<%= dom_id(@account) %> form").ajaxForm({ dataType: "script" });

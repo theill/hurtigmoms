@@ -58,7 +58,18 @@ da:
       clearance_mailer:
         change_password: Udskiftning af kodeord
         confirmation: Bekræftelse af oprettede konto
-        
+    controllers:
+      confirmations:
+        confirmed_email: Bekræftede e-mail og loggede ind
+        already_confirmed_email: E-mail er allerede bekræftet. Venligst log ind
+      users:
+        deliver_confirmation: De vil modtage en e-mail om nogle få minutter
+      sessions:
+        unconfirmed_email: Konto er endnu ikke konfirmeret. Konfirmerings mail vil blive gensendt
+
+  signed_out: De har logget ud
+  signed_in: De har logget ind
+    
   users:
     new:
       title: Opret konto

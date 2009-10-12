@@ -1,6 +1,5 @@
-<tr id="<%= dom_id(account) %>" class="account">
-	<td class="actions"><div><%= link_to('E', edit_account_path(account), :class => 'edit') %> <%= link_to('X', account, :class => 'delete') %></div></td>
-  <td><%= account.account_no %></td>
+<tr id="<%= dom_id(account) %>" class="account row">
+	<td class="actions"><div class="buttons-container"><div class="buttons"><%= link_to(image_tag('navigation-000-frame.png'), edit_account_path(account), :class => 'edit hide') %></div></div><%=h account.account_no %></td>
   <td><%= account.name %></td>
   <td><%= type_of_account(account) %></td>
   <td><%= type_of_vat(account) %></td>

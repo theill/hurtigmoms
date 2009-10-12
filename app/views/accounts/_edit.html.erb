@@ -1,5 +1,5 @@
 <tr id="<%= dom_id(account) %>" class="account row-editing">
-	<td colspan="6">
+	<td colspan="5">
 		<div class="box">
 		<% form_for(account, :html => {:autocomplete => 'off'}) do |f| -%>
 			<%= error_messages_for :account %>
@@ -24,9 +24,15 @@
 				<%= f.select :vat_type, [['Momsfrit', '1'], ['Dansk moms 25%', '2'], ['Varekøb i udlandet', '3']], {:prompt => "Vælg momstype"} %>
 			</fieldset>
 			
-			<p>
-				<%= f.submit t('buttons.save') %> <%- if account.new_record? -%><%= link_to t('buttons.close'), '#', :class => 'close' %><% else %><%= link_to t('buttons.close'), account_path(account, :format => :js), :class => 'show' %><% end %>
-			</p>
+			<div class="inline-buttons">
+				<%- if account.new_record? -%>
+				  <%= f.submit t('buttons.save') %> <%= link_to(t('buttons.close'), accounts_path, :class => 'close') %>
+				<%- else -%>
+					<%= f.submit t('buttons.save') %> <%= link_to t('buttons.close'), account_path(account, :format => :js), :class => 'show' %>
+					
+					<div class="inline-actions"><%= link_to(t('buttons.delete'), account, :class => 'delete') %> denne konto</div>
+				<%- end -%>
+			</div>
 		<% end -%>
 		</div>
 	</td>
