@@ -47,7 +47,7 @@
 		<td>
 			<dl class="report-details">
 				<dt>Start beholdning</dt>
-				<dd><span class="coh">125,000.00</span></dd>
+				<dd><span class="coh"><%= number_to_currency(0, :unit => current_user.default_currency) %></span></dd>
 			</dl>
 		</td>
 		<td>
@@ -65,7 +65,7 @@
 		<td>
 			<dl class="report-details">
 				<dt>Slut beholdning</dt>
-				<dd><span class="coh">176,988.00</span></dd>
+				<dd><span class="coh"><%= number_to_currency(0, :unit => current_user.default_currency) %></span></dd>
 			</dl>
 		</td>
 	</tr>

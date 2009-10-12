@@ -7,9 +7,12 @@
 		Du har ingen kunder registret i systemet.
 	</p>
 	
-	<p>
-		<%= link_to 'Tilføj kunde', new_customer_path, :class => 'button show' %>
-	</p>
+	<div class="quick-buttons">
+		<%= link_to 'Tilføj kunde', new_customer_path, :class => 'new-customer button show' %>
+	</div>	
+	
+	<table id="customers" class="editable-table"></table>
+	
 
 <%- else -%>
 

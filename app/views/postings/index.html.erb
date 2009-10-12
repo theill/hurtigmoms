@@ -2,49 +2,60 @@
 <h1><%= t('.title') %><span><%= t('.description') %></span></h1>
 
 <div class="grid_12">
-	<div class="quick-buttons">
-		<%= link_to 'Tilføj postering', new_posting_path, { :class => 'button show', :id => 'add-new-posting' } %>
-	</div>
+	<%- if @postings.any? -%>
+		<div class="quick-buttons">
+			<%= link_to 'Tilføj postering', new_posting_path, { :class => 'button show', :id => 'add-new-posting' } %>
+		</div>
 	
-	<table id="postings" class="editable-table">
-		<thead>
-			<tr>
-				<th><%= t('posting.created_at') %></th>
-				<th><%= t('posting.attachment_no') %></th>
-				<th><%= t('posting.note') %></th>
-				<th><%= t('posting.account_id') %></th>
-				<th><span class="account-type">Bank</span> <span class="income"><%= t('posting.amount_in') %></span></th>
-				<th><span class="account-type">Bank</span> <span class="expense"><%= t('posting.amount_out') %></span></th>
-			</tr>
-		</thead>
-		<tfoot>
-			<tr>
-				<td colspan="3" rowspan="4"></td>
-				<td>Bevægelse</td>
-				<td class="number"><span class="income"><%= number_to_currency(@total_selling, :unit => current_user.default_currency) %></span></td>
-				<td class="number"><span class="expense"><%= number_to_currency(@total_buying, :unit => current_user.default_currency) %></span></td>
-			</tr>
-			<tr>
-				<td>Beholdning, start</td>
-				<td class="number"><span class="coh"><%= number_to_currency(@bank_initial, :unit => current_user.default_currency) %></span></td>
-				<td class="dimmed"></td>
-			</tr>
-			<tr>
-				<td>Beholdning, slut</td>
-				<td class="dimmed"></td>
-				<td class="number"><span class="coh"><%= number_to_currency(@total_selling + @bank_initial - @total_buying, :unit => current_user.default_currency) %></span></td>
-			</tr>
-			<tr>
-				<td>Balance</td>
-				<td class="number"><b><%= number_to_currency(@total_selling + @bank_initial, :unit => current_user.default_currency) %></b></td>
-				<td class="number"><b><%= number_to_currency(@total_buying + (@total_selling + @bank_initial - @total_buying), :unit => current_user.default_currency) %></b></td>
-			</tr>
-		</tfoot>
-		<tbody>
-		<%= render @postings %>
-		</tbody>
-	</table>
-	
+		<table id="postings" class="editable-table">
+			<thead>
+				<tr>
+					<th><%= t('posting.created_at') %></th>
+					<th><%= t('posting.attachment_no') %></th>
+					<th><%= t('posting.note') %></th>
+					<th><%= t('posting.account_id') %></th>
+					<th><span class="account-type">Bank</span> <span class="income"><%= t('posting.amount_in') %></span></th>
+					<th><span class="account-type">Bank</span> <span class="expense"><%= t('posting.amount_out') %></span></th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<td colspan="3" rowspan="4"></td>
+					<td>Bevægelse</td>
+					<td class="number"><span class="income"><%= number_to_currency(@total_selling, :unit => current_user.default_currency) %></span></td>
+					<td class="number"><span class="expense"><%= number_to_currency(@total_buying, :unit => current_user.default_currency) %></span></td>
+				</tr>
+				<tr>
+					<td>Beholdning, start</td>
+					<td class="number"><span class="coh"><%= number_to_currency(@bank_initial, :unit => current_user.default_currency) %></span></td>
+					<td class="dimmed"></td>
+				</tr>
+				<tr>
+					<td>Beholdning, slut</td>
+					<td class="dimmed"></td>
+					<td class="number"><span class="coh"><%= number_to_currency(@total_selling + @bank_initial - @total_buying, :unit => current_user.default_currency) %></span></td>
+				</tr>
+				<tr>
+					<td>Balance</td>
+					<td class="number"><b><%= number_to_currency(@total_selling + @bank_initial, :unit => current_user.default_currency) %></b></td>
+					<td class="number"><b><%= number_to_currency(@total_buying + (@total_selling + @bank_initial - @total_buying), :unit => current_user.default_currency) %></b></td>
+				</tr>
+			</tfoot>
+			<tbody>
+			<%= render @postings %>
+			</tbody>
+		</table>
+	<%- else -%>
+		<p>
+			De har ingen registrerede posteringer.
+		</p>
+		
+		<div class="quick-buttons">
+			<%= link_to 'Tilføj postering', new_posting_path, { :class => 'button show', :id => 'add-new-posting' } %>
+		</div>
+		
+		<table id="postings" class="editable-table"></table>
+	<%- end -%>
 </div>
 
 <!-- <div class="grid_3">
