@@ -3,26 +3,35 @@
 		<div class="box">
 		<% form_for(account, :html => {:autocomplete => 'off'}) do |f| -%>
 			<%= error_messages_for :account %>
-			
-			<fieldset>
-				<%= f.label :name, t('account.name') %>
-				<%= f.text_field :name, :size => 20, :maxlength => 128 %>
-			</fieldset>
-			
-			<fieldset>
-				<%= f.label :account_type, t('account.account_type') %>
-				<%= f.select :account_type, [['Købskonto', '1'], ['Salgskonto', '2']], {:prompt => "Vælg konto type"} %>
-			</fieldset>
-			
-			<fieldset>
-				<%= f.label :account_no, t('account.account_no') %>
-				<%= f.text_field :account_no, :size => 10, :maxlength => 10 %>
-			</fieldset>
-			
-			<fieldset>
-				<%= f.label :vat_type, t('account.vat_type') %>
-				<%= f.select :vat_type, [['Momsfrit', '1'], ['Dansk moms 25%', '2'], ['Varekøb i udlandet', '3']], {:prompt => "Vælg momstype"} %>
-			</fieldset>
+
+			<table>
+				<tr>
+					<td>
+						<fieldset>
+							<%= f.label :name, t('account.name') %>
+							<%= f.text_field :name, :size => 20, :maxlength => 128 %>
+						</fieldset>
+					</td>
+					<td>
+						<fieldset>
+							<%= f.label :account_type, t('account.account_type') %>
+							<%= f.select :account_type, [['Købskonto', Account::ACCOUNT_TYPES[:buy]], ['Salgskonto', Account::ACCOUNT_TYPES[:sell]]], {:prompt => "Vælg konto type"} %>
+						</fieldset>
+					</td>
+					<td>
+						<fieldset>
+							<%= f.label :account_no, t('account.account_no') %>
+							<%= f.text_field :account_no, :size => 10, :maxlength => 10 %>
+						</fieldset>
+					</td>
+					<td>
+						<fieldset>
+							<%= f.label :vat_type, t('account.vat_type') %>
+							<%= f.select :vat_type, [['Momsfrit', '1'], ['Dansk moms 25%', '2'], ['Varekøb i udlandet', '3']], {:prompt => "Vælg momstype"} %>
+						</fieldset>
+					</td>
+				</tr>
+			</table>
 			
 			<div class="inline-buttons">
 				<%- if account.new_record? -%>

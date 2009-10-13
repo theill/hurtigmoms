@@ -2,7 +2,7 @@ class AccountsController < ApplicationController
   before_filter :authenticate
   
   def index
-    @accounts = current_user.accounts.all
+    @accounts = current_user.accounts.all(:order => 'account_no')
     
     @account = current_user.accounts.new
     

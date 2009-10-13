@@ -109,8 +109,8 @@ da:
 
   customers:
     index:
-      title: Oversigt over kunder
-      description: ''
+      title: Kunder
+      description: 'Alle'
         
   sessions:
     new:

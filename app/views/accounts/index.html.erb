@@ -1,10 +1,10 @@
-<%- @meta = { :title => t('.title'), :description => t('.descriptino') } -%>
+<%- @meta = { :title => t('.title'), :description => t('.description') } -%>
 <h1><%= t('.title') %><span><%= t('.description') %></span></h1>
 
-<div class="grid_9">
+<div class="grid_12">
 	<div class="quick-buttons">
 		<%= link_to 'Tilføj konto', new_account_path, :class => 'button show' %>
-		<%= link_to 'Tilføj bankkonto', new_account_path, :class => 'button' %>
+		<%= link_to 'Tilføj bankkonto', '#', :class => 'button' %>
 	</div>
 	
 	<table id="accounts" class="editable-table">
@@ -21,13 +21,4 @@
       <%= render @accounts %>
 		</tbody>
 	</table>
-</div>
-
-<div class="grid_3">
-	<div class="sidebar">
-		<h3>Hvordan opretter jeg en konto?</h3>
-		<div>
-			TBD
-		</div>
-	</div>
 </div>

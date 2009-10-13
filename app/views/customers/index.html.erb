@@ -1,45 +1,31 @@
-<%- @meta = { :title => t('.title'), :description => t('.descriptino') } -%>
+<%- @meta = { :title => t('.title'), :description => t('.description') } -%>
 <h1><%= t('.title') %><span><%= t('.description') %></span></h1>
 
-<%- if @customers.empty? -%>
+<%- if @customers.any? -%>
+	<div class="grid_12">
+		<div class="quick-buttons">
+			<%= link_to 'Tilføj kunde', new_customer_path, :class => 'new-customer button show' %>
+		</div>	
 
+		<table id="customers" class="editable-table">
+			<thead>
+				<tr>
+					<th><%= t('customer.name') %></th>
+				</tr>
+			</thead>
+			<tbody>
+			<%= render @customers %>
+			</tbody>
+		</table>
+	</div>
+<%- else -%>
 	<p>
 		Du har ingen kunder registret i systemet.
 	</p>
-	
+
 	<div class="quick-buttons">
 		<%= link_to 'Tilføj kunde', new_customer_path, :class => 'new-customer button show' %>
 	</div>	
-	
+
 	<table id="customers" class="editable-table"></table>
-	
-
-<%- else -%>
-
-<div class="grid_9">
-	<div class="quick-buttons">
-		<%= link_to 'Tilføj kunde', new_customer_path, :class => 'new-customer button show' %>
-	</div>	
-	
-	<table id="customers" class="editable-table">
-		<thead>
-			<tr>
-				<th><%= t('customer.name') %></th>
-			</tr>
-		</thead>
-		<tbody>
-		<%= render @customers %>
-		</tbody>
-	</table>
-</div>
-
-<div class="grid_3">
-	<div class="sidebar">
-		<h3>Hvordan opretter jeg en kunde?</h3>
-		<div>
-			TBD
-		</div>
-	</div>
-</div>
-
 <%- end -%>
