@@ -11,14 +11,6 @@
 	</head>
 	
 	<body class="frontpage">
-		<div class="container_12">
-			<div id="c">
-				<div class="flash"><%= flash[:success] || flash[:failure] || flash[:notice] || flash[:error] %></div>
-				
-				<%= yield %>
-				
-				<div class="clear"></div>
-			</div>
-		</div>		
+		<%= yield %>
 	</body>
 </html>

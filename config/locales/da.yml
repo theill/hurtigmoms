@@ -67,8 +67,8 @@ da:
       sessions:
         unconfirmed_email: Konto er endnu ikke konfirmeret. Konfirmerings mail vil blive gensendt
 
-  signed_out: De har logget ud
-  signed_in: De har logget ind
+  signed_out: ''
+  signed_in: ''
     
   users:
     new:

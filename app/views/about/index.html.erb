@@ -18,47 +18,59 @@
 	<%- end -%>
 	
 <%- else -%>
-<div class="grid_12">
-  <div class="intro">
-  	hurtig bogføring for den lille virksomhed
-  </div>
-  
-  <p>
-    Har du behov for et online bogføringssystem der ikke kræver, man 
-    er revisor? Så er <b>hurtigmoms</b> lige noget for dig!
-  </p>
- 
-	<div class="grid_6 alpha">
-		<h2>Opret gratis konto</h2>
-		<p>
-			Send os enten et af dine bilag på <code>bilag@hurtigmoms.dk</code> og 
-			vi opretter en konto til dig eller benyt den simple <%= link_to('registrering', sign_up_path) %>.
-		</p>
+
+	<div id="h">
+		<div class="container_12">
+			<div class="grid_6">
+				hurtigmoms
+			</div>
+			<div class="grid_6" style="text-align: right">
+				<%= link_to("log in", new_session_path) %>
+			</div>
+		</div>
+	</div>
+
+	<div class="intro">
+		<div class="container_12">
+			<div class="grid_12">
+				<h1>effektiv bogføring</h1>
+				<h3>et enkelt og let system for den lille virksomhed</h3>
+			</div>
+		</div>
 	</div>
 	
-	<div class="grid_6 omega">
-		<h2>Log ind</h2>
-		<p>
-			<%= link_to('Jeg har allerede en konto', sign_in_path) %>
-		</p>
+	<div class="container_12">
+		<div class="grid_6">
+		  <div class="callout">
+		    Har du behov for et online bogføringssystem der ikke kræver, man 
+		    er revisor? Så er <b>hurtigmoms</b> lige noget for dig!
+		  </div>
+		</div>
+		<div class="grid_6">
+			<h2>Opret gratis konto</h2>
+			<p>
+				Send os enten et af dine bilag på <code>bilag@hurtigmoms.dk</code> og 
+				vi opretter en konto til dig eller benyt den simple <%= link_to('registrering', sign_up_path) %>.
+			</p>
+		</div>
+
+		<div class="grid_12">
+			<!--
+			<h4>Unik understøttelse for emails</h4>
+			<p>
+				Hurtigmoms har en unik funktion der gør det muligt at kigge intelligent på 
+				mails du videresender til os. Hvis du fx sender din månedlige "Basecamp" 
+				faktura udtrækkes automatisk faktura dato, beløb, valuta samt beskrivelse 
+				fra mailen og denne indsættes som en ny postering på dit regnskab. Vi sætter
+				endda typen som værende "Varekøb, udland" så moms ikke bliver tillagt.
+			</p>
+	
+			<p>
+			  Indtil videre understøttes Harvest, GitHub, Campaign Monitor, GratisDNS, 
+			  Basecamp og Spotify, men der tilføjes nye hver dag. Skriv til os hvis du 
+			  ønsker at din mail kan forstås af hurtigmoms.
+			</p>
+			-->
+		</div>
 	</div>
-  
-	
-	<!--
-	<h4>Unik understøttelse for emails</h4>
-	<p>
-		Hurtigmoms har en unik funktion der gør det muligt at kigge intelligent på 
-		mails du videresender til os. Hvis du fx sender din månedlige "Basecamp" 
-		faktura udtrækkes automatisk faktura dato, beløb, valuta samt beskrivelse 
-		fra mailen og denne indsættes som en ny postering på dit regnskab. Vi sætter
-		endda typen som værende "Varekøb, udland" så moms ikke bliver tillagt.
-	</p>
-	
-	<p>
-	  Indtil videre understøttes Harvest, GitHub, Campaign Monitor, GratisDNS, 
-	  Basecamp og Spotify, men der tilføjes nye hver dag. Skriv til os hvis du 
-	  ønsker at din mail kan forstås af hurtigmoms.
-	</p>
-	-->
-</div>
 <%- end -%>
