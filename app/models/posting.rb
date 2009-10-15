@@ -18,6 +18,15 @@ class Posting < ActiveRecord::Base
   validates_presence_of :amount
   validates_presence_of :attachment_no
   validates_presence_of :currency
+
+  HUMANIZED_ATTRIBUTES = {
+    :account_id => I18n.t(:account_id, :scope => :posting),
+    :amount => I18n.t(:amount, :scope => :posting)
+  }
+
+  def self.human_attribute_name(attr)
+    HUMANIZED_ATTRIBUTES[attr.to_sym] || super
+  end
   
   named_scope :total_buying, lambda { |year| { :joins => :account, :conditions => ['EXTRACT (YEAR FROM postings.created_at) = ? AND accounts.account_type = ?', year, Account::ACCOUNT_TYPES[:buy]] } }
   named_scope :total_selling, lambda { |year| { :joins => :account, :conditions => ['EXTRACT (YEAR FROM postings.created_at) = ? AND accounts.account_type = ?', year, Account::ACCOUNT_TYPES[:sell]] } }
