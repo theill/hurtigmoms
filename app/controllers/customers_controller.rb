@@ -28,7 +28,6 @@ class CustomersController < ApplicationController
     @customer = current_user.customers.new
 
     respond_to do |format|
-      format.html { render :partial => 'edit' } # new.html.erb
       format.js
     end
   end
@@ -38,7 +37,6 @@ class CustomersController < ApplicationController
     @customer = current_user.customers.find(params[:id])
     
     respond_to do |format|
-      format.html { render :partial => 'edit' }
       format.js
     end
   end
@@ -50,11 +48,9 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to(customers_url) }
         format.xml  { render :xml => @customer, :status => :created, :location => @customer }
         format.js
       else
-        format.html { render :action => "new" }
         format.xml  { render :xml => @customer.errors, :status => :unprocessable_entity }
         format.js
       end
@@ -68,11 +64,9 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.update_attributes(params[:customer])
-        format.html { redirect_to(customers_url) }
         format.xml  { head :ok }
         format.js
       else
-        format.html { render :action => "edit" }
         format.xml  { render :xml => @customer.errors, :status => :unprocessable_entity }
         format.js
       end
@@ -86,13 +80,12 @@ class CustomersController < ApplicationController
     @customer.destroy
 
     respond_to do |format|
-      format.html { redirect_to(customers_url) }
       format.js
     end
   end
   
   def search
-    @customers = current_user.customers.all(:conditions => ['lower(name) LIKE ?', params[:q].downcase + '%'])
+    @customers = current_user.customers.all(:conditions => ['LOWER(name) LIKE ?', params[:q].downcase + '%'])
 
     respond_to do |format|
       format.json { render :json => @customers }

@@ -1,10 +1,13 @@
 <%- if @customer.errors.empty? %>
-
 	$("#<%= dom_id(@customer) %>").replaceWith("<%= escape_javascript(render(@customer)) %>");
 	$("#<%= dom_id(@customer) %>").effect("highlight");
 
 	$("#<%= dom_id(@customer) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
-
 <%- else -%>
-	alert('not updated');
+	// render edit form (again but now with errors)
+	$("#<%= dom_id(@customer) %>").replaceWith("<%= escape_javascript(render(:partial => 'edit', :locals => { :customer => @customer })) %>");
+	$("#<%= dom_id(@customer) %>").effect("highlight", {color: "#ff9999"});
+
+	// rebind events
+	$("#<%= dom_id(@customer) %> form").ajaxForm({	dataType: "script" });
 <%- end %>
