@@ -397,8 +397,9 @@ body.frontpage {
 	}
 
 	body.frontpage #h {
-		background: -webkit-gradient(linear, left top, left bottom, from(#cccccc), to(#eeeeee));
 		background-color: #ccc;
+		background: -webkit-gradient(linear, left top, left bottom, from(#cccccc), to(#eeeeee));
+		background: -moz-linear-gradient(top left, bottom right, from(#cccccc), to(#eeeeee));
 		border-bottom: solid 1px #666;
 		margin: 0;
 		height: 50px;
@@ -408,6 +409,7 @@ body.frontpage {
 	body.frontpage .intro {
 		background-color: #6bc5e7;
 		background: -webkit-gradient(linear, right top, left bottom, from(#6bc5e7), to(#1d75bc));
+		background: -moz-linear-gradient(top right, bottom left, from(#6bc5e7), to(#1d75bc));
 		border-bottom: solid 1px #1d75bc;
 		height: 200px;
 		color: #fff;
