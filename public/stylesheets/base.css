@@ -95,7 +95,7 @@ td.number {
 	margin-bottom: 10px;
 }
 	.errorExplanation h2 {
-		font-size: 16px;
+		display: none;
 	}
 
 .fieldWithErrors {

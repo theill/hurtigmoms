@@ -10,6 +10,16 @@ class Account < ActiveRecord::Base
   validates_presence_of :account_type
   validates_presence_of :vat_type
   
+  HUMANIZED_ATTRIBUTES = {
+    :name => I18n.t(:name, :scope => :account),
+    :account_type => I18n.t(:account_type, :scope => :account),
+    :vat_type => I18n.t(:vat_type, :scope => :account)
+  }
+
+  def self.human_attribute_name(attr)
+    HUMANIZED_ATTRIBUTES[attr.to_sym] || super
+  end
+  
   attr_accessible :name, :account_type, :vat_type, :account_no
   
 end
