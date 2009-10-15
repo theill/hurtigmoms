@@ -1,11 +1,11 @@
 <tr id="<%= dom_id(customer) %>" class="customer row-editing">
 	<td>
 		<div class="box">
-			<% form_for(customer) do |f| %>
+			<% form_for(customer, :html => {:autocomplete => 'off'}) do |f| %>
 			  <%= f.error_messages %>
 
 			  <fieldset>
-					<%= f.label :name, t('customer.name') %>
+					<%= f.label :name, t('customer.name') + ' <span class="req">*</span>' %>
 			    <%= f.text_field :name %>
 			  </fieldset>
 			  <fieldset>

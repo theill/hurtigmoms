@@ -2,7 +2,7 @@
 	<td colspan="6">
 		<div class="box">
 		<% form_for(posting, :html => {:autocomplete => 'off'}) do |f| -%>
-			<%= error_messages_for :posting %>
+			<%= f.error_messages %>
 			
 			<table>
 				<tr>

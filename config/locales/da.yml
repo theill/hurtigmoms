@@ -40,10 +40,12 @@ da:
     account_type_buy: Køb
     account_type_sell: Salg
     account_type_unknown: -
+    pick_account_type: Vælg konto type
     vat_type_standard: Standard
     vat_type_none: Ingen
     vat_type_other_country: Udland
     vat_type_unknown: -
+    pick_vat_type: Vælg moms type
   
   customer:
     name: Navn
