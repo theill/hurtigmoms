@@ -7,6 +7,7 @@
 
 hurtigmoms = {
 	locale: 'da',
+	currency: 'DKK',
 	customers_url: '/kunder/search',
 	
 	convertNumber: function(number, from, to) {
@@ -21,6 +22,35 @@ hurtigmoms = {
 		}
 	},
 	
+	/**
+	 * @param amount Number in English format
+	 */
+	formatNumberWithCurrency: function(amount) {
+    var delimiter = "."; // replace dot if desired
+    var commaDelimiter = ",";
+    
+    var a = amount.split('.', 2)
+    var d = a[1];
+    var i = parseInt(a[0]);
+    if(isNaN(i)) { return ''; }
+    var minus = '';
+    if(i < 0) { minus = '-'; }
+    i = Math.abs(i);
+    var n = new String(i);
+    var a = [];
+    while(n.length > 3) {
+      var nn = n.substr(n.length-3);
+      a.unshift(nn);
+      n = n.substr(0,n.length-3);
+    }
+    if(n.length > 0) { a.unshift(n); }
+    n = a.join(delimiter);
+    if(d.length < 1) { amount = n; }
+    else { amount = n + commaDelimiter + d; }
+    amount = minus + amount;
+    return hurtigmoms.currency + ' ' + amount;
+  },
+	
 	posting: {
 		vat: function(amount) {
 			try {
@@ -33,7 +63,7 @@ hurtigmoms = {
 				amount = 0.0;
 			}
 
-			return hurtigmoms.convertNumber(amount.toFixed(2), 'en', hurtigmoms.locale);
+			return hurtigmoms.formatNumberWithCurrency(amount.toFixed(2));
 		}
 	}
 }
