@@ -50,6 +50,9 @@ Rails::Initializer.run do |config|
       # clean existing jobs to avoid running inbox checks multiple times
       Delayed::Job.delete_all
       
+      # quiet log
+      Delayed::Worker.logger = nil
+      
       # queue initial inbox check
       Delayed::Job.enqueue Inbox.new
     end
