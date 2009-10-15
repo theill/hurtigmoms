@@ -23,32 +23,19 @@ hurtigmoms = {
 	},
 	
 	/**
-	 * @param amount Number in English format
+	 * @param amount Number (as a string) in English format
 	 */
 	formatNumberWithCurrency: function(amount) {
-    var delimiter = "."; // replace dot if desired
+    var delimiter = ".";
     var commaDelimiter = ",";
-    
-    var a = amount.split('.', 2)
-    var d = a[1];
-    var i = parseInt(a[0]);
-    if(isNaN(i)) { return ''; }
-    var minus = '';
-    if(i < 0) { minus = '-'; }
-    i = Math.abs(i);
-    var n = new String(i);
-    var a = [];
-    while(n.length > 3) {
-      var nn = n.substr(n.length-3);
-      a.unshift(nn);
-      n = n.substr(0,n.length-3);
+	  
+    x = amount.split('.', 2);
+    t = x[0];
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(t)) {
+      t = t.replace(rgx, '$1' + delimiter + '$2');
     }
-    if(n.length > 0) { a.unshift(n); }
-    n = a.join(delimiter);
-    if(d.length < 1) { amount = n; }
-    else { amount = n + commaDelimiter + d; }
-    amount = minus + amount;
-    return hurtigmoms.currency + ' ' + amount;
+    return hurtigmoms.currency + ' ' + t + ((x.length > 1) ? commaDelimiter + x[1] : '');
   },
 	
 	posting: {
