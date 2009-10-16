@@ -25,7 +25,7 @@
 				hurtigmoms
 			</div>
 			<div class="grid_6" style="text-align: right">
-				<%= link_to("log in", new_session_path) %>
+				<%= link_to("log ind", new_session_path) %>
 			</div>
 		</div>
 	</div>
@@ -47,13 +47,20 @@
 		  </div>
 		</div>
 		<div class="grid_6">
-			<h2>Opret gratis konto</h2>
+			<div style="background-color: #ffc; padding: 20px; margin-top: -80px">
+			<h2>Vær hurtig og tilmeld dig gratis nu!</h2>
 			<p>
-				Send os enten et af dine bilag på <code>bilag@hurtigmoms.dk</code> og 
-				vi opretter en konto til dig eller benyt den simple <%= link_to('registrering', sign_up_path) %>.
+				Hurtigmoms er i <b>beta</b> og det er derfor gratis at tilmelde sig. 
+				Du kan enten vælge at:
 			</p>
+			<ol>
+				<li>sende os et bilag på <code>bilag@hurtigmoms.dk</code> og 
+				vi opretter en konto til dig inden for et minut.</li>
+				<li>benytter vores <%= link_to('tilmeldingsformular', sign_up_path) %></li>
+			</ol>
+			</div>
 		</div>
-
+		
 		<div class="grid_12">
 			<!--
 			<h4>Unik understøttelse for emails</h4>
@@ -72,5 +79,12 @@
 			</p>
 			-->
 		</div>
+
+		<div class="clear"></div>
+		
+		<div id="f">
+			Udviklet af <%= link_to('Commanigy ApS', 'http://commanigy.com/') %>
+		</div>
+		
 	</div>
 <%- end -%>

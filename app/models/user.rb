@@ -12,6 +12,16 @@ class User < ActiveRecord::Base
   validates_presence_of :company
   validates_format_of :cvr, :with => /^[\d]+$/, :allow_nil => true, :allow_blank => true
   validates_length_of :cvr, :is => 8, :allow_nil => true, :allow_blank => true
+
+  HUMANIZED_ATTRIBUTES = {
+    :company => I18n.t(:company, :scope => :user),
+    :email => I18n.t(:email, :scope => :user),
+    :password => I18n.t(:password, :scope => :user)
+  }
+
+  def self.human_attribute_name(attr)
+    HUMANIZED_ATTRIBUTES[attr.to_sym] || super
+  end
   
   def default_currency
     'DKK'

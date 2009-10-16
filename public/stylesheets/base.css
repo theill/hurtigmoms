@@ -416,7 +416,7 @@ body.frontpage {
   }
 		body.frontpage .intro h1 {
 			font-family: "Cambria","Georgia","Times New Roman",Times,sans-serif;
-			font-size: 36px;
+			font-size: 48px;
 			margin: 20px 0 0 0;
 		}
 		body.frontpage .intro h3 {
@@ -432,7 +432,18 @@ body.frontpage {
 	body.frontpage .button {
 		font-family: "Cambria","Georgia","Times New Roman",Times,sans-serif;
 		font-size: 20px;
+		
+		background: -webkit-gradient(linear, right top, left bottom, from(#6be7c5), to(#1dbc75));
+		background: -moz-linear-gradient(top right, bottom left, from(#6be7c5), to(#1dbc75));
+		text-decoration: none;
+		text-transform: none;
+		color: #fff;
 	}
+
+	body.frontpage #f {
+		margin-top: 180px;
+	}
+
 
 #reports {}
 	#reports dl.report-details {
