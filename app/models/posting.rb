@@ -2,6 +2,8 @@ class Posting < ActiveRecord::Base
   belongs_to :user
   belongs_to :account
   belongs_to :customer
+  belongs_to :fiscal_year
+  
   has_attached_file :attachment,
     :storage => :s3,
     :s3_credentials => File.join(Rails.root, 'config', 'amazon_s3.yml'),

@@ -1,0 +1,2 @@
+class FiscalYearsController < ApplicationController
+end

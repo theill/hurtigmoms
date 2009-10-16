@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :postings, :dependent => :destroy
   has_many :accounts, :dependent => :destroy
   has_many :customers, :dependent => :destroy
+  has_many :fiscal_years, :depedent => :destroy
   
   after_create :setup_default_accounts
   
