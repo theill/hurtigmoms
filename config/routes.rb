@@ -9,19 +9,12 @@ ActionController::Routing::Routes.draw do |map|
     users.resource :confirmation, :controller => 'clearance/confirmations', :only => [:new, :create]
   end
   
-  map.resource  :session,
-    :only       => [:new, :create, :destroy]
-
-  map.sign_up  'sign_up',
-    :controller => :users,
-    :action     => 'new'
-  map.sign_in  'sign_in',
-    :controller => :sessions,
-    :action     => 'new'
-  map.sign_out 'sign_out',
-    :controller => :sessions,
-    :action     => 'destroy',
-    :method     => :delete
+  map.resource  :session, :only => [:new, :create, :destroy]
+  
+  map.settings  'settings', :controller => :users, :action => :edit
+  map.sign_up   'sign_up', :controller => :users, :action => 'new'
+  map.sign_in   'sign_in', :controller => :sessions, :action => 'new'
+  map.sign_out  'sign_out', :controller => :sessions, :action => 'destroy', :method => :delete
   
   map.api 'api', :controller => 'about', :action => 'api'
   map.tour 'tour', :controller => 'about', :action => 'tour'

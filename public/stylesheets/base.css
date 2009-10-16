@@ -50,7 +50,7 @@ fieldset label {
 .hint {
 	color: #999;
 	font-size: 11px;
-	margin-top: 4px;
+	margin: 4px 0 0 0;
 	padding-left: 8px;
 }
 

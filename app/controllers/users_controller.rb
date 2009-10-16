@@ -11,7 +11,7 @@ class UsersController < Clearance::UsersController
     respond_to do |format|
       if @user.update_attributes(params[:user])
         flash[:success] = I18n.t('user.updated.success')
-        format.html { redirect_to(edit_user_path(@user)) }
+        format.html { redirect_to(settings_url) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

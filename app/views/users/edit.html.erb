@@ -5,9 +5,9 @@
 	<%= f.error_messages %>
 	
 	<fieldset>
-		<h3><%= f.label :company, t('user.company') %></h3>
-		<p>Dit firmanavn vises i toppen af hver side.</p>
+		<%= f.label :company, t('user.company') + ' <span class="req">*</span>'%>
 		<%= f.text_field :company %>
+		<p class="hint">Dit firmanavn vises i toppen af hver side samt på udskrevne sider</p>
 	</fieldset>
 	
 	<fieldset>
