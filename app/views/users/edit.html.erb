@@ -7,12 +7,18 @@
 	<fieldset>
 		<%= f.label :company, t('user.company') + ' <span class="req">*</span>'%>
 		<%= f.text_field :company %>
-		<p class="hint">Dit firmanavn vises i toppen af hver side samt på udskrevne sider</p>
+		<p class="hint">Firmanavn vises på fx på udskrevne rapporter</p>
 	</fieldset>
 	
 	<fieldset>
 		<%= f.label :cvr, t('user.cvr') %>
 		<%= f.text_field :cvr %>
+	</fieldset>
+	
+	<fieldset>
+		<%= f.label :active_fiscal_year, t('user.active_fiscal_year') %>
+		<%= f.select(:active_fiscal_year, options_from_collection_for_select(@user.fiscal_years, 'id', 'name', @user.active_fiscal_year)) %>
+		<p class="hint">Det er endnu ikke muligt at oprette nye regnskaber</p>
 	</fieldset>
 	
 	<fieldset>

@@ -4,9 +4,10 @@ class User < ActiveRecord::Base
   has_many :postings, :dependent => :destroy
   has_many :accounts, :dependent => :destroy
   has_many :customers, :dependent => :destroy
-  has_many :fiscal_years, :depedent => :destroy
+  has_many :fiscal_years, :dependent => :destroy
+  belongs_to :active_fiscal_year, :class_name => 'FiscalYear'
   
-  after_create :setup_default_accounts
+  after_create :setup_default_accounts, :set_active_fiscal_year
   
   attr_accessible :company, :cvr
   
@@ -54,6 +55,14 @@ class User < ActiveRecord::Base
       ['3661', 'Avis', Account::VAT_TYPES[:none]]
     ].each do |account_no, name, vat|
       self.accounts.create(:name => name, :account_no => account_no, :vat_type => vat, :account_type => Account::ACCOUNT_TYPES[:buy])
+    end
+  end
+  
+  def set_active_fiscal_year
+    if self.active_fiscal_year.nil?
+      current_year = Date.today.year
+      year = self.fiscal_years.create(:start_date => Date.new(current_year), :end_date => (Date.new(current_year + 1) - 1.day), :name => 'Regnskab ' + current_year.to_s)
+      self.update_attribute(:active_fiscal_year_id, year.id)
     end
   end
   

@@ -1,13 +1,13 @@
 class PostingsController < ApplicationController
-  before_filter :authenticate
+  before_filter :authenticate, :get_fiscal_year
   
   # GET /postings
   # GET /postings.xml
   def index
-    @postings = current_user.postings.all(:include => :account, :order => 'created_at DESC')
+    @postings = @fiscal_year.postings.all(:include => [:account, :customer], :order => 'created_at DESC')
     
-    @total_selling = current_user.postings.total_selling(2009).sum(:amount)
-    @total_buying = current_user.postings.total_buying(2009).sum(:amount)
+    @total_selling = @fiscal_year.postings.total_selling(2009).sum(:amount)
+    @total_buying = @fiscal_year.postings.total_buying(2009).sum(:amount)
     
     @bank_initial = 0
     
@@ -20,7 +20,7 @@ class PostingsController < ApplicationController
   # GET /postings/1
   # GET /postings/1.xml
   def show
-    @posting = current_user.postings.find(params[:id])
+    @posting = @fiscal_year.postings.find(params[:id])
     
     respond_to do |format|
       format.xml  { render :xml => @posting }
@@ -31,7 +31,7 @@ class PostingsController < ApplicationController
   # GET /postings/new
   # GET /postings/new.xml
   def new
-    @posting = current_user.postings.new
+    @posting = @fiscal_year.postings.new
     @posting.set_attachment_no
     
     respond_to do |format|
@@ -42,7 +42,7 @@ class PostingsController < ApplicationController
   
   # GET /postings/1/edit
   def edit
-    @posting = current_user.postings.find(params[:id])
+    @posting = @fiscal_year.postings.find(params[:id])
     
     respond_to do |format|
       format.xml  { render :xml => @posting }
@@ -53,7 +53,7 @@ class PostingsController < ApplicationController
   # POST /postings
   # POST /postings.xml
   def create
-    @posting = current_user.postings.new(params[:posting])
+    @posting = @fiscal_year.postings.new(params[:posting])
     
     respond_to do |format|
       if @posting.save
@@ -69,7 +69,7 @@ class PostingsController < ApplicationController
   # PUT /postings/1
   # PUT /postings/1.xml
   def update
-    @posting = current_user.postings.find(params[:id])
+    @posting = @fiscal_year.postings.find(params[:id])
     
     respond_to do |format|
       if @posting.update_attributes(params[:posting])
@@ -85,7 +85,7 @@ class PostingsController < ApplicationController
   # DELETE /postings/1
   # DELETE /postings/1.xml
   def destroy
-    @posting = current_user.postings.find(params[:id])
+    @posting = @fiscal_year.postings.find(params[:id])
     @posting.destroy
     
     respond_to do |format|
@@ -98,8 +98,14 @@ class PostingsController < ApplicationController
     # http://docs.google.com/viewer
 		# <a href="http://docs.google.com/viewer?url=<%= @posting.authenticated_url %>&embedded=true">vis bilag</a>
 
-    @posting = current_user.postings.find(params[:id])
+    @posting = @fiscal_year.postings.find(params[:id])
     
     redirect_to @posting.authenticated_url
+  end
+  
+  private
+  
+  def get_fiscal_year
+    @fiscal_year = current_user.fiscal_years.find(params[:fiscal_year_id])
   end
 end

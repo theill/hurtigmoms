@@ -12,7 +12,7 @@ class MailParser
     account = user.accounts.find_by_account_no_and_account_type(account_no, Account::ACCOUNT_TYPES[:buy])
     parsed_attributes.merge!(:account_id => account.id, :attachment_email => mail.to_s)
     
-    posting = user.postings.create! parsed_attributes
+    posting = user.active_fiscal_year.postings.create! parsed_attributes
     associate_attachments(posting, mail) if mail.has_attachments?
   end
   
@@ -21,7 +21,7 @@ class MailParser
   def setup_user(mail)
     Rails.logger.debug "User with email #{mail.from} not found so will be created"
     pwd = generate_password
-    user = ::User.new(:email => mail.from.to_s, :password => pwd, :password_confirmation => pwd, :company => 'Mit firma')
+    user = ::User.new(:email => mail.from.to_s, :password => pwd, :password_confirmation => pwd, :company => 'Mit firmanavn')
     ::SignupMailer.deliver_created(user, pwd, mail.subject) if user.save
     user
   end

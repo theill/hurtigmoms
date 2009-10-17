@@ -8,6 +8,10 @@ Factory.define :user do |user|
   user.password_confirmation { "password" }
 end
 
+Factory.define :fiscal_year do |f|
+
+end
+
 Factory.define :email_confirmed_user, :parent => :user do |user|
   user.email_confirmed { true }
 end

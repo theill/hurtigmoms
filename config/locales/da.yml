@@ -18,6 +18,7 @@ da:
     email: E-mail
     password: Kodeord
     password_confirmation: Bekræft kodeord
+    active_fiscal_year: Aktivt regnskabsår
     updated:
       success: Indstillingerne er gemt
     
@@ -31,6 +32,8 @@ da:
     customer_id: Kunde
     amount_in: Indsat
     amount_out: Hævet
+    including_vat: inkl. moms
+    excluding_vat: eksl. moms
     
   account:
     name: Navn

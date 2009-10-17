@@ -15,7 +15,7 @@ class Posting < ActiveRecord::Base
   STATES = { :accepted => 'A', :pending => 'P', :deleted => 'D' }
   
   # validates_uniqueness_of :attachment_no, :scope => :user_id
-  validates_presence_of :user_id
+  validates_presence_of :fiscal_year_id
   validates_presence_of :account_id
   validates_presence_of :amount
   validates_presence_of :attachment_no
@@ -63,7 +63,7 @@ class Posting < ActiveRecord::Base
   end
   
   def set_attachment_no
-    self.attachment_no = (self.user.postings.maximum(:attachment_no) || 0) + 1 if self.attachment_no == 0
+    self.attachment_no = (self.fiscal_year.postings.maximum(:attachment_no) || 0) + 1 if self.attachment_no == 0
   end
 
   protected
@@ -81,7 +81,7 @@ class Posting < ActiveRecord::Base
   end
   
   def set_customer
-    self.customer = self.user.customers.find_or_create_by_name(self.customer_name) unless self.customer_name.blank?
+    self.customer = self.active_fiscal_year.user.customers.find_or_create_by_name(self.customer_name) unless self.customer_name.blank?
   end
   
 end

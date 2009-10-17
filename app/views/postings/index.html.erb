@@ -1,10 +1,10 @@
 <%- @meta = { :title => t('.title'), :description => t('.description') } -%>
-<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
+<h1><%= t('.title') %><span><%=h @fiscal_year.name %></span></h1>
 
 <div class="grid_12">
 	<%- if @postings.any? -%>
 		<div class="quick-buttons">
-			<%= link_to 'Tilføj postering', new_posting_path, { :class => 'button show', :id => 'add-new-posting' } %>
+			<%= link_to 'Tilføj postering', new_fiscal_year_posting_path(current_user.active_fiscal_year), { :class => 'button show', :id => 'add-new-posting' } %>
 		</div>
 	
 		<table id="postings" class="editable-table">
@@ -51,7 +51,7 @@
 		</p>
 		
 		<div class="quick-buttons">
-			<%= link_to 'Tilføj postering', new_posting_path, { :class => 'button show', :id => 'add-new-posting' } %>
+			<%= link_to 'Tilføj postering', new_fiscal_year_posting_path(current_user.active_fiscal_year), { :class => 'button show', :id => 'add-new-posting' } %>
 		</div>
 		
 		<table id="postings" class="editable-table"></table>

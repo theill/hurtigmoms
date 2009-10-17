@@ -16,6 +16,14 @@ Given /^I signed up with "(.*)\/(.*)"$/ do |email, password|
     :password              => password,
     :password_confirmation => password,
     :company => 'Foobar Corporation'
+  
+  fiscal_year = Factory :fiscal_year,
+    :user_id => user.id,
+    :name => 'Regnskab 2009',
+    :start_date => Date.new(2009, 1, 1),
+    :end_date => Date.new(2010, 1, 1) - 1.day
+    
+  user.active_fiscal_year = fiscal_year
 end 
 
 Given /^I am signed up and confirmed as "(.*)\/(.*)"$/ do |email, password|
@@ -24,6 +32,14 @@ Given /^I am signed up and confirmed as "(.*)\/(.*)"$/ do |email, password|
     :password              => password,
     :password_confirmation => password,
     :company => 'Foobar Corporation'
+
+  fiscal_year = Factory :fiscal_year,
+    :user_id => user.id,
+    :name => 'Regnskab 2009',
+    :start_date => Date.new(2009, 1, 1),
+    :end_date => Date.new(2010, 1, 1) - 1.day
+
+  user.active_fiscal_year = fiscal_year
 end
 
 # Session

@@ -1,7 +1,7 @@
 <tr id="<%= dom_id(posting) %>" class="posting row-editing">
 	<td colspan="6">
 		<div class="box">
-		<% form_for(posting, :html => {:autocomplete => 'off'}) do |f| -%>
+		<% form_for([posting.fiscal_year, posting], :html => {:autocomplete => 'off'}) do |f| -%>
 			<%= f.error_messages %>
 			
 			<table>
@@ -26,7 +26,7 @@
 					</td>
 					<td>
 						<fieldset>
-							<%= f.label :amount, t('posting.amount') + ' <span class="req">*</span>'  %>
+							<%= f.label :amount, t('posting.amount') + ' <span class="req">*</span><span class="hint">' + t('posting.including_vat') + '</span>' %>
 							<%= f.text_field :amount, :size => 10, :maxlength => 10, :class => 'amount-no-vat' %> <%= f.select :currency, Currency::SUPPORTED %>
 						</fieldset>
 					</td>
@@ -40,7 +40,7 @@
 								<%= link_to('vis pdf', '#', :class => 'show-attachment') %>
 							<%- end -%>
 							<%- if posting.attachment? -%>
-								<%= link_to('hent', download_posting_path(posting)) %>
+								<%= link_to('hent', download_fiscal_year_posting_path(current_user.active_fiscal_year, posting)) %>
 							<%- end -%>
 						</fieldset>
 					</td>
@@ -72,11 +72,11 @@
 			
 			<div class="inline-buttons">
 				<%- if posting.new_record? -%>
-				  <%= f.submit t('.buttons.save') %> <%= link_to(t('buttons.close'), postings_path, :class => 'close') %>
+				  <%= f.submit t('.buttons.save') %> <%= link_to(t('buttons.close'), fiscal_year_postings_path(current_user.active_fiscal_year), :class => 'close') %>
 				<%- else -%>
-					<%= f.submit t('.buttons.save') %> <%= link_to t('buttons.close'), posting_path(posting, :format => :js), :class => 'show' %>
+					<%= f.submit t('.buttons.save') %> <%= link_to t('buttons.close'), fiscal_year_posting_path(current_user.active_fiscal_year, posting, :format => :js), :class => 'show' %>
 					
-					<div class="inline-actions"><%= link_to(t('buttons.delete'), posting, :class => 'delete') %> denne postering</div>
+					<div class="inline-actions"><%= link_to(t('buttons.delete'), [current_user.active_fiscal_year, posting], :class => 'delete') %> denne postering</div>
 				<%- end -%>
 			</div>
 		<%- end -%>

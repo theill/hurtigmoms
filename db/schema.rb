@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091007171846) do
+ActiveRecord::Schema.define(:version => 20091016080417) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -42,8 +42,16 @@ ActiveRecord::Schema.define(:version => 20091007171846) do
     t.datetime "updated_at"
   end
 
+  create_table "fiscal_years", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.date     "start_date", :null => false
+    t.date     "end_date",   :null => false
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "postings", :force => true do |t|
-    t.integer  "user_id",                                                 :null => false
     t.integer  "account_id",                                              :null => false
     t.decimal  "amount",                                                  :null => false
     t.datetime "created_at"
@@ -57,23 +65,25 @@ ActiveRecord::Schema.define(:version => 20091007171846) do
     t.text     "attachment_email"
     t.string   "state",                   :limit => 1, :default => "A",   :null => false
     t.integer  "customer_id"
+    t.integer  "fiscal_year_id",                                          :null => false
   end
 
   create_table "users", :force => true do |t|
     t.string   "email"
-    t.string   "encrypted_password", :limit => 128
-    t.string   "salt",               :limit => 128
-    t.string   "confirmation_token", :limit => 128
-    t.string   "remember_token",     :limit => 128
-    t.boolean  "email_confirmed",                   :default => false, :null => false
+    t.string   "encrypted_password",    :limit => 128
+    t.string   "salt",                  :limit => 128
+    t.string   "confirmation_token",    :limit => 128
+    t.string   "remember_token",        :limit => 128
+    t.boolean  "email_confirmed",                      :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "company"
     t.string   "cvr"
+    t.integer  "active_fiscal_year_id"
   end
 
-  add_index "users", ["confirmation_token", "id"], :name => "index_users_on_id_and_confirmation_token"
   add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["id", "confirmation_token"], :name => "index_users_on_id_and_confirmation_token"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end

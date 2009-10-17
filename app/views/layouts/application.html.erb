@@ -5,8 +5,8 @@
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		<meta http-equiv="imagetoolbar" content="no" />
 		<meta name="description" content="<%=h description %>" />
-		<%= javascript_include_tag('jquery-1.3.2.min', 'jquery-ui.min', 'jquery.form', 'date', 'date_da', 'jquery.datePicker.min-2.1.2', 'jquery.autocomplete', 'application', :cache => true) %>
-		<%= stylesheet_link_tag('reset', 'text', '960', 'datePicker', 'autocomplete', 'base', :cache => true) %>
+		<%= javascript_include_tag('jquery-1.3.2.min', 'jquery-ui.min', 'jquery.form', 'date', 'date_da', 'jquery.datePicker.min-2.1.2', 'jquery.autocomplete', 'application') %>
+		<%= stylesheet_link_tag('reset', 'text', '960', 'datePicker', 'autocomplete', 'base') %>
 		<%= yield :head -%>
 	</head>
 	
@@ -18,7 +18,7 @@
 						<ul>
 							<li class="application-name"><%= company_title %></li>
 							<%= menu_tag(t('.home'), root_path) %>
-							<%= menu_tag(t('.postings'), postings_path) %>
+							<%= menu_tag(t('.postings'), fiscal_year_postings_path(current_user.active_fiscal_year)) %>
 							<%= menu_tag(t('.accounts'), accounts_path) %>
 							<%= menu_tag(t('.reports'), reports_path) %>
 							<%= menu_tag(t('.customers'), customers_path) %>

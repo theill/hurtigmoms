@@ -16,8 +16,8 @@ module NavigationHelpers
       new_session_path
     when /the password reset request page/i
       new_password_path
-  	when /the postings page/i
-  	  postings_path
+    when /the postings page/i
+      fiscal_year_postings_path(FiscalYear.first)
     
     # Add more mappings here.
     # Here is a more fancy example:

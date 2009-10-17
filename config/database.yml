@@ -39,9 +39,12 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test: &TEST
-  adapter: sqlite3
-  database: db/test.sqlite3
-  timeout: 5000
+  adapter: postgresql
+  encoding: unicode
+  database: hurtigmoms_test
+  pool: 5
+  username: root
+  password:
 
 production:
   adapter: postgresql

@@ -30,6 +30,8 @@ en:
     customer_id: Customer
     amount_in: In
     amount_out: Out
+    including_vat: incl. vat
+    excluding_vat: excl. vat
 
   account:
     name: Name
