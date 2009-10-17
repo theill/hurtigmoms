@@ -81,7 +81,7 @@ class Posting < ActiveRecord::Base
   end
   
   def set_customer
-    self.customer = self.active_fiscal_year.user.customers.find_or_create_by_name(self.customer_name) unless self.customer_name.blank?
+    self.customer = self.fiscal_year.user.customers.find_or_create_by_name(self.customer_name) unless self.customer_name.blank?
   end
   
 end
