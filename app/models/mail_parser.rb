@@ -7,6 +7,9 @@ class MailParser
     
     parsed_attributes = recognize_and_parse_mail(mail)
     
+    # ensure to uppercase currency in case it's available
+    parsed_attributes[:currency] = parsed_attributes[:currency].upcase if parsed_attributes[:currency]
+    
     # only supporting 'buying' at the moment
     account_no = (parsed_attributes[:currency] == 'DKK' ? '1300' : '1308')
     account = user.accounts.find_by_account_no_and_account_type(account_no, Account::ACCOUNT_TYPES[:buy])
