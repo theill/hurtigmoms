@@ -96,13 +96,13 @@ class PostingsController < ApplicationController
   
   def download
     # http://docs.google.com/viewer
-		# <a href="http://docs.google.com/viewer?url=<%= @posting.authenticated_url %>&embedded=true">vis bilag</a>
+    # <a href="http://docs.google.com/viewer?url=<%= @posting.authenticated_url %>&embedded=true">vis bilag</a>
 
     @posting = @fiscal_year.postings.find(params[:id])
     
     redirect_to @posting.authenticated_url
   end
-  
+    
   private
   
   def get_fiscal_year

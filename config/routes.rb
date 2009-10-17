@@ -14,6 +14,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resource  :session, :only => [:new, :create, :destroy]
   
+  map.import_postings 'import/postings', :controller => :import, :action => :postings
+  
   map.settings  'settings', :controller => :users, :action => :edit
   map.sign_up   'sign_up', :controller => :users, :action => 'new'
   map.sign_in   'sign_in', :controller => :sessions, :action => 'new'
