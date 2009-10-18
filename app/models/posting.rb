@@ -12,13 +12,11 @@ class Posting < ActiveRecord::Base
     :path => ":attachment/:id/:style.:extension",
     :bucket => 'hurtigmoms'
     
-  STATES = { :accepted => 'A', :pending => 'P', :deleted => 'D' }
+  STATES = { :accepted => 'A', :pending => 'P', :imported => 'I', :deleted => 'D' }
   
-  # validates_uniqueness_of :attachment_no, :scope => :user_id
   validates_presence_of :fiscal_year_id
   validates_presence_of :account_id
   validates_presence_of :amount
-  validates_presence_of :attachment_no
   validates_presence_of :currency
 
   HUMANIZED_ATTRIBUTES = {
@@ -69,7 +67,7 @@ class Posting < ActiveRecord::Base
   protected
   
   def set_currency
-    self.currency = 'DKK' if self.currency.nil?
+    self.currency = self.fiscal_year.user.default_currency if self.currency.nil?
   end
   
   def reset_state

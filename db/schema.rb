@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091016080417) do
+ActiveRecord::Schema.define(:version => 20091018175841) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -51,6 +51,14 @@ ActiveRecord::Schema.define(:version => 20091016080417) do
     t.datetime "updated_at"
   end
 
+  create_table "posting_imports", :force => true do |t|
+    t.integer  "user_id",                                  :null => false
+    t.text     "data",                                     :null => false
+    t.string   "state",      :limit => 1, :default => "N", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "postings", :force => true do |t|
     t.integer  "account_id",                                              :null => false
     t.decimal  "amount",                                                  :null => false
@@ -60,7 +68,7 @@ ActiveRecord::Schema.define(:version => 20091016080417) do
     t.string   "attachment_file_name"
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
-    t.integer  "attachment_no",                        :default => 0,     :null => false
+    t.integer  "attachment_no",                        :default => 0
     t.string   "currency",                             :default => "DKK", :null => false
     t.text     "attachment_email"
     t.string   "state",                   :limit => 1, :default => "A",   :null => false
@@ -82,8 +90,8 @@ ActiveRecord::Schema.define(:version => 20091016080417) do
     t.integer  "active_fiscal_year_id"
   end
 
+  add_index "users", ["confirmation_token", "id"], :name => "index_users_on_id_and_confirmation_token"
   add_index "users", ["email"], :name => "index_users_on_email"
-  add_index "users", ["id", "confirmation_token"], :name => "index_users_on_id_and_confirmation_token"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end

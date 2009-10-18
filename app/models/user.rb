@@ -5,11 +5,12 @@ class User < ActiveRecord::Base
   has_many :accounts, :dependent => :destroy
   has_many :customers, :dependent => :destroy
   has_many :fiscal_years, :dependent => :destroy
+  has_many :posting_imports, :dependent => :destroy
   belongs_to :active_fiscal_year, :class_name => 'FiscalYear'
   
   after_create :setup_default_accounts, :set_active_fiscal_year
   
-  attr_accessible :company, :cvr
+  attr_accessible :company, :cvr, :active_fiscal_year_id
   
   validates_presence_of :company
   validates_format_of :cvr, :with => /^[\d]+$/, :allow_nil => true, :allow_blank => true

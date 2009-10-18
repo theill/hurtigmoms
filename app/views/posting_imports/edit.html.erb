@@ -1,0 +1,46 @@
+<h1>Editing posting_import</h1>
+
+<p>
+	Vi har modtaget omkring <b><%= @rows.count %></b> posteringer.
+</p>
+
+<p>
+	Du skal nu hjælpe med at matche disse kolonner.
+</p>
+
+<% form_for(@posting_import) do |f| %>
+  <%= f.error_messages %>
+
+	<table id="postings">
+		<thead>
+			<tr>
+				<%- @rows.headers.each do |header| -%>
+					<th><%=h header %></th>
+				<%- end -%>
+			</tr>
+		</thead>
+		<tfoot>
+			<%- @rows.headers.to_a.each_with_index do |header, idx| -%>
+				<th>
+					<%= select_tag 'posting_import[mapping]['+idx.to_s+']', options_for_select([['', ''], ['Date', 'created_at'], ['Note', 'note'], ['Amount', 'amount'], ['Currency', 'currency']]), {:include_blank => true} %>
+				</th>
+			<%- end -%>
+		</tfoot>
+		<tbody>
+			<%- idx = 0 -%>
+			<%- @rows.each do |r| -%>
+				<tr>
+					<%- @rows.headers.each do |h| -%>
+						<td><%= r[h] %></td>
+					<%- end -%>
+				</tr>
+				<% idx += 1 %>
+				<% if idx >= 10 then break end %>
+			<%- end -%>
+		</tbody>
+	</table>
+
+	<p>
+	  <%= f.submit 'Import' %> or cancel
+	</p>
+<% end %>

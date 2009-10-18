@@ -1,0 +1,2 @@
+module PostingImportsHelper
+end

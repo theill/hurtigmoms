@@ -8,7 +8,7 @@ module PostingsHelper
     # if posting.attachment?
       # link_to('%04d' % posting.attachment_no, download_fiscal_year_posting_path(current_user.active_fiscal_year, posting))
     # else
-      '%04d' % posting.attachment_no
+      '%04d' % posting.attachment_no if posting.attachment_no
     # end
   end
   

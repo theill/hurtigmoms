@@ -13,7 +13,7 @@ class MailParser
     # only supporting 'buying' at the moment
     account_no = (parsed_attributes[:currency] == 'DKK' ? '1300' : '1308')
     account = user.accounts.find_by_account_no_and_account_type(account_no, Account::ACCOUNT_TYPES[:buy])
-    parsed_attributes.merge!(:account_id => account.id, :attachment_email => mail.to_s)
+    parsed_attributes.merge!(:account_id => account.id, :attachment_email => mail.to_s, :attachment_no => 0)
     
     posting = user.active_fiscal_year.postings.create! parsed_attributes
     associate_attachments(posting, mail) if mail.has_attachments?

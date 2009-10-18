@@ -1,0 +1,13 @@
+<h1>Import completed</h1>
+
+<p>
+	Dine posteringer er nu blevet importeret.
+</p>
+
+<!-- <p>
+	Der blev i alt importeret <b><%= @success_count %></b> hvoraf <b><%= @duplicate_count %></b> var duplikater og <b><%= @failed_count %></b> fejlede.
+</p> -->
+
+<p>
+	Gå til <%= link_to(t('postings.index.title'), fiscal_year_postings_path(current_user.active_fiscal_year)) %> for at se dine posteringer.
+</p>
