@@ -23,11 +23,15 @@ hurtigmoms = {
 	},
 	
 	/**
-	 * @param amount Number (as a string) in English format
+	 * @param amount Amount as a String in English format, or as a Number
 	 */
 	formatNumberWithCurrency: function(amount) {
     var delimiter = ".";
     var commaDelimiter = ",";
+    
+    if (typeof(amount) == "number") {
+      amount = amount.toString();
+    }
 	  
     x = amount.split('.', 2);
     t = x[0];
