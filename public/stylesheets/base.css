@@ -225,7 +225,7 @@ div.action-bar {
 
 #flash.failure {
 	background-color: #DB595C;
-	border-bottom: solid 1px #CB494C;
+	border: solid 1px #CB494C;
 }
 	#flash.failure .grid_12 {
 		background: transparent url(../images/exclamation-red-frame.png) no-repeat 0 0;
