@@ -207,14 +207,16 @@ div.action-bar {
 	height: 40px;
 	font-size: 11px;
 	color: #fff;
-	margin-top: -20px;
+	margin-top: -10px;
 	padding-top: 10px;
 	margin-bottom: 20px;
 }
 
 #flash.success, #flash.notice {
 	background-color: #8DC176;
-	border-bottom: solid 1px #7DB166;
+	border: solid 1px #7DB166;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 }
 	#flash.success .grid_12, #flash.notice .grid_12 {
 		background: transparent url(../images/tick-circle-frame.png) no-repeat 0 0;
@@ -222,8 +224,8 @@ div.action-bar {
 	}
 
 #flash.failure {
-	background-color: #BF7576;
-	border-bottom: solid 1px #AF6566;
+	background-color: #DB595C;
+	border: solid 1px #CB494C;
 }
 	#flash.failure .grid_12 {
 		background: transparent url(../images/exclamation-red-frame.png) no-repeat 0 0;

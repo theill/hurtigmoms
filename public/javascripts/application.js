@@ -8,7 +8,7 @@
 hurtigmoms = {
 	locale: 'da',
 	currency: 'DKK',
-	customers_url: '/kunder/search',
+	customers_url: '/kunder/soeg',
 	
 	convertNumber: function(number, from, to) {
 		// FIXME: do proper formatting
@@ -23,11 +23,15 @@ hurtigmoms = {
 	},
 	
 	/**
-	 * @param amount Number (as a string) in English format
+	 * @param amount Amount as a String in English format, or as a Number
 	 */
 	formatNumberWithCurrency: function(amount) {
     var delimiter = ".";
     var commaDelimiter = ",";
+    
+    if (typeof(amount) == "number") {
+      amount = amount.toString();
+    }
 	  
     x = amount.split('.', 2);
     t = x[0];

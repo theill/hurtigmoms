@@ -46,6 +46,9 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   config.i18n.default_locale = :da
   
+  # Localize default path names
+  config.action_controller.resources_path_names = { :new => 'ny', :edit => 'rediger', :create => 'opret', :destroy => 'slet', :update => 'opdater' }
+  
   config.after_initialize do
     if Delayed::Job.table_exists?
       # clean existing jobs to avoid running inbox checks multiple times
