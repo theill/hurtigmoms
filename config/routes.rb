@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.resources :accounts, :as => 'konti'
   map.resources :reports, :as => 'rapporter'
-  map.resources :customers, :as => 'kunder', :collection => { :search => :get }
+  map.resources :customers, :as => 'kunder', :collection => { :search => :get }, :path_names => { :search => :soeg }
 
   map.resources :users do |users|
     users.resource :password, :controller => 'clearance/passwords', :only => [:create, :edit, :update]
