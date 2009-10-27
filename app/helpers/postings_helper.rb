@@ -13,7 +13,7 @@ module PostingsHelper
   end
   
   def state_class(posting)
-    Posting::STATES.find { |k, v| v == posting.state }[0].to_s
+    posting.created_at.to_date == Date.today ? 'today ' : '' + Posting::STATES.find { |k, v| v == posting.state }[0].to_s
   end
   
   # extract first line of note

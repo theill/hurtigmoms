@@ -5,14 +5,14 @@
 	<%- if @postings.any? -%>
 		<div class="quick-buttons">
 			<%= link_to 'Tilføj postering', new_fiscal_year_posting_path(current_user.active_fiscal_year), { :class => 'button show', :id => 'add-new-posting' } %>
-			<%= link_to 'Import postings', new_posting_import_path, { :class => 'button' } %>
+			<!-- <%= link_to 'Import postings', new_posting_import_path, { :class => 'button' } %> -->
 		</div>
 	
 		<table id="postings" class="editable-table">
 			<thead>
 				<tr>
-					<th><%= t('posting.created_at') %></th>
-					<th><%= t('posting.attachment_no') %></th>
+					<th class="created_at"><%= t('posting.created_at') %></th>
+					<th class="attachment_no"><%= t('posting.attachment_no') %></th>
 					<th><%= t('posting.note') %></th>
 					<th><%= t('posting.account_id') %></th>
 					<th><span class="account-type">Bank</span> <span class="income"><%= t('posting.amount_in') %></span></th>

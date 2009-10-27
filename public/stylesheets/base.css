@@ -324,6 +324,9 @@ table tr.row-editing div.box {
 	#postings thead .account-type {
 		color: #779;
 	}
+	#postings thead .created_at, #postings thead .attachment_no {
+		width: 1%;
+	}
 	#postings tfoot {
 		border-top: solid 2px #ccc;
 	}
@@ -344,6 +347,14 @@ table tr.row-editing div.box {
   	  padding: 4px;
   	}
 
+		#postings .posting.today {
+/*			background-color: #F9FDE1;*/
+		}
+
+		#postings .posting.imported {
+			color: #666;
+		}
+		
 		#postings .posting.pending {
 			background-color: #ffeeee;
 		}
