@@ -1,0 +1,298 @@
+Nr.,Navn,Beskrivelse,Momskode,Type,Sum fra konto
+9,Midlertidig konto,"Benyttes til ""parkering"" af poster, opløses inden kassekladde bogføres. Se også konto 9900.",,Status
+1000,Omsætning,Overskrift. Bruges ikke til kontering.,,Tekst
+1020,Salg Danmark,Dagens salg fra kassestrimmel eller fra en faktura du har skrevet.,Salgsmoms,Drift
+1037,Salg Eksport EU-lande,Bemærk at fakturaer til udlandet skrives uden tillæg af moms. ,,Drift
+1038,Salg eksport øvrige,"Som ved konto 1037, bruges ved salg til lande uden for EU.",,Drift
+1085,Debitorer primo,"Benyttes ikke i den daglige bogføring, reserveret til årsafslutning.",Salgsmoms,Status
+1086,Debitorer ultimo,"Benyttes ikke i den daglige bogføring, reserveret til årsafslutning.",Salgsmoms,Status
+1281,Igangværende primo,"Benyttes ikke i den daglige bogføring, reserveret til årsafslutning.",,Status
+1282,Igangværende ultimo,"Benyttes ikke i den daglige bogføring, reserveret til årsafslutning.",,Status
+1291,OMSÆTNING,Sumkonto. Bruges ikke til kontering.,,Sum,1000
+
+1297,Direkte omkostninger:,Overskrift. Bruges ikke til kontering.,,Tekst
+1300,Varekøb Danmark,Varekøb til videresalg eller forarbejdning.,Købsmoms,Drift
+1307,Varekøb import EU-land,,,Drift
+1308,Varekøb import Øvrige,Som konto 1307 ved import fra lande udenfor EU.,,Drift
+1310,Hjemtagelse,"Fortoldning, spedition og i visse tilfælde fragt.",Købsmoms,Drift
+1374,Varelager primo,"Benyttes ikke i den daglige bogføring, reserveret til årsafslutning.",,Status
+1376,Varelager ultimo,"Benyttes ikke i den daglige bogføring, reserveret til årsafslutning.",,Status
+1380,Kreditorer primo,"Benyttes ikke i den daglige bogføring, reserveret til årsafslutning.",Købsmoms,Status
+1381,Kreditorer ultimo,"Benyttes ikke i den daglige bogføring, reserveret til årsafslutning.",Købsmoms,Status
+1400,Hjælpematerialer,Materialer der ikke er direkte varekøb. ,Købsmoms,Drift
+1510,Fremmed løn,"Udgifter til personer eller virksomheder, der udfører arbejde for dig, men som ikke er lønansatte.",Købsmoms,Drift
+1991,DIREKTE OMKOSTNINGER,Sumkonto. Bruges ikke til kontering.,,Sum,1297
+
+1995,DÆKNINGSBIDRAG,Sumkonto. Bruges ikke til kontering.,,Sum,1000
+
+2200,Løn og Personaleudgifter:,Overskrift. Bruges ikke til kontering.,,Tekst
+2205,Lønudgift samlekonto,Benyttes til forenklet lønkontering.,,Drift
+2210,Produktionsløn / timeløn,"Lønudgift til timelønnede. Bemærk, at beløbet er før skat m.v.",,Drift
+2215,Feriepenge (løn),Feriepenge til timelønnede (før skat).,,Drift
+2230,Sygedagpenge,,,Drift
+2244,Arbejdstøj,,Købsmoms,Drift
+2295,Tilskud AER,Tilskud i forbindelse med elever.,,Drift
+2510,Gager,Lønudgift til funktionærer. Evt. kan oprettes en konto pr. medarbejder.,,Drift
+2511,Feriepenge (gager),Feriepenge til fratrådte funktionærer.,,Drift
+2516,Kørselsgodtgørelse,Beløb udbetalt efter SKAT's takster.,,Drift
+2519,Rejsegodtgørelse,Beløb udbetalt efter SKAT's takster.,,Drift
+2530,Aconto løn,Benyttes kun i særlige tilfælde. Normalt benyttes konto 6941.,,Drift
+2590,Refunderede sygedagpenge,Når det offentlige refunderer sygedagpenge.,,Drift
+2594,Løntilskud,Når det offentlige udbetaler løntilskud.,,Drift
+2623,"ATP-bidrag, arbejdsgiver",Arbejdsgivers andel (2/3) af ATP.,,Drift
+2624,"AER, FIB m.v.",,,Drift
+2675,Andre lønafhængige bidrag,,,Drift
+2680,Arbejdsskadeforsikring,,,Drift
+2682,Dagpengeforsikring,"Udgift til arbejdsgivers dagpengeforsikring (modsat 4821, som vedrører indehaveren).",,Drift
+2683,Gruppelivsforsikring,,,Drift
+2693,Kursusudgifter,"Pas på momskoden, som skal tjekkes ved hver enkelt postering.",Købsmoms,Drift
+2703,Andre personaleudgifter,"F.eks. personalegaver, fester etc.",,Drift
+2704,"Kaffe, brød, øl, vand",,,Drift
+2747,LØN OG PERSONALEUDGIFTER,Sumkonto. Bruges ikke til kontering.,,Sum,2200
+
+2748,Øvrige omkostninger:,Overskrift. Bruges ikke til kontering.,,Tekst
+
+2749,Salgsomkosteninger:,Overskrift. Bruges ikke til kontering.,,Tekst
+2751,Restaurationbesøg,Repræsentation 1,Hotelmoms,Drift
+2752,"Tobak, vin spiritus, øl mv.",Repræsentation 2,,Drift
+2754,Gaver og blomster,Repræsentation 3,,Drift
+2756,Anden repræsentation,Repræsentation 4,,Drift
+2770,Rejseudgifter,"Alle former for transportudgifter som f.eks. taxa,  tog- og færgebilletter, dog ikke biludgifter.",,Drift
+2771,Fortæring og hotel i Danmark,,Hotelmoms,Drift
+2772,Fortæring og hotel i udlandet,,,Drift
+2800,Annoncer,,Købsmoms,Drift
+2803,Sponsorvirksomhed,,,Drift
+2805,Udstillinger,"Udgifter i forbindelse udstillinger eller messer, f.eks standleje.",Købsmoms,Drift
+2806,"Reklameartikler, gaver mv.",Fsv. gaver kun reklamegaver af ringe værdi.,Købsmoms,Drift
+2807,"Tryksager, brochurer o.l.",,Købsmoms,Drift
+2810,Emballage,,Købsmoms,Drift
+2811,Fragt,Fragt vedr. køb og salg kan eventuelt bogføres på fragtkonto under omsætning / direkte omk.,Købsmoms,Drift
+2815,Web-site,"Etablering og vedligeholdelse af hjemmeside, domæne mv.",,Drift
+2819,SALGSOMKOSTNINGER,Sumkonto. Bruges ikke til kontering.,,Sum,2749
+
+2899,"Drift af biler, produktion:",Overskrift. Bruges ikke til kontering.,,Tekst
+2900,Brændstof vare/lastbil,Brændstof til biler på gule plader.,Købsmoms,Drift
+2902,Vægtafgift vare/lastbil,Vægtafgift / grøn ejerafgift vedr. biler på gule plader.,,Drift
+2903,Forsikring vare/lastbil,Forsikring af biler på gule plader.,,Drift
+2904,Vedligeholdelse vare/lastbil,Reparationer og vedligeholdelse af biler på gule plader.,Købsmoms,Drift
+2905,Redningskorps vare/lastbil,Udgifter til f.eks. Falckabonnement af biler på gule plader.,Købsmoms,Drift
+2907,Leje vare/lastbil,Leje eller leasing af biler på gule plader.,Købsmoms,Drift
+2950,"DRIFT AF BILER, PRODUKTION",Sumkonto. Bruges ikke til kontering.,,Sum,2899
+
+3099,"Drift af biler, salg og adm.:",Overskrift. Bruges ikke til kontering.,,Tekst
+3100,Brændstof personbil,Brændstof til biler på hvide plader.,,Drift
+3102,Vægtafgift personbil,Vægtafgift / grøn ejerafgift vedr. biler på hvide plader.,,Drift
+3103,Forskring personbil,Forsikring af biler på hvide plader.,,Drift
+3104,Vedligeholdelse personbil,Reparationer og vedligeholdelse af biler på hvide plader.,,Drift
+3105,Redningskorps personbil,Udgifter til f.eks. Falckabonnement af biler på hvide plader.,,Drift
+3107,Leje af personbil,Leje eller leasing af biler på hvide plader.,,Drift
+3110,Kørsel i privat bil,Benyttes normalt ikke i den daglige bogføring. Reserveret til årsafslutning.,,Status
+3150,"DRIFT AF BILER, SALG OG ADM.",Sumkonto. Bruges ikke til kontering.,,Sum,3099
+
+3199,Produktionsomkostninger,Overskrift. Bruges ikke til kontering.,,Tekst
+3217,"Småanskaffelser, produktion","Småanskaffelser, som f.eks. værktøj. Skm-grænsen er kr. 11.300 (2006)",Købsmoms,Drift
+3218,Nyanskaffelser over skm-grænse,,Købsmoms,Drift
+3398,PRODUKTIONSOMKOSTNINGER,Sumkonto. Bruges ikke til kontering.,,Sum,3199
+
+3399,Lokaleomkostninger,Overskrift. Bruges ikke til kontering.,,Tekst
+3421,Husleje,"Husk at undersøge, om der er moms i beløbet.",Købsmoms,Drift
+3423,Varme,,,Drift
+3425,"El, vand og varme","Husk at bogføre grønne afgifter, navnlig el-afgift, korrekt, jf. konto 3426.",Købsmoms,Drift
+3426,Refunderet energiafgift,El-afgift og distributionsomk. (75%) kan ofte refunderes.,,Drift
+3427,Vedligeholdelse lokaler,,Købsmoms,Drift
+3428,Rengøring,,Købsmoms,Drift
+3430,Ejendomsskat,,,Drift
+3431,Ejendomsforsikring,,,Drift
+3598,LOKALEOMKOSTNINGER,Sumkonto. Bruges ikke til kontering.,,Sum,3399
+
+3599,Administrationsomkostninger,Overskrift. Bruges ikke til kontering.,,Tekst
+3600,Kontorartikler / tryksager,,Købsmoms,Drift
+3604,IT Hardware,,Købsmoms,Drift
+3610,Leje af driftsmidler,,Købsmoms,Drift
+3615,Vedligeholdelse af inventar,,Købsmoms,Drift
+3616,Indretning af lejede lokaler,,Købsmoms,Drift
+3617,Småanskaffelser salg og adm.,"Småanskaffelser, som f.eks. kontormøbler. Skm-grænsen er kr. 11.300 (2006).",Købsmoms,Drift
+3618,Nyanskaffelser over skm-grænse,,Købsmoms,Drift
+3619,IT software,Kontoen debiteres udgifter til IT programmer.,Købsmoms,Drift
+3620,"Telefon, fastnet","Samtaler og abonnemnet vedr. fastnet telefon, herunder normalt også telefon i hjemmet.",Købsmoms,Drift
+3622,Mobiltelefon,,Købsmoms,Drift
+3623,Internet,,Købsmoms,Drift
+3625,Medarbejdertelefoner,Udgift til medarbejderes fastnet telefon bogføres særskilt grundet særlige momsregler.,Medarbtlf,Drift
+3628,Porto og gebyrer,Frimærker og diverse gebyrer.,,Drift
+3640,Revisor,,Købsmoms,Drift
+3642,Advokat,,Købsmoms,Drift
+3644,Konsulentassistance,"Konsulentassistance, der ikke falder ind under revisor / advokat.",Købsmoms,Drift
+3645,Tilskud,,,Drift
+3650,Erhvervsforsikring,,,Drift
+3652,Alarm/vagtværn,,Købsmoms,Drift
+3657,Ansvarsforsikring,,,Drift
+3660,Faglitteratur,,Købsmoms,Drift
+3661,Avis,,,Drift
+3662,Kontingenter m. moms,,Købsmoms,Drift
+3663,Kontingenter u. moms,,,Drift
+3669,Lønadministration,Omkostninger som et lønbureau opkræver hos dig.,Købsmoms,Drift
+3670,Diverse udgifter,"Kontoen benyttes kun ved småudgifter, der ikke er dækket ind under en af øvrige konti.",,Drift
+3671,Kassedifferencer,,,Drift
+3698,Privat andel telefon,Benyttes ikke i den daglige bogføring. Reserveret til årsafslutning.,Købsmoms,Status
+3699,ADMINISTRATIONSOMKOSTN.,Sumkonto. Bruges ikke til kontering.,,Sum,3599
+
+3720,Tab på debitorer,"Fakturabeløb, som man efter rykkerprocedure og evt. inkasso må konstateret tabte.",Salgsmoms,Drift
+3822,Lønsumsafgift,"Benyttes for særlige erhvervsgrupper, f.eks. praktiserende læger.",,Drift
+3891,ØVRIGE OMKOSTNINGER,Sumkonto. Bruges ikke til kontering.,,Sum,3720
+
+3893,NYANSKAFF. OVF. TIL AKTIVER,Benyttes ikke i den daglige bogføring. Reserveret til årsafslutning.,,Status
+
+3895,RESULTAT FØR REN. OG AFDR,Sumkonto. Bruges ikke til kontering.,,Sum,1000
+
+3900,Afskrivninger:,Overskrift. Bruges ikke til kontering.,,Tekst
+3901,"Afskrivninger, driftsmidler",Benyttes ikke i den daglige bogføring. Reserveret til årsafslutning.,,Status
+3902,"Afskrivninger, goodwill",Benyttes ikke i den daglige bogføring. Reserveret til årsafslutning.,,Status
+3999,AFSKRIVNINGER,Sumkonto. Bruges ikke til kontering.,,Sum,3999
+
+4295,Finansielle poster:,Overskrift. Bruges ikke til kontering.,,Tekst
+4320,Renteindtægter bank,,,Drift
+4370,Renteindtægter debitorer,,,Drift
+4371,Andre renteindtægter,,,Drift
+4376,Modtagne rabatter,,,Drift
+4470,Renteudgifter bank,,,Drift
+4485,"Bankgarantier, omkostninger",,,Drift
+4487,Offentlige renter,"Renter og gebyrer ved for sen betaling af moms, A-skat mv.",,Drift
+4491,Afgivne kasserabatter,,,Drift
+4497,Låneomkostninger,Omkostninger i forbindelse med etablering af bank- og kreditforeningslån.,,Drift
+4500,Renteudgifter kreditorer,,,Drift
+4510,Valutakursregulering,Benyttes i forbindelse med valutaomregninger.,,Drift
+4527,"Renter, kontrakter",Renter i forbindelse med afbetalingskontrakter.,,Drift
+4530,"Prioritetsrenter, kreditforening","Renter vedr. kreditforeningslån, inkl. ""bidrag"".",,Drift
+4540,"Prioritetsrenter, pantebreve",,,Drift
+4660,"Renter, mellemregning","Renter af mellemregning med hovedanpartshaver, selskab o.l.",,Drift
+4670,"Rentetillæg, acontoskat",Benyttes ikke i den daglige bogføring. Reserveret til årsafslutning.,,Drift
+4690,FINANSIELLE POSTER,Sumkonto. Bruges ikke til kontering.,,Sum,4295
+
+4692,RESULTAT FØR SKAT OG EKST,Sumkonto. Bruges ikke til kontering.,,Sum,1000
+
+4693,Ekstraordinære poster:,Overskrift. Bruges ikke til kontering.,,Tekst
+4699,EKSTRAORDINÆRE POSTER,Sumkonto. Bruges ikke til kontering.,,Sum,4693
+
+4702,SKAT AF ÅRETS RESULTAT,Benyttes ikke i den daglige bogføring. Reserveret til årsafslutning.,,Status
+4705,RESULTAT,Sumkonto. Bruges ikke til kontering.,,Sum,1000
+
+4707,UDBYTTE,Benyttes ikke i den daglige bogføring. Reserveret til årsafslutning.,,Status
+
+4801,Hævninger,Overskrift. Bruges ikke til kontering.,,Tekst
+4805,Private udlæg og hævninger,"Private hævninger debiteres, mens indskud/udlæg krediteres.",,Drift
+4811,Ultimoposteringer privat,Benyttes ikke i den daglige bogføring. Reserveret til årsafslutning.,,Drift
+4820,Fagf. + A-kasse,Hvis fagforening og a-kasse betales over virksomhedens konto.,,Drift
+4821,Dagpengeforsikring (selvstændige),"Dagpengeforsikring for selvstændige erhvervsdrivende (modsat 2682, som vedrører ansatte).",,Drift
+4830,Terminsydelse,Hvis private terminydelser betales over virksomhedens konto.,,Drift
+4850,B-skat og AM-bidrag,Hvis private B-skatterater og AM-bidrag betales over virksomhedens konto.,,Drift
+4851,Restskat/overskydende skat,"Hvis ejerens restskat betales over virksomhedens konto, eller hvis overskydende skat indskydes.",,Drift
+4852,Frivilligt indbetalt skat,Hvis der indbetales frivillig skat over virksomhedens konto.,,Drift
+4870,Lønindtægt,Hvis lønindtægter fra kilder udenfor virksomheden indgår på virksomhedens konto.,,Drift
+4899,HÆVNINGER,Sumkonto. Bruges ikke til kontering.,,Sum,4801
+
+4905,OVERFØRES TIL NÆSTE ÅR,Sumkonto. Bruges ikke til kontering.,,Sum,1000
+
+5000,AKTIVER,Overskrift. Bruges ikke til kontering.,,Tekst
+
+5010,Anlægsaktiver:,Overskrift. Bruges ikke til kontering.,,Tekst
+5020,Goodwill,Benyttes ikke i den daglige bogføring.,,Drift
+5080,Huslejedepositum,"Debiteres betalt huslejedepositum. Vær opmærksom på, om der er moms i beløbet.",,Drift
+5240,"Driftsmidler, primo",Benyttes ikke i den daglige bogføring. Reserveret til årsafslutning.,,Drift
+5241,Tilgang i årets løb,Køb af anlægsaktiver. ,Købsmoms,Drift
+5242,Afgang i årets løb,Salg af anlægsaktiver. ,Salgsmoms,Drift
+5299,ANLÆGSAKTIVER,Sumkonto. Bruges ikke til kontering.,,Sum,5010
+
+5497,OMSÆTNINGSAKTIVER,Overskrift. Bruges ikke til kontering.,,Tekst
+5499,Varelager m.v.:,Overskrift. Bruges ikke til kontering.,,Tekst
+5500,Varelager,Benyttes ikke i den daglige bogføring. Som hovedregel reserveret til årsafslutning.,,Status
+5580,Forudbetaling for varer,"Benyttes kun i bogføringen, hvis der skal periodeafgrænses. ",,Drift
+5591,VARELAGER M.V.,Sumkonto. Bruges ikke til kontering.,,Sum,5497
+
+5595,Tilgodehavender,Overskrift. Bruges ikke til kontering.,,Tekst
+5600,Debitorer (samlekonto),Samlekonto. Kontoen kan ikke bruges til kontering.,,Status
+5607,Debitorer ultimo 2007,Periodeafgrænsning debitorer. Kan benævnes efter årstal. f.eks. 5607 for debitorer 2007.,,Status
+5630,Igangv. arbejder fremmed regning,Kontoen bruges sjældent i den daglige bogføring i mindre virksomheder.,,Drift
+5650,Andre tilgodehavender,"Konto til tilgodehavender, der ikke falder ind under ovenstående.",,Drift
+5690,Periodeafgrænsningsposter,"Kontoen benyttes ikke i den daglige bogføring, men til opgørelser ultimo.",,Drift
+5695,TILGODEHAVENDER,Sumkonto. Bruges ikke til kontering.,,Sum,5595
+
+5799,Likvide beholdinger,Overskrift. Bruges ikke til kontering.,,Tekst
+5800,Kassebeholdning,Skal løbende afstemmes med den faktiske kassebeholdning.,,Status
+5805,"""På vej i bank""","Konto til ""afsendte"" f.eks. dankort- eller kontante indbetalinger, indtil dukker op i banken.",,Status
+5810,Girokonto,Skal løbende afstemmes med den faktiske beholdning.,,Status
+5820,Bankindestående,Skal løbende afstemmes med den faktiske beholdning.,,Status
+5850,Bundne likvide beholdninger,Skal løbende afstemmes med den faktiske beholdning.,,Status
+5891,LIKVIDE BEHOLDNINGER,Sumkonto. Bruges ikke til kontering.,,Sum,5799
+
+5895,OMSÆTNINGSAKTIVER I ALT,Sumkonto. Bruges ikke til kontering.,,Sum,5497
+
+5897,AKTIVER I ALT,Sumkonto. Bruges ikke til kontering.,,Sum,5000
+
+5997,PASSIVER,Overskrift. Bruges ikke til kontering.,,Tekst
+6000,EGENKAPITAL,Overskrift. Bruges ikke til kontering.,,Tekst
+6099,Selskabskapital,Overskrift. Bruges ikke til kontering.,,Tekst
+6100,"Egenkapital, primo",Benyttes ikke i den daglige bogføring. Reserveret til årsafslutning.,,Status
+6102,Overført fra drift,Benyttes ikke i den daglige bogføring. Reserveret til årsafslutning.,,Status
+6199,Forløbig åbning,"Benyttes som modkonto ved åbning af visse konti, indtil åbningsbalance er på plads.",,Status
+6200,EGENKAPITAL,Sumkonto. Bruges ikke til kontering.,,Sum,6000
+
+6401,Selskabsskat,Overskrift. Bruges ikke til kontering.,,Tekst
+6407,Selskabsskat 2007,Betalinger af selskabsskat vedr. indkomståret 2007.,,Status
+6430,Udskudt skat / skatteaktiv,Benyttes ikke i den daglige bogføring. Reserveret til årsafslutning.,,Status
+6440,SELSKABSSKAT,Sumkonto. Bruges ikke til kontering.,,Sum,6401
+
+6501,Langfristet gæld:,Overskrift. Bruges ikke til kontering.,,Tekst
+6530,Prioritetsgæld,Gæld til realkreditinstitut vedr. virksomhedens ejede bygninger.,,Drift
+6590,Mellemregning indehaver,"Benyttes til private posteringer, jf. 48XX, når virksomheden drives i selskabsform.",,Drift
+6699,LANGFRISTET GÆLD,Sumkonto. Bruges ikke til kontering.,,Sum,6501
+
+6700,Kortfristet gæld:,Overskrift. Bruges ikke til kontering.,,Tekst
+6749,Bankgæld:,Overskrift. Bruges ikke til kontering.,,Tekst
+6750,Kassekredit,Skal løbende afstemmes med den faktiske beholdning.,,Status
+6760,"Bank, anlægsfinansiering",Skal løbende afstemmes med den faktiske beholdning.,,Status
+6789,BANKGÆLD,Sumkonto. Bruges ikke til kontering.,,Sum,6700
+
+6799,Leverandørgæld:,Overskrift. Bruges ikke til kontering.,,Tekst
+6800,Kreditorer (samlekonto),Samlekonto. Kontoen kan ikke bruges til kontering.,,Status
+6807,Kreditorer ultimo 2007,"Periodisering af kreditorer, bør gå i nul, når alt er betalt.",,Drift
+6898,LEVERANDØRGÆLD,Sumkonto. Bruges ikke til kontering.,,Sum,6799
+
+6899,Momsregnskab,Overskrift. Bruges ikke til kontering.,,Tekst
+6900,Momsafregning,,,Status
+6901,Salgsmoms (udgående moms),,,Status
+6902,Købsmoms (indgående moms),,,Status
+6904,Importmoms,,,Status
+6905,Olie-afgift,,,Status
+6906,El-afgift,,,Status
+6907,Gas-afgift,,,Status
+6910,Vandafgift,,,Status
+6915,MOMSREGNSKAB,Sumkonto. Bruges ikke til kontering.,,Sum,6899
+
+6919,Lønrelateret gæld,Overskrift. Bruges ikke til kontering.,,Tekst
+6920,Skyldig A-Skat,"Krediteres ved kontering af lønbilag, debiteres når betaling sker.",,Status
+6921,Skyldig ATP,"Krediteres ved kontering af lønbilag, debiteres når betaling sker.",,Status
+6923,Skyldige feriepenge,"Krediteres ved kontering af lønbilag, debiteres når betaling sker.",,Status
+6924,Skyldig SH-betaling,"Krediteres ved kontering af lønbilag, debiteres når betaling sker.",,Status
+6927,Skyldig AMP,"Krediteres ved kontering af lønbilag, debiteres når betaling sker.",,Status
+6928,Feriepengeforpligtelse funktionærer,Benyttes ikke i den daglige bogføring. Reserveret til årsafslutning.,,Status
+6929,Lønindholdelse,"Krediteres ved kontering af lønbilag, debiteres når betaling sker.",,Drift
+6930,Skyldig AM-bidrag,"Krediteres ved kontering af lønbilag, debiteres når betaling sker.",,Status
+6940,Skyldig løn,Benyttes ikke i den daglige bogføring. Reserveret til årsafslutning.,,Status
+6941,Afregning af løn,Nettolønnen krediteres kontoen ved lønkontering. Udbetaling af nettoløn debiteres.,,Status
+6942,LØNRELATERET GÆLD,Sumkonto. Bruges ikke til kontering.,,Sum,6919
+
+6943,Anden kortfristet gæld,Overskrift. Bruges ikke til kontering.,,Tekst
+6944,Forudbetaling fra kunder,Benyttes normalt ikke i den daglige bogføring. Reserveret til årsafslutning.,,Status
+6949,Hensat til revisor,Benyttes ikke i den daglige bogføring. Reserveret til årsafslutning.,,Status
+6967,Andre skyldige omkostninger,Benyttes normalt ikke i den daglige bogføring. Reserveret til årsafslutning.,,Status
+6970,"Udbytte, skyldigt",Debiteres udbetalt udbytte (krediteret ved årsafslutning).,,Status
+6989,ANDEN KORTFRISTET GÆLD,Sumkonto. Bruges ikke til kontering.,,Sum,6943
+
+6999,KORTFRISTET GÆLD,Sumkonto. Bruges ikke til kontering.,,Sum,6700
+
+7000,PASSIVER I ALT,Sumkonto. Bruges ikke til kontering.,,Sum,5997
+
+9898,BLANCETOTAL,Sumkonto. Bruges ikke til kontering.,,Sum,1000
+
+9900,Uafklarede poster,"Benyttes til ""parkering"" af poster, normalt til senere gennemgang med revisor.",,Status
+9901,Systemkonto,"Benyttes som systemkonto, hvor en systemfacilitet ikke anvendes.",,Status

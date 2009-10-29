@@ -1,10 +1,8 @@
 class Account < ActiveRecord::Base
-  ACCOUNT_TYPES = { :sell => 1, :buy => 2 }
-  VAT_TYPES =  { :standard => 1, :none => 2, :other_country => 3 }
+  ACCOUNT_TYPES = { :heading => 1, :operating => 2, :status => 3, :sum => 4 }
+  VAT_TYPES =  { :standard => 1, :none => 2, :other_country => 3, :hotel => 4 }
   
   belongs_to :user
-  named_scope :buying, :conditions => ['account_type = ?', ACCOUNT_TYPES[:buy]]
-  named_scope :selling, :conditions => ['account_type = ?', ACCOUNT_TYPES[:sell]]
   
   validates_presence_of :name
   validates_presence_of :account_type
@@ -20,6 +18,6 @@ class Account < ActiveRecord::Base
     HUMANIZED_ATTRIBUTES[attr.to_sym] || super
   end
   
-  attr_accessible :name, :account_type, :vat_type, :account_no
+  attr_accessible :name, :description, :account_type, :vat_type, :account_no, :aggregate_from_account_no
   
 end

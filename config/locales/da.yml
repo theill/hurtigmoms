@@ -43,6 +43,10 @@ da:
     account_type_buy: Køb
     account_type_sell: Salg
     account_type_unknown: -
+    account_type_heading: Overskrift
+    account_type_operating: Drift
+    account_type_status: Status
+    account_type_sum: Sum
     pick_account_type: Vælg konto type
     vat_type_standard: Standard
     vat_type_none: Ingen

@@ -8,6 +8,12 @@
 				<tr>
 					<td>
 						<fieldset>
+							<%= f.label :account_no, t('account.account_no') + ' <span class="req">*</span>' %>
+							<%= f.text_field :account_no, :size => 10, :maxlength => 10 %>
+						</fieldset>
+					</td>
+					<td>
+						<fieldset>
 							<%= f.label :name, t('account.name') + ' <span class="req">*</span>' %>
 							<%= f.text_field :name, :size => 20, :maxlength => 128 %>
 						</fieldset>
@@ -15,13 +21,7 @@
 					<td>
 						<fieldset>
 							<%= f.label :account_type, t('account.account_type') + ' <span class="req">*</span>' %>
-							<%= f.select :account_type, [['Købskonto', Account::ACCOUNT_TYPES[:buy]], ['Salgskonto', Account::ACCOUNT_TYPES[:sell]]], {:prompt => t('account.pick_account_type')} %>
-						</fieldset>
-					</td>
-					<td>
-						<fieldset>
-							<%= f.label :account_no, t('account.account_no') %>
-							<%= f.text_field :account_no, :size => 10, :maxlength => 10 %>
+							<%= f.select :account_type, account_types, {:prompt => t('account.pick_account_type')} %>
 						</fieldset>
 					</td>
 					<td>

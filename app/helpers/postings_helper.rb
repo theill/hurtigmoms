@@ -1,7 +1,6 @@
 module PostingsHelper
-  def grouped_accounts
-    [['** SALGSKONTI **', '']] + current_user.accounts.selling.collect { |a| [a.name, a.id] } +
-    [['** KØBSKONTI **', '']] + current_user.accounts.buying.collect { |a| [a.name, a.id] }
+  def accounts
+    current_user.accounts.collect { |a| ["#{'%05d' % a.account_no} #{a.name}", a.id] }.sort_by { |no| no }
   end
   
   def link_to_attachment(posting)

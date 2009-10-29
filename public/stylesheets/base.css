@@ -375,12 +375,32 @@ table tr.row-editing div.box {
 	#accounts .account .actions {
 		width: 20px;
 	}
+	#accounts .account-no {
+		text-align: right;
+	}
+	#accounts .heading-account .name {
+		text-transform: uppercase;
+		color: #666;
+	}
+
+	#accounts .operating-account .name {
+		text-indent: 5px;
+	}
+
+	#accounts .status-account .name {
+		color: #999;
+	}
+	
+	#accounts .sum-account .name {
+		text-transform: uppercase;
+		color: #666;
+	}
 
 #customers {}
 	#customers .customer .actions {
 		width: 20px;
 	}
-
+	
 .editable-table .row .actions { }
 	.editable-table .row .actions .buttons-container {
 		width: 32px;

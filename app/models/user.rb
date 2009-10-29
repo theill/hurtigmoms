@@ -33,30 +33,38 @@ class User < ActiveRecord::Base
   protected
   
   def setup_default_accounts
-    [ ['0120', 'Salg, indland', Account::VAT_TYPES[:standard]], 
-      ['0137', 'Salg, EU-lande', Account::VAT_TYPES[:other_country]],
-      ['0138', 'Salg, øvrige lande', Account::VAT_TYPES[:other_country]]
-    ].each do |account_no, name, vat|
-      self.accounts.create(:name => name, :account_no => account_no, :vat_type => vat, :account_type => Account::ACCOUNT_TYPES[:sell])
+    default_account_plan = IO.read("#{Rails.root}/lib/kontoplan-ffr.xls.csv")
+    # default_account_plan = Iconv.iconv('utf-8', 'iso8859-1', default_account_plan).join('\n')
+    rows = FasterCSV.parse(default_account_plan, {:col_sep => ',', :skip_blanks => true, :headers => true})
+    
+    rows.each do |r|
+      self.accounts.create(:name => r['Navn'], :description => r['Beskrivelse'], :account_no => r['Nr.'], :vat_type => translate_vat_code(r['Momskode']), :account_type => translate_type(r['Type']), :aggregate_from_account_no => r['Sum fra konto'])
     end
-
-    [ ['1300', 'Varekøb, indland', Account::VAT_TYPES[:standard]], 
-      ['1307', 'Varekøb, EU-lande', Account::VAT_TYPES[:other_country]],
-      ['1308', 'Varekøb, øvrige lande', Account::VAT_TYPES[:other_country]],
-      ['2754', 'Gaver og blomster', Account::VAT_TYPES[:standard]],
-      ['3421', 'Husleje', Account::VAT_TYPES[:standard]],
-      ['3425', 'El, vand og varme', Account::VAT_TYPES[:standard]],
-      ['3617', 'Småanskaffelser', Account::VAT_TYPES[:standard]],
-      ['3622', 'Telefon', Account::VAT_TYPES[:standard]],
-      ['3623', 'Internet', Account::VAT_TYPES[:standard]],
-      ['3628', 'Porto og gebyrer', Account::VAT_TYPES[:standard]],
-      ['3640', 'Revisor', Account::VAT_TYPES[:standard]],
-      ['3642', 'Advokat', Account::VAT_TYPES[:standard]],
-      ['3660', 'Faglitteratur', Account::VAT_TYPES[:standard]],
-      ['3661', 'Avis', Account::VAT_TYPES[:none]]
-    ].each do |account_no, name, vat|
-      self.accounts.create(:name => name, :account_no => account_no, :vat_type => vat, :account_type => Account::ACCOUNT_TYPES[:buy])
-    end
+    
+    # [ ['0120', 'Salg, indland', Account::VAT_TYPES[:standard]], 
+    #   ['0137', 'Salg, EU-lande', Account::VAT_TYPES[:other_country]],
+    #   ['0138', 'Salg, øvrige lande', Account::VAT_TYPES[:other_country]]
+    # ].each do |account_no, name, vat|
+    #   self.accounts.create(:name => name, :account_no => account_no, :vat_type => vat, :account_type => Account::ACCOUNT_TYPES[:sell])
+    # end
+    # 
+    # [ ['1300', 'Varekøb, indland', Account::VAT_TYPES[:standard]], 
+    #   ['1307', 'Varekøb, EU-lande', Account::VAT_TYPES[:other_country]],
+    #   ['1308', 'Varekøb, øvrige lande', Account::VAT_TYPES[:other_country]],
+    #   ['2754', 'Gaver og blomster', Account::VAT_TYPES[:standard]],
+    #   ['3421', 'Husleje', Account::VAT_TYPES[:standard]],
+    #   ['3425', 'El, vand og varme', Account::VAT_TYPES[:standard]],
+    #   ['3617', 'Småanskaffelser', Account::VAT_TYPES[:standard]],
+    #   ['3622', 'Telefon', Account::VAT_TYPES[:standard]],
+    #   ['3623', 'Internet', Account::VAT_TYPES[:standard]],
+    #   ['3628', 'Porto og gebyrer', Account::VAT_TYPES[:standard]],
+    #   ['3640', 'Revisor', Account::VAT_TYPES[:standard]],
+    #   ['3642', 'Advokat', Account::VAT_TYPES[:standard]],
+    #   ['3660', 'Faglitteratur', Account::VAT_TYPES[:standard]],
+    #   ['3661', 'Avis', Account::VAT_TYPES[:none]]
+    # ].each do |account_no, name, vat|
+    #   self.accounts.create(:name => name, :account_no => account_no, :vat_type => vat, :account_type => Account::ACCOUNT_TYPES[:buy])
+    # end
   end
   
   def set_active_fiscal_year
@@ -64,6 +72,34 @@ class User < ActiveRecord::Base
       current_year = Date.today.year
       year = self.fiscal_years.create(:start_date => Date.new(current_year), :end_date => (Date.new(current_year + 1) - 1.day), :name => 'Regnskab ' + current_year.to_s)
       self.update_attribute(:active_fiscal_year_id, year.id)
+    end
+  end
+  
+  private
+  
+  def translate_type(name)
+    case name
+    when 'Tekst'
+      Account::ACCOUNT_TYPES[:heading]
+    when 'Drift'
+      Account::ACCOUNT_TYPES[:operating]
+    when 'Status'
+      Account::ACCOUNT_TYPES[:status]
+    when 'Sum'
+      Account::ACCOUNT_TYPES[:sum]
+    end
+  end
+  
+  def translate_vat_code(vat_code)
+    case vat_code
+    when 'Salgsmoms'
+      Account::VAT_TYPES[:standard]
+    when 'Købsmoms'
+      Account::VAT_TYPES[:standard]
+    when 'Hotelmoms'
+      Account::VAT_TYPES[:hotel]
+    else
+      Account::VAT_TYPES[:none]
     end
   end
   

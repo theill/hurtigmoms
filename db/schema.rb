@@ -9,16 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091018175841) do
+ActiveRecord::Schema.define(:version => 20091029172636) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
-    t.string   "name"
-    t.integer  "account_type"
+    t.string   "name",                      :null => false
+    t.integer  "account_type",              :null => false
     t.integer  "vat_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "account_no"
+    t.text     "description"
+    t.integer  "aggregate_from_account_no"
+    t.integer  "account_no"
   end
 
   create_table "customers", :force => true do |t|
