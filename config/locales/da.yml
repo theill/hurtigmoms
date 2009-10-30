@@ -40,6 +40,8 @@ da:
     account_no: Konto
     account_type: Konto type
     vat_type: Moms type
+    aggregate_from_account_no: Sum fra konto
+    amount: Saldo
     account_type_buy: Køb
     account_type_sell: Salg
     account_type_unknown: -
@@ -48,10 +50,10 @@ da:
     account_type_status: Status
     account_type_sum: Sum
     pick_account_type: Vælg konto type
-    vat_type_standard: Standard
-    vat_type_none: Ingen
-    vat_type_other_country: Udland
-    vat_type_unknown: -
+    vat_type_sell: Salgsmoms
+    vat_type_buy: Købsmoms
+    vat_type_hotel: Hotelmoms
+    vat_type_none: Momsfrit
     pick_vat_type: Vælg moms type
   
   customer:

@@ -1,5 +1,4 @@
 class Posting < ActiveRecord::Base
-  belongs_to :user
   belongs_to :account
   belongs_to :customer
   belongs_to :fiscal_year
@@ -33,8 +32,9 @@ class Posting < ActiveRecord::Base
 
   before_validation_on_create :set_attachment_no, :set_currency
   before_save :reset_state, :set_customer
+  after_create :debit_credit_vat_accounts
   
-  attr_accessor :customer_name
+  attr_accessor :customer_name, :vat_of_amount
   
   def month
     self.created_at.strftime('%m')
@@ -42,6 +42,10 @@ class Posting < ActiveRecord::Base
   
   def customer_name
     @customer_name || (self.customer.name if self.customer)
+  end
+  
+  def vat_of_amount
+    self.amount * 0.20
   end
     
   def authenticated_url(expires_in = 10.seconds)
@@ -80,6 +84,21 @@ class Posting < ActiveRecord::Base
   
   def set_customer
     self.customer = self.fiscal_year.user.customers.find_or_create_by_name(self.customer_name) unless self.customer_name.blank?
+  end
+  
+  def debit_credit_vat_accounts
+    u = self.fiscal_year.user
+    
+    sell_vat_account = u.accounts.find_by_account_no(6901)
+    buy_vat_account = u.accounts.find_by_account_no(6902)
+    
+    if self.account.vat_type == Account::VAT_TYPES[:sell]
+      u.active_fiscal_year.postings.create(:account => sell_vat_account, :amount => -1 * self.vat_of_amount, :attachment_no => self.attachment_no)
+      sell_vat_account.update_attribute(:amount, sell_vat_account.amount + (-1 * self.vat_of_amount))
+    elsif self.account.vat_type == Account::VAT_TYPES[:buy]
+      u.active_fiscal_year.postings.create(:account => buy_vat_account, :amount => self.vat_of_amount, :attachment_no => self.attachment_no)
+      buy_vat_account.update_attribute(:amount, buy_vat_account.amount + self.vat_of_amount)
+    end
   end
   
 end

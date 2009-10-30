@@ -13,13 +13,14 @@ ActiveRecord::Schema.define(:version => 20091029172636) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
-    t.string   "name",                      :null => false
-    t.integer  "account_type",              :null => false
+    t.string   "name",                                       :null => false
+    t.integer  "account_type",                               :null => false
     t.integer  "vat_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
     t.integer  "aggregate_from_account_no"
+    t.decimal  "amount",                    :default => 0.0, :null => false
     t.integer  "account_no"
   end
 

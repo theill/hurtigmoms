@@ -1,5 +1,5 @@
 <tr id="<%= dom_id(account) %>" class="account row-editing">
-	<td colspan="5">
+	<td colspan="3">
 		<div class="box">
 		<% form_for(account, :html => {:autocomplete => 'off'}) do |f| -%>
 			<%= f.error_messages %>
@@ -27,7 +27,13 @@
 					<td>
 						<fieldset>
 							<%= f.label :vat_type, t('account.vat_type') + ' <span class="req">*</span>' %>
-							<%= f.select :vat_type, [['Momsfrit', '1'], ['Dansk moms 25%', '2'], ['Varekøb i udlandet', '3']], {:prompt => t('account.pick_vat_type')} %>
+							<%= f.select :vat_type, vat_types, {:prompt => t('account.pick_vat_type')} %>
+						</fieldset>
+					</td>
+					<td>
+						<fieldset>
+							<%= f.label :aggregate_from_account_no, t('account.aggregate_from_account_no') %>
+							<%= f.text_field :aggregate_from_account_no, :size => 20, :maxlength => 128 %>
 						</fieldset>
 					</td>
 				</tr>
@@ -39,7 +45,9 @@
 				<%- else -%>
 					<%= f.submit t('buttons.save') %> <%= link_to t('buttons.close'), account_path(account, :format => :js), :class => 'show' %>
 					
-					<div class="inline-actions"><%= link_to(t('buttons.delete'), account, :class => 'delete') %> denne konto</div>
+					<%- if account_deletable(account) -%>
+						<div class="inline-actions"><%= link_to(t('buttons.delete'), account, :class => 'delete') %> denne konto</div>
+					<%- end -%>
 				<%- end -%>
 			</div>
 		<% end -%>

@@ -93,9 +93,9 @@ class User < ActiveRecord::Base
   def translate_vat_code(vat_code)
     case vat_code
     when 'Salgsmoms'
-      Account::VAT_TYPES[:standard]
+      Account::VAT_TYPES[:sell]
     when 'Købsmoms'
-      Account::VAT_TYPES[:standard]
+      Account::VAT_TYPES[:buy]
     when 'Hotelmoms'
       Account::VAT_TYPES[:hotel]
     else

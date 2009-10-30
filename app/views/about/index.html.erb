@@ -16,6 +16,15 @@
 			</p>
 		</div>
 	<%- end -%>
+
+	<div class="quick-start">
+		<h3>Kom hurtigt i gang</h3>
+		<ol>
+			<li><%= link_to('Tilføj indtægter og udgifter', fiscal_year_postings_path(current_user.active_fiscal_year)) %></li>
+			<li><%= link_to('Tilpas din kontoplan', accounts_path) %></li>
+			<li><%= link_to('Konfigurer dine debitorer', customers_path) %></li>
+		</ol>
+	</div>
 	
 <%- else -%>
 

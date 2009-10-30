@@ -1,6 +1,6 @@
 class Account < ActiveRecord::Base
   ACCOUNT_TYPES = { :heading => 1, :operating => 2, :status => 3, :sum => 4 }
-  VAT_TYPES =  { :standard => 1, :none => 2, :other_country => 3, :hotel => 4 }
+  VAT_TYPES =  { :sell => 1, :buy => 2, :hotel => 3, :none => 4 }
   
   belongs_to :user
   

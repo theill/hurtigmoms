@@ -43,8 +43,7 @@ en:
     account_type_unknown: -
     vat_type_standard: Standard
     vat_type_none: None
-    vat_type_other_country: Other country
-    vat_type_unknown: -
+    vat_type_hotel: Hotel
 
   customer:
     name: Name

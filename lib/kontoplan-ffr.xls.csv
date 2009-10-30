@@ -292,7 +292,7 @@ Nr.,Navn,Beskrivelse,Momskode,Type,Sum fra konto
 
 7000,PASSIVER I ALT,Sumkonto. Bruges ikke til kontering.,,Sum,5997
 
-9898,BLANCETOTAL,Sumkonto. Bruges ikke til kontering.,,Sum,1000
+9898,BALANCETOTAL,Sumkonto. Bruges ikke til kontering.,,Sum,1000
 
 9900,Uafklarede poster,"Benyttes til ""parkering"" af poster, normalt til senere gennemgang med revisor.",,Status
 9901,Systemkonto,"Benyttes som systemkonto, hvor en systemfacilitet ikke anvendes.",,Status

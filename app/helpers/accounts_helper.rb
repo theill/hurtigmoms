@@ -14,21 +14,16 @@ module AccountsHelper
     end
   end
   
-  def type_of_vat(account)
-    case account.vat_type
-    when Account::VAT_TYPES[:standard]
-      t('account.vat_type_standard')
-    when Account::VAT_TYPES[:none]
-      t('account.vat_type_none')
-    when Account::VAT_TYPES[:other_country]
-      t('account.vat_type_other_country')
-    else
-      t('account.vat_type_unknown')
-    end
-  end
-  
   def account_types
     Account::ACCOUNT_TYPES.collect { |name, value| [I18n.t('account.account_type_' + name.to_s), value] }.sort_by { |name, value| value }
+  end
+  
+  def vat_types
+    Account::VAT_TYPES.collect { |name, value| [I18n.t('account.vat_type_' + name.to_s), value] }.sort_by { |name, value| value }
+  end
+  
+  def account_deletable(account)
+    account.account_type == Account::ACCOUNT_TYPES[:operating]
   end
   
 end

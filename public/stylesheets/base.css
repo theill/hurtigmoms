@@ -63,6 +63,7 @@ fieldset label {
 	border: solid 1px #e9e9e9;
 	padding: 16px;
 	background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#ffffff));
+	margin-bottom: 20px;
 }
 
 .action-required {
@@ -375,26 +376,45 @@ table tr.row-editing div.box {
 	#accounts .account .actions {
 		width: 20px;
 	}
+	
 	#accounts .account-no {
 		text-align: right;
 	}
-	#accounts .heading-account .name {
-		text-transform: uppercase;
-		color: #666;
-	}
-
-	#accounts .operating-account .name {
-		text-indent: 5px;
-	}
-
-	#accounts .status-account .name {
+	
+	#accounts .name .description {
+		font-size: 10px;
 		color: #999;
 	}
 	
-	#accounts .sum-account .name {
-		text-transform: uppercase;
-		color: #666;
-	}
+	#accounts .heading-account {}
+		#accounts .heading-account .name {
+			text-transform: uppercase;
+			font-weight: bold;
+			color: #030;
+		}
+		#accounts .heading-account .description {
+			display: none;
+		}
+	
+	#accounts .operating-account {}
+		#accounts .operating-account .name {
+			text-indent: 5px;
+		}
+
+	#accounts .status-account {}
+		#accounts .status-account .name {
+			color: #090;
+			text-indent: 5px;
+		}
+	
+	#accounts .sum-account {}
+		#accounts .sum-account .name {
+			text-transform: uppercase;
+			color: #060;
+		}
+		#accounts .sum-account .description {
+			display: none;
+		}
 
 #customers {}
 	#customers .customer .actions {
