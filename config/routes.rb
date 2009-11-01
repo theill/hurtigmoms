@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :transactions
+
   map.resources :posting_imports
 
   map.resources :fiscal_years, :as => 'regnskaber' do |fy|
