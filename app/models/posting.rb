@@ -27,12 +27,12 @@ class Posting < ActiveRecord::Base
     HUMANIZED_ATTRIBUTES[attr.to_sym] || super
   end
   
-  named_scope :total_buying, lambda { |year| { :joins => :account, :conditions => ['EXTRACT (YEAR FROM postings.created_at) = ? AND accounts.account_type = ?', year, Account::ACCOUNT_TYPES[:buy]] } }
-  named_scope :total_selling, lambda { |year| { :joins => :account, :conditions => ['EXTRACT (YEAR FROM postings.created_at) = ? AND accounts.account_type = ?', year, Account::ACCOUNT_TYPES[:sell]] } }
+  named_scope :total_income, lambda { |year| { :joins => :account, :conditions => ['EXTRACT (YEAR FROM postings.created_at) = ? AND accounts.account_no >= 1000 AND accounts.account_no < 1300', year] } }
+  named_scope :total_expense, lambda { |year| { :joins => :account, :conditions => ['EXTRACT (YEAR FROM postings.created_at) = ? AND accounts.account_no >= 1300 AND accounts.account_no < 5000', year] } }
 
   before_validation_on_create :set_attachment_no, :set_currency
   before_save :reset_state, :set_customer
-  after_create :debit_credit_vat_accounts
+  # after_create :adjust_operating_accounts, :adjust_vat_accounts
   
   attr_accessor :customer_name, :vat_of_amount
   
@@ -86,19 +86,44 @@ class Posting < ActiveRecord::Base
     self.customer = self.fiscal_year.user.customers.find_or_create_by_name(self.customer_name) unless self.customer_name.blank?
   end
   
-  def debit_credit_vat_accounts
-    u = self.fiscal_year.user
-    
-    sell_vat_account = u.accounts.find_by_account_no(6901)
-    buy_vat_account = u.accounts.find_by_account_no(6902)
-    
-    if self.account.vat_type == Account::VAT_TYPES[:sell]
-      u.active_fiscal_year.postings.create(:account => sell_vat_account, :amount => -1 * self.vat_of_amount, :attachment_no => self.attachment_no)
-      sell_vat_account.update_attribute(:amount, sell_vat_account.amount + (-1 * self.vat_of_amount))
-    elsif self.account.vat_type == Account::VAT_TYPES[:buy]
-      u.active_fiscal_year.postings.create(:account => buy_vat_account, :amount => self.vat_of_amount, :attachment_no => self.attachment_no)
-      buy_vat_account.update_attribute(:amount, buy_vat_account.amount + self.vat_of_amount)
-    end
-  end
+  # def adjust_operating_accounts
+  #   return unless (self.account.account_type == Account::ACCOUNT_TYPES[:operating])
+  # 
+  #   u = self.fiscal_year.user
+  # 
+  #   if self.account.account_no >= 1000 && self.account.account_no < 1300
+  #     if self.account.account_type == Account::ACCOUNT_TYPES[:operating]
+  #       debitor_account = u.accounts.find_by_account_no(5600)
+  #       debitor_account.update_attribute(:amount, debitor_account.amount + self.amount)
+  #     end
+  #     
+  #     # 'income accounts' will be credited
+  #     self.account.update_attribute(:amount, self.account.amount + (-1 * self.amount))
+  #   elsif self.account.account_no >= 1300
+  #     if self.account.account_type == Account::ACCOUNT_TYPES[:operating]
+  #       creditor_account = u.accounts.find_by_account_no(6800)
+  #       creditor_account.update_attribute(:amount, creditor_account.amount + (-1 * self.amount))
+  #     end
+  #     
+  #     # all other accounts will be debited
+  #     self.account.update_attribute(:amount, self.account.amount + self.amount)
+  #   end
+  # end
+  # 
+  # def adjust_vat_accounts
+  #   return unless (self.account.account_type == Account::ACCOUNT_TYPES[:operating])
+  #   
+  #   u = self.fiscal_year.user
+  #   
+  #   if self.account.vat_type == Account::VAT_TYPES[:income]
+  #     sell_vat_account = u.accounts.find_by_account_no(6901)
+  #     u.active_fiscal_year.postings.create(:account => sell_vat_account, :amount => -1 * self.vat_of_amount, :attachment_no => self.attachment_no)
+  #     sell_vat_account.update_attribute(:amount, sell_vat_account.amount + (-1 * self.vat_of_amount))
+  #   elsif self.account.vat_type == Account::VAT_TYPES[:expense]
+  #     buy_vat_account = u.accounts.find_by_account_no(6902)
+  #     u.active_fiscal_year.postings.create(:account => buy_vat_account, :amount => self.vat_of_amount, :attachment_no => self.attachment_no)
+  #     buy_vat_account.update_attribute(:amount, buy_vat_account.amount + self.vat_of_amount)
+  #   end
+  # end
   
 end

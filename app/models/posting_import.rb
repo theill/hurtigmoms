@@ -18,8 +18,8 @@ class PostingImport < ActiveRecord::Base
   def import
     # import actual content as Posting records
     
-    default_account_in = self.user.accounts.find_by_account_no_and_account_type('0120', Account::ACCOUNT_TYPES[:sell]).id
-    default_account_out = self.user.accounts.find_by_account_no_and_account_type('1300', Account::ACCOUNT_TYPES[:buy]).id
+    default_account_in = self.user.accounts.find_by_account_no('1020').id
+    default_account_out = self.user.accounts.find_by_account_no('1300').id
     
     # read [date, note, amount] for all postings so we are able to check existing ones
     existing_postings = self.user.active_fiscal_year.postings.find(:all, :include => :account, :select => 'postings.created_at, postings.note, postings.amount, postings.currency, accounts.account_type')
@@ -27,7 +27,7 @@ class PostingImport < ActiveRecord::Base
     success_count = duplicate_count = failed_count = 0
 
     self.parse.each do |row|
-      p = self.user.active_fiscal_year.postings.new(:state => Posting::STATES[:imported], :attachment_no => nil)
+      p = self.user.active_fiscal_year.postings.new(:state => Posting::STATES[:imported], :attachment_no => nil, :account_id => 0)
       self.mapping.each do |column, method|
         next if method.blank?
         
@@ -54,7 +54,7 @@ class PostingImport < ActiveRecord::Base
         detected_currency = 'DKK'
         amount = p.amount
         
-        if posting.account.account_type == Account::ACCOUNT_TYPES[:buy]
+        if posting.account.account_type == Account::ACCOUNT_TYPES[:expense]
           amount = -1.0 * amount
         end
         
@@ -78,7 +78,7 @@ class PostingImport < ActiveRecord::Base
       end
       
       p.account_id = (p.amount > 0) ? default_account_in : default_account_out if p.account_id == 0
-      p.amount = p.amount.abs
+      # p.amount = p.amount.abs
       
       # ensure we don't already have this in our system
       found = existing_postings.find do |posting|
@@ -94,6 +94,7 @@ class PostingImport < ActiveRecord::Base
       if p.save
         success_count += 1
       else
+        Rails.logger.debug("*** GOT ERROR: #{p.errors.first}")
         failed_count += 1
       end
     end

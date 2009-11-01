@@ -18,7 +18,6 @@
 	<fieldset>
 		<%= f.label :active_fiscal_year, t('user.active_fiscal_year') %>
 		<%= f.select(:active_fiscal_year, options_from_collection_for_select(@user.fiscal_years, 'id', 'name', @user.active_fiscal_year)) %>
-		<p class="hint">Det er endnu ikke muligt at oprette nye regnskaber</p>
 	</fieldset>
 	
 	<fieldset>

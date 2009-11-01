@@ -23,8 +23,8 @@
 				<tr>
 					<td colspan="3" rowspan="4"></td>
 					<td>Bevægelse</td>
-					<td class="number"><span class="income"><%= number_to_currency(@total_selling, :unit => current_user.default_currency) %></span></td>
-					<td class="number"><span class="expense"><%= number_to_currency(@total_buying, :unit => current_user.default_currency) %></span></td>
+					<td class="number"><span class="income"><%= number_to_currency(@total_income, :unit => current_user.default_currency) %></span></td>
+					<td class="number"><span class="expense"><%= number_to_currency(@total_expense, :unit => current_user.default_currency) %></span></td>
 				</tr>
 				<tr>
 					<td>Beholdning, start</td>
@@ -34,12 +34,12 @@
 				<tr>
 					<td>Beholdning, slut</td>
 					<td class="dimmed"></td>
-					<td class="number"><span class="coh"><%= number_to_currency(@total_selling + @bank_initial - @total_buying, :unit => current_user.default_currency) %></span></td>
+					<td class="number"><span class="coh"><%= number_to_currency(@total_income + @bank_initial - @total_expense, :unit => current_user.default_currency) %></span></td>
 				</tr>
 				<tr>
 					<td>Balance</td>
-					<td class="number"><b><%= number_to_currency(@total_selling + @bank_initial, :unit => current_user.default_currency) %></b></td>
-					<td class="number"><b><%= number_to_currency(@total_buying + (@total_selling + @bank_initial - @total_buying), :unit => current_user.default_currency) %></b></td>
+					<td class="number"><b><%= number_to_currency(@total_income + @bank_initial, :unit => current_user.default_currency) %></b></td>
+					<td class="number"><b><%= number_to_currency(@total_expense + (@total_income + @bank_initial - @total_expense), :unit => current_user.default_currency) %></b></td>
 				</tr>
 			</tfoot>
 			<tbody>

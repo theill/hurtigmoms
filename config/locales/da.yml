@@ -94,8 +94,8 @@ da:
 
   accounts:
     index:
-      title: Konti
-      description: Alle
+      title: Kontoplan
+      description: Alle konti for indeværende år
       
     new:
       buttons:
@@ -158,7 +158,7 @@ da:
     application:
       home: Hjem
       postings: Posteringer
-      accounts: Konti
+      accounts: Kontoplan
       reports: Rapporter
       customers: Kunder
       sign_in: Log ind

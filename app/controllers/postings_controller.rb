@@ -6,8 +6,8 @@ class PostingsController < ApplicationController
   def index
     @postings = @fiscal_year.postings.all(:include => [:account, :customer], :order => 'created_at DESC')
     
-    @total_selling = @fiscal_year.postings.total_selling(2009).sum(:amount)
-    @total_buying = @fiscal_year.postings.total_buying(2009).sum(:amount)
+    @total_income = @fiscal_year.postings.total_income(2009).sum(:amount)
+    @total_expense = @fiscal_year.postings.total_expense(2009).sum(:amount)
     
     @bank_initial = 0
     

@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
     #   ['0137', 'Salg, EU-lande', Account::VAT_TYPES[:other_country]],
     #   ['0138', 'Salg, øvrige lande', Account::VAT_TYPES[:other_country]]
     # ].each do |account_no, name, vat|
-    #   self.accounts.create(:name => name, :account_no => account_no, :vat_type => vat, :account_type => Account::ACCOUNT_TYPES[:sell])
+    #   self.accounts.create(:name => name, :account_no => account_no, :vat_type => vat, :account_type => Account::ACCOUNT_TYPES[:income])
     # end
     # 
     # [ ['1300', 'Varekøb, indland', Account::VAT_TYPES[:standard]], 
@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
     #   ['3660', 'Faglitteratur', Account::VAT_TYPES[:standard]],
     #   ['3661', 'Avis', Account::VAT_TYPES[:none]]
     # ].each do |account_no, name, vat|
-    #   self.accounts.create(:name => name, :account_no => account_no, :vat_type => vat, :account_type => Account::ACCOUNT_TYPES[:buy])
+    #   self.accounts.create(:name => name, :account_no => account_no, :vat_type => vat, :account_type => Account::ACCOUNT_TYPES[:expense])
     # end
   end
   
@@ -93,9 +93,9 @@ class User < ActiveRecord::Base
   def translate_vat_code(vat_code)
     case vat_code
     when 'Salgsmoms'
-      Account::VAT_TYPES[:sell]
+      Account::VAT_TYPES[:income]
     when 'Købsmoms'
-      Account::VAT_TYPES[:buy]
+      Account::VAT_TYPES[:expense]
     when 'Hotelmoms'
       Account::VAT_TYPES[:hotel]
     else
