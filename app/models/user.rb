@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :accounts, :dependent => :destroy
   has_many :customers, :dependent => :destroy
   has_many :fiscal_years, :dependent => :destroy
+  has_many :annexes, :dependent => :destroy
   has_many :posting_imports, :dependent => :destroy
   belongs_to :active_fiscal_year, :class_name => 'FiscalYear'
   

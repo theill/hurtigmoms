@@ -3,7 +3,7 @@ class Transaction < ActiveRecord::Base
   
   belongs_to :fiscal_year
   belongs_to :account
-  belongs_to :attachment
+  belongs_to :annex, :class_name => 'Annex'
 
   validates_presence_of :fiscal_year_id, :account_id, :amount
 

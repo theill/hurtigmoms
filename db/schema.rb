@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091029172636) do
+ActiveRecord::Schema.define(:version => 20091101214405) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(:version => 20091029172636) do
     t.integer  "aggregate_from_account_no"
     t.decimal  "amount",                    :default => 0.0, :null => false
     t.integer  "account_no"
+  end
+
+  create_table "annexes", :force => true do |t|
+    t.integer  "user_id",                 :null => false
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "customers", :force => true do |t|
@@ -77,6 +86,20 @@ ActiveRecord::Schema.define(:version => 20091029172636) do
     t.string   "state",                   :limit => 1, :default => "A",   :null => false
     t.integer  "customer_id"
     t.integer  "fiscal_year_id",                                          :null => false
+  end
+
+  create_table "transactions", :force => true do |t|
+    t.integer  "fiscal_year_id",                                   :null => false
+    t.integer  "transaction_type",              :default => 1,     :null => false
+    t.integer  "account_id",                                       :null => false
+    t.decimal  "amount",                                           :null => false
+    t.string   "currency",         :limit => 3, :default => "DKK", :null => false
+    t.text     "note"
+    t.integer  "attachment_no"
+    t.integer  "annex_id"
+    t.text     "external_data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
