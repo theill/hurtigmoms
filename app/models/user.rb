@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   include Clearance::User
   
-  has_many :postings, :dependent => :destroy
   has_many :accounts, :dependent => :destroy
   has_many :customers, :dependent => :destroy
   has_many :fiscal_years, :dependent => :destroy

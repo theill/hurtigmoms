@@ -1,4 +1,6 @@
 class Posting < ActiveRecord::Base
+  STATES = { :accepted => 'A', :pending => 'P', :imported => 'I', :deleted => 'D' }
+  
   belongs_to :account
   belongs_to :customer
   belongs_to :fiscal_year
@@ -8,10 +10,8 @@ class Posting < ActiveRecord::Base
     :s3_credentials => File.join(Rails.root, 'config', 'amazon_s3.yml'),
     :s3_permissions => 'authenticated-read',
     :url => ':s3_domain_url',
-    :path => ":attachment/:id/:style.:extension",
+    :path => ':attachment/:id/:style.:extension',
     :bucket => 'hurtigmoms'
-    
-  STATES = { :accepted => 'A', :pending => 'P', :imported => 'I', :deleted => 'D' }
   
   validates_presence_of :fiscal_year_id
   validates_presence_of :account_id

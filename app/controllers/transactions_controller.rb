@@ -1,8 +1,10 @@
 class TransactionsController < ApplicationController
+  before_filter :authenticate, :get_fiscal_year
+  
   # GET /transactions
   # GET /transactions.xml
   def index
-    @transactions = Transaction.all
+    @transactions = @fiscal_year.transactions.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -82,4 +84,11 @@ class TransactionsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  private
+  
+  def get_fiscal_year
+    @fiscal_year = current_user.fiscal_years.find(params[:fiscal_year_id])
+  end
+  
 end

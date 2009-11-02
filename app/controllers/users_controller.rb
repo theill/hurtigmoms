@@ -19,5 +19,5 @@ class UsersController < Clearance::UsersController
       end
     end
   end
-    
+  
 end
