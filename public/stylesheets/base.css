@@ -321,50 +321,50 @@ table tr.row-editing div.box {
 	margin-bottom: 20px;
 }
 
-#postings {}
-	#postings thead .account-type {
+#transactions {}
+	#transactions thead .account-type {
 		color: #779;
 	}
-	#postings thead .created_at, #postings thead .attachment_no {
+	#transactions thead .created_at, #transactions thead .attachment_no {
 		width: 1%;
 	}
-	#postings tfoot {
+	#transactions tfoot {
 		border-top: solid 2px #ccc;
 	}
-		#postings tfoot td.dimmed {
+		#transactions tfoot td.dimmed {
 			background-color: #eee;
 		}
-	#postings .posting {} 
-		#postings .posting .account_no {
+	#transactions .transaction {} 
+		#transactions .transaction .account_no {
 			color: #999;
 		}
-		#postings .posting .customer-name {
+		#transactions .transaction .customer-name {
 			color: #797;
 		}
 		
-  	#postings .posting .amount-vat {
+  	#transactions .transaction .amount-vat {
   	  background-color: #666;
   	  color: #fff;
   	  padding: 4px;
   	}
 
-		#postings .posting.today {
+		#transactions .transaction.today {
 /*			background-color: #F9FDE1;*/
 		}
 
-		#postings .posting.imported {
+		#transactions .transaction.imported {
 			color: #666;
 		}
 		
-		#postings .posting.pending {
+		#transactions .transaction.pending {
 			background-color: #ffeeee;
 		}
 		
-		#postings .posting .attachment {
+		#transactions .transaction .attachment {
 			display: none;
 		}
 
-		#postings .posting .attachment-email {
+		#transactions .transaction .attachment-email {
 			display: none;
 			height: 480px;
 			width: 800px;
@@ -417,9 +417,11 @@ table tr.row-editing div.box {
 		}
 
 #customers {}
-	#customers .customer .actions {
-		width: 20px;
-	}
+	#customers .customer {}
+		#customers .customer .description {
+			font-size: 10px;
+			color: #999;
+		}
 	
 .editable-table .row .actions { }
 	.editable-table .row .actions .buttons-container {

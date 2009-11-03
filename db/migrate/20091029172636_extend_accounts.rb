@@ -11,6 +11,8 @@ class ExtendAccounts < ActiveRecord::Migration
     add_column :accounts, :account_no, :integer, :null => true
     Account.all.each { |a| a.update_attributes({:account_no => a.old_account_no.to_i, :account_type => Account::ACCOUNT_TYPES[:operating]}) }
     remove_column :accounts, :old_account_no
+    
+    Account.reset_column_information
   end
   
   def self.down

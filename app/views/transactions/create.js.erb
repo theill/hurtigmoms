@@ -1,0 +1,39 @@
+<%- if @transaction.errors.empty? %>
+  $("#transactions").prepend("<%= escape_javascript(render(@transaction)) %>");
+  $("#<%= dom_id(@transaction) %>").effect("highlight");
+  
+	// FIXME: move to live handler (use livequery?)
+	$("#<%= dom_id(@transaction) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
+
+	$("tr#new_transaction").remove();
+<%- else -%>
+  // render new form (again but now with errors)
+  $("#<%= dom_id(@transaction) %>").replaceWith("<%= escape_javascript(render(:partial => 'edit', :locals => { :transaction => @transaction })) %>");
+  $("#<%= dom_id(@transaction) %>").effect("highlight", {color: "#ff9999"});
+  
+	// rebind events
+	$("#<%= dom_id(@transaction) %> form").ajaxForm({ dataType: "script" });
+	
+	$("#transaction_customer_name").autocomplete(hurtigmoms.customers_url, {
+		dataType: 'json',
+		max: 25,
+		scroll: true,
+		scrollHeight: 190,
+		parse: function(data) {
+			return $.map(eval(data), function(row) {
+				return {
+					data: row.customer,
+					value: '' + row.customer.id,
+					result: row.customer.name
+				}
+			});
+		},
+		formatItem: function(customer, idx, total) {
+			return "<div class=\"company\">" + customer.name + "</div>";
+		}
+	});
+
+	// important to set this -after- autocomplete field
+	$("#<%= dom_id(@transaction) %> form").focusFirstFormElement();
+	
+<%- end %>

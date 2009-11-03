@@ -1,0 +1,15 @@
+<%- if @transaction.errors.empty? %>
+  $("#<%= dom_id(@transaction) %>").replaceWith("<%= escape_javascript(render(@transaction)) %>");
+  $("#<%= dom_id(@transaction) %>").effect("highlight");
+  
+  // FIXME: move to live handler (use livequery?)
+  $("#<%= dom_id(@transaction) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
+<%- else -%>
+  // render edit form (again but now with errors)
+  $("#<%= dom_id(@transaction) %>").replaceWith("<%= escape_javascript(render(:partial => 'edit', :locals => { :transaction => @transaction })) %>");
+  $("#<%= dom_id(@transaction) %>").effect("highlight", {color: "#ff9999"});
+
+  // rebind events
+  $("#<%= dom_id(@transaction) %> form").ajaxForm({	dataType: "script" });
+  //$("#<%= dom_id(@transaction) %> #transaction_amount").keyup(function() { $("#<%= dom_id(@transaction) %> #vat").text(hurtigmoms.transaction.vat(this.value)); });
+<%- end %>

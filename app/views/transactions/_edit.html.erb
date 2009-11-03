@@ -1,0 +1,72 @@
+<tr id="<%= dom_id(transaction) %>" class="transaction row-editing">
+	<td colspan="6">
+		<div class="box">
+		<% form_for([transaction.fiscal_year, transaction], :html => {:autocomplete => 'off'}) do |f| -%>
+			<%= f.error_messages %>
+			
+			<table>
+				<tr>
+					<td>
+						<fieldset>
+							<%= f.label :customer_id, t('transaction.customer_id') %>
+							<%= f.text_field :customer_name %>
+						</fieldset>
+					</td>
+					<td>
+						<fieldset>
+							<%= f.label :created_at, t('transaction.created_at') %>
+							<%= date_select :transaction, :created_at %><a id="date-pick" href="#"><%= image_tag('calendar-select.png') %></a>
+						</fieldset>
+					</td>
+					<td>
+						<fieldset>
+							<%= f.label :account_id, t('transaction.account_id') + ' <span class="req">*</span>' %>
+							<%= f.select :account_id, accounts, {:prompt => "Vælg konto"} %>
+						</fieldset>
+					</td>
+					<td>
+						<fieldset>
+							<%= f.label :amount, t('transaction.amount') + ' <span class="req">*</span><span class="hint">' + t('transaction.including_vat') + '</span>' %>
+							<%= f.text_field :amount, :size => 10, :maxlength => 10, :class => 'amount-no-vat' %> <%= f.select :currency, Currency::SUPPORTED %>
+						</fieldset>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<fieldset>
+							<%= f.label :attachment_no, t('transaction.attachment_no') %>
+							<%= f.text_field :attachment_no, :size => 4, :maxlength => 4 %>
+							<%- if transaction.annex -%>
+								<p class="hint"><%= t('.download_attachment', :download_link => link_to(t('.download'), download_fiscal_year_transaction_path(current_user.active_fiscal_year, transaction))) %></p>
+							<%- end -%>
+						</fieldset>
+					</td>
+					<td colspan="2">
+						<fieldset>
+							<%= f.label :note, t('transaction.note') %>
+							<%= f.text_area :note, :rows => 4, :cols => 60 %>
+							<p class="hint">Only first line is shown in overview</p>
+						</fieldset>
+					</td>
+					<td>
+						<fieldset>
+							<label>Moms</label>
+							<span id="vat" class="amount-vat">-</span>
+						</fieldset>
+					</td>
+				</tr>
+			</table>
+			
+			<div class="inline-buttons">
+				<%- if transaction.new_record? -%>
+				  <%= f.submit t('.buttons.save') %> <%= link_to(t('buttons.close'), fiscal_year_transactions_path(current_user.active_fiscal_year), :class => 'close') %>
+				<%- else -%>
+					<%= f.submit t('.buttons.save') %> <%= link_to t('buttons.close'), fiscal_year_transaction_path(current_user.active_fiscal_year, transaction, :format => :js), :class => 'show' %>
+					
+					<div class="inline-actions"><%= t('.delete_transaction', :delete_link => link_to(t('buttons.delete'), [current_user.active_fiscal_year, transaction], :class => 'delete')) %></div>
+				<%- end -%>
+			</div>
+		<%- end -%>
+		</div>
+	</td>
+</tr>

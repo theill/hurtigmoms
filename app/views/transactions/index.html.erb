@@ -1,34 +1,71 @@
-<h1>Listing transactions</h1>
+<%- @meta = { :title => t('.title'), :description => t('.description') } -%>
+<h1><%= t('.title') %><span><%=h @fiscal_year.name %></span></h1>
 
-<table>
-  <tr>
-    <th>Fiscal year</th>
-    <th>Transaction type</th>
-    <th>Account</th>
-    <th>Amount</th>
-    <th>Note</th>
-    <th>Attachment no</th>
-    <th>Attachment</th>
-    <th>External data</th>
-  </tr>
+<div class="grid_12">
+	<%- if @transactions.any? -%>
+		<div class="quick-buttons">
+			<%= link_to t('.buttons.add'), new_fiscal_year_transaction_path(current_user.active_fiscal_year), { :class => 'button show', :id => 'add-new-transaction' } %>
+			<!-- <%= link_to 'Import postings', new_posting_import_path, { :class => 'button' } %> -->
+		</div>
+	
+		<table id="transactions" class="editable-table">
+			<thead>
+				<tr>
+					<th class="created_at"><%= t('transaction.created_at') %></th>
+					<th class="attachment_no"><%= t('transaction.attachment_no') %></th>
+					<th><%= t('transaction.note') %></th>
+					<th><%= t('transaction.account_id') %></th>
+					<th><span class="income"><%= t('transaction.amount_in') %></span></th>
+					<th><span class="expense"><%= t('transaction.amount_out') %></span></th>
+				</tr>
+			</thead>
+			<tbody>
+			<%= render @transactions %>
+			</tbody>
+		</table>
+	<%- else -%>
+		<p>
+			De har ingen registrerede posteringer.
+		</p>
+		
+		<div class="quick-buttons">
+			<%= link_to 'Tilføj postering', new_fiscal_year_transaction_path(current_user.active_fiscal_year), { :class => 'button show', :id => 'add-new-transaction' } %>
+		</div>
+		
+		<table id="transactions" class="editable-table"></table>
+	<%- end -%>
+</div>
 
-<% @transactions.each do |transaction| %>
-  <tr>
-    <td><%=h transaction.fiscal_year_id %></td>
-    <td><%=h transaction.transaction_type %></td>
-    <td><%=h transaction.account_id %></td>
-    <td><%=h transaction.amount %></td>
-    <td><%=h transaction.note %></td>
-    <td><%=h transaction.attachment_no %></td>
-    <td><%=h transaction.attachment_id %></td>
-    <td><%=h transaction.external_data %></td>
-    <td><%= link_to 'Show', transaction %></td>
-    <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
-    <td><%= link_to 'Destroy', transaction, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<!-- <div class="grid_3">
+	<div class="sidebar">
+		<h3>Hvordan opretter jeg en postering?</h3>
+		<div>
+			<p>Den nemmeste måde er at sende en mail til bilag@hurtigmoms.dk
+			med dit bilag for posteringen. Et sted i mailen kan du benytte
+			følgende felter</p>
+			<p>
+				<code>
+					DATE:    [YYYY-MM-DD]<br/ >
+					AMOUNT:  [250 DKK]<br />
+					ACCOUNT: [Varekøb]<br />
+					NOTE:    [Køb af frimærker]<br />
+				</code>
+			</p>
 
-<br />
+			<p>
+				Systemet forstår også en mere naturlig beskrivelse af dit
+				bilag, fx kan du i "Emne" feltet skrive tekster såsom <code>
+				"Køb af frimærker til 500DKK"</code> for at oprette en 
+				postering der vil registrere et køb af frimærker på 500,-
+				inkl. moms.
+			</p>
 
-<%= link_to 'New transaction', new_transaction_path %>
+			<p>
+				Kan systemet ikke gætte hvordan bilaget skal tolkes, vil den
+				blive registreret i systemet på dags dato med emne feltet 
+				brugt som "Tekst" på posteringen. Posteringen vil herefter
+				være i en "kræver handling" state.
+			</p>
+		</div>
+	</div>
+</div> -->

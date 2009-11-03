@@ -1,9 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :transactions
-
   map.resources :posting_imports
 
   map.resources :fiscal_years, :as => 'regnskaber' do |fy|
+    fy.resources :transactions, :as => 'transaktioner', :member => { :download => :get }
     fy.resources :postings, :as => 'posteringer', :member => { :download => :get }
   end
   map.resources :accounts, :as => 'konti'

@@ -1,94 +1,86 @@
 class TransactionsController < ApplicationController
   before_filter :authenticate, :get_fiscal_year
   
-  # GET /transactions
-  # GET /transactions.xml
   def index
-    @transactions = @fiscal_year.transactions.all
-
+    @transactions = @fiscal_year.transactions.all(:include => [:account, :customer], :order => 'created_at DESC')
+    
+    @total_income = 0#@fiscal_year.transactions.total_income(2009).sum(:amount)
+    @total_expense = 0#@fiscal_year.transactions.total_expense(2009).sum(:amount)
+    
+    @bank_initial = 0
+    
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @transactions }
-    end
-  end
-
-  # GET /transactions/1
-  # GET /transactions/1.xml
-  def show
-    @transaction = Transaction.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @transaction }
-    end
-  end
-
-  # GET /transactions/new
-  # GET /transactions/new.xml
-  def new
-    @transaction = Transaction.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @transaction }
-    end
-  end
-
-  # GET /transactions/1/edit
-  def edit
-    @transaction = Transaction.find(params[:id])
-  end
-
-  # POST /transactions
-  # POST /transactions.xml
-  def create
-    @transaction = Transaction.new(params[:transaction])
-
-    respond_to do |format|
-      if @transaction.save
-        flash[:notice] = 'Transaction was successfully created.'
-        format.html { redirect_to(@transaction) }
-        format.xml  { render :xml => @transaction, :status => :created, :location => @transaction }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @transaction.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /transactions/1
-  # PUT /transactions/1.xml
-  def update
-    @transaction = Transaction.find(params[:id])
-
-    respond_to do |format|
-      if @transaction.update_attributes(params[:transaction])
-        flash[:notice] = 'Transaction was successfully updated.'
-        format.html { redirect_to(@transaction) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @transaction.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /transactions/1
-  # DELETE /transactions/1.xml
-  def destroy
-    @transaction = Transaction.find(params[:id])
-    @transaction.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(transactions_url) }
-      format.xml  { head :ok }
     end
   end
   
+  def show
+    @transaction = @fiscal_year.transactions.find(params[:id])
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def new
+    @transaction = @fiscal_year.transactions.new
+    @transaction.set_attachment_no
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def edit
+    @transaction = @fiscal_year.transactions.find(params[:id])
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def create
+    @transaction = @fiscal_year.transactions.new(params[:transaction])
+    
+    respond_to do |format|
+      if @transaction.save
+        format.js
+      else
+        format.js
+      end
+    end
+  end
+  
+  def update
+    @transaction = @fiscal_year.transactions.find(params[:id])
+    
+    respond_to do |format|
+      if @transaction.update_attributes(params[:transaction])
+        format.js
+      else
+        format.js
+      end
+    end
+  end
+  
+  def destroy
+    @transaction = @fiscal_year.transactions.find(params[:id])
+    @transaction.destroy
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def download
+    @transaction = @fiscal_year.transactions.find(params[:id])
+    
+    redirect_to @transaction.authenticated_url
+  end
+    
   private
   
   def get_fiscal_year
     @fiscal_year = current_user.fiscal_years.find(params[:fiscal_year_id])
   end
-  
 end

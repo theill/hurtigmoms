@@ -37,6 +37,16 @@
 						</fieldset>
 					</td>
 				</tr>
+				<tr>
+					<td></td>
+					<td colspan="4">
+						<fieldset>
+							<%= f.label :description, t('account.description') %>
+							<%= f.text_area :description, :rows => 2, :cols => 60 %>
+						</fieldset>
+					</td>
+					<td></td>
+				</tr>
 			</table>
 			
 			<div class="inline-buttons">
@@ -46,7 +56,7 @@
 					<%= f.submit t('buttons.save') %> <%= link_to t('buttons.close'), account_path(account, :format => :js), :class => 'show' %>
 					
 					<%- if account_deletable(account) -%>
-						<div class="inline-actions"><%= link_to(t('buttons.delete'), account, :class => 'delete') %> denne konto</div>
+						<div class="inline-actions"><%= t('.delete_account', :delete_link => link_to(t('buttons.delete'), account, :class => 'delete')) %></div>
 					<%- end -%>
 				<%- end -%>
 			</div>

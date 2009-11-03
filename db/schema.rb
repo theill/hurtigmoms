@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091101214405) do
+ActiveRecord::Schema.define(:version => 20091103202553) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -94,8 +94,9 @@ ActiveRecord::Schema.define(:version => 20091101214405) do
     t.integer  "account_id",                                       :null => false
     t.decimal  "amount",                                           :null => false
     t.string   "currency",         :limit => 3, :default => "DKK", :null => false
+    t.integer  "customer_id"
     t.text     "note"
-    t.integer  "attachment_no"
+    t.integer  "attachment_no",                 :default => 0
     t.integer  "annex_id"
     t.text     "external_data"
     t.datetime "created_at"

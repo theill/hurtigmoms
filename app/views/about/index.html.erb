@@ -6,7 +6,7 @@
 	<%- if @action_required -%>
 		<div class="action-required">
 			<p>
-				Du har <%= link_to("posteringer", fiscal_year_postings_path(current_user.active_fiscal_year)) %> der kræver handling.
+				Du har <%= link_to('transaktioner', fiscal_year_transactions_path(current_user.active_fiscal_year)) %> der kræver handling.
 			</p>
 		</div>
 	<%- else -%>

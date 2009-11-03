@@ -34,9 +34,22 @@ da:
     amount_out: Hævet
     including_vat: inkl. moms
     excluding_vat: eksl. moms
-    
+  
+  transaction:
+    created_at: Dato
+    note: Note
+    amount: Beløb
+    attachment_no: Bilag
+    account_id: Konto
+    customer_id: Kunde
+    amount_in: Debet
+    amount_out: Kredit
+    including_vat: inkl. moms
+    excluding_vat: eksl. moms
+
   account:
     name: Navn
+    description: Beskrivelse
     account_no: Konto
     account_type: Konto type
     vat_type: Moms type
@@ -50,8 +63,8 @@ da:
     account_type_status: Status
     account_type_sum: Sum
     pick_account_type: Vælg konto type
-    vat_type_sell: Salgsmoms
-    vat_type_buy: Købsmoms
+    vat_type_income: Salgsmoms
+    vat_type_expense: Købsmoms
     vat_type_hotel: Hotelmoms
     vat_type_none: Momsfrit
     pick_vat_type: Vælg moms type
@@ -100,6 +113,9 @@ da:
     new:
       buttons:
         save: Opret konto
+        
+    edit:
+      delete_account: '{{delete_link}} denne konto'
   
   postings:
     index:
@@ -113,6 +129,23 @@ da:
       buttons:
         save: Gem
 
+  transactions:
+    index:
+      title: Transaktioner
+      description: Oversigt for hele året
+      buttons:
+        add: Tilføj transaktion
+
+    new:
+      buttons:
+        save: Opret transaktion
+    edit:
+      delete_transaction: '{{delete_link}} denne transaktion'
+      download_attachment: 'Se bilaget ved at {{download_link}} det'
+      download: downloade
+      buttons:
+        save: Gem
+    
   reports:
     index:
       title: Rapporter
@@ -157,7 +190,7 @@ da:
   layouts:
     application:
       home: Hjem
-      postings: Posteringer
+      transactions: Transaktioner
       accounts: Kontoplan
       reports: Rapporter
       customers: Kunder

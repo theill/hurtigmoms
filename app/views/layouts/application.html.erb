@@ -18,7 +18,7 @@
 						<ul>
 							<li class="application-name"><%= company_title %></li>
 							<%= menu_tag(t('.home'), root_path) %>
-							<%= menu_tag(t('.postings'), fiscal_year_postings_path(current_user.active_fiscal_year)) %>
+							<%= menu_tag(t('.transactions'), fiscal_year_transactions_path(current_user.active_fiscal_year)) %>
 							<%= menu_tag(t('.accounts'), accounts_path) %>
 							<%= menu_tag(t('.reports'), reports_path) %>
 							<%= menu_tag(t('.customers'), customers_path) %>

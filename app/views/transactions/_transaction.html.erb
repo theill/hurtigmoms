@@ -1,0 +1,8 @@
+<tr id="<%= dom_id(transaction) %>" class="transaction row">
+	<td class="actions"><div class="buttons-container"><div class="buttons"><%= link_to(image_tag('navigation-000-frame.png'), edit_fiscal_year_transaction_path(current_user.active_fiscal_year, transaction), :class => 'edit hide') %></div></div><%=h transaction.created_at.strftime("%d/%m-%Y") %></td>
+	<td><%= formatted_attachment_no(transaction) %></td>
+	<td><%= note_for_overview(transaction) %></td>
+	<td><%= ("<span class=\"account_no\">#{transaction.account.account_no}</span> #{h(transaction.account.name)}") if transaction.account %></td>
+	<td class="number"><%= number_to_currency(transaction.amount, :unit => transaction.currency) if transaction.amount > 0 %></td>
+	<td class="number"><%= number_to_currency(transaction.amount.abs, :unit => transaction.currency) if transaction.amount < 0 %></td>
+</tr>

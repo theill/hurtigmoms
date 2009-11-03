@@ -10,13 +10,13 @@ class MailParser
     # ensure to uppercase currency in case it's available
     parsed_attributes[:currency] = parsed_attributes[:currency].upcase if parsed_attributes[:currency]
     
-    # only supporting 'buying' at the moment
-    account_no = (parsed_attributes[:currency] == 'DKK' ? '1300' : '1308')
+    # only supporting 'buying' at the moment - and only set if not already set to 'pending' (account 0009)
+    account_no = parsed_attributes[:account_no] || (parsed_attributes[:currency] == 'DKK' ? '1300' : '1308')
     account = user.accounts.find_by_account_no(account_no)
     parsed_attributes.merge!(:account_id => account.id, :attachment_email => mail.to_s, :attachment_no => 0)
     
-    posting = user.active_fiscal_year.postings.create! parsed_attributes
-    associate_attachments(posting, mail) if mail.has_attachments?
+    transaction = user.active_fiscal_year.transactions.create! parsed_attributes
+    associate_attachments(transaction, mail) if mail.has_attachments?
   end
   
   private
@@ -36,9 +36,12 @@ class MailParser
     password
   end
   
-  def associate_attachments(posting, mail)
+  def associate_attachments(transaction, mail)
     mail.attachments.each do |attachment|
-      posting.update_attribute(:attachment, attachment)
+      annex = transaction.create_annex(:user => transaction.fiscal_year.user)
+      annex.attachment = attachment
+      annex.save!
+      transaction.save
     end
   end
   
@@ -46,6 +49,7 @@ class MailParser
     amount = 0.0
     date = Time.now.utc.to_datetime
     currency = 'DKK'
+    account_no = nil
     
     # trim forwarding and replying rules from subject
     description = (mail.subject || '').gsub(/^Fwd: /i, '').gsub(/^Fw: /i, '').gsub(/^Re: /i, '').gsub(/^VS: /i, '').gsub(/^SV: /i, '')
@@ -123,12 +127,10 @@ class MailParser
     end
     
     if (amount.blank? || amount.to_f == 0.0 || currency.blank? || date.blank?)
-      state = Posting::STATES[:pending]
-    else
-      state = Posting::STATES[:accepted]
+      account_no = 9
     end
     
-    { :amount => amount, :currency => currency, :note => description, :created_at => date, :state => state }
+    { :amount => amount, :currency => currency, :note => description, :created_at => date, :account_no => account_no }
   end
   
   def guess_date(body)

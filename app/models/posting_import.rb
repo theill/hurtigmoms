@@ -16,18 +16,18 @@ class PostingImport < ActiveRecord::Base
   end
   
   def import
-    # import actual content as Posting records
+    # import actual content as Transaction records
     
     default_account_in = self.user.accounts.find_by_account_no('1020').id
     default_account_out = self.user.accounts.find_by_account_no('1300').id
     
-    # read [date, note, amount] for all postings so we are able to check existing ones
-    existing_postings = self.user.active_fiscal_year.postings.find(:all, :include => :account, :select => 'postings.created_at, postings.note, postings.amount, postings.currency, accounts.account_type')
+    # read [date, note, amount] for all transactions so we are able to check existing ones
+    existing_transactions = self.user.active_fiscal_year.transactions.find(:all, :include => :account, :select => 'transactions.created_at, transactions.note, transactions.amount, transactions.currency, accounts.account_type')
     
     success_count = duplicate_count = failed_count = 0
 
     self.parse.each do |row|
-      p = self.user.active_fiscal_year.postings.new(:state => Posting::STATES[:imported], :attachment_no => nil, :account_id => 0)
+      p = self.user.active_fiscal_year.transactions.new(:transaction_type => Transaction::TRANSACTION_TYPES[:pay], :attachment_no => nil, :account_id => 0)
       self.mapping.each do |column, method|
         next if method.blank?
         
@@ -47,14 +47,14 @@ class PostingImport < ActiveRecord::Base
 
       Rails.logger.debug("COMPARE #{p.amount}, #{p.note} with:")
 
-      # match with any existing postings
-      match = existing_postings.find do |posting|
-        # Rails.logger.debug(" #{posting.amount}, #{posting.note}")
+      # match with any existing transactions
+      match = existing_transactions.find do |transaction|
+        # Rails.logger.debug(" #{transaction.amount}, #{transaction.note}")
         
         detected_currency = 'DKK'
         amount = p.amount
         
-        if posting.account.account_type == Account::ACCOUNT_TYPES[:expense]
+        if transaction.account.account_type == Account::ACCOUNT_TYPES[:expense]
           amount = -1.0 * amount
         end
         
@@ -68,7 +68,7 @@ class PostingImport < ActiveRecord::Base
           end
         end
         
-        (posting.amount == amount) && (posting.currency == detected_currency) && (posting.created_at.to_date..(posting.created_at.to_date + 3.days)).include?(p.created_at.to_date)
+        (transaction.amount == amount) && (transaction.currency == detected_currency) && (transaction.created_at.to_date..(transaction.created_at.to_date + 3.days)).include?(p.created_at.to_date)
       end
 
       if match
@@ -81,8 +81,8 @@ class PostingImport < ActiveRecord::Base
       # p.amount = p.amount.abs
       
       # ensure we don't already have this in our system
-      found = existing_postings.find do |posting|
-        posting.note == p.note && posting.amount == p.amount && posting.created_at.to_date == p.created_at.to_date
+      found = existing_transactions.find do |transaction|
+        transaction.note == p.note && transaction.amount == p.amount && transaction.created_at.to_date == p.created_at.to_date
       end
       
       if found

@@ -1,10 +1,15 @@
-<h1>Postings <span>Importing</span></h1>
+<h1>Kontoudtog <span>Importering</span></h1>
+
+<p>
+	Du har mulighed for at importere transaktioner fra din bank.
+</p>
 
 <% form_for(@posting_import, :html => {:multipart => true}) do |f| %>
   <%= f.error_messages %>
 
 	<fieldset>
 		<%= f.file_field :file %>
+		<p class="hint">Vælg det kontoudtog du har hentet fra din bank</p>
 	</fieldset>
 	
   <p>

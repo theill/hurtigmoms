@@ -1,0 +1,82 @@
+$("#<%= dom_id(@transaction) %>").replaceWith("<%= escape_javascript(render(:partial => 'transactions/edit', :locals => {:transaction => @transaction})) %>");
+
+$(".amount-no-vat").trigger("keyup");
+
+// bind events
+$("#<%= dom_id(@transaction) %> form").ajaxForm({	dataType: "script" });
+
+// move to generic 'edit/create' function
+$("#transaction_customer_name").autocomplete(hurtigmoms.customers_url, {
+	dataType: 'json',
+	max: 25,
+	scroll: true,
+	scrollHeight: 190,
+	parse: function(data) {
+		return $.map(eval(data), function(row) {
+			return {
+				data: row.customer,
+				value: '' + row.customer.id,
+				result: row.customer.name
+			}
+		});
+	},
+	formatItem: function(customer, idx, total) {
+		return "<div class=\"company\">" + customer.name + "</div>";
+	}
+});
+
+// important to set this -after- autocomplete field
+$("#<%= dom_id(@transaction) %> form").focusFirstFormElement();
+
+// initialise the "Select date" link
+$('#date-pick')
+	.datePicker({
+    createButton: false,
+		startDate: '01/01/2005',
+		endDate: '31/12/2015'
+	}).bind(
+		'click',
+		function() {
+			updateSelects($(this).dpGetSelected()[0]);
+			$(this).dpDisplay();
+			return false;
+		}
+	).bind(
+		'dateSelected',
+		function(e, selectedDate, $td, state) {
+			updateSelects(selectedDate);
+		}
+	).bind(
+		'dpClosed',
+		function(e, selected) {
+			updateSelects(selected[0]);
+		}
+	);
+
+var updateSelects = function(selectedDate) {
+	var selectedDate = new Date(selectedDate);
+	$('#<%= dom_id(@transaction) %> #transaction_created_at_3i option[value=' + selectedDate.getDate() + ']').attr('selected', 'selected');
+	$('#<%= dom_id(@transaction) %> #transaction_created_at_2i option[value=' + (selectedDate.getMonth()+1) + ']').attr('selected', 'selected');
+	$('#<%= dom_id(@transaction) %> #transaction_created_at_1i option[value=' + (selectedDate.getFullYear()) + ']').attr('selected', 'selected');
+}
+
+// listen for when the selects are changed and update the picker
+$('#<%= dom_id(@transaction) %> #transaction_created_at_3i, #<%= dom_id(@transaction) %> #transaction_created_at_2i, #<%= dom_id(@transaction) %> #transaction_created_at_1i')
+	.bind(
+		'change',
+		function() {
+			var d = new Date(
+  			$('#transaction_created_at_1i').val(),
+  			$('#transaction_created_at_2i').val()-1,
+  			$('#transaction_created_at_3i').val()
+				);
+			$('#date-pick').dpSetSelected(d.asString());
+	  }
+	);
+
+// default the position of the selects to today
+// var today = new Date();
+// updateSelects(today.getTime());
+
+// and update the datePicker to reflect it...
+$('#<%= dom_id(@transaction) %> #transaction_created_at_3i').trigger('change');
