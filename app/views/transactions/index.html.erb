@@ -1,9 +1,13 @@
 <%- @meta = { :title => t('.title'), :description => t('.description') } -%>
-<h1><%= t('.title') %><span><%=h @fiscal_year.name %></span></h1>
+<h1><%= t('.title') %><span>Endnu ikke bogførte transaktioner</span></h1>
 
 <div class="grid_12">
 	<%- if @transactions.any? -%>
 		<div class="quick-buttons">
+			<!-- <%= link_to 'Tilføj salg', new_fiscal_year_transaction_path(current_user.active_fiscal_year), { :class => 'button show income' } %>
+			<%= link_to 'Tilføj køb', new_fiscal_year_transaction_path(current_user.active_fiscal_year), { :class => 'button show expense' } %>
+			<%= link_to 'Tilføj betaling', new_fiscal_year_transaction_path(current_user.active_fiscal_year), { :class => 'button show payment' } %> -->
+			
 			<%= link_to t('.buttons.add'), new_fiscal_year_transaction_path(current_user.active_fiscal_year), { :class => 'button show', :id => 'add-new-transaction' } %>
 			<!-- <%= link_to 'Import postings', new_posting_import_path, { :class => 'button' } %> -->
 		</div>
@@ -14,13 +18,12 @@
 					<th class="created_at"><%= t('transaction.created_at') %></th>
 					<th class="attachment_no"><%= t('transaction.attachment_no') %></th>
 					<th><%= t('transaction.note') %></th>
-					<th><%= t('transaction.account_id') %></th>
 					<th><span class="income"><%= t('transaction.amount_in') %></span></th>
 					<th><span class="expense"><%= t('transaction.amount_out') %></span></th>
 				</tr>
 			</thead>
 			<tbody>
-			<%= render @transactions %>
+				<%= render @transactions %>
 			</tbody>
 		</table>
 	<%- else -%>

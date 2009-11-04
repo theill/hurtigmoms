@@ -42,10 +42,14 @@ da:
     attachment_no: Bilag
     account_id: Konto
     customer_id: Kunde
-    amount_in: Debet
-    amount_out: Kredit
+    amount_in: Indtægt
+    amount_out: Udgift
     including_vat: inkl. moms
     excluding_vat: eksl. moms
+    transaction_type: Type
+    transaction_type_sell: Salg
+    transaction_type_buy: Køb
+    transaction_type_pay: Betaling
 
   account:
     name: Navn
@@ -141,8 +145,8 @@ da:
         save: Opret transaktion
     edit:
       delete_transaction: '{{delete_link}} denne transaktion'
-      download_attachment: 'Se bilaget ved at {{download_link}} det'
-      download: downloade
+      download_attachment: '{{download_link}}'
+      download: Download
       buttons:
         save: Gem
     

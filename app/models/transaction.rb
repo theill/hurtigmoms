@@ -4,17 +4,17 @@ class Transaction < ActiveRecord::Base
   TRANSACTION_TYPES = { :buy => 1, :sell => 2, :pay => 3 }
   
   belongs_to :fiscal_year
-  belongs_to :account
   belongs_to :customer
   belongs_to :annex, :class_name => 'Annex'
 
-  validates_presence_of :fiscal_year_id, :account_id, :amount
+  validates_presence_of :fiscal_year_id, :amount
 
   before_validation_on_create :set_attachment_no
   before_save :set_customer
+  
+  named_scope :incomplete, :conditions => 'amount IS NULL OR amount = 0 OR created_at IS NULL OR currency IS NULL'
 
   HUMANIZED_ATTRIBUTES = {
-    :account_id => I18n.t(:account_id, :scope => :transaction),
     :amount => I18n.t(:amount, :scope => :transaction)
   }
 
@@ -26,6 +26,10 @@ class Transaction < ActiveRecord::Base
 
   def customer_name
     @customer_name || (self.customer.name if self.customer)
+  end
+  
+  def incomplete?
+    amount.nil? || amount == 0 || created_at.nil? || currency.nil?
   end
   
   def authenticated_url(expires_in = 10.seconds)

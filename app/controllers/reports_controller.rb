@@ -2,8 +2,8 @@ class ReportsController < ApplicationController
   before_filter :authenticate
   
   def index
-    @total_income = current_user.active_fiscal_year.postings.total_income(2009).sum(:amount)
-    @total_expenses = current_user.active_fiscal_year.postings.total_expense(2009).sum(:amount).abs
+    # @total_income = current_user.active_fiscal_year.postings.total_income(2009).sum(:amount)
+    # @total_expenses = current_user.active_fiscal_year.postings.total_expense(2009).sum(:amount).abs
 
     # @total_income_months = current_user.active_fiscal_year.postings.total_income(2009).group_by(&:month)
     # @total_expenses_months = current_user.active_fiscal_year.postings.total_expense(2009).group_by(&:month)

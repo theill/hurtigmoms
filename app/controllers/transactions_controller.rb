@@ -2,12 +2,13 @@ class TransactionsController < ApplicationController
   before_filter :authenticate, :get_fiscal_year
   
   def index
-    @transactions = @fiscal_year.transactions.all(:include => [:account, :customer], :order => 'created_at DESC')
+    @transactions = @fiscal_year.transactions.all(:include => [:customer], :order => 'created_at DESC')
     
-    @total_income = 0#@fiscal_year.transactions.total_income(2009).sum(:amount)
-    @total_expense = 0#@fiscal_year.transactions.total_expense(2009).sum(:amount)
-    
-    @bank_initial = 0
+    # if params[:filter] == 'income'
+    #   @transactions = @transactions.find_all { |t| t.transaction_type == Transaction::TRANSACTION_TYPES[:sell] }
+    # elsif params[:filter] == 'expense'
+    #   @transactions = @transactions.find_all { |t| t.transaction_type == Transaction::TRANSACTION_TYPES[:buy] }
+    # end
     
     respond_to do |format|
       format.html # index.html.erb

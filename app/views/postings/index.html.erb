@@ -2,6 +2,11 @@
 <h1><%= t('.title') %><span><%=h @fiscal_year.name %></span></h1>
 
 <div class="grid_12">
+	<p>
+		Du skal nu i gang med din bogføring. Det gøres ved at afstemme dine transaktioner, så 
+		alle indtægter og udgifter kommer ind på de rigtige konti på din kontoplan.
+	</p>
+	
 	<%- if @postings.any? -%>
 		<div class="quick-buttons">
 			<%= link_to 'Tilføj postering', new_fiscal_year_posting_path(current_user.active_fiscal_year), { :class => 'button show', :id => 'add-new-posting' } %>

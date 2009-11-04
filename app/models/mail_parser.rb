@@ -10,10 +10,12 @@ class MailParser
     # ensure to uppercase currency in case it's available
     parsed_attributes[:currency] = parsed_attributes[:currency].upcase if parsed_attributes[:currency]
     
-    # only supporting 'buying' at the moment - and only set if not already set to 'pending' (account 0009)
-    account_no = parsed_attributes[:account_no] || (parsed_attributes[:currency] == 'DKK' ? '1300' : '1308')
-    account = user.accounts.find_by_account_no(account_no)
-    parsed_attributes.merge!(:account_id => account.id, :attachment_email => mail.to_s, :attachment_no => 0)
+    # # only supporting 'buying' at the moment - and only set if not already set to 'pending' (account 0009)
+    # account_no = parsed_attributes[:account_no] || (parsed_attributes[:currency] == 'DKK' ? '1300' : '1308')
+    # account = user.accounts.find_by_account_no(account_no)
+    # parsed_attributes.merge!(:account_id => account.id)
+    parsed_attributes.merge!(:transaction_type => Transaction::TRANSACTION_TYPES[:buy])
+    parsed_attributes.merge!(:attachment_email => mail.to_s, :attachment_no => 0)
     
     transaction = user.active_fiscal_year.transactions.create! parsed_attributes
     associate_attachments(transaction, mail) if mail.has_attachments?
@@ -38,10 +40,12 @@ class MailParser
   
   def associate_attachments(transaction, mail)
     mail.attachments.each do |attachment|
-      annex = transaction.create_annex(:user => transaction.fiscal_year.user)
-      annex.attachment = attachment
-      annex.save!
-      transaction.save
+      # annex = transaction.create_annex(:user => transaction.fiscal_year.user)
+      # annex.attachment = attachment
+      # annex.save!
+      # transaction.save
+      annex = transaction.fiscal_year.user.annexes.create(:attachment => attachment)
+      transaction.update_attribute(:annex, annex)
     end
   end
   
@@ -49,7 +53,7 @@ class MailParser
     amount = 0.0
     date = Time.now.utc.to_datetime
     currency = 'DKK'
-    account_no = nil
+    # account_no = nil
     
     # trim forwarding and replying rules from subject
     description = (mail.subject || '').gsub(/^Fwd: /i, '').gsub(/^Fw: /i, '').gsub(/^Re: /i, '').gsub(/^VS: /i, '').gsub(/^SV: /i, '')
@@ -126,11 +130,12 @@ class MailParser
       date = guess_date(mail.body) || Time.now.utc.to_datetime
     end
     
-    if (amount.blank? || amount.to_f == 0.0 || currency.blank? || date.blank?)
-      account_no = 9
-    end
+    # if (amount.blank? || amount.to_f == 0.0 || currency.blank? || date.blank?)
+    #   account_no = 9
+    # end
     
-    { :amount => amount, :currency => currency, :note => description, :created_at => date, :account_no => account_no }
+    # { :amount => amount, :currency => currency, :note => description, :created_at => date, :account_no => account_no }
+    { :amount => amount, :currency => currency, :note => description, :created_at => date }
   end
   
   def guess_date(body)

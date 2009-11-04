@@ -43,6 +43,19 @@ a.button {
 	background: -webkit-gradient(linear, left top, left bottom, from(#3B5998), to(#4B69A8));
 }
 
+	a.button.income {
+		background-color: #696;
+		border: outset 1px #696;
+	}
+	a.button.expense {
+		background-color: #966;
+		border: outset 1px #966;
+	}
+	a.button.payment {
+		background-color: #669;
+		border: outset 1px #669;
+	}
+
 fieldset label {
 	display: block;
 }
@@ -251,9 +264,11 @@ div.action-bar {
 
 #f {
 	border-top: solid 1px #e9e9e9;
-	padding-top: 10px;
+	padding: 10px 0;
 	margin-top: 60px;
+	text-indent: 10px;
 	font-size: 11px;
+	color: #999;
 }
 
 .sidebar {}
@@ -297,9 +312,13 @@ table tr.row-editing div.box {
 		margin: -10px;
 		padding: 10px;
 	}
+		table tr.row-editing div.box table {
+			margin-bottom: 0;
+		}
 		table tr.row-editing div.box table td {
 			border-width: 0 !important;
 		}
+		
 	table tr.row-editing td {
 		border: solid 1px #ccc;
 		padding: 0 !important; /* override default padding */
@@ -347,7 +366,9 @@ table tr.row-editing div.box {
   	  color: #fff;
   	  padding: 4px;
   	}
-
+		#transactions .transaction.buy {}
+		#transactions .transaction.sell {}
+		#transactions .transaction.pay { color: #0080B0; }
 		#transactions .transaction.today {
 /*			background-color: #F9FDE1;*/
 		}
@@ -357,7 +378,7 @@ table tr.row-editing div.box {
 		}
 		
 		#transactions .transaction.pending {
-			background-color: #ffeeee;
+			background-color: #fceeee;
 		}
 		
 		#transactions .transaction .attachment {

@@ -16,7 +16,7 @@
 			
 			data.addRows([<%= @total_months.collect { |row| "['#{t('date.abbr_month_names')[row[:month].to_i]}', #{row[:income_amount]}, #{row[:expenses_amount]}], " } %>]);
 			
-			chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+			chart = new google.visualization.ColumnChart(document.getElementById('chart'));
 			chart.draw(data, {width: 700, height: 240, is3D: false, legend: 'none', colors: ['#8DC176', '#BF7576']});
 			
 	    // Add our over/out handlers.
@@ -38,61 +38,67 @@
 <div class="grid_9 alpha">
 	<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
 	
-	<div id="chart_div" style="width: 700px; height: 240px; margin-bottom: 20px; background: transparent url(/images/loading.gif) no-repeat center center;"></div>
+	<%- if @total_income && @total_expense -%>
+		<div id="chart" style="width: 700px; height: 240px; margin-bottom: 20px; background: transparent url(/images/loading.gif) no-repeat center center;"></div>
 
-	<div id="reports">
-	<table width="700" cellspacing="0" cellpadding="0">
-	<tbody>
-		<tr>
-		<td>
-			<dl class="report-details">
-				<dt>Start beholdning</dt>
-				<dd><span class="coh"><%= number_to_currency(0, :unit => current_user.default_currency) %></span></dd>
-			</dl>
-		</td>
-		<td>
-			<dl class="report-details">
-				<dt>Samlede indtægter</dt>
-				<dd><span class="income"><%= number_to_currency(@total_income, :unit => current_user.default_currency) %></span></dd>
-			</dl>
-		</td>
-		<td>
-			<dl class="report-details">
-			<dt>Samlede udgifter</dt>
-				<dd><span class="expense"><%= number_to_currency(@total_expenses, :unit => current_user.default_currency) %></span></dd>				
-			</dl>
-		</td>
-		<td>
-			<dl class="report-details">
-				<dt>Slut beholdning</dt>
-				<dd><span class="coh"><%= number_to_currency(0, :unit => current_user.default_currency) %></span></dd>
-			</dl>
-		</td>
-	</tr>
-	</tbody>
-	</table>
-	</div>
-	
-	<table width="100%" cellspacing="0" cellpadding="0" class="list">
-		<thead>
-			<tr>
-				<th width="25%">Måned</th>
-				<th width="25%"><span class="income">Indtægter</span></th>
-				<th width="25%"><span class="expense">Udgifter</span></th>
-				<th width="25%"><span class="coh">Beholdning</span> <small>Start af perioden</small></th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @total_months.each do |row| %>
+		<div id="reports">
+			<table width="700" cellspacing="0" cellpadding="0">
+			<tbody>
 				<tr>
-					<td class="day"><%= t('date.month_names')[row[:month].to_i].capitalize %></td>
-					<td class="number"><%= number_to_currency(row[:income_amount], :unit => current_user.default_currency) %></td>
-					<td class="number"><%= number_to_currency(row[:expenses_amount], :unit => current_user.default_currency) %></td>
-					<td class="number"><%= number_to_currency(125000, :unit => current_user.default_currency) %></td>
+				<td>
+					<dl class="report-details">
+						<dt>Start beholdning</dt>
+						<dd><span class="coh"><%= number_to_currency(0, :unit => current_user.default_currency) %></span></dd>
+					</dl>
+				</td>
+				<td>
+					<dl class="report-details">
+						<dt>Samlede indtægter</dt>
+						<dd><span class="income"><%= number_to_currency(@total_income, :unit => current_user.default_currency) %></span></dd>
+					</dl>
+				</td>
+				<td>
+					<dl class="report-details">
+					<dt>Samlede udgifter</dt>
+						<dd><span class="expense"><%= number_to_currency(@total_expenses, :unit => current_user.default_currency) %></span></dd>				
+					</dl>
+				</td>
+				<td>
+					<dl class="report-details">
+						<dt>Slut beholdning</dt>
+						<dd><span class="coh"><%= number_to_currency(0, :unit => current_user.default_currency) %></span></dd>
+					</dl>
+				</td>
+			</tr>
+			</tbody>
+			</table>
+		</div>
+	
+		<table width="100%" cellspacing="0" cellpadding="0" class="list">
+			<thead>
+				<tr>
+					<th width="25%">Måned</th>
+					<th width="25%"><span class="income">Indtægter</span></th>
+					<th width="25%"><span class="expense">Udgifter</span></th>
+					<th width="25%"><span class="coh">Beholdning</span> <small>Start af perioden</small></th>
 				</tr>
-			<% end %>
-		</tbody>
-	</table>	
+			</thead>
+			<tbody>
+				<% @total_months.each do |row| %>
+					<tr>
+						<td class="day"><%= t('date.month_names')[row[:month].to_i].capitalize %></td>
+						<td class="number"><%= number_to_currency(row[:income_amount], :unit => current_user.default_currency) %></td>
+						<td class="number"><%= number_to_currency(row[:expenses_amount], :unit => current_user.default_currency) %></td>
+						<td class="number"><%= number_to_currency(125000, :unit => current_user.default_currency) %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<%- else -%>
+		<p>
+			Det er kun muligt at vise grafer over bogførte posteringer.
+		</p>
+	<%- end -%>
 </div>
 
 <div class="grid_3">

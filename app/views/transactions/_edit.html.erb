@@ -1,5 +1,5 @@
 <tr id="<%= dom_id(transaction) %>" class="transaction row-editing">
-	<td colspan="6">
+	<td colspan="5">
 		<div class="box">
 		<% form_for([transaction.fiscal_year, transaction], :html => {:autocomplete => 'off'}) do |f| -%>
 			<%= f.error_messages %>
@@ -10,6 +10,7 @@
 						<fieldset>
 							<%= f.label :customer_id, t('transaction.customer_id') %>
 							<%= f.text_field :customer_name %>
+							<p class="hint">Indtast del af kundenavnet</p>
 						</fieldset>
 					</td>
 					<td>
@@ -20,20 +21,6 @@
 					</td>
 					<td>
 						<fieldset>
-							<%= f.label :account_id, t('transaction.account_id') + ' <span class="req">*</span>' %>
-							<%= f.select :account_id, accounts, {:prompt => "Vælg konto"} %>
-						</fieldset>
-					</td>
-					<td>
-						<fieldset>
-							<%= f.label :amount, t('transaction.amount') + ' <span class="req">*</span><span class="hint">' + t('transaction.including_vat') + '</span>' %>
-							<%= f.text_field :amount, :size => 10, :maxlength => 10, :class => 'amount-no-vat' %> <%= f.select :currency, Currency::SUPPORTED %>
-						</fieldset>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<fieldset>
 							<%= f.label :attachment_no, t('transaction.attachment_no') %>
 							<%= f.text_field :attachment_no, :size => 4, :maxlength => 4 %>
 							<%- if transaction.annex -%>
@@ -41,17 +28,26 @@
 							<%- end -%>
 						</fieldset>
 					</td>
-					<td colspan="2">
+					<td>
 						<fieldset>
-							<%= f.label :note, t('transaction.note') %>
-							<%= f.text_area :note, :rows => 4, :cols => 60 %>
-							<p class="hint">Only first line is shown in overview</p>
+							<%= f.label :transaction_type, t('transaction.transaction_type') + ' <span class="req">*</span>' %>
+							<%= f.select :transaction_type, transaction_types, {:prompt => "Vælg type"} %>
 						</fieldset>
 					</td>
 					<td>
 						<fieldset>
-							<label>Moms</label>
-							<span id="vat" class="amount-vat">-</span>
+							<%= f.label :amount, t('transaction.amount') + ' <span class="req">*</span>' %>
+							<%= f.text_field :amount, :size => 10, :maxlength => 10, :class => 'amount-no-vat' %> <%= f.select :currency, Currency::SUPPORTED %>
+							<p class="hint"><%= t('transaction.including_vat') %></p>
+						</fieldset>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="5">
+						<fieldset>
+							<%= f.label :note, t('transaction.note') %>
+							<%= f.text_area :note, :rows => 2, :cols => 60, :style => "width: 927px" %>
+							<p class="hint">Kun første linie vises i oversigten</p>
 						</fieldset>
 					</td>
 				</tr>
