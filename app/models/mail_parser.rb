@@ -15,7 +15,7 @@ class MailParser
     # account = user.accounts.find_by_account_no(account_no)
     # parsed_attributes.merge!(:account_id => account.id)
     parsed_attributes.merge!(:transaction_type => Transaction::TRANSACTION_TYPES[:buy])
-    parsed_attributes.merge!(:attachment_email => mail.to_s, :attachment_no => 0)
+    parsed_attributes.merge!(:external_data => mail.to_s, :attachment_no => 0)
     
     transaction = user.active_fiscal_year.transactions.create! parsed_attributes
     associate_attachments(transaction, mail) if mail.has_attachments?

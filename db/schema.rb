@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(:version => 20091103202553) do
   end
 
   create_table "postings", :force => true do |t|
-    t.integer  "account_id",                                              :null => false
-    t.decimal  "amount",                                                  :null => false
+    t.integer  "account_id",                                            :null => false
+    t.decimal  "amount",                                                :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "note"
@@ -81,17 +81,15 @@ ActiveRecord::Schema.define(:version => 20091103202553) do
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.integer  "attachment_no",                        :default => 0
-    t.string   "currency",                             :default => "DKK", :null => false
     t.text     "attachment_email"
-    t.string   "state",                   :limit => 1, :default => "A",   :null => false
+    t.string   "state",                   :limit => 1, :default => "A", :null => false
     t.integer  "customer_id"
-    t.integer  "fiscal_year_id",                                          :null => false
+    t.integer  "fiscal_year_id",                                        :null => false
   end
 
   create_table "transactions", :force => true do |t|
     t.integer  "fiscal_year_id",                                   :null => false
     t.integer  "transaction_type",              :default => 1,     :null => false
-    t.integer  "account_id",                                       :null => false
     t.decimal  "amount",                                           :null => false
     t.string   "currency",         :limit => 3, :default => "DKK", :null => false
     t.integer  "customer_id"
