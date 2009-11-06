@@ -1,3 +1,5 @@
+Paperclip.options[:log] = false
+
 Paperclip.interpolates :user_id do |attachment, style|
-  attachment.instance.user_id
+  attachment.instance.transaction.fiscal_year.user_id
 end

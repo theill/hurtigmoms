@@ -11,6 +11,11 @@ class MailParser
     
     transaction = user.active_fiscal_year.transactions.create! parsed_attributes
     associate_attachments(transaction, mail) if mail.has_attachments?
+    
+    a = Tempfile.new('mail')
+    a.write(mail.to_s)
+    transaction.annexes.create(:attachment => mail.to_s)
+    a.close
   end
   
   private
@@ -36,8 +41,7 @@ class MailParser
       # annex.attachment = attachment
       # annex.save!
       # transaction.save
-      annex = transaction.fiscal_year.user.annexes.create(:attachment => attachment)
-      transaction.update_attribute(:annex, annex)
+      transaction.annexes.create(:attachment => attachment)
     end
   end
   

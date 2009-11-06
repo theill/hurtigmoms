@@ -1,6 +1,6 @@
 class FiscalYear < ActiveRecord::Base
-  has_many :postings
-  has_many :transactions
+  has_many :postings, :dependent => :destroy
+  has_many :transactions, :dependent => :destroy
   belongs_to :user
   
 end

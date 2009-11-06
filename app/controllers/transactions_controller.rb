@@ -2,7 +2,10 @@ class TransactionsController < ApplicationController
   before_filter :authenticate, :get_fiscal_year
   
   def index
-    @transactions = @fiscal_year.transactions.all(:include => [:customer], :order => 'created_at DESC')
+    @transactions = @fiscal_year.transactions.all(:include => [:customer, :annexes], :order => 'created_at DESC')
+
+    @total_income = @fiscal_year.transactions.sum('amount', :conditions => ['transaction_type = ?', Transaction::TRANSACTION_TYPES[:sell]])
+    @total_expense = @fiscal_year.transactions.sum('amount', :conditions => ['transaction_type = ?', Transaction::TRANSACTION_TYPES[:buy]])
     
     # if params[:filter] == 'income'
     #   @transactions = @transactions.find_all { |t| t.transaction_type == Transaction::TRANSACTION_TYPES[:sell] }
@@ -42,9 +45,12 @@ class TransactionsController < ApplicationController
   
   def create
     @transaction = @fiscal_year.transactions.new(params[:transaction])
-    
+
     respond_to do |format|
       if @transaction.save
+        @total_income = @fiscal_year.transactions.sum('amount', :conditions => ['transaction_type = ?', Transaction::TRANSACTION_TYPES[:sell]])
+        @total_expense = @fiscal_year.transactions.sum('amount', :conditions => ['transaction_type = ?', Transaction::TRANSACTION_TYPES[:buy]])
+        
         format.js
       else
         format.js
@@ -54,9 +60,12 @@ class TransactionsController < ApplicationController
   
   def update
     @transaction = @fiscal_year.transactions.find(params[:id])
-    
+
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
+        @total_income = @fiscal_year.transactions.sum('amount', :conditions => ['transaction_type = ?', Transaction::TRANSACTION_TYPES[:sell]])
+        @total_expense = @fiscal_year.transactions.sum('amount', :conditions => ['transaction_type = ?', Transaction::TRANSACTION_TYPES[:buy]])
+        
         format.js
       else
         format.js
@@ -67,18 +76,15 @@ class TransactionsController < ApplicationController
   def destroy
     @transaction = @fiscal_year.transactions.find(params[:id])
     @transaction.destroy
+
+    @total_income = @fiscal_year.transactions.sum('amount', :conditions => ['transaction_type = ?', Transaction::TRANSACTION_TYPES[:sell]])
+    @total_expense = @fiscal_year.transactions.sum('amount', :conditions => ['transaction_type = ?', Transaction::TRANSACTION_TYPES[:buy]])
     
     respond_to do |format|
       format.js
     end
   end
   
-  def download
-    @transaction = @fiscal_year.transactions.find(params[:id])
-    
-    redirect_to @transaction.authenticated_url
-  end
-    
   private
   
   def get_fiscal_year

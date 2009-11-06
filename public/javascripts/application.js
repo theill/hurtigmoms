@@ -61,7 +61,7 @@ hurtigmoms = {
 }
 
 jQuery.fn.focusFirstFormElement = function() {
-	$(this).find("input[type=text]:first").focus();
+	$(this).find(":input:enabled:first").focus();
 	return this;
 };
 

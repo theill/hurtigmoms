@@ -5,7 +5,7 @@ class Transaction < ActiveRecord::Base
   
   belongs_to :fiscal_year
   belongs_to :customer
-  belongs_to :annex, :class_name => 'Annex'
+  has_many :annexes, :dependent => :destroy
 
   validates_presence_of :fiscal_year_id, :amount
 
@@ -32,10 +32,6 @@ class Transaction < ActiveRecord::Base
     amount.nil? || amount == 0 || created_at.nil? || currency.nil?
   end
   
-  def authenticated_url(expires_in = 10.seconds)
-    AWS::S3::S3Object.url_for(annex.attachment.path, annex.attachment.bucket_name, :expires_in => expires_in, :use_ssl => annex.attachment.s3_protocol == 'https')
-  end
-
   def set_attachment_no
     self.attachment_no = (self.fiscal_year.transactions.maximum(:attachment_no) || 0) + 1 if self.attachment_no == 0
   end

@@ -311,8 +311,8 @@ table tr.row-editing div.box {
 	position: relative;
 }
 	table tr.row-editing div.box .inline-buttons {
-		background-color: #f6faf6;
-		border-top: solid 1px #ffffff;
+		background-color: #fff;
+		border-top: solid 1px #eee;
 		margin: -10px;
 		padding: 10px;
 	}
@@ -363,6 +363,9 @@ table tr.row-editing div.box {
 		}
 		#transactions .transaction .customer-name {
 			color: #797;
+		}
+		#transactions .transaction #date-pick img {
+			vertical-align: top;
 		}
 		#transactions .transaction .missing {
 			color: #999;

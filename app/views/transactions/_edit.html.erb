@@ -8,6 +8,19 @@
 				<tr>
 					<td>
 						<fieldset>
+							<%= f.label :transaction_type, t('transaction.transaction_type') + ' <span class="req">*</span>' %>
+							<%= f.select :transaction_type, transaction_types, {:prompt => "Vælg type"} %>
+						</fieldset>
+					</td>
+					<td>
+						<fieldset>
+							<%= f.label :created_at, t('transaction.created_at') + ' <span class="req">*</span>' %>
+							<%= date_select :transaction, :created_at %><a id="date-pick" href="#"><%= image_tag('calendar-select.png') %></a>
+							<p class="hint">Fakturadato eller betalingsdato</p>
+						</fieldset>
+					</td>
+					<td>
+						<fieldset>
 							<%= f.label :customer_id, t('transaction.customer_id') %>
 							<%= f.text_field :customer_name %>
 							<p class="hint">Indtast del af kundenavnet</p>
@@ -15,23 +28,15 @@
 					</td>
 					<td>
 						<fieldset>
-							<%= f.label :created_at, t('transaction.created_at') %>
-							<%= date_select :transaction, :created_at %><a id="date-pick" href="#"><%= image_tag('calendar-select.png') %></a>
-						</fieldset>
-					</td>
-					<td>
-						<fieldset>
 							<%= f.label :attachment_no, t('transaction.attachment_no') %>
 							<%= f.text_field :attachment_no, :size => 4, :maxlength => 4 %>
-							<%- if transaction.annex -%>
-								<p class="hint"><%= t('.download_attachment', :download_link => link_to(t('.download'), download_fiscal_year_transaction_path(current_user.active_fiscal_year, transaction))) %></p>
+							<%- unless transaction.annexes.empty? -%>
+								<p class="hint">
+								<%- transaction.annexes.each_with_index do |a, index| -%>
+									<%= link_to(index + 1, download_fiscal_year_transaction_annex_path(current_user.active_fiscal_year, transaction, a)) %>
+								<%- end -%>
+								</p>
 							<%- end -%>
-						</fieldset>
-					</td>
-					<td>
-						<fieldset>
-							<%= f.label :transaction_type, t('transaction.transaction_type') + ' <span class="req">*</span>' %>
-							<%= f.select :transaction_type, transaction_types, {:prompt => "Vælg type"} %>
 						</fieldset>
 					</td>
 					<td>
@@ -55,9 +60,9 @@
 			
 			<div class="inline-buttons">
 				<%- if transaction.new_record? -%>
-				  <%= f.submit t('.buttons.save') %> <%= link_to(t('buttons.close'), fiscal_year_transactions_path(current_user.active_fiscal_year), :class => 'close') %>
+				  <%= f.submit t('.buttons.save') %> <%= link_to(t('buttons.close'), fiscal_year_transactions_path(current_user.active_fiscal_year), :class => 'close', :accesskey => 'S') %>
 				<%- else -%>
-					<%= f.submit t('.buttons.save') %> <%= link_to t('buttons.close'), fiscal_year_transaction_path(current_user.active_fiscal_year, transaction, :format => :js), :class => 'show' %>
+					<%= f.submit t('.buttons.save') %> <%= link_to t('buttons.close'), fiscal_year_transaction_path(current_user.active_fiscal_year, transaction, :format => :js), :class => 'show', :accesskey => 'S' %>
 					
 					<div class="inline-actions"><%= t('.delete_transaction', :delete_link => link_to(t('buttons.delete'), [current_user.active_fiscal_year, transaction], :class => 'delete')) %></div>
 				<%- end -%>

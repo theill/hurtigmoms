@@ -2,7 +2,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :posting_imports
 
   map.resources :fiscal_years, :as => 'regnskaber' do |fy|
-    fy.resources :transactions, :as => 'transaktioner', :member => { :download => :get }
+    fy.resources :transactions, :as => 'transaktioner', :member => { :download => :get } do |transaction|
+      transaction.resources :annexes, :as => 'bilag', :member => { :download => :get }
+    end
     fy.resources :postings, :as => 'posteringer', :member => { :download => :get }
   end
   map.resources :accounts, :as => 'konti'

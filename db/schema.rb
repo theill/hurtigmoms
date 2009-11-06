@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091103202553) do
+ActiveRecord::Schema.define(:version => 20091106111113) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -25,12 +25,12 @@ ActiveRecord::Schema.define(:version => 20091103202553) do
   end
 
   create_table "annexes", :force => true do |t|
-    t.integer  "user_id",                 :null => false
     t.string   "attachment_file_name"
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "transaction_id"
   end
 
   create_table "customers", :force => true do |t|
@@ -95,7 +95,6 @@ ActiveRecord::Schema.define(:version => 20091103202553) do
     t.integer  "customer_id"
     t.text     "note"
     t.integer  "attachment_no",                 :default => 0
-    t.integer  "annex_id"
     t.text     "external_data"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -115,8 +114,8 @@ ActiveRecord::Schema.define(:version => 20091103202553) do
     t.integer  "active_fiscal_year_id"
   end
 
+  add_index "users", ["confirmation_token", "id"], :name => "index_users_on_id_and_confirmation_token"
   add_index "users", ["email"], :name => "index_users_on_email"
-  add_index "users", ["id", "confirmation_token"], :name => "index_users_on_id_and_confirmation_token"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end

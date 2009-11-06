@@ -24,18 +24,28 @@ module TransactionsHelper
   end
   
   def formatted_attachment_no(transaction)
-    content_tag('span', '%04d' % transaction.attachment_no, :class => ('missing' if transaction.annex.nil?)) if transaction.attachment_no
+    content_tag('span', '%04d' % transaction.attachment_no, :class => ('missing' if transaction.annexes.empty?)) if transaction.attachment_no
   end
   
   def formatted_income_amount(transaction)
     if transaction.transaction_type == Transaction::TRANSACTION_TYPES[:sell] || (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:pay] && transaction.amount > 0)
-      number_to_currency(transaction.amount.abs, :unit => transaction.currency)
+      if transaction.currency == 'USD'
+        amount = transaction.amount.abs * 5.0
+      else
+        amount = transaction.amount.abs
+      end
+      number_to_currency(amount)
     end
   end
   
   def formatted_expense_amount(transaction)
     if transaction.transaction_type == Transaction::TRANSACTION_TYPES[:buy] || (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:pay] && transaction.amount < 0)
-      number_to_currency(transaction.amount.abs, :unit => transaction.currency)
+      if transaction.currency == 'USD'
+        amount = transaction.amount.abs * 5
+      else
+        amount = transaction.amount.abs
+      end
+      number_to_currency(amount)
     end
   end
 end
