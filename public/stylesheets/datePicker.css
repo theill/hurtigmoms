@@ -1,7 +1,9 @@
 /* used for 'jquery.datePicker' plugin */
 table.jCalendar {
-	border: 1px solid #000;
+	border: 1px solid #999;
 	background: #fff;
+	-moz-box-shadow: 0 0 10px #999;
+	-webkit-box-shadow: 0 0 10px #999;
 }
 table.jCalendar th {
 	background: #ccc;
@@ -17,12 +19,12 @@ table.jCalendar td {
 	text-align: center;
 }
 table.jCalendar td.other-month {
-	background: #f3f3f3;
-	color: #a9a9a9;
+	background: #fff;
+	color: #c9c9c9;
 }
 table.jCalendar td.today {
-	background: #666;
-	color: #fff;
+	background-color: #f3f3f3;
+	font-weight: bold;
 }
 table.jCalendar td.selected {
 	background: #f66;
@@ -61,16 +63,19 @@ div.dp-popup {
 	background: #fff;
 	padding: 2px;
 	line-height: 1.2em;
+	font-size: 11px;
 }
 div#dp-popup {
 	position: absolute;
 	z-index: 199;
 }
 div.dp-popup h2 {
-	font-size: 12px;
+	font-size: 11px;
+	font-family: 'Lucida Grande', 'Bitstream Vera Sans', Tahoma, Verdana, Helvetica, Arial, 'Liberation Sans', FreeSans, Clean, sans-serif;
 	text-align: center;
 	margin: 2px 0;
 	padding: 0;
+	line-height: 1.5em;
 }
 a#dp-close {
 	font-size: 11px;
