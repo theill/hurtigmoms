@@ -7,7 +7,6 @@ class Annex < ActiveRecord::Base
     :s3_credentials => File.join(Rails.root, 'config', 'amazon_s3.yml'),
     :s3_permissions => 'authenticated-read',
     :url => ':s3_domain_url',
-    :path => 'users/:user_id/attachments/:id/:basename.:extension',
-    :bucket => 'hurtigmoms'
+    :path => 'users/:user_id/attachments/:id/:basename.:extension'
   
 end

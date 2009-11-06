@@ -20,7 +20,7 @@
 	<div class="quick-start">
 		<h3>Kom hurtigt i gang</h3>
 		<ol>
-			<li><%= link_to('Tilføj indtægter og udgifter', fiscal_year_postings_path(current_user.active_fiscal_year)) %></li>
+			<li><%= link_to('Tilføj indtægter og udgifter', fiscal_year_transactions_path(current_user.active_fiscal_year)) %></li>
 			<li><%= link_to('Tilpas din kontoplan', accounts_path) %></li>
 			<li><%= link_to('Konfigurer dine debitorer', customers_path) %></li>
 		</ol>
@@ -28,15 +28,20 @@
 	
 <%- else -%>
 
-	<div id="h">
+	<div id="h" class="menubar">
 		<div class="container_12">
-			<div class="grid_6">
-				hurtigmoms
+			<div class="grid_6 navigation">
+				<ul>
+					<li class="application-name">hurtigmoms</li>
+				</ul>
 			</div>
-			<div class="grid_6" style="text-align: right">
-				<%= link_to("log ind", new_session_path) %>
+			<div class="grid_6 search">
+				<ul>
+					<li><%= link_to("log ind", new_session_path) %></li>
+				</ul>
 			</div>
 		</div>
+		<div class="clear"></div>
 	</div>
 
 	<div class="intro">

@@ -1,9 +1,19 @@
 $("#<%= dom_id(@transaction) %>").replaceWith("<%= escape_javascript(render(:partial => 'transactions/edit', :locals => {:transaction => @transaction})) %>");
 
-$(".amount-no-vat").trigger("keyup");
+// $(".amount-no-vat").trigger("keyup");
 
 // bind events
-$("#<%= dom_id(@transaction) %> form").ajaxForm({	dataType: "script" });
+$("#<%= dom_id(@transaction) %> form").bind("submit", function() {
+	$("#transaction_amount").val($("#transaction_amount").parse({locale: hurtigmoms.locale_fix}));
+	$(this).ajaxSubmit({ dataType: "script" });
+	return false;
+});
+
+$("#transaction_amount").blur(function() {
+	$(this).format({format: "#,###.00", locale: hurtigmoms.locale_fix});
+});
+
+$("#transaction_amount").val('<%= number_to_currency(@transaction.amount, :unit => '', :format => '%n') %>');
 
 // move to generic 'edit/create' function
 $("#transaction_customer_name").autocomplete(hurtigmoms.customers_url, {

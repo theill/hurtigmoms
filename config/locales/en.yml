@@ -10,6 +10,7 @@ en:
     cancel: Cancel
     wait: Please wait...
     close: Close
+    delete: Delete
 
   user:
     company: Company
@@ -17,6 +18,7 @@ en:
     email: Email
     password: Password
     password_confirmation: Confirm password
+    active_fiscal_year: Active fiscal year
     updated:
       success: Settings saved
 
@@ -32,6 +34,22 @@ en:
     amount_out: Out
     including_vat: incl. vat
     excluding_vat: excl. vat
+
+  transaction:
+    created_at: Date
+    note: Note
+    amount: Amount
+    attachment_no: Attachment no
+    account_id: Account
+    customer_id: Customer
+    amount_in: Income
+    amount_out: Expense
+    including_vat: incl. vat
+    excluding_vat: excl. vat
+    transaction_type: Type
+    transaction_type_sell: Sell
+    transaction_type_buy: Buy
+    transaction_type_pay: Payment
 
   account:
     name: Name

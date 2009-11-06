@@ -7,6 +7,7 @@
 
 hurtigmoms = {
 	locale: 'da',
+	locale_fix: 'dk',
 	currency: 'DKK',
 	customers_url: '/kunder/soeg',
 	

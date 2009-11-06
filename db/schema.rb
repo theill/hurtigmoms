@@ -115,8 +115,8 @@ ActiveRecord::Schema.define(:version => 20091103202553) do
     t.integer  "active_fiscal_year_id"
   end
 
-  add_index "users", ["confirmation_token", "id"], :name => "index_users_on_id_and_confirmation_token"
   add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["id", "confirmation_token"], :name => "index_users_on_id_and_confirmation_token"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end

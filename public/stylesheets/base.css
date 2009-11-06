@@ -102,6 +102,10 @@ td.number {
 	text-align: right;
 }
 
+input.decimal {
+	text-align: right;
+}
+
 .errorExplanation {
 	background-color: #fee;
 	border: 1px solid #edd;
@@ -360,6 +364,9 @@ table tr.row-editing div.box {
 		#transactions .transaction .customer-name {
 			color: #797;
 		}
+		#transactions .transaction .missing {
+			color: #999;
+		}
 		
   	#transactions .transaction .amount-vat {
   	  background-color: #666;
@@ -378,7 +385,7 @@ table tr.row-editing div.box {
 		}
 		
 		#transactions .transaction.pending {
-			background-color: #fceeee;
+			background-color: #fff3f3;
 		}
 		
 		#transactions .transaction .attachment {
@@ -472,24 +479,6 @@ body.frontpage {
 		text-decoration: underline;
 	}
 
-	body.frontpage #h {
-		background-color: #ccc;
-		background: -webkit-gradient(linear, left top, left bottom, from(#cccccc), to(#eeeeee));
-		background: -moz-linear-gradient(top left, bottom right, from(#cccccc), to(#eeeeee));
-		border-bottom: solid 1px #666;
-		margin: 0;
-		height: 50px;
-		line-height: 50px;
-	}
-
-	body.frontpage .intro {
-		background-color: #6bc5e7;
-		background: -webkit-gradient(linear, right top, left bottom, from(#6bc5e7), to(#1d75bc));
-		background: -moz-linear-gradient(top right, bottom left, from(#6bc5e7), to(#1d75bc));
-		border-bottom: solid 1px #1d75bc;
-		height: 200px;
-		color: #fff;
-  }
 		body.frontpage .intro h1 {
 			font-family: "Cambria","Georgia","Times New Roman",Times,sans-serif;
 			font-size: 48px;

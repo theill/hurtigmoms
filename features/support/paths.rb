@@ -18,6 +18,8 @@ module NavigationHelpers
       new_password_path
     when /the postings page/i
       fiscal_year_postings_path(FiscalYear.first)
+    when /the transactions page/i
+      fiscal_year_transactions_path(FiscalYear.first)
     
     # Add more mappings here.
     # Here is a more fancy example:

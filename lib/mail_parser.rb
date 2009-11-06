@@ -5,17 +5,9 @@ class MailParser
     # lookup or create user
     user = User.find_by_email(mail.from) || setup_user(mail)
     
-    parsed_attributes = recognize_and_parse_mail(mail)
-    
-    # ensure to uppercase currency in case it's available
-    parsed_attributes[:currency] = parsed_attributes[:currency].upcase if parsed_attributes[:currency]
-    
-    # # only supporting 'buying' at the moment - and only set if not already set to 'pending' (account 0009)
-    # account_no = parsed_attributes[:account_no] || (parsed_attributes[:currency] == 'DKK' ? '1300' : '1308')
-    # account = user.accounts.find_by_account_no(account_no)
-    # parsed_attributes.merge!(:account_id => account.id)
-    parsed_attributes.merge!(:transaction_type => Transaction::TRANSACTION_TYPES[:buy])
-    parsed_attributes.merge!(:external_data => mail.to_s, :attachment_no => 0)
+    parsed_attributes = recognize_and_parse_mail(mail).merge(:transaction_type => Transaction::TRANSACTION_TYPES[:buy],
+      :external_data => mail.to_s,
+      :attachment_no => 0)
     
     transaction = user.active_fiscal_year.transactions.create! parsed_attributes
     associate_attachments(transaction, mail) if mail.has_attachments?
@@ -135,7 +127,7 @@ class MailParser
     # end
     
     # { :amount => amount, :currency => currency, :note => description, :created_at => date, :account_no => account_no }
-    { :amount => amount, :currency => currency, :note => description, :created_at => date }
+    { :amount => amount, :currency => currency.upcase, :note => description, :created_at => date }
   end
   
   def guess_date(body)

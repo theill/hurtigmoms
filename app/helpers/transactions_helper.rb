@@ -24,7 +24,7 @@ module TransactionsHelper
   end
   
   def formatted_attachment_no(transaction)
-    '%04d' % transaction.attachment_no if transaction.attachment_no
+    content_tag('span', '%04d' % transaction.attachment_no, :class => ('missing' if transaction.annex.nil?)) if transaction.attachment_no
   end
   
   def formatted_income_amount(transaction)

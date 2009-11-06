@@ -3,7 +3,15 @@ $("#transactions").prepend("<%= escape_javascript(render(:partial => 'edit', :lo
 $(".amount-no-vat").trigger("keyup");
 
 // FIXME: bind events (similar to 'edit' refactor)
-$("#<%= dom_id(@transaction) %> form").ajaxForm({ dataType: "script" });
+$("#<%= dom_id(@transaction) %> form").bind("submit", function() {
+	$("#transaction_amount").val($("#transaction_amount").parse({locale: hurtigmoms.locale_fix}));
+	$(this).ajaxSubmit({ dataType: "script" });
+	return false;
+});
+
+$("#transaction_amount").blur(function() {
+	$(this).format({format: "#,###.00", locale: hurtigmoms.locale_fix});
+});
 
 $("#transaction_customer_name").autocomplete(hurtigmoms.customers_url, {
 	dataType: 'json',
