@@ -14,7 +14,8 @@ class MailParser
     
     a = Tempfile.new('mail')
     a.write(mail.to_s)
-    transaction.annexes.create(:attachment => mail.to_s)
+    a.rewind
+    transaction.annexes.create(:attachment => a)
     a.close
   end
   
