@@ -46,6 +46,19 @@
 	<%- end -%>
 </div>
 
+<%- content_for :head do -%>
+<script type="text/javascript">
+$(function() {
+	hurtigmoms.transactions = [<%= @transactions.collect { |t| t.id }.join(',') %>];
+	
+	$.poll(30000, function(retry) {
+		$.get('<%= ping_fiscal_year_transactions_path(current_user.active_fiscal_year) %>', null, null, "script");
+		retry();
+	});
+});
+</script>
+<%- end -%>
+
 <!-- <div class="grid_3">
 	<div class="sidebar">
 		<h3>Hvordan opretter jeg en postering?</h3>

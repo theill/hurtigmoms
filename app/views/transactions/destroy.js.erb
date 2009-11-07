@@ -2,3 +2,5 @@ $("#<%= dom_id(@transaction) %>").fadeOut("normal", function() { $(this).remove(
 
 $("#total-income").html("<%= escape_javascript(render(:partial => 'total', :locals => { :amount => @total_income })) %>");
 $("#total-expense").html("<%= escape_javascript(render(:partial => 'total', :locals => { :amount => @total_expense })) %>");
+
+hurtigmoms.transactions = $.grep(hurtigmoms.transactions, function(transaction_id) { return transaction_id != <%= @transaction.id %>; });

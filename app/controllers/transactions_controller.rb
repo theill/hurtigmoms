@@ -85,6 +85,15 @@ class TransactionsController < ApplicationController
     end
   end
   
+  # check for new transactions
+  def ping
+    @transactions = @fiscal_year.transactions.all(:conditions => ['updated_at > ?', 10.minutes.ago], :order => 'created_at DESC')
+    
+    respond_to do |format|
+      format.js
+    end    
+  end
+  
   private
   
   def get_fiscal_year
