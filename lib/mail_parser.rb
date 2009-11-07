@@ -12,11 +12,22 @@ class MailParser
     transaction = user.active_fiscal_year.transactions.create! parsed_attributes
     associate_attachments(transaction, mail) if mail.has_attachments?
     
-    a = Tempfile.new('mail')
-    a.write(mail.to_s)
-    a.rewind
-    transaction.annexes.create(:attachment => a)
-    a.close
+    filename = "#{Rails.root}/tmp/#{transaction.id}_parsed_mail.txt"
+    File.open(filename, 'w') do |f|
+      f.write(mail.to_s)
+    end
+    
+    File.open(filename, 'r') do |f|
+      transaction.annexes.create(:attachment => f)
+    end
+    
+    File.delete(filename)
+    
+    # a = Tempfile.new('mail')
+    # a.write(mail.to_s)
+    # a.rewind
+    # transaction.annexes.create(:attachment => a)
+    # a.close
   end
   
   private
