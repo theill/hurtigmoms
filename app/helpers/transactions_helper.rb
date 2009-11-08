@@ -29,23 +29,35 @@ module TransactionsHelper
   
   def formatted_income_amount(transaction)
     if transaction.transaction_type == Transaction::TRANSACTION_TYPES[:sell] || (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:pay] && transaction.amount > 0)
-      if transaction.currency == 'USD'
-        amount = transaction.amount.abs * 5.0
-      else
-        amount = transaction.amount.abs
-      end
-      number_to_currency(amount)
+      formatted_amount(transaction)
     end
   end
   
   def formatted_expense_amount(transaction)
     if transaction.transaction_type == Transaction::TRANSACTION_TYPES[:buy] || (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:pay] && transaction.amount < 0)
-      if transaction.currency == 'USD'
-        amount = transaction.amount.abs * 5
-      else
-        amount = transaction.amount.abs
-      end
-      number_to_currency(amount)
+      formatted_amount(transaction)
     end
+  end
+  
+  def formatted_amount(transaction)
+    number_with_currency = number_to_currency(exchange_to(transaction.amount, transaction.currency, current_user.default_currency))
+    
+    if transaction.currency == current_user.default_currency
+      number_with_currency
+    else
+      content_tag(:span, '~ ' + number_with_currency, :title => number_to_currency(transaction.amount, :unit => transaction.currency))
+    end
+  end
+  
+  private
+  
+  def exchange_to(amount, from, to)
+    return amount if from == to
+    
+    # 'DKK' is base
+    exchange_rates = { 'DKK' => 1.0, 'USD' => 0.199366, 'EUR' => 0.134379887 }
+    
+    exchange_rate = ((1.0 / exchange_rates[to]) * exchange_rates[from])
+    amount / exchange_rate
   end
 end
