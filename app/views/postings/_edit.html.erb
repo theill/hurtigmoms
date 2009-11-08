@@ -71,7 +71,10 @@
 				<%- else -%>
 					<%= f.submit t('.buttons.save') %> <%= link_to t('buttons.close'), fiscal_year_posting_path(current_user.active_fiscal_year, posting, :format => :js), :class => 'show' %>
 					
-					<div class="inline-actions"><%= link_to(t('buttons.delete'), [current_user.active_fiscal_year, posting], :class => 'delete') %> denne postering</div>
+					<div class="inline-actions">
+						<div class="delete-question"><%= link_to(t('buttons.delete'), [current_user.active_fiscal_year, posting], :class => 'delete') %> denne postering</div>
+						<div class="delete-confirmation"></div>
+					</div>
 				<%- end -%>
 			</div>
 		<%- end -%>

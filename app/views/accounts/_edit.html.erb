@@ -56,7 +56,10 @@
 					<%= f.submit t('buttons.save') %> <%= link_to t('buttons.close'), account_path(account, :format => :js), :class => 'show' %>
 					
 					<%- if account_deletable(account) -%>
-						<div class="inline-actions"><%= t('.delete_account', :delete_link => link_to(t('buttons.delete'), account, :class => 'delete')) %></div>
+						<div class="inline-actions">
+							<div class="delete-question"><%= t('.delete_account', :delete_link => link_to(t('buttons.delete'), account, :class => 'delete')) %></div>
+							<div class="delete-confirmation"></div>
+						</div>
 					<%- end -%>
 				<%- end -%>
 			</div>

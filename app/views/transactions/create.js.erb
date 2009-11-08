@@ -10,7 +10,7 @@
 
 	$("tr#new_transaction").remove();
 	
-	hurtigmoms.transactions.push(<%= transaction.id %>);
+	hurtigmoms.transactions.push(<%= @transaction.id %>);
 <%- else -%>
   // render new form (again but now with errors)
   $("#<%= dom_id(@transaction) %>").replaceWith("<%= escape_javascript(render(:partial => 'edit', :locals => { :transaction => @transaction })) %>");

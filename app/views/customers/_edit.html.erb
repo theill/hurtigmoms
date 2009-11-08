@@ -19,7 +19,10 @@
 					<%- else -%>
 						<%= f.submit t('buttons.save') %> <%= link_to t('buttons.close'), customer_path(customer, :format => :js), :class => 'show' %>
 
-						<div class="inline-actions"><%= link_to(t('buttons.delete'), customer, :class => 'delete') %> denne kunde</div>
+						<div class="inline-actions">
+							<div class="delete-question"><%= link_to(t('buttons.delete'), customer, :class => 'delete') %> denne kunde</div>
+							<div class="delete-confirmation"></div>
+						</div>
 					<%- end -%>
 				</div>
 			

@@ -45,7 +45,7 @@ module TransactionsHelper
     if transaction.currency == current_user.default_currency
       number_with_currency
     else
-      content_tag(:span, '~ ' + number_with_currency, :title => number_to_currency(transaction.amount, :unit => transaction.currency))
+      content_tag(:span, content_tag(:span, '~', :class => 'exchanged') + number_with_currency, :title => number_to_currency(transaction.amount, :unit => transaction.currency))
     end
   end
   
@@ -54,10 +54,7 @@ module TransactionsHelper
   def exchange_to(amount, from, to)
     return amount if from == to
     
-    # 'DKK' is base
-    exchange_rates = { 'DKK' => 1.0, 'USD' => 0.199366, 'EUR' => 0.134379887 }
-    
-    exchange_rate = ((1.0 / exchange_rates[to]) * exchange_rates[from])
+    exchange_rate = ((1.0 / EXCHANGE_RATES[to]) * EXCHANGE_RATES[from])
     amount / exchange_rate
   end
 end

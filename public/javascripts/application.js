@@ -44,7 +44,7 @@ hurtigmoms = {
     return hurtigmoms.currency + ' ' + t + ((x.length > 1) ? commaDelimiter + x[1] : '');
   },
 	
-	posting: {
+/*	posting: {
 		vat: function(amount) {
 			try {
 				amount = parseFloat(hurtigmoms.convertNumber(amount, hurtigmoms.locale, 'en')) * 0.2;
@@ -59,6 +59,7 @@ hurtigmoms = {
 			return hurtigmoms.formatNumberWithCurrency(amount.toFixed(2));
 		}
 	}
+*/	
 }
 
 ;(function($) {
@@ -112,10 +113,10 @@ $(function() {
 		return false;
 	});
 	
-	$(".amount-no-vat").live("keyup", function() {
+/*	$(".amount-no-vat").live("keyup", function() {
 		$(this).closest("form").find(".amount-vat").text(hurtigmoms.posting.vat(this.value));
 	});
-	
+*/	
 	// bind all generic events
 	$(".close").live("click", function() {
 		$(this).closest("tr").remove();
@@ -130,9 +131,25 @@ $(function() {
 	});
 	
 	$(".delete").live("click", function() {
-	  if (confirm('Er du sikker på du ønsker at slette denne?')) {
+		$(this).parent().hide();
+//		$(this).parent().parent().find(".delete-confirmation").show();
+		$(this).parent().parent().find(".delete-confirmation").html('Er du sikker? <a class="delete-confirmed delete-yes" href="'+this.href+'">Ja</a><a class="delete-cancelled delete-no" href="#">Nej</a>').show();
+		
+/*	  if (confirm('Er du sikker på du ønsker at slette denne?')) {
 	    $.ajax({ type: "DELETE", url: this.href, data: null, dataType: "script" });
     }
-	  return false;
+*/	  return false;
   });
+
+	$(".delete-confirmed").live("click", function() {
+		$.ajax({ type: "DELETE", url: this.href, data: null, dataType: "script" });
+		return false;
+	});
+	
+	$(".delete-cancelled").live("click", function() {
+		$(this).parent().hide();
+		$(this).parent().parent().find(".delete-question").show();
+		return false;
+	});
+	
 });

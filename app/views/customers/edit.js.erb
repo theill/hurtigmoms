@@ -3,4 +3,9 @@ $("#<%= dom_id(@customer) %>").replaceWith("<%= escape_javascript(render(:partia
 $("#<%= dom_id(@customer) %> form").focusFirstFormElement();
 
 // bind events
-$("#<%= dom_id(@customer) %> form").ajaxForm({	dataType: "script" });
+$("#<%= dom_id(@customer) %> form").bind("submit", function() {
+	$(this).find("input[type=submit]").attr("disabled", "disabled");
+	$(this).ajaxSubmit({ dataType: "script" });
+	return false;
+});
+

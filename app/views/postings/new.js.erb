@@ -3,7 +3,11 @@ $("#postings").prepend("<%= escape_javascript(render(:partial => 'edit', :locals
 $(".amount-no-vat").trigger("keyup");
 
 // FIXME: bind events (similar to 'edit' refactor)
-$("#<%= dom_id(@posting) %> form").ajaxForm({ dataType: "script" });
+$("#<%= dom_id(@posting) %> form").bind("submit", function() {
+	$(this).find("input[type=submit]").attr("disabled", "disabled");
+	$(this).ajaxSubmit({ dataType: "script" });
+	return false;
+});
 
 $("#posting_customer_name").autocomplete(hurtigmoms.customers_url, {
 	dataType: 'json',

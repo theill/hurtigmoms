@@ -1,7 +1,7 @@
 <%- @meta = { :title => t('.title'), :description => t('.description') } -%>
 <h1><%= t('.title') %><span><%= t('.description') %></span></h1>
 
-<% form_for @user do |f| %>
+<%- form_for @user do |f| -%>
 	<%= f.error_messages %>
 	
 	<fieldset>
@@ -31,4 +31,4 @@
 	</fieldset>
 	
 	<%= f.submit t('buttons.save') %>
-<% end %>
+<%- end -%>

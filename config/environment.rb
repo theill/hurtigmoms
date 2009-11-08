@@ -63,4 +63,6 @@ Rails::Initializer.run do |config|
   end
 end
 
+EXCHANGE_RATES = ExchangeRate.all.inject({}) { |initial, er| initial.merge({er.currency => er.rate}) }
+
 DO_NOT_REPLY = "bilag@hurtigmoms.dk"

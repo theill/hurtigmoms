@@ -3,4 +3,8 @@ $("#accounts").prepend("<%= escape_javascript(render(:partial => 'edit', :locals
 $("form.new_account").focusFirstFormElement();
 
 // bind events
-$("#<%= dom_id(@account) %> form").ajaxForm({ dataType: "script" });
+$("#<%= dom_id(@account) %> form").bind("submit", function() {
+	$(this).find("input[type=submit]").attr("disabled", "disabled");
+	$(this).ajaxSubmit({ dataType: "script" });
+	return false;
+});

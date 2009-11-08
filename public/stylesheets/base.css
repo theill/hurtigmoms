@@ -331,6 +331,9 @@ table tr.row-editing div.box {
 		float: right;
 		display: inline;
 	}
+		table tr.row-editing .inline-actions .delete-confirmation {
+			display: none;
+		}
 		table tr.row-editing .inline-actions .delete {
 			color: #CC0000;
 			padding: 2px;
@@ -339,6 +342,18 @@ table tr.row-editing div.box {
 				background-color: #CC0000;
 				color: white;
 			}
+		table tr.row-editing .inline-actions .delete-yes {
+			color: #CC0000;
+			padding: 2px;
+		}
+			table tr.row-editing .inline-actions .delete-yes:hover {
+				background-color: #CC0000;
+				color: white;
+			}
+		table tr.row-editing .inline-actions .delete-no {
+			color: #330000;
+			padding: 2px;
+		}
 
 .quick-buttons {
 	margin-bottom: 20px;
@@ -369,6 +384,13 @@ table tr.row-editing div.box {
 		}
 		#transactions .transaction .missing {
 			color: #999;
+		}
+		#transactions .transaction .exchanged {
+			margin-right: 5px;
+			color: #999;
+		}
+		#transactions .transaction .date {
+			white-space: nowrap;
 		}
 		
   	#transactions .transaction .amount-vat {

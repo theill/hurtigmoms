@@ -6,4 +6,9 @@ class AboutController < ApplicationController
       render :layout => 'frontpage'
     end
   end
+  
+  def help
+    @exchange_rates = ExchangeRate.all(:order => 'currency')
+    
+  end
 end

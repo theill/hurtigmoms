@@ -64,7 +64,10 @@
 				<%- else -%>
 					<%= f.submit t('.buttons.save') %> <%= link_to t('buttons.close'), fiscal_year_transaction_path(current_user.active_fiscal_year, transaction, :format => :js), :class => 'show', :accesskey => 'S' %>
 					
-					<div class="inline-actions"><%= t('.delete_transaction', :delete_link => link_to(t('buttons.delete'), [current_user.active_fiscal_year, transaction], :class => 'delete')) %></div>
+					<div class="inline-actions">
+						<div class="delete-question"><%= t('.delete_transaction', :delete_link => link_to(t('buttons.delete'), [current_user.active_fiscal_year, transaction], :class => 'delete')) %></div>
+						<div class="delete-confirmation"></div>
+					</div>
 				<%- end -%>
 			</div>
 		<%- end -%>

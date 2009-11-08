@@ -4,6 +4,7 @@ $(".amount-no-vat").trigger("keyup");
 
 // FIXME: bind events (similar to 'edit' refactor)
 $("#<%= dom_id(@transaction) %> form").bind("submit", function() {
+	$(this).find("input[type=submit]").attr("disabled", "disabled");
 	$("#transaction_amount").val($("#transaction_amount").parse({locale: hurtigmoms.locale_fix}));
 	$(this).ajaxSubmit({ dataType: "script" });
 	return false;

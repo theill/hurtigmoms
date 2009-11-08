@@ -3,7 +3,11 @@ $("#<%= dom_id(@posting) %>").replaceWith("<%= escape_javascript(render(:partial
 $(".amount-no-vat").trigger("keyup");
 
 // bind events
-$("#<%= dom_id(@posting) %> form").ajaxForm({	dataType: "script" });
+$("#<%= dom_id(@posting) %> form").bind("submit", function() {
+	$(this).find("input[type=submit]").attr("disabled", "disabled");
+	$(this).ajaxSubmit({ dataType: "script" });
+	return false;
+});
 
 // move to generic 'edit/create' function
 $("#posting_customer_name").autocomplete(hurtigmoms.customers_url, {
