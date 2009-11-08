@@ -40,7 +40,7 @@ module TransactionsHelper
   end
   
   def formatted_amount(transaction)
-    number_with_currency = number_to_currency(exchange_to(transaction.amount, transaction.currency, current_user.default_currency))
+    number_with_currency = number_to_currency(exchange_to(transaction.amount, transaction.currency, current_user.default_currency), :unit => current_user.default_currency)
     
     if transaction.currency == current_user.default_currency
       number_with_currency
