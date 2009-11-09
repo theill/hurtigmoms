@@ -10,7 +10,7 @@ Feature: Inbox mail parsing
 		Then I should see "Harvest Subscription"
 		And I should not see "Fwd: Harvest Subscription"
 		And I should see "04/09-2009"
-		And I should see "DKK12.00"
+		And I should see "~DKK60.19"
  
 	Scenario: Parsing a Harvest invoice mail
 		Given I have signed in with "john.doe@hurtigmoms.test/password"
@@ -28,7 +28,7 @@ Feature: Inbox mail parsing
 		Then I should see "[GitHub] Payment Receipt"
 		And I should not see "Fwd: [GitHub] Payment Receipt"
 		And I should see "27/08-2009"
-		And I should see "USD12.00"
+		And I should see "~DKK60.19"
   
 	Scenario: Parsing a Campaign Monitor mail
 		Given I have signed in with "john.doe@hurtigmoms.test/password"
@@ -37,7 +37,7 @@ Feature: Inbox mail parsing
 		Then I should see "Delivery of ConquerCam 2.8.1 released"
 		And I should not see "Fwd: Campaign Monitor: Invoice for delivery of ConquerCam 2.8.1 released"
 		And I should see "29/08-2009"
-		And I should see "USD36.43"
+		And I should see "~DKK182.73"
 
 	Scenario: Parsing a Spotify mail
 		Given I have signed in with "john.doe@hurtigmoms.test/password"
@@ -55,7 +55,7 @@ Feature: Inbox mail parsing
 		Then I should see "1 month Basecamp Basic Plan"
 		And I should not see "Fwd: Spotify Receipt"
 		And I should see "25/08-2009"
-		And I should see "USD24.00"
+		And I should see "~DKK120.38"
 
 	Scenario: Parsing any mail with amount in its body
 		Given I have signed in with "john.doe@hurtigmoms.test/password"
@@ -73,4 +73,4 @@ Feature: Inbox mail parsing
 		Then I should see "Amazon Web Services Billing Statement Available"
 		And I should not see "Fwd: Amazon Web Services Billing Statement Available"
 		And I should see "01/10-2009"
-		And I should see "USD0.05"
+		And I should see "~DKK0.25"
