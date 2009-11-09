@@ -1,3 +1,5 @@
+require 'aws/s3'
+
 class Annex < ActiveRecord::Base
   belongs_to :transaction
   

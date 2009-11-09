@@ -1,10 +1,9 @@
 class AboutController < ApplicationController
   def index
-    if signed_in?
-      @action_required = current_user.active_fiscal_year.transactions.incomplete.count > 0
-    else
-      render :layout => 'frontpage'
-    end
+    render :layout => 'frontpage' and return unless signed_in?
+    
+    @action_required = current_user.active_fiscal_year.transactions.incomplete.count > 0
+    @latest_import = current_user.posting_imports.find(:first, :order => 'created_at DESC')
   end
   
   def help

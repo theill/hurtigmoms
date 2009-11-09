@@ -19,10 +19,6 @@
   <li><%= link_to t('.forgot_password'), new_password_path %></li>
 </ul>
 
-<% content_for :head do %>
-	<script type="text/javascript">
-		$(function() {
-			$("#new_session").focusFirstFormElement();
-		});
-	</script>
+<% content_for :js do %>
+  $("#new_session").focusFirstFormElement();
 <% end %>

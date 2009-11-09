@@ -16,6 +16,19 @@
 			</p>
 		</div>
 	<%- end -%>
+	
+	<%- if @latest_import && (1.month.ago > @latest_import.created_at) -%>
+	  <div>
+	    <p>
+	      Det er mere end een måned siden du importerede dine kontoudtog fra banken.
+	    </p>
+	    <p>
+	      For at lette bogføringen anbefales det, at importere kontoudtog jævnligt
+	      så hvis du henter et nyt kontoudtog fra din bank, kan du genbruge dine 
+	      indstillinger fra sidste importering og måske gøre det med det samme.
+	    </p>
+	  </div>
+	<%- end -%>
 
 	<div class="quick-start">
 		<h3>Kom hurtigt i gang</h3>

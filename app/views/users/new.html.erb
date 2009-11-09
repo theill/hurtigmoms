@@ -1,6 +1,6 @@
 <h1><%= t('.title') %><span><%= t('.description') %></span></h1>
 
 <% form_for @user do |f| %>
-  <%= render :partial => '/users/form', :object => f %>
+  <%= render :partial => 'form', :object => f %>
   <%= f.submit t('.buttons.save') %>
 <% end %>

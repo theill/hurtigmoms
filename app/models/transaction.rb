@@ -1,5 +1,3 @@
-require 'aws/s3'
-
 class Transaction < ActiveRecord::Base
   TRANSACTION_TYPES = { :buy => 1, :sell => 2, :pay => 3 }
   
@@ -39,5 +37,4 @@ class Transaction < ActiveRecord::Base
   def set_customer
     self.customer = self.fiscal_year.user.customers.find_or_create_by_name(self.customer_name) unless self.customer_name.blank?
   end
-
 end

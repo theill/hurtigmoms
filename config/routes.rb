@@ -1,6 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :posting_imports
-
   map.resources :fiscal_years, :as => 'regnskaber' do |fy|
     fy.resources :transactions, :as => 'transaktioner', :collection => { :ping => :get }, :member => { :download => :get } do |transaction|
       transaction.resources :annexes, :as => 'bilag', :member => { :download => :get }
@@ -10,7 +8,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :accounts, :as => 'konti'
   map.resources :reports, :as => 'rapporter'
   map.resources :customers, :as => 'kunder', :collection => { :search => :get }, :path_names => { :search => :soeg }
-
+  map.resources :posting_imports, :as => 'kontoudtog-importeringer'
+  
   map.resources :users do |users|
     users.resource :password, :controller => 'clearance/passwords', :only => [:create, :edit, :update]
     users.resource :confirmation, :controller => 'clearance/confirmations', :only => [:new, :create]

@@ -11,8 +11,12 @@ class PostingImport < ActiveRecord::Base
   end
   
   def file=(v)
-    content = IO.read(v.path)
-    self.data = Iconv.iconv('utf-8', 'iso8859-1', content).join('\n')
+    begin
+      content = IO.read(v.path)
+      self.data = Iconv.iconv('utf-8', 'iso8859-1', content).join('\n')
+    rescue
+      # file could not be read
+    end
   end
   
   def import
@@ -68,9 +72,10 @@ class PostingImport < ActiveRecord::Base
           end
         end
         
+        # now do actual match based on parsed values
         (transaction.amount == amount) && (transaction.currency == detected_currency) && (transaction.created_at.to_date..(transaction.created_at.to_date + 3.days)).include?(p.created_at.to_date)
       end
-
+      
       if match
         Rails.logger.debug("**** GOT MATCH for #{match.note} => #{p.note} (amount: #{match.amount})")
         p.attachment_no = match.attachment_no
@@ -106,7 +111,19 @@ class PostingImport < ActiveRecord::Base
     # TODO: guess 'col_sep' and 'headers' by looking at rows and detecting if it
     # contains a ',' or ';' and by checking if any rows are parsable as date. if none
     # in the first row can't be parsed as a date it is probably a header
-    FasterCSV.parse(self.data, {:col_sep => ';', :skip_blanks => true, :headers => true})
+    FasterCSV.parse(self.data, {:col_sep => column_seperator, :skip_blanks => true, :headers => has_headers?})
+  end
+  
+  private
+  
+  def column_seperator
+    # TODO: guess it
+    ';'
+  end
+  
+  def has_headers?
+    # TODO: guess it
+    true
   end
   
 end
