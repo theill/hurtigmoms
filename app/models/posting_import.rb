@@ -22,16 +22,16 @@ class PostingImport < ActiveRecord::Base
   def import
     # import actual content as Transaction records
     
-    default_account_in = self.user.accounts.find_by_account_no('1020').id
-    default_account_out = self.user.accounts.find_by_account_no('1300').id
+    # default_account_in = self.user.accounts.find_by_account_no('1020').id
+    # default_account_out = self.user.accounts.find_by_account_no('1300').id
     
     # read [date, note, amount] for all transactions so we are able to check existing ones
-    existing_transactions = self.user.active_fiscal_year.transactions.find(:all, :include => :account, :select => 'transactions.created_at, transactions.note, transactions.amount, transactions.currency, accounts.account_type')
+    existing_transactions = self.user.active_fiscal_year.transactions.find(:all, :select => 'transactions.created_at, transactions.note, transactions.amount, transactions.currency, transactions.transaction_type, transactions.attachment_no')
     
     success_count = duplicate_count = failed_count = 0
 
     self.parse.each do |row|
-      p = self.user.active_fiscal_year.transactions.new(:transaction_type => Transaction::TRANSACTION_TYPES[:pay], :attachment_no => nil, :account_id => 0)
+      p = self.user.active_fiscal_year.transactions.new(:transaction_type => Transaction::TRANSACTION_TYPES[:pay], :attachment_no => nil)
       self.mapping.each do |column, method|
         next if method.blank?
         
@@ -58,7 +58,7 @@ class PostingImport < ActiveRecord::Base
         detected_currency = 'DKK'
         amount = p.amount
         
-        if transaction.account.account_type == Account::ACCOUNT_TYPES[:expense]
+        if transaction.transaction_type == Transaction::TRANSACTION_TYPES[:buy]
           amount = -1.0 * amount
         end
         
@@ -79,11 +79,11 @@ class PostingImport < ActiveRecord::Base
       if match
         Rails.logger.debug("**** GOT MATCH for #{match.note} => #{p.note} (amount: #{match.amount})")
         p.attachment_no = match.attachment_no
-        p.account_id = match.account_id
+        # p.account_id = match.account_id
       end
       
-      p.account_id = (p.amount > 0) ? default_account_in : default_account_out if p.account_id == 0
-      # p.amount = p.amount.abs
+      # p.account_id = (p.amount > 0) ? default_account_in : default_account_out if p.account_id == 0
+      # # p.amount = p.amount.abs
       
       # ensure we don't already have this in our system
       found = existing_transactions.find do |transaction|
