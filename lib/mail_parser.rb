@@ -14,7 +14,7 @@ class MailParser
     
     subject = (@mail.subject || 'original-mail').parameterize.to_s
     attachment = TMail::Attachment.new(@mail.to_s)
-    attachment.original_filename = subject + '.txt'
+    attachment.original_filename = subject + '.msg'
     attachment.content_type = @mail.header['content-type']
     attachments = [attachment]
     @mail.attachments.each { |a| attachments << a } if @mail.has_attachments?
