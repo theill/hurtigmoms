@@ -14,10 +14,11 @@ config.action_controller.allow_forgery_protection    = false
 # The :test delivery method accumulates sent emails in the
 # ActionMailer::Base.deliveries array.
 config.action_mailer.delivery_method = :test
+config.action_mailer.default_url_options = { :host => "hurtigmoms.test" }
 
 config.i18n.default_locale = :en
 
-HOST = "localhost"
+# HOST = "localhost"
 
 config.gem 'cucumber',    :lib => false,        :version => '>=0.3.104' unless File.directory?(File.join(Rails.root, 'vendor/plugins/cucumber'))
 config.gem 'webrat',      :lib => false,        :version => '>=0.5.0' unless File.directory?(File.join(Rails.root, 'vendor/plugins/webrat'))

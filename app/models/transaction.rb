@@ -38,9 +38,9 @@ class Transaction < ActiveRecord::Base
     self.customer = self.fiscal_year.user.customers.find_or_create_by_name(self.customer_name) unless self.customer_name.blank?
   end
   
-  def add_attachments_from_mail(mail)
-    mail.attachments.each do |attachment|
-      self.annexes.create(:attachment => attachment)
+  def build_attachments(attachments)
+    attachments.each do |attachment|
+      self.annexes.build(:attachment => attachment)
     end
   end
 end

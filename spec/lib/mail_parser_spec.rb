@@ -1,13 +1,16 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe "A MailParser" do
-  it "should parse amount from harvest mail from existing user" do
-    # user = mock("User.find_by_email", :null_object => true)
-    
+  it "should correctly parse amount and currency from recognized harvest mail" do
     mail = TMail::Mail.parse(File.read("#{RAILS_ROOT}/test/fixtures/mails/harvest.txt"))
-    MailParser.new(mail).parse
-    #@mail_parser.parse(mail)
     
-    # @mail_parser.should have(:user).email = "john.doe@local.test"
+    email, transaction = MailParser.new(mail).parse
+    email.should == "john.doe@hurtigmoms.test"
+    transaction.note.should == 'Harvest Subscription'
+    transaction.amount.should == 12.75
+    transaction.currency.should == 'USD'
+    transaction.created_at.should == Date.new(2009, 9, 4)
+    transaction.annexes.should_not be_nil
+    transaction.should have(1).annexes
   end
 end
