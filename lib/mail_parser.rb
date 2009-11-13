@@ -1,50 +1,47 @@
+# Parses a single mail
 class MailParser
-  def parse(mail)
-    Rails.logger.debug "Got mail #{mail.subject} from #{mail.from} #{mail.has_attachments? ? 'with' : 'without'} attachments"
+  def initialize(mail)
+    @mail = mail
+  end
+  
+  def parse
+    Rails.logger.debug "Got mail #{@mail.subject} from #{@mail.from} #{@mail.has_attachments? ? 'with' : 'without'} attachments"
     
-    # lookup or create user
-    user = User.find_by_email(mail.from) || setup_user(mail)
-    
-    parsed_attributes = recognize_and_parse_mail(mail).merge(:transaction_type => Transaction::TRANSACTION_TYPES[:buy],
-      :external_data => mail.to_s,
+    parsed_attributes = recognize_and_parse_mail(@mail).merge(:transaction_type => Transaction::TRANSACTION_TYPES[:buy],
+      :external_data => @mail.to_s,
       :attachment_no => 0)
     
     transaction = user.active_fiscal_year.transactions.create! parsed_attributes
-    associate_attachments(transaction, mail) if mail.has_attachments?
-    associate_mail_as_attachment(transaction, mail)
+    transaction.add_attachments_from_mail(@mail) if @mail.has_attachments?
+    associate_mail_as_attachment(transaction)
   end
   
   private
   
-  def setup_user(mail)
-    Rails.logger.debug "User with email #{mail.from} not found so will be created"
+  # lookup or create user
+  def user
+    @user ||= (User.find_by_email(@mail.from) || setup_user(@mail.from.to_s, @mail.subject))
+  end
+  
+  def setup_user(address, subject)
+    Rails.logger.debug "User with email #{@mail.from} not found so will be created"
     pwd = generate_password
-    user = ::User.new(:email => mail.from.to_s, :password => pwd, :password_confirmation => pwd, :company => 'Mit firmanavn')
-    ::SignupMailer.deliver_created(user, pwd, mail.subject) if user.save
+    user = ::User.new(:email => address, :password => pwd, :password_confirmation => pwd, :company => 'Mit firmanavn')
+    ::SignupMailer.deliver_created(user, pwd, subject) if user.save
     user
   end
   
   def generate_password(length=6)
-    chars = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ23456789'
+    chars = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789'
     password = ''
     length.times { |i| password << chars[rand(chars.length)] }
     password
   end
   
-  def associate_attachments(transaction, mail)
-    mail.attachments.each do |attachment|
-      # annex = transaction.create_annex(:user => transaction.fiscal_year.user)
-      # annex.attachment = attachment
-      # annex.save!
-      # transaction.save
-      transaction.annexes.create(:attachment => attachment)
-    end
-  end
-  
-  def associate_mail_as_attachment(transaction, mail)
+  def associate_mail_as_attachment(transaction)
     filename = "#{Rails.root}/tmp/#{transaction.id}_parsed_mail.txt"
     File.open(filename, 'w') do |f|
-      f.write(mail.to_s)
+      f.write(@mail.to_s)
     end
     
     File.open(filename, 'r') do |f|

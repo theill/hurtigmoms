@@ -19,7 +19,6 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
-  config.gem "thoughtbot-factory_girl", :version => '>= 1.2.2', :lib => "factory_girl", :source => "http://gems.github.com"
   config.gem "thoughtbot-clearance", :version => '>= 0.8.2', :lib => 'clearance', :source  => 'http://gems.github.com'
   config.gem 'thoughtbot-paperclip', :version => '>= 2.3.1', :lib => 'paperclip', :source => 'http://gems.github.com'
   config.gem 'jigfox-action_mailer_tls', :lib => 'smtp_tls.rb', :source => 'http://gems.github.com'
