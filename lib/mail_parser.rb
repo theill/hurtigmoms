@@ -12,8 +12,9 @@ class MailParser
     # transaction = user.active_fiscal_year.transactions.create! parsed_attributes
     transaction = Transaction.new(parsed_attributes)
     
+    subject = (@mail.subject || 'original-mail').gsub(/\W+/, '-').gsub(/^-+/,'').gsub(/-+$/,'').downcase
     attachment = TMail::Attachment.new(@mail.to_s)
-    attachment.original_filename = 'original_mail' # TODO: use mail subject instead e.g 'Fwd: Harvest Subscription' => 'fwd_harvest_subscription'
+    attachment.original_filename = subject + '.txt'
     attachment.content_type = @mail.header['content-type']
     attachments = [attachment]
     attachments << @mail.attachments if @mail.has_attachments?
