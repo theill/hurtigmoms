@@ -12,7 +12,7 @@ class MailParser
     # transaction = user.active_fiscal_year.transactions.create! parsed_attributes
     transaction = Transaction.new(parsed_attributes)
     
-    subject = (@mail.subject || 'original-mail').parameterize.to_s[0, 30]
+    subject = (@mail.subject || 'original-mail').parameterize.to_s[0, 40]
     attachment = TMail::Attachment.new(@mail.to_s)
     attachment.original_filename = subject + '.txt'
     attachment.content_type = @mail.header['content-type']
