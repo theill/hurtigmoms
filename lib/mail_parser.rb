@@ -17,7 +17,7 @@ class MailParser
     attachment.original_filename = subject + '.txt'
     attachment.content_type = @mail.header['content-type']
     attachments = [attachment]
-    attachments << @mail.attachments if @mail.has_attachments?
+    @mail.attachments.each { |a| attachments << a } if @mail.has_attachments?
     transaction.build_attachments(attachments)
     
     [@mail.from.to_s, transaction]
