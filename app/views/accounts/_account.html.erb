@@ -1,5 +1,5 @@
 <tr id="<%= dom_id(account) %>" class="account row <%= account_type_class(account) %>">
-	<td class="account-no actions"><div class="buttons-container"><div class="buttons"><%= link_to(image_tag('navigation-000-frame.png'), edit_account_path(account), :class => 'edit hide') %></div></div><%=h '%05d' % account.account_no %></td>
+	<td class="account-no actions"><div class="buttons-container"><div class="buttons"><%= link_to(image_tag('navigation-000-frame.png', :width => 16, :height => 16), edit_account_path(account), :class => 'edit hide') %></div></div><%=h '%05d' % account.account_no %></td>
 	<td class="name"><%=h account.name %> <span class="description"><%=h account.description %></span></td>
 	<td class="number"><%= number_to_currency(account.amount, :unit => current_user.default_currency) %></td>
 </tr>

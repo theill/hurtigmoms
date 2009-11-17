@@ -6,6 +6,10 @@ describe "An inbox instance" do
     
     @inbox = Inbox.new
     @inbox.stub!(:connect_and_parse_all_messages).and_return(nil)
+    
+    Annex.any_instance.stubs(:save_attached_files).returns(true)
+    Annex.any_instance.stubs(:destroy_attached_files).returns(true)
+    
     Delayed::Job.delete_all
   end
   
@@ -34,10 +38,9 @@ describe "An inbox instance" do
   it "should create non-existing users" do
     @mail.from = ['john.doe.junior@hurtigmoms.test']
     @inbox.send(:parse, @mail)
-    # @inbox.perform
+    @inbox.perform
     
-    # figure out how to stub paperclip
-    # User.find_by_email(@mail.from.to_s).should_not be_nil
+    User.find_by_email(@mail.from.to_s).should_not be_nil
   end
   
   it "should setup a DelayedJob when calling perform" do

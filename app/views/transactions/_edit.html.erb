@@ -15,7 +15,7 @@
 					<td>
 						<fieldset>
 							<%= f.label :created_at, t('transaction.created_at') + ' <span class="req">*</span>' %>
-							<%= date_select :transaction, :created_at %><a id="date-pick" href="#"><%= image_tag('calendar-select.png') %></a>
+							<%= date_select :transaction, :created_at %><a id="date-pick" href="#"><%= image_tag('calendar-select.png', :width => 16, :height => 16, :alt => t('transaction.created_at')) %></a>
 							<p class="hint">Fakturadato eller betalingsdato</p>
 						</fieldset>
 					</td>
