@@ -1,7 +1,8 @@
+<%# related_payment_transaction = @transactions.find { |t| t.id != transaction.id && t.attachment_no == transaction.attachment_no } unless transaction.transaction_type == Transaction::TRANSACTION_TYPES[:pay] %>
 <tr id="<%= dom_id(transaction) %>" class="transaction row <%= transaction_type_class(transaction) %> <%= 'pending' if transaction.incomplete? %>">
 	<td class="actions date"><div class="buttons-container"><div class="buttons"><%= link_to(image_tag('navigation-000-frame.png', :width => 16, :height => 16), edit_fiscal_year_transaction_path(current_user.active_fiscal_year, transaction), :class => 'edit hide') %></div></div><%=h transaction.created_at.strftime("%d/%m-%Y") %></td>
 	<td><%= formatted_attachment_no(transaction) %></td>
-	<td><%= note_for_overview(transaction) %></td>
+	<td><%= note_for_overview(transaction) %><%# ("<br /><i>" + related_payment_transaction.note + "</i>") if related_payment_transaction %></td>
 	<td class="number"><%= formatted_income_amount(transaction) %></td>
 	<td class="number"><%= formatted_expense_amount(transaction) %></td>
 </tr>
