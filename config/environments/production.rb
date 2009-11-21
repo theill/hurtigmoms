@@ -28,4 +28,4 @@ config.action_mailer.default_url_options = { :host => "hurtigmoms.dk" }
 # Enable threaded mode
 # config.threadsafe!
 
-# HOST = "hurtigmoms.dk"
+HOST = "hurtigmoms.dk"

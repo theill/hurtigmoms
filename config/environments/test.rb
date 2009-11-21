@@ -21,7 +21,7 @@ config.action_controller.allow_forgery_protection    = false
 # The :test delivery method accumulates sent emails in the
 # ActionMailer::Base.deliveries array.
 config.action_mailer.delivery_method = :test
-config.action_mailer.default_url_options = { :host => "hurtigmoms.local" }
+config.action_mailer.default_url_options = { :host => "hurtigmoms.test" }
 
 # Use SQL instead of Active Record's schema dumper when creating the test database.
 # This is necessary if your schema can't be completely dumped by the schema dumper,
@@ -30,7 +30,7 @@ config.action_mailer.default_url_options = { :host => "hurtigmoms.local" }
 
 config.i18n.default_locale = :en
 
-# HOST = "localhost"
+HOST = "hurtigmoms.test"
 
 config.gem "rspec", :lib => false, :version => ">=1.2.8"  
 config.gem "rspec-rails", :lib => false, :version => ">=1.2.7.1"  
