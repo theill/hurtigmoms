@@ -1,5 +1,5 @@
 <%- if @transaction.errors.empty? %>
-  $("#transactions").prepend("<%= escape_javascript(render(@transaction)) %>");
+  $("#transactions tbody").prepend("<%= escape_javascript(render(@transaction)) %>");
   $("#<%= dom_id(@transaction) %>").effect("highlight");
 
 	$("#total-income").html("<%= escape_javascript(render(:partial => 'total', :locals => { :amount => @total_income })) %>");
