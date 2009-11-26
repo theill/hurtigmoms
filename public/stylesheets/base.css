@@ -513,19 +513,33 @@ body.frontpage {
 		color: #666;
 		text-decoration: underline;
 	}
-
-		body.frontpage .intro h1 {
-			font-family: "Cambria","Georgia","Times New Roman",Times,sans-serif;
-			font-size: 48px;
-			margin: 20px 0 0 0;
-		}
-		body.frontpage .intro h3 {
-/*			margin-top: -10px;*/
+	
+	body.frontpage #h {
+		margin: 0;
+	}
+	
+		body.frontpage .intro {
+			background-image: url(/images/bg-clouds.png);
+			height: 190px;
 		}
 		
+			body.frontpage .intro h1, body.frontpage .intro h3 {
+				text-shadow: 0 0 5px #333333;
+			}
+		
+			body.frontpage .intro h1 {
+				font-family: "Cambria","Georgia","Times New Roman",Times,sans-serif;
+				font-size: 48px;
+				color: #fff;
+				margin: 20px 0 0 0;
+			}
+			body.frontpage .intro h3 {
+				color: #fff;
+				text-indent: 30px;
+				margin-top: -5px;
+			}
+		
 	body.frontpage .callout {
-		background-color: #eee;
-		padding: 10px;
 		margin-top: 20px;
 	}
 
