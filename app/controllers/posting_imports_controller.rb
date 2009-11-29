@@ -37,7 +37,6 @@ class PostingImportsController < ApplicationController
 
     respond_to do |format|
       if @posting_import.save
-        flash[:notice] = 'PostingImport was successfully created.'
         format.html { redirect_to(edit_posting_import_path(@posting_import)) }
         format.xml  { render :xml => @posting_import, :status => :created, :location => @posting_import }
       else

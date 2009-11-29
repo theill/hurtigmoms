@@ -1,88 +1,93 @@
-$("#transactions").prepend("<%= escape_javascript(render(:partial => 'edit', :locals => {:transaction => @transaction})) %>");
-
-$(".amount-no-vat").trigger("keyup");
-
-// FIXME: bind events (similar to 'edit' refactor)
-$("#<%= dom_id(@transaction) %> form").bind("submit", function() {
-	$(this).find("input[type=submit]").attr("disabled", "disabled");
-	$("#transaction_amount").val($("#transaction_amount").parse({locale: hurtigmoms.locale_fix}));
-	$(this).ajaxSubmit({ dataType: "script" });
-	return false;
-});
-
-$("#transaction_amount").blur(function() {
-	$(this).format({format: "#,###.00", locale: hurtigmoms.locale_fix});
-});
-
-$("#transaction_customer_name").autocomplete(hurtigmoms.customers_url, {
-	dataType: 'json',
-	max: 25,
-	scroll: true,
-	scrollHeight: 190,
-	parse: function(data) {
-		var rows = new Array();
-		for (var i = 0; i < Math.min(data.length, 25); i++) {
-			rows[i] = { data: data[i].customer, value: data[i].customer.id, result: data[i].customer.name };
-		}
-		return rows;
-	},
-	formatItem: function(item, idx, total) {
-		return "<div class=\"company\">" + item.name + "</div>";
-	}
-});
-
-// important to set this -after- autocomplete field
-$("form.new_transaction").focusFirstFormElement();
-
-// initialise the "Select date" link
-$('#date-pick')
-	.datePicker({
-    createButton: false,
-		startDate: '01/01/2005',
-		endDate: '31/12/2010'
-	}).bind(
-		'click',
-		function() {
-			updateSelects($(this).dpGetSelected()[0]);
-			$(this).dpDisplay();
-			return false;
-		}
-	).bind(
-		'dateSelected',
-		function(e, selectedDate, $td, state) {
-			updateSelects(selectedDate);
-		}
-	).bind(
-		'dpClosed',
-		function(e, selected) {
-			updateSelects(selected[0]);
-		}
-	);
-
-var updateSelects = function(selectedDate) {
-	var selectedDate = new Date(selectedDate);
-	$('#<%= dom_id(@transaction) %> #transaction_created_at_3i option[value=' + selectedDate.getDate() + ']').attr('selected', 'selected');
-	$('#<%= dom_id(@transaction) %> #transaction_created_at_2i option[value=' + (selectedDate.getMonth()+1) + ']').attr('selected', 'selected');
-	$('#<%= dom_id(@transaction) %> #transaction_created_at_1i option[value=' + (selectedDate.getFullYear()) + ']').attr('selected', 'selected');
+if ($("form.new_transaction").length > 0) {
+	$("form.new_transaction").focusFirstFormElement();
 }
+else {
+	$("#transactions").prepend("<%= escape_javascript(render(:partial => 'edit', :locals => {:transaction => @transaction})) %>");
 
-// listen for when the selects are changed and update the picker
-$('#<%= dom_id(@transaction) %> #transaction_created_at_3i, #<%= dom_id(@transaction) %> #transaction_created_at_2i, #<%= dom_id(@transaction) %> #transaction_created_at_1i')
-	.bind(
-		'change',
-		function() {
-			var d = new Date(
-  			$('#transaction_created_at_1i').val(),
-  			$('#transaction_created_at_2i').val()-1,
-  			$('#transaction_created_at_3i').val()
-				);
-			$('#date-pick').dpSetSelected(d.asString());
-	  }
-	);
+	$(".amount-no-vat").trigger("keyup");
 
-// default the position of the selects to today
-// var today = new Date();
-// updateSelects(today.getTime());
+	// FIXME: bind events (similar to 'edit' refactor)
+	$("#<%= dom_id(@transaction) %> form").bind("submit", function() {
+		$(this).find("input[type=submit]").attr("disabled", "disabled");
+		$("#transaction_amount").val($("#transaction_amount").parse({locale: hurtigmoms.locale_fix}));
+		$(this).ajaxSubmit({ dataType: "script" });
+		return false;
+	});
 
-// and update the datePicker to reflect it...
-$('#<%= dom_id(@transaction) %> #transaction_created_at_3i').trigger('change');
+	$("#transaction_amount").blur(function() {
+		$(this).format({format: "#,###.00", locale: hurtigmoms.locale_fix});
+	});
+
+	$("#transaction_customer_name").autocomplete(hurtigmoms.customers_url, {
+		dataType: 'json',
+		max: 25,
+		scroll: true,
+		scrollHeight: 190,
+		parse: function(data) {
+			var rows = new Array();
+			for (var i = 0; i < Math.min(data.length, 25); i++) {
+				rows[i] = { data: data[i].customer, value: data[i].customer.id, result: data[i].customer.name };
+			}
+			return rows;
+		},
+		formatItem: function(item, idx, total) {
+			return "<div class=\"company\">" + item.name + "</div>";
+		}
+	});
+
+	// important to set this -after- autocomplete field
+	$("form.new_transaction").focusFirstFormElement();
+
+	// initialise the "Select date" link
+	$('#date-pick')
+		.datePicker({
+	    createButton: false,
+			startDate: '01/01/2005',
+			endDate: '31/12/2010'
+		}).bind(
+			'click',
+			function() {
+				updateSelects($(this).dpGetSelected()[0]);
+				$(this).dpDisplay();
+				return false;
+			}
+		).bind(
+			'dateSelected',
+			function(e, selectedDate, $td, state) {
+				updateSelects(selectedDate);
+			}
+		).bind(
+			'dpClosed',
+			function(e, selected) {
+				updateSelects(selected[0]);
+			}
+		);
+
+	var updateSelects = function(selectedDate) {
+		var selectedDate = new Date(selectedDate);
+		$('#<%= dom_id(@transaction) %> #transaction_created_at_3i option[value=' + selectedDate.getDate() + ']').attr('selected', 'selected');
+		$('#<%= dom_id(@transaction) %> #transaction_created_at_2i option[value=' + (selectedDate.getMonth()+1) + ']').attr('selected', 'selected');
+		$('#<%= dom_id(@transaction) %> #transaction_created_at_1i option[value=' + (selectedDate.getFullYear()) + ']').attr('selected', 'selected');
+	}
+
+	// listen for when the selects are changed and update the picker
+	$('#<%= dom_id(@transaction) %> #transaction_created_at_3i, #<%= dom_id(@transaction) %> #transaction_created_at_2i, #<%= dom_id(@transaction) %> #transaction_created_at_1i')
+		.bind(
+			'change',
+			function() {
+				var d = new Date(
+	  			$('#transaction_created_at_1i').val(),
+	  			$('#transaction_created_at_2i').val()-1,
+	  			$('#transaction_created_at_3i').val()
+					);
+				$('#date-pick').dpSetSelected(d.asString());
+		  }
+		);
+
+	// default the position of the selects to today
+	// var today = new Date();
+	// updateSelects(today.getTime());
+
+	// and update the datePicker to reflect it...
+	$('#<%= dom_id(@transaction) %> #transaction_created_at_3i').trigger('change');
+}

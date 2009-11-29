@@ -133,7 +133,7 @@ $(function() {
 	$(".delete").live("click", function() {
 		$(this).parent().hide();
 //		$(this).parent().parent().find(".delete-confirmation").show();
-		$(this).parent().parent().find(".delete-confirmation").html('Er du sikker? <a class="delete-confirmed delete-yes" href="'+this.href+'">Ja</a><a class="delete-cancelled delete-no" href="#">Nej</a>').show();
+		$(this).parent().parent().find(".delete-confirmation").html('Er du sikker? <a class="delete-confirmed delete-yes" href="' + this.href + '">Ja</a><a class="delete-cancelled delete-no" href="#">Nej</a>').effect('highlight', 'slow');
 		
 /*	  if (confirm('Er du sikker på du ønsker at slette denne?')) {
 	    $.ajax({ type: "DELETE", url: this.href, data: null, dataType: "script" });

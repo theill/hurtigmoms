@@ -313,6 +313,7 @@ table tr.row-editing div.box {
 	-webkit-box-shadow: 0 0 10px #999;
 	position: relative;
 }
+	
 	table tr.row-editing div.box .inline-buttons {
 		background-color: #fff;
 		border-top: solid 1px #eee;
@@ -361,6 +362,18 @@ table tr.row-editing div.box {
 .quick-buttons {
 	margin-bottom: 20px;
 }
+
+.standard-field {
+	border:1px solid #A7B9D0;
+	padding:2px 1px;
+	vertical-align:middle;
+}
+
+	.standard-field:focus {
+		border:1px solid #4182C2;
+		-moz-box-shadow: 0 0 10px #4182C2;
+		-webkit-box-shadow: 0 0 10px #4182C2;
+	}
 
 .search-field {
 	background-image: url('/images/search_icon.png');
