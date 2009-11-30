@@ -375,12 +375,12 @@ table tr.row-editing div.box {
 		-webkit-box-shadow: 0 0 10px #4182C2;
 	}
 
-.search-field {
-	background-image: url('/images/search_icon.png');
-	background-position: right center;
-	background-repeat: no-repeat;
-	padding-right: 16px;
-}
+.search-field {}
+	.search-field:focus {
+		background-image: url(/images/search_icon.png);
+		background-position: right center;
+		background-repeat: no-repeat;
+	}
 
 #transactions {}
 	#transactions thead .account-type {

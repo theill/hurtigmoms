@@ -9,11 +9,15 @@ describe "An importing model" do
     
   end
   
-  it "should import all entries from file" do
+  it "should import all entries" do
     
   end
   
-  it "should filter existing transactions from file" do
+  it "should filter existing transactions" do
+    
+  end
+  
+  it "should fail if file isn't CSV formatted" do
     
   end
   
