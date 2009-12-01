@@ -197,6 +197,17 @@ class MailParser
     end
     return [amount, currency] if amount && currency
     
+    parsed_amount = body.scan(/\W+([\d|\.|\,]*)\W?(kr\.)/i).flatten
+    amount = (parsed_amount[0] if parsed_amount.length > 1)
+    currency = (parsed_amount[1] if parsed_amount.length > 0)
+    if (currency == 'kr.')
+      currency = 'DKK'
+      # replace "15.498,75" with "15498.75"
+      amount = amount.gsub(/\./, '')
+      amount = amount.gsub(/\,/, '.')
+    end
+    return [amount, currency] if amount && currency
+    
     [nil, nil]
   end
 end
