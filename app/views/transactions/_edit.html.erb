@@ -42,7 +42,7 @@
 					<td>
 						<fieldset>
 							<%= f.label :amount, t('transaction.amount') + ' <span class="req">*</span>' %>
-							<%= f.text_field :amount, :size => 10, :maxlength => 10, :class => 'amount-no-vat decimal standard-field' %> <%= f.select :currency, Currency::SUPPORTED %>
+							<%= f.text_field :amount, :size => 10, :maxlength => 10, :class => 'amount-no-vat decimal standard-field' %> <%= f.select :currency, Currency::SUPPORTED, {}, :class => 'standard-field' %>
 							<p class="hint"><%= t('transaction.including_vat') %></p>
 						</fieldset>
 					</td>
