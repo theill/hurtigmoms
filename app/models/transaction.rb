@@ -10,7 +10,7 @@ class Transaction < ActiveRecord::Base
   before_validation_on_create :set_attachment_no
   before_save :set_customer
   
-  named_scope :incomplete, :conditions => 'amount IS NULL OR amount = 0 OR created_at IS NULL OR currency IS NULL'
+  named_scope :incomplete, :conditions => 'amount IS NULL OR created_at IS NULL OR currency IS NULL'
 
   HUMANIZED_ATTRIBUTES = {
     :amount => I18n.t(:amount, :scope => :transaction)
@@ -27,7 +27,7 @@ class Transaction < ActiveRecord::Base
   end
   
   def incomplete?
-    amount.nil? || amount == 0 || created_at.nil? || currency.nil?
+    amount.nil? || created_at.nil? || currency.nil?
   end
   
   def set_attachment_no
