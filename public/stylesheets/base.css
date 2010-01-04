@@ -517,7 +517,6 @@ table tr.row-editing div.box {
 	}
 
 
-
 body.frontpage {
 	
 }
@@ -571,6 +570,12 @@ body.frontpage {
 		margin-top: 180px;
 	}
 
+#postings tfoot.mapping th {
+	padding: 10px;
+	background-color: #ffc;
+	background: -webkit-gradient(linear, center top, center bottom, from(#ffffcc), to(#ffffff));
+	background: -moz-linear-gradient(-90deg, #ffffcc, #ffffff);
+}
 
 #reports {}
 	#reports dl.report-details {

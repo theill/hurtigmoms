@@ -1,4 +1,4 @@
-<h1>Editing posting_import</h1>
+<h1>Kontoudtog <span>Match indlæste rækker</span></h1>
 
 <p>
 	Vi har modtaget omkring <b><%= @rows.count %></b> posteringer.
@@ -19,10 +19,10 @@
 				<%- end -%>
 			</tr>
 		</thead>
-		<tfoot>
+		<tfoot class="mapping">
 			<%- @rows.headers.to_a.each_with_index do |header, idx| -%>
 				<th>
-					<%= select_tag 'posting_import[mapping]['+idx.to_s+']', options_for_select([['', ''], ['Date', 'created_at'], ['Note', 'note'], ['Amount', 'amount'], ['Currency', 'currency']]), {:include_blank => true} %>
+					<%= select_tag 'posting_import[mapping]['+idx.to_s+']', options_for_select([['', ''], ['Dato', 'created_at'], ['Tekst', 'note'], ['Beløb', 'amount']]), {:include_blank => true, :class => 'import-into-column'} %>
 				</th>
 			<%- end -%>
 		</tfoot>
@@ -42,6 +42,6 @@
 	</table>
 
 	<p>
-	  <%= f.submit 'Import' %> or cancel
+	  <%= f.submit 'Match og importer rækker' %> eller annuller
 	</p>
 <% end %>

@@ -13,7 +13,7 @@ class PostingImport < ActiveRecord::Base
   def file=(v)
     begin
       content = IO.read(v.path)
-      self.data = Iconv.iconv('utf-8', 'iso8859-1', content).join('\n')
+      self.data = Iconv.iconv('utf-8', 'iso8859-1', content).join('\n').strip
     rescue
       # file could not be read
     end
@@ -111,7 +111,7 @@ class PostingImport < ActiveRecord::Base
     # TODO: guess 'col_sep' and 'headers' by looking at rows and detecting if it
     # contains a ',' or ';' and by checking if any rows are parsable as date. if none
     # in the first row can't be parsed as a date it is probably a header
-    FasterCSV.parse(self.data, {:col_sep => column_seperator, :skip_blanks => true, :headers => has_headers?})
+    FasterCSV.parse(self.data, {:col_sep => column_seperator, :skip_blanks => true, :headers => headers?})
   end
   
   private
@@ -121,7 +121,7 @@ class PostingImport < ActiveRecord::Base
     ';'
   end
   
-  def has_headers?
+  def headers?
     # TODO: guess it
     true
   end
