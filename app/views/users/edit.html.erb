@@ -22,12 +22,12 @@
 	
 	<fieldset>
 		<%= f.label :password, t('user.password') %>
-		<%= f.password_field :password %>
+		<%= f.password_field :password, :autocomplete => :off %>
 	</fieldset>
 
 	<fieldset>
 		<%= f.label :password_confirmation, t('user.password_confirmation') %>
-		<%= f.password_field :password_confirmation %>
+		<%= f.password_field :password_confirmation, :autocomplete => :off %>
 	</fieldset>
 	
 	<%= f.submit t('buttons.save') %>
