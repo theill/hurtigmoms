@@ -68,6 +68,11 @@ fieldset label {
 	padding-left: 8px;
 }
 
+strong.highlight {
+	background-color: #FF6;
+	padding: 2px 0;
+}
+
 .hide {
 	display: none;
 }
@@ -382,6 +387,13 @@ table tr.row-editing div.box {
 		background-repeat: no-repeat;
 	}
 
+#search-box {
+	float: right;
+}
+	#search-box input[type=text] {
+		font-size: 14px;
+	}
+
 #transactions {}
 	#transactions thead .account-type {
 		color: #779;
@@ -593,3 +605,53 @@ body.frontpage {
 		margin:0 1px 1px 0;
 		padding:0 10px 10px;
 	}
+
+.pagination {
+	font-size: 11px;
+	float: right;
+	margin: 0;
+	padding: 3px 0 4px;
+}
+	.pagination a,
+	.pagination span {
+		padding: 3px 3px 2px;
+	}
+	.pagination .disabled {
+		background:none repeat scroll 0 0 transparent;
+		border:medium none;
+		color:#999999;
+		cursor:default;
+	}
+	.pagination a {
+		color:#3B5998;
+		cursor:pointer;
+		text-decoration:none;
+	}
+	.pagination a:hover {
+		background-color:#3B5998;
+		border-bottom:1px solid #3B5998;
+		border-color:#D8DFEA #D8DFEA #3B5998;
+		color:#FFFFFF;
+		text-decoration:none;
+	}
+	.pagination .current {}
+		.pagination .current {
+			border-bottom:2px solid #3B5998;
+			border-color:#3B5998;
+			color:#3B5998;
+			font-weight:bold;
+			padding-left:2px;
+			padding-right:2px;
+		}
+		.pagination .current a:hover {
+			background-color:#3B5998;
+			color:#FFFFFF;
+		}
+	
+	.pagination .prev_page {
+	
+	}
+	.pagination .next_page {
+		
+	}
+

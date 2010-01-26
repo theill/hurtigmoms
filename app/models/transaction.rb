@@ -19,6 +19,10 @@ class Transaction < ActiveRecord::Base
   def self.human_attribute_name(attr)
     HUMANIZED_ATTRIBUTES[attr.to_sym] || super
   end
+  
+  def self.search(search, page)
+    paginate(:per_page => 20, :page => page, :conditions => ['LOWER(note) LIKE ? OR LOWER(customers.name) LIKE ?', "%#{(search || '').downcase}%", "%#{(search || '').downcase}%"], :include => [:customer, :annexes], :order => 'transactions.created_at DESC')
+  end
 
   attr_accessor :customer_name
 

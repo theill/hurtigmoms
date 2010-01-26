@@ -77,6 +77,10 @@ en:
         change_password: Change password
         confirmation: Confirmation of created account
 
+  pagination:
+    previous: Previous
+    next: Next
+
   users:
     new:
       title: Pricing &amp; sign up
@@ -105,6 +109,24 @@ en:
       buttons:
         save: Save
         cancel: Close
+
+  transactions:
+    index:
+      title: Transactions
+      description: Overview for all year
+      search: Search
+      buttons:
+        add: Add transaction
+
+    new:
+      buttons:
+        save: Create transaction
+    edit:
+      delete_transaction: '{{delete_link}} this transaction'
+      download_attachment: '{{download_link}}'
+      download: Download
+      buttons:
+        save: Save
 
   sessions:
     new:

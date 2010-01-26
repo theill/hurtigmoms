@@ -8,11 +8,11 @@ module TransactionsHelper
   end
   
   # extract first line of note
-  def note_for_overview(transaction)
-    first_line = truncate((transaction.note || '').split("\n").first || '', :length => 80)
+  def note_for_overview(transaction, search=nil)
+    first_line = highlight_words(h(truncate((transaction.note || '').split("\n").first || '', :length => 80)), search)
     
     if transaction.customer
-      "<span class=\"customer-name\">#{h(transaction.customer.name)}</span> " + first_line
+      "<span class=\"customer-name\">#{highlight_words(h(transaction.customer.name), search)}</span> " + first_line
     else
       first_line
     end
@@ -50,6 +50,14 @@ module TransactionsHelper
   end
   
   private
+  
+  def highlight_words(line, search)
+    if search
+      highlight(line, search)
+    else
+      line
+    end
+  end
   
   def exchange_to(amount, from, to)
     return amount if from == to

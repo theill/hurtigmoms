@@ -95,6 +95,10 @@ da:
       sessions:
         unconfirmed_email: Konto er endnu ikke konfirmeret. Konfirmerings mail vil blive gensendt
 
+  pagination:
+    previous: Forrige
+    next: Næste
+
   signed_out: ''
   signed_in: ''
     
@@ -137,6 +141,7 @@ da:
     index:
       title: Transaktioner
       description: Oversigt for hele året
+      search: Søg
       buttons:
         add: Tilføj transaktion
 
