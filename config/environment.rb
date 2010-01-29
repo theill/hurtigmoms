@@ -19,11 +19,12 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
-  config.gem "thoughtbot-clearance", :version => '>= 0.8.2', :lib => 'clearance', :source  => 'http://gems.github.com'
-  config.gem 'thoughtbot-paperclip', :version => '>= 2.3.1', :lib => 'paperclip', :source => 'http://gems.github.com'
-  config.gem 'jigfox-action_mailer_tls', :lib => 'smtp_tls.rb', :source => 'http://gems.github.com'
+  config.gem "thoughtbot-clearance", :version => '=0.8.2', :lib => 'clearance', :source  => 'http://gems.github.com'
+  config.gem 'thoughtbot-paperclip', :version => '=2.3.1', :lib => 'paperclip', :source => 'http://gems.github.com'
+  config.gem 'jigfox-action_mailer_tls', :version => '=1.1.3', :lib => 'smtp_tls.rb', :source => 'http://gems.github.com'
   config.gem 'fastercsv'
-  config.gem 'will_paginate', :version => '~> 2.3.11', :source => 'http://gemcutter.org'
+  config.gem 'will_paginate', :version => '=2.3.11', :source => 'http://gemcutter.org'
+  config.gem 'hoptoad_notifier', :version => '=2.1.3', :source => 'http://gemcutter.org'
   
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
