@@ -4,15 +4,11 @@ module PostingsHelper
   end
   
   def link_to_attachment(posting)
-    # if posting.attachment?
-      # link_to('%04d' % posting.attachment_no, download_fiscal_year_posting_path(current_user.active_fiscal_year, posting))
-    # else
-      '%04d' % posting.attachment_no if posting.attachment_no
-    # end
+    '%04d' % posting.attachment_no if posting.attachment_no
   end
   
   def state_class(posting)
-    posting.created_at.to_date == Date.today ? 'today ' : '' + Posting::STATES.find { |k, v| v == posting.state }[0].to_s
+    posting.created_at.to_date == Time.zone.today ? 'today ' : '' + Posting::STATES.find { |k, v| v == posting.state }[0].to_s
   end
   
   # extract first line of note

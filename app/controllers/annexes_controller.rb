@@ -1,5 +1,10 @@
 class AnnexesController < ApplicationController
   before_filter :authenticate, :get_transaction
+
+  def show
+    @annex = @transaction.annexes.find(params[:id])
+    
+  end
   
   def download
     @annex = @transaction.annexes.find(params[:id])

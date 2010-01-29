@@ -15,4 +15,8 @@ class Annex < ActiveRecord::Base
     AWS::S3::S3Object.url_for(attachment.path, attachment.bucket_name, :expires_in => expires_in, :use_ssl => attachment.s3_protocol == 'https')
   end
 
+  def google_viewer_url
+    "http://docs.google.com/viewer?url=#{CGI::escape(self.authenticated_url)}&embedded=true"
+  end
+  
 end

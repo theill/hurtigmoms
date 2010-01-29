@@ -39,9 +39,6 @@
 							<%- if (false && posting.pdf?) -%>
 								<%= link_to('vis pdf', '#', :class => 'show-attachment') %>
 							<%- end -%>
-							<%- if posting.attachment? -%>
-								<%= link_to('hent', download_fiscal_year_posting_path(current_user.active_fiscal_year, posting)) %>
-							<%- end -%>
 						</fieldset>
 					</td>
 					<td colspan="2">
