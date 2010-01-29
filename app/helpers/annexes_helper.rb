@@ -4,7 +4,8 @@ require 'uri'
 module AnnexesHelper
   def format_as_plain_text(annex)
     # msg = File.read("#{RAILS_ROOT}/test/fixtures/mails/harvest.txt")
-    msg = open(annex.authenticated_url).string
+    msg = open(annex.authenticated_url)
+    msg = msg.string if msg.class == "StringIO"
     mail = TMail::Mail.parse(msg)
     
     if mail
