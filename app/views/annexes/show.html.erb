@@ -1,4 +1,4 @@
-<%- @meta = { :title => extract_first_note_line(@transaction), :description => '' } -%>
+<%- @meta = { :title => h(extract_first_note_line(@transaction)), :description => '' } -%>
 <h1><%=h extract_first_note_line(@transaction) %></h1>
 
 <fieldset>
