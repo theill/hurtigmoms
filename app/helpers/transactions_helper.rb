@@ -9,13 +9,17 @@ module TransactionsHelper
   
   # extract first line of note
   def note_for_overview(transaction, search=nil)
-    first_line = highlight_words(h(truncate((transaction.note || '').split("\n").first || '', :length => 80)), search)
+    first_line = highlight_words(h(extract_first_note_line(transaction)), search)
     
     if transaction.customer
       "<span class=\"customer-name\">#{highlight_words(h(transaction.customer.name), search)}</span> " + first_line
     else
       first_line
     end
+  end
+  
+  def extract_first_note_line(transaction)
+    truncate((transaction.note || '').split("\n").first || '', :length => 80)
   end
   
   def formatted_transaction_type(transaction)
