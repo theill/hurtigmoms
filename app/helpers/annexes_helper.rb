@@ -5,8 +5,12 @@ module AnnexesHelper
   def format_as_plain_text(annex)
     # msg = File.read("#{RAILS_ROOT}/test/fixtures/mails/harvest.txt")
     msg = open(annex.authenticated_url)
-    msg = msg.string if msg.class == StringIO
-    mail = TMail::Mail.parse(msg)
+    content = if msg.class == StringIO
+      msg.string
+    elsif msg.class == Tempfile
+      msg.read
+    end
+    mail = TMail::Mail.parse(content) rescue nil
     
     if mail
       "<div id=\"mail-display\">
