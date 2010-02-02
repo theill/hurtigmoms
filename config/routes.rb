@@ -16,6 +16,10 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.resource  :session, :only => [:new, :create, :destroy]
+
+  map.namespace :admin do |admin|
+    admin.resources :users
+  end
   
   map.settings  'settings', :controller => :users, :action => :edit
   map.sign_up   'sign_up', :controller => :users, :action => 'new'

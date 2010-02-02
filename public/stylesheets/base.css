@@ -167,15 +167,16 @@ div.action-bar {
 		}
 
 #h {
-	background-color: #3B5998;
-	border-bottom: solid 1px #9BC998;
+	background-color: #333;
 	margin: 0 0 20px 0;
 }
 	#h.menubar {
 		font-size: 11px;
 		line-height: 24px;
 		font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
-	}
+/*		-moz-box-shadow: 0 0 5px #666;
+		-webkit-box-shadow: 0 0 10px #666;
+*/	}
 	
 	#h .application-name {
 		font-weight: normal;
@@ -216,7 +217,7 @@ div.action-bar {
 		
 	}
 		#h .navigation .selected {
-			background-color: #4B69A8;
+			background-color: #666;
 		}
 	
 	#h .search {}
@@ -224,7 +225,7 @@ div.action-bar {
 			float: right;
 		}
 		#h .search .selected {
-			background-color: #4B69A8;
+			background-color: #666;
 		}
 		#h .search a {
 			font-weight: normal;

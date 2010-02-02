@@ -5,6 +5,15 @@ class PostingImport < ActiveRecord::Base
   validates_presence_of :data
   
   attr_accessor :mapping
+
+  HUMANIZED_ATTRIBUTES = {
+    :data => I18n.t(:data, :scope => :posting_import)
+  }
+
+  def self.human_attribute_name(attr)
+    HUMANIZED_ATTRIBUTES[attr.to_sym] || super
+  end
+
   
   def file
     ""

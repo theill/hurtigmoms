@@ -88,7 +88,7 @@ class TransactionsController < ApplicationController
   
   # check for new transactions
   def ping
-    @transactions = @fiscal_year.transactions.all(:conditions => ['updated_at > ?', 10.minutes.ago], :order => 'created_at DESC')
+    @transactions = @fiscal_year.transactions.all(:conditions => ['created_at > ?', 10.minutes.ago], :order => 'created_at DESC')
     
     respond_to do |format|
       format.js

@@ -1,3 +1,0 @@
-module ApplicationSettings
-  
-end
