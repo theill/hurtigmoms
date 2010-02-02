@@ -14,6 +14,10 @@ class AnnexesController < ApplicationController
   
   def preview
     @annex = @transaction.annexes.find(params[:id])
+    
+    respond_to do |format|
+      format.html { render :layout => false }
+    end
   end
   
   private
