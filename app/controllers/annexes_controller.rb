@@ -12,6 +12,10 @@ class AnnexesController < ApplicationController
     redirect_to @annex.authenticated_url
   end
   
+  def preview
+    @annex = @transaction.annexes.find(params[:id])
+  end
+  
   private
   
   def get_transaction

@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :fiscal_years, :as => 'regnskaber' do |fy|
     fy.resources :transactions, :as => 'transaktioner', :collection => { :ping => :get } do |transaction|
-      transaction.resources :annexes, :as => 'bilag', :member => { :download => :get }
+      transaction.resources :annexes, :as => 'bilag', :member => { :download => :get, :preview => :get }
     end
     fy.resources :postings, :as => 'posteringer'
   end

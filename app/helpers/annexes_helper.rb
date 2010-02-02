@@ -2,15 +2,36 @@ require 'net/https'
 require 'uri'
 
 module AnnexesHelper
-  def format_as_plain_text(annex)
-    # msg = File.read("#{RAILS_ROOT}/test/fixtures/mails/harvest.txt")
+  def render_annex(annex)
+    if annex.attachment_content_type == 'application/pdf'
+  		"<iframe width=\"100%\" height=\"480\" src=\"#{annex.google_viewer_url}\"></iframe>"
+  	elsif @annex.attachment_content_type == 'text/html'
+  		format_as_html(annex)
+		else
+  		format_as_mail(annex)
+  	end
+  end
+  
+  def read_content(annex)
     msg = open(annex.authenticated_url)
-    content = if msg.class == StringIO
+    if msg.class == StringIO
       msg.string
     elsif msg.class == Tempfile
       msg.read
+    else
+      nil
     end
-    mail = TMail::Mail.parse(content) rescue nil
+  end
+
+  private
+  
+  def format_as_html(annex)
+    "<iframe width=\"100%\" height=\"480\" src=\"#{preview_fiscal_year_transaction_annex_path(current_user.active_fiscal_year, annex.transaction, annex)}\"></iframe>"
+  end
+  
+  def format_as_mail(annex)
+    # msg = File.read("#{RAILS_ROOT}/test/fixtures/mails/harvest.txt")
+    mail = TMail::Mail.parse(read_content(annex)) rescue nil
     
     if mail
       "<div id=\"mail-display\">
