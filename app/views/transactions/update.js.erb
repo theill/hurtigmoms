@@ -1,5 +1,5 @@
 <%- if @transaction.errors.empty? %>
-	$("#<%= dom_id(@transaction) %>.related").remove();
+	$(".<%= dom_id(@transaction, 'related') %>").remove();
   $("#<%= dom_id(@transaction) %>").replaceWith("<%= escape_javascript(render(@transaction)) %>");
   $("#<%= dom_id(@transaction) %>").effect("highlight");
 

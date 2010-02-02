@@ -106,17 +106,13 @@ jQuery.fn.focusFirstFormElement = function() {
 	return this;
 };
 
-$(function() {
+$(document).ready(function() {
 	$(".editable-table .row").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
 	$(".editable-table .row.hover").live("click", function() {
 		$(this).find(".edit").trigger("click");
 		return false;
 	});
 	
-/*	$(".amount-no-vat").live("keyup", function() {
-		$(this).closest("form").find(".amount-vat").text(hurtigmoms.posting.vat(this.value));
-	});
-*/	
 	// bind all generic events
 	$(".close").live("click", function() {
 		$(this).closest("tr").remove();
@@ -132,13 +128,8 @@ $(function() {
 	
 	$(".delete").live("click", function() {
 		$(this).parent().hide();
-//		$(this).parent().parent().find(".delete-confirmation").show();
 		$(this).parent().parent().find(".delete-confirmation").html('Er du sikker? <a class="delete-confirmed delete-yes" href="' + this.href + '">Ja</a><a class="delete-cancelled delete-no" href="#">Nej</a>').effect('highlight', 'slow');
-		
-/*	  if (confirm('Er du sikker på du ønsker at slette denne?')) {
-	    $.ajax({ type: "DELETE", url: this.href, data: null, dataType: "script" });
-    }
-*/	  return false;
+		return false;
   });
 
 	$(".delete-confirmed").live("click", function() {

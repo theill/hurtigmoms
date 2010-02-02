@@ -536,7 +536,9 @@ table tr.row-editing div.box {
 	.editable-table .row.hover .actions .buttons-container {
 		display: block;
 	}
-
+	.editable-table .drophover {
+		background-color: #ff9;
+	}
 
 body.frontpage {
 	
@@ -701,3 +703,6 @@ body.frontpage {
 		
 	}
 
+.ui-draggable {
+	cursor: move;
+}

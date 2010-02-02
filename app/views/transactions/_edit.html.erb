@@ -28,20 +28,6 @@
 					</td>
 					<td>
 						<fieldset>
-							<%= f.label :attachment_no, t('transaction.attachment_no') %>
-							<%= f.text_field :attachment_no, :size => 4, :maxlength => 4, :class => 'standard-field' %>
-							<%- unless transaction.annexes.empty? -%>
-								<p class="hint">
-								<%- transaction.annexes.each_with_index do |a, index| -%>
-									<%# link_to(index + 1, download_fiscal_year_transaction_annex_path(current_user.active_fiscal_year, transaction, a)) %>
-									<%= link_to(index + 1, fiscal_year_transaction_annex_path(current_user.active_fiscal_year, transaction, a)) %>
-								<%- end -%>
-								</p>
-							<%- end -%>
-						</fieldset>
-					</td>
-					<td>
-						<fieldset>
 							<%= f.label :amount, t('transaction.amount') + ' <span class="req">*</span>' %>
 							<%= f.text_field :amount, :size => 10, :maxlength => 10, :class => 'amount-no-vat decimal standard-field' %> <%= f.select :currency, Currency::SUPPORTED, {}, :class => 'standard-field' %>
 							<p class="hint"><%= t('transaction.including_vat') %></p>
@@ -49,13 +35,47 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="5">
+					<td colspan="4">
 						<fieldset>
 							<%= f.label :note, t('transaction.note') %>
 							<%= f.text_area :note, :rows => 2, :cols => 60, :class => 'standard-field', :style => "width: 927px; height: 50px" %>
 							<p class="hint">Kun første linie vises i oversigten</p>
 						</fieldset>
 					</td>
+				</tr>
+				<tr>
+					<td>
+						<fieldset>
+							<%= f.label :attachment_no, t('transaction.attachment_no') %>
+							<%= f.text_field :attachment_no, :size => 4, :maxlength => 4, :class => 'standard-field' %>
+						</fieldset>
+					</td>
+					<td>
+						<%- if transaction.annexes.any? -%>
+							<label>Arkiverede bilag</label>
+							<ul>
+								<%- transaction.annexes.each_with_index do |a, index| -%>
+									<li><%= link_to(h("#{a.attachment_file_name} (#{number_to_human_size(a.attachment_file_size)})"), fiscal_year_transaction_annex_path(current_user.active_fiscal_year, transaction, a)) %></li>
+								<%- end -%>
+							</ul>
+						<%- end -%>
+					</td>
+					<td>
+						<fieldset>
+							<%- if transaction.related_transactions.any? -%>
+								<label>Relaterede transaktioner</label>
+								<ul>
+									<%- transaction.equalizations.each do |equalization| -%>
+										<li id="<%= dom_id(equalization) %>">
+											<div class="delete-question"><%= note_for_overview(equalization.related_transaction) %> (<%= link_to('fjern relation', fiscal_year_transaction_equalization_path(current_user.active_fiscal_year, transaction, equalization), :class => 'delete') %>)</div>
+											<div class="delete-confirmation"></div>
+										 </li>
+									<%- end -%>
+								</ul>
+							<%- end -%>
+						</fieldset>
+					</td>
+					<td></td>
 				</tr>
 			</table>
 			

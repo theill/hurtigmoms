@@ -3,10 +3,12 @@ require 'uri'
 
 module AnnexesHelper
   def render_annex(annex)
-    if annex.attachment_content_type == 'application/pdf'
-  		"<iframe width=\"100%\" height=\"480\" src=\"#{annex.google_viewer_url}\"></iframe>"
+    if ['application/pdf', 'application/x-pdf'].include?(annex.attachment_content_type)
+  		format_as_pdf(annex)
   	elsif @annex.attachment_content_type == 'text/html'
   		format_as_html(annex)
+		elsif ['image/jpg', 'image/png', 'image/gif'].include?(@annex.attachment_content_type)
+		  format_as_image(annex)
 		else
   		format_as_mail(annex)
   	end
@@ -25,8 +27,16 @@ module AnnexesHelper
 
   private
   
+  def format_as_pdf(annex)
+    "<iframe width=\"100%\" height=\"480\" src=\"#{annex.google_viewer_url}\"></iframe>"
+  end
+  
   def format_as_html(annex)
     "<iframe width=\"100%\" height=\"480\" src=\"#{preview_fiscal_year_transaction_annex_path(current_user.active_fiscal_year, annex.transaction, annex)}\"></iframe>"
+  end
+  
+  def format_as_image(annex)
+    'det er endnu ikke muligt at vise billeder'
   end
   
   def format_as_mail(annex)

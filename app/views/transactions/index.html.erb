@@ -42,11 +42,13 @@
 					<td class="number expense" id="total-expense"><%= render(:partial => 'total', :locals => { :amount => @total_expense }) %></td>
 				</tr>
 			</tfoot>
+			<%- if @transactions.total_pages > 1 -%>
 			<tfoot>
 				<tr>
-					<td colspan="5"><%= will_paginate @transactions, :previous_label => t('pagination.previous'), :next_label => t('pagination.next') %></td>
+					<td colspan="5"><%= will_paginate :previous_label => t('pagination.previous'), :next_label => t('pagination.next') %></td>
 				</tr>
 			</tfoot>
+			<%- end -%>
 		</table>
 	<%- else -%>
 		<p>
@@ -68,6 +70,30 @@
 		$.get('<%= ping_fiscal_year_transactions_path(current_user.active_fiscal_year) %>', null, null, "script");
 		retry();
 	});
+	
+	$("#transactions .transaction.pay td.note").live("mouseover", function() {
+		if (!$(this).data("init")) {
+			$(this).data("init", true);
+			$(this).draggable({
+				cancel: 'a.ui-icon',// clicking an icon won't initiate dragging
+				revert: 'invalid', // when not dropped, the item will revert back to its initial position
+				helper: 'clone',
+				cursor: 'move'
+			});
+		}
+	});
+	
+	$("#transactions .transaction.buy td.note, #transactions .transaction.sell td.note").droppable({
+		accept: '#transactions .transaction.pay td.note',
+		hoverClass: 'drophover',
+		drop: function(ev, ui) {
+			var transaction_id = $(this).parent().attr("id").replace(/transaction_/, '');
+			var related_transaction_id = ui.draggable.parent().attr("id").replace(/transaction_/, '');
+			var url = '<%= fiscal_year_transaction_equalizations_path(current_user.active_fiscal_year, 0) %>'.replace(/\/0\//, '/' + transaction_id + '/');
+			$.post(url, { 'equalization[transaction_id]': transaction_id, 'equalization[related_transaction_id]': related_transaction_id }, null, "script");
+		}
+	});			
+	
 <%- end -%>
 
 <!-- <div class="grid_3">
