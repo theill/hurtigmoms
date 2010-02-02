@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091108023353) do
+ActiveRecord::Schema.define(:version => 20100202132223) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -52,6 +52,11 @@ ActiveRecord::Schema.define(:version => 20091108023353) do
     t.text     "locked_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "equalizations", :force => true do |t|
+    t.integer "transaction_id"
+    t.integer "related_transaction_id"
   end
 
   create_table "exchange_rates", :force => true do |t|

@@ -4,6 +4,8 @@ class Transaction < ActiveRecord::Base
   belongs_to :fiscal_year
   belongs_to :customer
   has_many :annexes, :dependent => :destroy
+  has_many :related_transactions, :through => :equalizations
+  has_many :equalizations
 
   validates_presence_of :fiscal_year_id, :amount
 
@@ -21,7 +23,15 @@ class Transaction < ActiveRecord::Base
   end
   
   def self.search(search, page)
-    paginate(:per_page => 20, :page => page, :conditions => ['LOWER(note) LIKE ? OR LOWER(customers.name) LIKE ?', "%#{(search || '').downcase}%", "%#{(search || '').downcase}%"], :include => [:customer, :annexes], :order => 'transactions.created_at DESC')
+    transactions = paginate(:per_page => 20, :page => page, :conditions => ['LOWER(transactions.note) LIKE ? OR LOWER(customers.name) LIKE ?', "%#{(search || '').downcase}%", "%#{(search || '').downcase}%"], :include => [:customer, :annexes, :related_transactions], :order => 'transactions.created_at DESC')
+    related_transactions = transactions.map { |t| t.related_transactions.map { |t2| t2.id } }.flatten
+    transactions.delete_if { |t| related_transactions.include?(t.id) }
+    
+    # transactions = Transaction.find(:all, :conditions => ['LOWER(transactions.note) LIKE ? OR LOWER(customers.name) LIKE ?', "%#{(search || '').downcase}%", "%#{(search || '').downcase}%"], :include => [:customer, :annexes, :related_transactions], :order => 'transactions.created_at DESC')
+    # related_transactions = transactions.map { |t| t.related_transactions.map { |t2| t2.id } }.flatten
+    # transactions = transactions.delete_if { |t| related_transactions.include?(t.id) }
+    # 
+    # transactions.paginate(:per_page => 20, :page => page)
   end
 
   attr_accessor :customer_name

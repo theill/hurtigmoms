@@ -35,7 +35,7 @@ class PostingImport < ActiveRecord::Base
     # default_account_out = self.user.accounts.find_by_account_no('1300').id
     
     # read [date, note, amount] for all transactions so we are able to check existing ones
-    existing_transactions = self.user.active_fiscal_year.transactions.find(:all, :select => 'transactions.created_at, transactions.note, transactions.amount, transactions.currency, transactions.transaction_type, transactions.attachment_no')
+    existing_transactions = self.user.active_fiscal_year.transactions.find(:all, :select => 'transactions.id, transactions.created_at, transactions.note, transactions.amount, transactions.currency, transactions.transaction_type, transactions.attachment_no')
     
     success_count = duplicate_count = failed_count = 0
 
@@ -107,6 +107,9 @@ class PostingImport < ActiveRecord::Base
       # seems correct so let's insert it
       if p.save
         success_count += 1
+        
+        # associate new transaction with existing one
+        match.related_transactions << p if match
       else
         Rails.logger.debug("*** GOT ERROR: #{p.errors.first}")
         failed_count += 1

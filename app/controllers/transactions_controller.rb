@@ -2,9 +2,8 @@ class TransactionsController < ApplicationController
   before_filter :authenticate, :get_fiscal_year
   
   def index
-    # @transactions = @fiscal_year.transactions.paginate(:page => params[:page], :per_page => 25, :include => [:customer, :annexes], :order => 'created_at DESC')
     @transactions = @fiscal_year.transactions.search(params[:search], params[:page])
-
+    
     @total_income = @fiscal_year.transactions.sum('amount', :conditions => ['transaction_type = ?', Transaction::TRANSACTION_TYPES[:sell]])
     @total_expense = @fiscal_year.transactions.sum('amount', :conditions => ['transaction_type = ?', Transaction::TRANSACTION_TYPES[:buy]])
     

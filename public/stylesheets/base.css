@@ -29,8 +29,8 @@ form h3 {
 }
 
 a.button {
-	background-color: #3B5998;
-	border: outset 1px #3B5998;
+	background-color: #555555;
+	border: outset 1px #555555;
 	padding: 5px 15px;
 	text-decoration: none;
 	text-transform: uppercase;
@@ -41,8 +41,8 @@ a.button {
 
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	background: -webkit-gradient(linear, left top, left bottom, from(#3B5998), to(#4B69C8));
-	background: -moz-linear-gradient(-90deg, #3B5998, #4B69C8);
+	background: -moz-linear-gradient(-90deg, #555555, #666666);
+	background: -webkit-gradient(linear, left top, left bottom, from(#555555), to(#666666));
 }
 
 	a.button.income {
@@ -445,6 +445,13 @@ table tr.row-editing div.box {
 		#transactions .transaction.imported {
 			color: #666;
 		}
+
+		#transactions .transaction.related {
+			color: #993;
+		}
+			#transactions .transaction.related .note {
+				text-indent: 5px;
+			}
 		
 		#transactions .transaction.pending {
 			background-color: #fff3f3;
@@ -662,28 +669,28 @@ body.frontpage {
 		cursor:default;
 	}
 	.pagination a {
-		color:#3B5998;
+		color:#333;
 		cursor:pointer;
 		text-decoration:none;
 	}
 	.pagination a:hover {
-		background-color:#3B5998;
-		border-bottom:1px solid #3B5998;
-		border-color:#D8DFEA #D8DFEA #3B5998;
+		background-color:#333;
+		border-bottom:1px solid #333;
+		border-color:#ccc #ccc #333;
 		color:#FFFFFF;
 		text-decoration:none;
 	}
 	.pagination .current {}
 		.pagination .current {
-			border-bottom:2px solid #3B5998;
-			border-color:#3B5998;
-			color:#3B5998;
+			border-bottom:2px solid #333;
+			border-color:#333;
+			color:#333;
 			font-weight:bold;
 			padding-left:2px;
 			padding-right:2px;
 		}
 		.pagination .current a:hover {
-			background-color:#3B5998;
+			background-color:#333;
 			color:#FFFFFF;
 		}
 	
