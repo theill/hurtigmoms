@@ -120,22 +120,17 @@ class PostingImport < ActiveRecord::Base
   end
   
   def parse
-    # TODO: guess 'col_sep' and 'headers' by looking at rows and detecting if it
-    # contains a ',' or ';' and by checking if any rows are parsable as date. if none
-    # in the first row can't be parsed as a date it is probably a header
     FasterCSV.parse(self.data, {:col_sep => column_seperator, :skip_blanks => true, :headers => headers?})
   end
   
-  private
-  
+  # looking at rows and detecting if it contains a ',' or ';'
   def column_seperator
-    # TODO: guess it
-    ';'
+    self.data.strip.each.first.gsub(/[;,]/).first
   end
   
+  # checking if any rows are parsable as date. if none in the first row can't be parsed as a date it is probably a header
   def headers?
-    # TODO: guess it
-    true
+    !self.data.strip.each.first.split(column_seperator).any? { |column| Date.parse(column) rescue false }
   end
   
 end

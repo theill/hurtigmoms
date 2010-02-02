@@ -4,7 +4,7 @@ describe "/admin_users/edit.html.erb" do
   include Admin::UsersHelper
 
   before(:each) do
-    assigns[:user] = @user = stub_model(Admin::User,
+    assigns[:user] = @user = stub_model(User,
       :new_record? => false
     )
   end

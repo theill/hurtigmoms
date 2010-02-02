@@ -5,8 +5,8 @@ describe "/admin_users/index.html.erb" do
 
   before(:each) do
     assigns[:admin_users] = [
-      stub_model(Admin::User),
-      stub_model(Admin::User)
+      stub_model(User),
+      stub_model(User)
     ]
   end
 
