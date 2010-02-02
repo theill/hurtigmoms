@@ -168,13 +168,13 @@ div.action-bar {
 
 #h {
 	background-color: #3B5998;
-	border-bottom: solid 1px #333;
+	border-bottom: solid 1px #9BC998;
 	margin: 0 0 20px 0;
 }
 	#h.menubar {
-		font-size:11px;
+		font-size: 11px;
 		line-height: 24px;
-		font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+		font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
 	}
 	
 	#h .application-name {
@@ -549,7 +549,7 @@ body.frontpage {
 		}
 		
 			body.frontpage .intro h1, body.frontpage .intro h3 {
-				text-shadow: 0 0 5px #333333;
+				text-shadow: 0 0 5px #000;
 			}
 		
 			body.frontpage .intro h1 {
