@@ -558,7 +558,8 @@ body.frontpage {
 			height: 190px;
 		}
 		
-			body.frontpage .intro h1, body.frontpage .intro h3 {
+			body.frontpage .intro h1,
+			body.frontpage .intro h3 {
 				text-shadow: 0 0 5px #000;
 			}
 		
@@ -569,6 +570,7 @@ body.frontpage {
 				margin: 20px 0 0 0;
 			}
 			body.frontpage .intro h3 {
+				font-size: 22px;
 				color: #fff;
 				text-indent: 30px;
 				margin-top: -5px;
