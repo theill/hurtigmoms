@@ -42,22 +42,6 @@
 	
 <%- else -%>
 
-	<div id="h" class="menubar">
-		<div class="container_12">
-			<div class="grid_6 navigation">
-				<ul>
-					<li class="application-name">hurtigmoms</li>
-				</ul>
-			</div>
-			<div class="grid_6 search">
-				<ul>
-					<li><%= link_to("log ind", new_session_path) %></li>
-				</ul>
-			</div>
-		</div>
-		<div class="clear"></div>
-	</div>
-
 	<div class="intro">
 		<div class="container_12">
 			<div class="grid_12">
@@ -83,7 +67,7 @@
 		  </div>
 		</div>
 		<div class="grid_5">
-			<div style="background-color: #ffc; padding: 20px; margin-top: -80px; -moz-box-shadow: 0 0 10px #666;">
+			<div class="signup-box">
 				<h2>Prøv det gratis i 60 dage</h2>
 				<p>
 					Hurtigmoms er i <b>beta</b> og det er derfor gratis at tilmelde sig. 
@@ -94,6 +78,10 @@
 					vi opretter en konto til dig inden for et minut.</li>
 					<li>benytter vores <%= link_to('tilmeldingsformular', sign_up_path) %></li>
 				</ol>
+				<p>
+					Allerede en bruger? <%= link_to("Log ind", new_session_path) %> med det
+					samme.
+				</p>
 			</div>
 		</div>
 		

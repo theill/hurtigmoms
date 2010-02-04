@@ -577,6 +577,16 @@ body.frontpage {
 	body.frontpage .callout {
 		margin-top: 20px;
 	}
+	
+	body.frontpage .signup-box {
+		background-color: #ffc;
+		background: -webkit-gradient(linear, right top, left bottom, from(#ffffcc), to(#ffffbb));
+		background: -moz-linear-gradient(-90deg, #ffffcc, #ffffbb);
+		padding: 20px;
+		margin-top: -80px;
+		-moz-box-shadow: 0 0 10px #666;
+		-webkit-box-shadow: 0 0 10px #666;
+	}
 
 	body.frontpage .button {
 		font-family: "Cambria","Georgia","Times New Roman",Times,sans-serif;
