@@ -9,37 +9,30 @@
 					<td>
 						<fieldset>
 							<%= f.label :transaction_type, t('transaction.transaction_type') + ' <span class="req">*</span>' %>
-							<%= f.select :transaction_type, transaction_types, {:prompt => "Vælg type"}, :class => 'standard-field' %>
+							<%= f.select :transaction_type, transaction_types, {:prompt => "Vælg type"}, :class => 'standard-field', :style => 'width: 140px; margin-right: 10px' %>
 						</fieldset>
 					</td>
 					<td>
 						<fieldset>
 							<%= f.label :created_at, t('transaction.created_at') + ' <span class="req">*</span>' %>
-							<%= date_select :transaction, :created_at, {}, :class => 'standard-field' %><a id="date-pick" href="#"><%= image_tag('calendar-select.png', :width => 16, :height => 16, :alt => t('transaction.created_at')) %></a>
+							<%# date_select :transaction, :created_at, {}, :class => 'standard-field' %><!--<a id="date-pick" href="#"><%= image_tag('calendar-select.png', :width => 16, :height => 16, :alt => t('transaction.created_at')) %></a>-->
+							<%= f.hidden_field :created_at, :class => 'date-field standard-field', :style => 'width: 220px; margin-right: 10px' %>
+							<%= text_field_tag 'transaction_created_at_formatted', '', :class => 'date-field standard-field', :style => 'width: 220px; margin-right: 10px' %>
 							<p class="hint">Fakturadato eller betalingsdato</p>
 						</fieldset>
 					</td>
 					<td>
 						<fieldset>
 							<%= f.label :customer_name, t('transaction.customer_id') %>
-							<%= f.text_field :customer_name, :class => 'search-field standard-field' %>
+							<%= f.text_field :customer_name, :class => 'search-field standard-field', :style => 'width: 300px; margin-right: 10px' %>
 							<p class="hint">Indtast del af kundenavnet</p>
 						</fieldset>
 					</td>
 					<td>
 						<fieldset>
 							<%= f.label :amount, t('transaction.amount') + ' <span class="req">*</span>' %>
-							<%= f.text_field :amount, :size => 10, :maxlength => 10, :class => 'amount-no-vat decimal standard-field' %> <%= f.select :currency, Currency::SUPPORTED, {}, :class => 'standard-field' %>
+							<%= f.text_field :amount, :size => 10, :maxlength => 10, :class => 'amount-no-vat decimal standard-field', :style => 'width: 140px; margin-right: 10px' %> <%= f.select :currency, Currency::SUPPORTED, {}, :class => 'standard-field', :style => 'width: 73px' %>
 							<p class="hint"><%= t('transaction.including_vat') %></p>
-						</fieldset>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="4">
-						<fieldset>
-							<%= f.label :note, t('transaction.note') %>
-							<%= f.text_area :note, :rows => 2, :cols => 60, :class => 'standard-field', :style => "width: 927px; height: 50px" %>
-							<p class="hint">Kun første linie vises i oversigten</p>
 						</fieldset>
 					</td>
 				</tr>
@@ -47,10 +40,21 @@
 					<td>
 						<fieldset>
 							<%= f.label :attachment_no, t('transaction.attachment_no') %>
-							<%= f.text_field :attachment_no, :size => 4, :maxlength => 4, :class => 'standard-field' %>
+							<%= f.text_field :attachment_no, :size => 4, :maxlength => 4, :class => 'standard-field', :style => 'width: 140px' %>
 						</fieldset>
 					</td>
+					<td colspan="3">
+						<fieldset>
+							<%= f.label :note, t('transaction.note') %>
+							<%= f.text_area :note, :rows => 2, :cols => 60, :class => 'standard-field', :style => "width: 773px; height: 50px" %>
+							<p class="hint">Kun første linie vises i oversigten</p>
+						</fieldset>
+					</td>
+				</tr>
+				<tr>
 					<td>
+					</td>
+					<td colspan="2">
 						<%- if transaction.annexes.any? -%>
 							<label>Arkiverede bilag</label>
 							<ul>
@@ -60,7 +64,7 @@
 							</ul>
 						<%- end -%>
 					</td>
-					<td>
+					<td colspan="2">
 						<fieldset>
 							<%- if transaction.related_transactions.any? -%>
 								<label>Relaterede transaktioner</label>
@@ -75,16 +79,15 @@
 							<%- end -%>
 						</fieldset>
 					</td>
-					<td></td>
 				</tr>
 			</table>
 			
 			<div class="inline-buttons">
 				<%- if transaction.new_record? -%>
-				  <%= f.submit t('.buttons.save') %> <%= link_to(t('buttons.close'), fiscal_year_transactions_path(current_user.active_fiscal_year), :class => 'close', :accesskey => 'S') %>
+				  <%= f.submit t('.buttons.save') %> <%= t('inline.or') %> <%= link_to(t('buttons.close'), fiscal_year_transactions_path(current_user.active_fiscal_year), :class => 'close', :accesskey => 'S') %>
 				<%- else -%>
-					<%= f.submit t('.buttons.save') %> <%= link_to t('buttons.close'), fiscal_year_transaction_path(current_user.active_fiscal_year, transaction, :format => :js), :class => 'show', :accesskey => 'S' %>
-					
+					<%= f.submit t('.buttons.save') %> <%= t('inline.or') %> <%= link_to t('buttons.close').downcase, fiscal_year_transaction_path(current_user.active_fiscal_year, transaction, :format => :js), :class => 'show', :accesskey => 'S' %>
+				
 					<div class="inline-actions">
 						<div class="delete-question"><%= t('.delete_transaction', :delete_link => link_to(t('buttons.delete'), [current_user.active_fiscal_year, transaction], :class => 'delete')) %></div>
 						<div class="delete-confirmation"></div>

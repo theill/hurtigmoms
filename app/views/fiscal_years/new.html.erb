@@ -1,0 +1,9 @@
+<%- @meta = { :title => t('.title'), :description => t('.description') } -%>
+<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
+
+<div class="grid_12">
+	<% form_for @fiscal_year do |f| %>
+		<%= render :partial => 'form', :object => f %>
+		<%= f.submit t('.buttons.save') %>
+	<% end %>
+</div>

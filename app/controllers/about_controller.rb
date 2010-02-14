@@ -2,7 +2,16 @@ class AboutController < ApplicationController
   def index
     render :layout => 'frontpage' and return unless signed_in?
     
-    @action_required = current_user.active_fiscal_year.transactions.incomplete.length > 0
+    @transactions_with_wrong_fiscal_year = current_user.active_fiscal_year.transactions.wrong_fiscal_year
+    @incomplete_transactions = current_user.active_fiscal_year.transactions.incomplete
+    
+    @action_required = @transactions_with_wrong_fiscal_year.length > 0 || @incomplete_transactions.length > 0
+    
+    if @transactions_with_wrong_fiscal_year.any?
+      @other_fiscal_years = current_user.fiscal_years.delete_if { |fy| fy == current_user.active_fiscal_year }
+    end
+    
+    
     @latest_import = current_user.posting_imports.find(:first, :order => 'created_at DESC')
   end
   

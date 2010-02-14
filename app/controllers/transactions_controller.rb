@@ -85,6 +85,23 @@ class TransactionsController < ApplicationController
     end
   end
   
+  def auto_correct
+    @transactions = @fiscal_year.transactions.wrong_fiscal_year
+    
+    fiscal_year = current_user.fiscal_years.find(params[:corrected_fiscal_year_id]) rescue nil
+    if fiscal_year.nil?
+      fiscal_year = current_user.fiscal_years.create(:name => 'Regnskab ' + (@fiscal_year.end_date + 1.day).year.to_s, :start_date => @fiscal_year.end_date + 1.day, :end_date => @fiscal_year.end_date + 1.year)
+    end
+    
+    @transactions.each do |t|
+      t.update_attribute(:fiscal_year, fiscal_year)
+    end
+    
+    respond_to do |format|
+      format.html { redirect_to root_url }
+    end
+  end
+  
   # check for new transactions
   def ping
     @transactions = @fiscal_year.transactions.all(:conditions => ['created_at > ?', 10.minutes.ago], :order => 'created_at DESC')

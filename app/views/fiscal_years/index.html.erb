@@ -1,0 +1,16 @@
+<%- @meta = { :title => t('.title'), :description => t('.description') } -%>
+<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
+
+<div class="grid_12">
+	<table>
+	<% @fiscal_years.each do |fiscal_year| %>
+	  <tr>
+			<td><%= link_to(h(fiscal_year.name), edit_fiscal_year_path(fiscal_year)) %></td>
+			<td><%=h fiscal_year.start_date %></td>
+			<td><%=h fiscal_year.end_date %></td>
+	  </tr>
+	<% end %>
+	</table>
+		
+	<%= link_to 'Nyt regnskabsår', new_fiscal_year_path %>
+</div>

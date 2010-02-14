@@ -13,7 +13,8 @@ class Transaction < ActiveRecord::Base
   before_save :set_customer
   
   named_scope :incomplete, :conditions => 'amount IS NULL OR created_at IS NULL OR currency IS NULL'
-
+  named_scope :wrong_fiscal_year, :conditions => 'DATE(transactions.created_at) > fiscal_years.end_date or DATE(transactions.created_at) < fiscal_years.start_date', :joins => :fiscal_year, :order => 'created_at DESC'
+  
   HUMANIZED_ATTRIBUTES = {
     :amount => I18n.t(:amount, :scope => :transaction)
   }

@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :fiscal_years, :as => 'regnskaber' do |fy|
-    fy.resources :transactions, :as => 'transaktioner', :collection => { :ping => :get } do |transaction|
+    fy.resources :transactions, :as => 'transaktioner', :collection => { :ping => :get, :auto_correct => :post } do |transaction|
       transaction.resources :annexes, :as => 'bilag', :member => { :download => :get, :preview => :get }
       transaction.resources :equalizations
     end
@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.resources :accounts, :as => 'konti'
   map.resources :reports, :as => 'rapporter'
-  map.resources :customers, :as => 'kunder', :collection => { :search => :get }, :path_names => { :search => :soeg }
+  map.resources :customers, :as => 'kunder', :collection => { :search => :get }, :path_names => { :search => :find }
   map.resources :posting_imports, :as => 'kontoudtog-importeringer'
   map.resources :equalizations
   

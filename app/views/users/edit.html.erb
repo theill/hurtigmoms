@@ -16,8 +16,8 @@
 	</fieldset>
 	
 	<fieldset>
-		<%= f.label :active_fiscal_year, t('user.active_fiscal_year') %>
-		<%= f.select(:active_fiscal_year, options_from_collection_for_select(@user.fiscal_years, 'id', 'name', @user.active_fiscal_year)) %>
+		<%= f.label :active_fiscal_year_id, t('user.active_fiscal_year') %>
+		<%= f.select(:active_fiscal_year_id, options_from_collection_for_select(@user.fiscal_years, 'id', 'name', @user.active_fiscal_year_id)) %>
 	</fieldset>
 	
 	<fieldset>

@@ -3,7 +3,7 @@
 
 da:
   application:
-    name: hurtigmoms
+    name: Hurtig Moms
     
   buttons:
     save: Gem
@@ -12,6 +12,9 @@ da:
     close: Luk
     delete: Slet
 
+  inline:
+    or: eller
+    
   user:
     company: Firmanavn
     cvr: CVR
@@ -50,7 +53,7 @@ da:
     transaction_type_sell: Salg
     transaction_type_buy: Køb
     transaction_type_pay: Betaling
-
+    
   account:
     name: Navn
     description: Beskrivelse
@@ -97,6 +100,7 @@ da:
         deliver_confirmation: De vil modtage en e-mail om nogle få minutter
       sessions:
         unconfirmed_email: Konto er endnu ikke konfirmeret. Konfirmerings mail vil blive gensendt
+        bad_email_or_password: Forkert e-mail og kodeord kombination
 
   pagination:
     previous: Forrige
@@ -114,6 +118,17 @@ da:
 
     edit:
       title: Indstillinger
+      description: ''
+
+  fiscal_years:
+    index:
+      title: Eksisterende regnskabsår
+      description: ''
+    new:
+      title: Nyt regnskabsår
+      description: ''
+    edit:
+      title: Rediger regnskabsår
       description: ''
 
   accounts:
@@ -201,7 +216,7 @@ da:
         
   layouts:
     application:
-      home: Hjem
+      home: Oversigt
       transactions: Transaktioner
       accounts: Kontoplan
       reports: Rapporter

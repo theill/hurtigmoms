@@ -6,8 +6,16 @@
 		<meta http-equiv="imagetoolbar" content="no" />
 		<meta name="description" content="<%=h @description %>" />
 		<%= javascript_include_tag('jquery-1.4.1.min', 'jquery-ui.min', 'jquery.form', 'application', :cache => false) %>
+		<script type="text/javascript" src="/javascripts/fancybox/jquery.mousewheel-3.0.2.pack.js"></script>
+		<script type="text/javascript" src="/javascripts/fancybox/jquery.fancybox-1.3.0.pack.js"></script>
+		<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox-1.3.0.css" media="screen" />
 		<%= stylesheet_link_tag('reset', 'text', '960', 'base', :cache => false) %>
 		<%= yield :head -%>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				<%= yield :js -%>
+			});
+		</script>
 	</head>
 	
 	<body class="frontpage">

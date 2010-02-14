@@ -5,6 +5,13 @@ Consider using state plugin:
   http://api.pluginaweek.org/state_machine/
 
 
+= Unikke features
+
+ * Der foretages automatisk konverering mellem DKK, USD og EUR så man ikke manuelt behøver at udregne, hvad en faktura lyder på når kontoudskrifter fra banken skal afstemmes. Det gøres helt automatisk.
+ * Samlige bilag bliver automatisk arkiveret på Amazon S3 og kan altid hentes ned på den lokale computer.
+ * Genkender ord såsom "Beløb", "Total", "Faktura dato" og benytter disse når købs- eller salgs-transaktionen oprettes.
+
+
 
 = Ideer
 

@@ -9,7 +9,7 @@ hurtigmoms = {
 	locale: 'da',
 	locale_fix: 'dk',
 	currency: 'DKK',
-	customers_url: '/kunder/soeg',
+	customers_url: '/kunder/find',
 	transactions: [],
 	
 	convertNumber: function(number, from, to) {

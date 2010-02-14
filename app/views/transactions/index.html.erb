@@ -66,10 +66,10 @@
 <%- content_for :js do -%>
 	hurtigmoms.transactions = [<%= @transactions.collect { |t| t.id }.join(',') %>];
 	
-	$.poll(30000, function(retry) {
-		$.get('<%= ping_fiscal_year_transactions_path(current_user.active_fiscal_year) %>', null, null, "script");
-		retry();
-	});
+//	$.poll(30000, function(retry) {
+//		$.get('<%= ping_fiscal_year_transactions_path(current_user.active_fiscal_year) %>', null, null, "script");
+//		retry();
+//	});
 	
 	$("#transactions .transaction.pay td.note").live("mouseover", function() {
 		if (!$(this).data("init")) {
@@ -93,7 +93,7 @@
 			$.post(url, { 'equalization[transaction_id]': transaction_id, 'equalization[related_transaction_id]': related_transaction_id }, null, "script");
 		}
 	});			
-	
+
 <%- end -%>
 
 <!-- <div class="grid_3">

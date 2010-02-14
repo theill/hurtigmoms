@@ -1,6 +1,6 @@
 module ApplicationHelper
   def title
-    @meta[:title] if @meta
+    I18n.t('application.name') + (' - ' + @meta[:title]) if @meta
   end
   
   def description
