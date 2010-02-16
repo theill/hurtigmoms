@@ -3,7 +3,15 @@ class AnnexesController < ApplicationController
 
   def show
     @annex = @transaction.annexes.find(params[:id])
+  end
+  
+  def destroy
+    @annex = @transaction.annexes.find(params[:id])
+    @annex.destroy
     
+    respond_to do |format|
+      format.html { redirect_to fiscal_year_transactions_url(@transaction.fiscal_year) }
+    end
   end
   
   def download

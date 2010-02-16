@@ -1,28 +1,60 @@
 <%- @meta = { :title => h(extract_first_note_line(@transaction)), :description => '' } -%>
 <h1><%=h extract_first_note_line(@transaction) %></h1>
 
-<div class="grid_12">
-	<div class="grid_3 alpha">
-		<fieldset>
-			<label>Filnavn:</label>
-			<%= @annex.attachment_file_name %>
-		</fieldset>
-	</div>
-	<div class="grid_3">
-		<fieldset><label for="attachment_file_size">Størrelse:</label><%= @annex.attachment_file_size %> bytes</fieldset>
- </div>
-	<div class="grid_3">
-		<fieldset><label for="attachment_content_type">Content-type:</label><%= @annex.attachment_content_type %></fieldset>
- </div>
-	<div class="grid_3 omega">
-		<fieldset><label for="created_at">Dato:</label><%= @annex.created_at.strftime("%x") %></fieldset>
+<div class="grid_9">
+	<div id="attachment-frame">
+		<%= render_annex(@annex) %>
 	</div>
 </div>
 
-<div class="quick-buttons">
-	<%= link_to("Hent bilag", download_fiscal_year_transaction_annex_path(current_user.active_fiscal_year, @transaction, @annex), { :class => 'button' }) %>
+<div class="grid_3">
+	<fieldset>
+		<label>Filnavn:</label>
+		<%= @annex.attachment_file_name %>
+	</fieldset>
+	
+	<fieldset><label for="attachment_file_size">Størrelse:</label><%= number_to_human_size(@annex.attachment_file_size) %></fieldset>
+
+	<fieldset><label for="attachment_content_type">Type:</label><%= @annex.attachment_content_type %></fieldset>
+
+	<fieldset><label for="created_at">Arkiveret dato:</label><%= @annex.created_at.strftime("%x") %></fieldset>
+	
+	<div class="quick-buttons">
+		<%= link_to("Hent bilag", download_fiscal_year_transaction_annex_path(current_user.active_fiscal_year, @transaction, @annex), { :class => 'button' }) %>
+		<%= link_to("Slet bilag", fiscal_year_transaction_annex_path(current_user.active_fiscal_year, @transaction, @annex), :confirm => 'Are you sure?', :method => :delete, :class => 'button' ) %>
+	</div>
+
+	<div id="transaction-properties">
+		<h4>Transaktionsdetaljer</h4>
+		<% form_for([@transaction.fiscal_year, @transaction], :html => {:autocomplete => 'off'}) do |f| -%>
+			<%= hidden_field_tag 'return_to', request.path %>
+			<%= f.error_messages %>
+			<fieldset>
+				<%= f.label :created_at, t('transaction.created_at') + ' <span class="req">*</span>' %>
+				<%= f.hidden_field :created_at, :class => 'date-field standard-field' %>
+				<%= text_field_tag 'transaction_created_at_formatted', '', :class => 'date-field standard-field', :style => 'width: 220px' %>
+				<p class="hint">Fakturadato eller betalingsdato</p>
+			</fieldset>
+
+			<fieldset>
+				<%= f.label :amount, t('transaction.amount') + ' <span class="req">*</span>' %>
+				<%= f.text_field :amount, :size => 10, :maxlength => 10, :class => 'amount-no-vat decimal standard-field', :style => 'width: 120px; margin-right: 10px' %><%= f.select :currency, Currency::SUPPORTED, {}, :class => 'standard-field', :style => 'width: 80px' %>
+				<p class="hint"><%= t('transaction.including_vat') %></p>
+			</fieldset>
+
+			<%= f.submit t('buttons.save') %>
+		<%- end -%>
+	</div>
+	
 </div>
 
-<div id="attachment-frame">
-	<%= render_annex(@annex) %>
-</div>
+<div class="clear"></div>
+
+<%- content_for :js do -%>
+	$("#transaction_created_at_formatted").datepicker({ dateFormat: "d/m-yy", showAnim: "fadeIn",
+		onClose: function(dateText, inst) {
+			$("#transaction_created_at").val($.datepicker.formatDate("yy-mm-dd", $(this).datepicker('getDate')));
+			$(this).focus();
+		}
+	}).datepicker("setDate", $.datepicker.parseDate("yy-mm-dd", "<%= @transaction.created_at.strftime("%Y-%m-%d") %>"));
+<%- end -%>

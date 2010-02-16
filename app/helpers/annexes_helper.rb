@@ -36,7 +36,7 @@ module AnnexesHelper
   end
   
   def format_as_image(annex)
-    'det er endnu ikke muligt at vise billeder'
+    "<img src=\"" + annex.authenticated_url + "\" />"
   end
   
   def format_as_mail(annex)

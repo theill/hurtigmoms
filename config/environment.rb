@@ -50,18 +50,18 @@ Rails::Initializer.run do |config|
   # Localize default path names
   config.action_controller.resources_path_names = { :new => 'ny', :edit => 'rediger', :create => 'opret', :destroy => 'slet', :update => 'opdater' }
   
-  config.after_initialize do
-    if Delayed::Job.table_exists?
-      # clean existing jobs to avoid running inbox checks multiple times
-      Delayed::Job.delete_all
-      
-      # quiet log
-      Delayed::Worker.logger = nil
-      
-      # queue initial inbox check
-      Delayed::Job.enqueue Inbox.new
-    end
-  end
+  # config.after_initialize do
+  #   if Delayed::Job.table_exists?
+  #     # clean existing jobs to avoid running inbox checks multiple times
+  #     Delayed::Job.delete_all
+  #     
+  #     # quiet log
+  #     Delayed::Worker.logger = nil
+  #     
+  #     # queue initial inbox check
+  #     Delayed::Job.enqueue Inbox.new
+  #   end
+  # end
 end
 
 EXCHANGE_RATES = ExchangeRate.all.inject({}) { |initial, er| initial.merge({er.currency => er.rate}) } if ExchangeRate.table_exists?

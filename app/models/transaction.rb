@@ -14,6 +14,16 @@ class Transaction < ActiveRecord::Base
   
   named_scope :incomplete, :conditions => 'amount IS NULL OR created_at IS NULL OR currency IS NULL'
   named_scope :wrong_fiscal_year, :conditions => 'DATE(transactions.created_at) > fiscal_years.end_date or DATE(transactions.created_at) < fiscal_years.start_date', :joins => :fiscal_year, :order => 'created_at DESC'
+  named_scope :without_related_transactions, :conditions => 'transactions.transaction_type = 3 and transactions.id NOT IN (select related_transaction_id FROM equalizations)', :order => 'created_at DESC'
+  # select t.*
+  # from transactions t
+  # where t.transaction_type = 3
+  # and t.fiscal_year_id = 7
+  # and t.id not in (
+  #   select related_transaction_id
+  #   from equalizations
+  # )
+  
   
   HUMANIZED_ATTRIBUTES = {
     :amount => I18n.t(:amount, :scope => :transaction)
