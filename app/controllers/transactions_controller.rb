@@ -63,6 +63,8 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
+        matcher = TransactionMatcher.new(@fiscal_year.transactions.payments)
+        @transaction.save if matcher.match(@transaction)
         format.html { redirect_to(params[:return_to] || fiscal_year_transactions_url(@fiscal_year)) }
         format.js do
           @total_income = @fiscal_year.transactions.sum('amount', :conditions => ['transaction_type = ?', Transaction::TRANSACTION_TYPES[:sell]])

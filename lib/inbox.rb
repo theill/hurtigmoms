@@ -50,8 +50,11 @@ class Inbox
   def associate_users_with_transactions
     self.messages.each do |email, transactions|
       user = User.find_by_email(email) || setup_user(email, transactions[0].note)
+      
+      matcher = TransactionMatcher.new(user.active_fiscal_year.transactions.payments)
       transactions.each do |transaction|
         transaction.fiscal_year = user.active_fiscal_year
+        matcher.match(transaction)
         transaction.save
       end
     end

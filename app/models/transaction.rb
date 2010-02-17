@@ -12,9 +12,10 @@ class Transaction < ActiveRecord::Base
   before_validation_on_create :set_attachment_no
   before_save :set_customer
   
+  named_scope :payments, :conditions => ['transaction_type = ?', TRANSACTION_TYPES[:pay]]
   named_scope :incomplete, :conditions => 'amount IS NULL OR created_at IS NULL OR currency IS NULL'
   named_scope :wrong_fiscal_year, :conditions => 'DATE(transactions.created_at) > fiscal_years.end_date or DATE(transactions.created_at) < fiscal_years.start_date', :joins => :fiscal_year, :order => 'created_at DESC'
-  named_scope :without_related_transactions, :conditions => 'transactions.transaction_type = 3 and transactions.id NOT IN (select related_transaction_id FROM equalizations)', :order => 'created_at DESC'
+  named_scope :without_related_transactions, :conditions => ['transactions.transaction_type = ? and transactions.id NOT IN (select related_transaction_id FROM equalizations)', TRANSACTION_TYPES[:pay]], :order => 'created_at DESC'
   # select t.*
   # from transactions t
   # where t.transaction_type = 3
