@@ -12,10 +12,16 @@
 			<%- end -%>
 			
 			<%- if @transactions_with_wrong_fiscal_year.any? -%>
+				<h3>Transaktioner for regnskabsåret</h3>
 				<p>
-					Du har <%= link_to(pluralize(@transactions_with_wrong_fiscal_year.length, 'transaktion', 'transaktioner'), fiscal_year_transactions_path(current_user.active_fiscal_year), :id => 'display-transactions') %> 
-					der har en faktura- eller betalings-dato uden for dit valgte regnskabsår.
+					Du har <%= pluralize(@transactions_with_wrong_fiscal_year.length, 'transaktion', 'transaktioner') %> 
+					der har en faktura- eller betalings-dato uden for dit valgte regnskabsår (<%= current_user.active_fiscal_year.name %>).
 				</p>
+				
+				<p>
+					<%= link_to('Vis transaktionerne', '#', :id => 'display-transactions-with-wrong-fiscal-year') %>
+				</p>
+				
 				<div id="transactions-with-wrong-fiscal-year" style="display: none">
 					<ul>
 						<% @transactions_with_wrong_fiscal_year.each do |t| %>
@@ -42,12 +48,13 @@
 					</p>
 					<%= form_tag(auto_correct_fiscal_year_transactions_path(current_user.active_fiscal_year)) %>
 						<%= hidden_field_tag 'corrected_fiscal_year_id', '-1' %>
-						<%= submit_tag "Opret &amp; flyt" %>
+						Ja, <%= submit_tag "overfør transaktionerne" %> til et nyoprettet regnskabsår.
 					</form>
 				<%- end -%>
 			<%- end -%>
 			
 			<%- if @transactions_without_related_transactions.any? -%>
+				<h3>Manglende bilag for automatisk bankafstemning</h3>
 				<p>
 					Du har <%= pluralize(@transactions_without_related_transactions.length, 'betalingstransaktion', 'betalingstransaktioner') %>
 					der ikke har en tilhørende købs- eller salgstransaktion. For at 
@@ -89,15 +96,16 @@
 	<div class="quick-start">
 		<h3>Kom hurtigt i gang</h3>
 		<ol>
-			<li><%= link_to('Tilføj indtægter og udgifter', fiscal_year_transactions_path(current_user.active_fiscal_year)) %></li>
+			<li><%= link_to('Tilføj en indtægter eller udgifter', fiscal_year_transactions_path(current_user.active_fiscal_year)) %></li>
 			<!-- <li><%= link_to('Tilpas din kontoplan', accounts_path) %></li> -->
-			<li><%= link_to('Konfigurer dine debitorer', customers_path) %></li>
+			<li><%= link_to('Tilpas dine kunder', customers_path) %></li>
 			<!-- <li><%= link_to('Indlæs dine kontoudtog', new_posting_import_path) %></li> -->
 		</ol>
 	</div>
 
 	<%- content_for :js do -%>
-		$("#display-transactions").live("click", function() {
+		$("#display-transactions-with-wrong-fiscal-year").live("click", function() {
+			$(this).hide();
 			$("#transactions-with-wrong-fiscal-year").slideDown();
 			return false;
 		});

@@ -35,7 +35,7 @@ class Transaction < ActiveRecord::Base
   end
   
   def self.search(search, page)
-    transactions = paginate(:per_page => 20, :page => page, :conditions => ['LOWER(transactions.note) LIKE ? OR LOWER(customers.name) LIKE ?', "%#{(search || '').downcase}%", "%#{(search || '').downcase}%"], :include => [:customer, :annexes, :related_transactions], :order => 'transactions.created_at DESC')
+    transactions = paginate(:per_page => 20, :page => page, :conditions => ['LOWER(transactions.note) LIKE ? OR LOWER(customers.name) LIKE ? OR (transactions.amount > 0 AND transactions.amount = ?)', "%#{(search || '').downcase}%", "%#{(search || '').downcase}%", search.to_f], :include => [:customer, :annexes, :related_transactions], :order => 'transactions.created_at DESC')
     related_transactions = transactions.map { |t| t.related_transactions.map { |t2| t2.id } }.flatten
     transactions.delete_if { |t| related_transactions.include?(t.id) }
     
