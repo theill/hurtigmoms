@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100202132223) do
+ActiveRecord::Schema.define(:version => 20100217170218) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -67,12 +67,13 @@ ActiveRecord::Schema.define(:version => 20100202132223) do
   end
 
   create_table "fiscal_years", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.date     "start_date", :null => false
-    t.date     "end_date",   :null => false
+    t.integer  "user_id",          :null => false
+    t.date     "start_date",       :null => false
+    t.date     "end_date",         :null => false
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "initial_deposits"
   end
 
   create_table "posting_imports", :force => true do |t|
@@ -126,8 +127,8 @@ ActiveRecord::Schema.define(:version => 20100202132223) do
     t.integer  "active_fiscal_year_id"
   end
 
+  add_index "users", ["confirmation_token", "id"], :name => "index_users_on_id_and_confirmation_token"
   add_index "users", ["email"], :name => "index_users_on_email"
-  add_index "users", ["id", "confirmation_token"], :name => "index_users_on_id_and_confirmation_token"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end

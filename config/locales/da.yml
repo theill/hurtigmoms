@@ -83,6 +83,12 @@ da:
   posting_import:
     data: Filnavn
 
+  fiscal_year:
+    name: Navn
+    start_date: Start dato
+    end_date: Slut dato
+    initial_deposits: Indestående ved opstart
+
   mails:
     signup:
       created: Du har fået en ny konto på hurtigmoms.dk
@@ -127,9 +133,13 @@ da:
     new:
       title: Nyt regnskabsår
       description: ''
+      buttons:
+        save: Opret regnskabsår
     edit:
       title: Rediger regnskabsår
       description: ''
+      buttons:
+        save: Gem regnskabsår
 
   accounts:
     index:
