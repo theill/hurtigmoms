@@ -55,11 +55,7 @@ class Inbox
       transactions.each do |transaction|
         transaction.fiscal_year = user.active_fiscal_year
         matcher.match(transaction)
-        transaction.save
-        
-        if transaction.errors.any?
-          Rails.logger.error("Unable to save transaction. Error #{transaction.errors.first.join(" ")}")
-        end
+        transaction.save!
       end
     end
   end
