@@ -49,7 +49,7 @@ class TransactionMatcher
     transaction.attachment_no = matching_transaction.attachment_no unless matching_transaction.attachment_no.blank?
     
     # associate new transaction with existing one
-    transaction.equalizations.build(:related_transaction => matching_transaction)
+    transaction.equalizations.build(:transaction => transaction, :related_transaction => matching_transaction)
   end
   
 end
