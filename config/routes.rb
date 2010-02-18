@@ -18,29 +18,29 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.resource  :session, :only => [:new, :create, :destroy]
-
+  
   map.namespace :admin do |admin|
     admin.resources :users
   end
   
-  map.settings  'settings', :controller => :users, :action => :edit
-  map.sign_up   'sign_up', :controller => :users, :action => 'new'
-  map.sign_in   'sign_in', :controller => :sessions, :action => 'new'
-  map.sign_out  'sign_out', :controller => :sessions, :action => 'destroy', :method => :delete
+  map.settings 'indstillinger', :controller => :users, :action => :edit
+  map.sign_up 'sign_up', :controller => :users, :action => 'new'
+  map.sign_in 'sign_in', :controller => :sessions, :action => 'new'
+  map.sign_out 'sign_out', :controller => :sessions, :action => 'destroy', :method => :delete
   
   map.api 'api', :controller => 'about', :action => 'api'
   map.tour 'tour', :controller => 'about', :action => 'tour'
   map.help 'hjaelp', :controller => 'about', :action => 'help'
   map.contact 'kontakt', :controller => 'about', :action => 'contact'
-
+  
   map.root :controller => 'about'
-
+  
   # The priority is based upon order of creation: first created -> highest priority.
-
+  
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
   # Keep in mind you can assign values other than :controller and :action
-
+  
   # Sample of named route:
   #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
   # This route can be invoked with purchase_url(:id => product.id)
