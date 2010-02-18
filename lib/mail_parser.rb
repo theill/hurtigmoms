@@ -148,9 +148,9 @@ class MailParser
     # if (amount.blank? || amount.to_f == 0.0 || currency.blank? || date.blank?)
     #   account_no = 9
     # end
-    
+
     # { :amount => amount, :currency => currency, :note => description, :created_at => date, :account_no => account_no }
-    { :amount => (amount || 0.0), :currency => (currency || 'DKK').upcase, :note => description, :created_at => date }
+    { :amount => amount.to_f, :currency => currency.upcase, :note => description, :created_at => date }
   end
   
   def guess_date(body)
