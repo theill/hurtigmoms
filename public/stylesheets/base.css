@@ -117,6 +117,7 @@ strong.highlight {
 
 td.number {
 	text-align: right;
+	white-space: nowrap;
 }
 
 input.decimal {
@@ -465,7 +466,7 @@ table tr.row-editing div.box {
 		}
 
 		#transactions .transaction.related {
-			color: #993;
+			color: #aaa;
 		}
 			#transactions .transaction.related .note {
 				text-indent: 5px;

@@ -22,6 +22,9 @@
 			<%= select_date @start_date, :prefix => 'start_date', :prompt => true %> - <%= select_date @end_date, :prefix => 'end_date', :prompt => true %>
 		</fieldset>
 		<fieldset>
+			<%= select_tag 'ss', options_for_select([["Dollar", "$"], ["Kroner", "DKK"]]) %>
+		</fieldset>
+		<fieldset>
 			<%= submit_tag :show %>
 		</fieldset>
 	<%- end -%>

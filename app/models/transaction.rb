@@ -4,8 +4,14 @@ class Transaction < ActiveRecord::Base
   belongs_to :fiscal_year
   belongs_to :customer
   has_many :annexes, :dependent => :destroy
+  # TODO: replace related_transactions with 'linked_to'
   has_many :related_transactions, :through => :equalizations
   has_many :equalizations
+  
+  has_many :relations_to, :foreign_key => 'transaction_id',  :class_name => 'Equalization'
+  has_many :relations_from, :foreign_key => 'related_transaction_id', :class_name => 'Equalization'
+  has_many :linked_to, :through => :relations_to, :source => :related_transaction
+  has_many :linked_from, :through => :relations_from, :source => :transaction
 
   validates_presence_of :fiscal_year_id, :amount
 
@@ -18,6 +24,7 @@ class Transaction < ActiveRecord::Base
   named_scope :without_related_transactions, :conditions => ['transactions.transaction_type = ? and transactions.id NOT IN (select related_transaction_id FROM equalizations)', TRANSACTION_TYPES[:pay]], :order => 'created_at DESC'
   named_scope :between, lambda { |start_date, end_date| { :conditions => ['DATE(transactions.created_at) BETWEEN ? AND ?', start_date, end_date] } }
   named_scope :filtered, lambda { |query| { :conditions => ['(LOWER(transactions.note) LIKE ?) OR (LOWER(customers.name) LIKE ?) OR (transactions.amount > 0 AND transactions.amount = ?)', "%#{query.downcase}%", "%#{query.downcase}%", query.to_f], :include => :customer } }
+  named_scope :filter_by_type, lambda { |transaction_type| { :conditions => ['transaction_type = ?', transaction_type] } }
   
   HUMANIZED_ATTRIBUTES = {
     :amount => I18n.t(:amount, :scope => :transaction)
@@ -34,6 +41,10 @@ class Transaction < ActiveRecord::Base
   def self.search(page, options)
     transactions = Transaction
     
+    if options[:transaction_type]
+      transactions = transactions.filter_by_type(options[:transaction_type])
+    end
+    
     if options[:search]
       transactions = transactions.filtered(options[:search])
     end
@@ -42,7 +53,7 @@ class Transaction < ActiveRecord::Base
       transactions = transactions.between(options[:start_date], options[:end_date])
     end
     
-    transactions = transactions.paginate(:page => page, :include => [:customer, :annexes, :related_transactions], :order => 'transactions.created_at DESC')
+    transactions = transactions.paginate(:page => page, :include => [:customer, :annexes, :related_transactions, :linked_to, :linked_from], :order => 'transactions.created_at DESC')
     related_transactions = transactions.map { |t| t.related_transactions.map { |t2| t2.id } }.flatten
     transactions.delete_if { |t| related_transactions.include?(t.id) }
     
@@ -57,6 +68,14 @@ class Transaction < ActiveRecord::Base
 
   def customer_name
     @customer_name || (self.customer.name if self.customer)
+  end
+  
+  def linked
+    self.linked_to | self.linked_from
+  end
+
+  def relations
+    self.relations_to | self.relations_from
   end
   
   def incomplete?

@@ -6,7 +6,7 @@
 	<td class="number"><%= formatted_expense_amount(transaction) %></td>
 </tr>
 
-<%- transaction.related_transactions.each do |related_payment_transaction| -%>
+<%- transaction.linked.each do |related_payment_transaction| -%>
 <tr id="<%= dom_id(related_payment_transaction) %>" class="transaction <%= dom_id(transaction, 'related') %> related <%= transaction_type_class(related_payment_transaction) %>">
 	<td class="actions date"><div class="buttons-container"><div class="buttons"><%= link_to(image_tag('navigation-000-frame.png', :width => 16, :height => 16), edit_fiscal_year_transaction_path(current_user.active_fiscal_year, related_payment_transaction), :class => 'edit hide') %></div></div><%=h related_payment_transaction.created_at.strftime("%d/%m-%Y") %></td>
 	<td></td>

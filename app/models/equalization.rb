@@ -1,6 +1,6 @@
 class Equalization < ActiveRecord::Base
   belongs_to :transaction
-  belongs_to :related_transaction, :class_name => 'Transaction'
+  belongs_to :related_transaction, :class_name => 'Transaction'#, :foreign_key => 'related_transaction_id'
   
   validates_presence_of :transaction, :related_transaction
   
