@@ -20,4 +20,8 @@ class AboutController < ApplicationController
     @exchange_rates = ExchangeRate.all(:order => 'currency')
     
   end
+  
+  def ping
+    Inbox.new.perform
+  end
 end
