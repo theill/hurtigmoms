@@ -4,5 +4,5 @@ task :cron => :environment do
 	unconfirmed_users.each &:destroy
 	
 	# process incoming emails
-	Inbox.new
+	Inbox.new.perform
 end

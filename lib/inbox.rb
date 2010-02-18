@@ -14,8 +14,8 @@ class Inbox
     
     associate_users_with_transactions
     
-    # recheck inbox in one minute
-    Delayed::Job.enqueue(::Inbox.new, 0, 1.minute.from_now)
+    # # recheck inbox in one minute
+    # Delayed::Job.enqueue(::Inbox.new, 0, 1.minute.from_now)
   end
   
   private
