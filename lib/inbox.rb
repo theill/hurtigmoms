@@ -56,7 +56,7 @@ class Inbox
         transaction.fiscal_year = user.active_fiscal_year
         matcher.match(transaction)
         unless transaction.save
-          Rails.logger.error "Not able to save transaction #{transaction.inspect}"
+          Rails.logger.error "Not able to save transaction #{transaction.inspect}: #{transaction.errors.inspect}"
         end
       end
     end
