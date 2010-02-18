@@ -17,7 +17,7 @@ class Transaction < ActiveRecord::Base
   named_scope :wrong_fiscal_year, :conditions => 'DATE(transactions.created_at) > fiscal_years.end_date OR DATE(transactions.created_at) < fiscal_years.start_date', :joins => :fiscal_year, :order => 'created_at DESC'
   named_scope :without_related_transactions, :conditions => ['transactions.transaction_type = ? and transactions.id NOT IN (select related_transaction_id FROM equalizations)', TRANSACTION_TYPES[:pay]], :order => 'created_at DESC'
   named_scope :between, lambda { |start_date, end_date| { :conditions => ['DATE(transactions.created_at) BETWEEN ? AND ?', start_date, end_date] } }
-  named_scope :filtered, lambda { |query| { :conditions => ['(LOWER(transactions.note) LIKE ?) OR (LOWER(customers.name) LIKE ?) OR (transactions.amount > 0 AND transactions.amount = ?)', "%#{query.downcase}%", "%#{query.downcase}%", query.to_f] } }
+  named_scope :filtered, lambda { |query| { :conditions => ['(LOWER(transactions.note) LIKE ?) OR (LOWER(customers.name) LIKE ?) OR (transactions.amount > 0 AND transactions.amount = ?)', "%#{query.downcase}%", "%#{query.downcase}%", query.to_f], :joins => :customer } }
   
   HUMANIZED_ATTRIBUTES = {
     :amount => I18n.t(:amount, :scope => :transaction)
@@ -32,7 +32,7 @@ class Transaction < ActiveRecord::Base
   end
   
   def self.search(page, options)
-    transactions = self
+    transactions = Transaction
     
     if options[:search]
       transactions = transactions.filtered(options[:search])

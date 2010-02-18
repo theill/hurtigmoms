@@ -11,7 +11,8 @@
 
 <div class="grid_12">
 	<h1><%= t('.title') %><span>Endnu ikke bogførte transaktioner</span></h1>
-	
+
+<!--
 	<%- form_tag request.path, :method => 'get' do -%>
 		<fieldset>
 			<%= label_tag :search, t('.search') %>
@@ -24,7 +25,8 @@
 			<%= submit_tag :show %>
 		</fieldset>
 	<%- end -%>
-	
+-->
+
 	<%- if @transactions.any? -%>
 		<div class="quick-buttons">
 			<!-- <%= link_to 'Tilføj salg', new_fiscal_year_transaction_path(current_user.active_fiscal_year), { :class => 'button show income' } %>

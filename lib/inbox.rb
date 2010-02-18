@@ -51,17 +51,15 @@ class Inbox
     self.messages.each do |email, transactions|
       user = User.find_by_email(email) || setup_user(email, transactions[0].note)
       
-      Rails.logger.info "-1"
       matcher = TransactionMatcher.new(user.active_fiscal_year.transactions.payments.all)
-      Rails.logger.info "0"
       transactions.each do |transaction|
-        Rails.logger.info "1"
         transaction.fiscal_year = user.active_fiscal_year
-        Rails.logger.info "2"
         matcher.match(transaction)
-        Rails.logger.info "3"
         transaction.save
-        Rails.logger.info "4"
+        
+        if transaction.errors.any?
+          Rails.logger.error("Unable to save transaction. Error #{transaction.errors.first.join(" ")}")
+        end
       end
     end
   end
