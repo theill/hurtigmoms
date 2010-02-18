@@ -6,7 +6,9 @@ class Equalization < ActiveRecord::Base
   
   def adjust_amount(t)
     if t.amount == 0.0 && self.related_transaction.amount != 0.0
-      t.update_attribute(:amount, self.related_transaction.amount)
+      # FIXME: negative values should be considered
+      adjusted_amount = self.related_transaction.amount
+      t.update_attribute(:amount, adjusted_amount)
     end
   end
   
