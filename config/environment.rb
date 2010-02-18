@@ -24,7 +24,6 @@ Rails::Initializer.run do |config|
   config.gem 'jigfox-action_mailer_tls', :version => '>=1.1.3', :lib => 'smtp_tls.rb', :source => 'http://gems.github.com'
   config.gem 'fastercsv'
   config.gem 'will_paginate', :version => '>=2.3.11', :source => 'http://gemcutter.org'
-  # config.gem 'hoptoad_notifier', :version => '>=2.1.3', :source => 'http://gemcutter.org'
   config.gem 'exceptional', :version => '>=2.0.6'
   
   # Only load the plugins named here, in the order given (default is alphabetical).
