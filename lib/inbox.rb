@@ -31,7 +31,7 @@ class Inbox
         parse(TMail::Mail.parse(msg.first.attr["RFC822"]))
         imap.store(message_id, "+FLAGS", [:Deleted])
       rescue Exception => e
-        Rails.logger.error "Failed to process message #{message_id} at #{Time.now.utc}. Error: #{e.message}"
+        Rails.logger.error("Failed to process message #{message_id} at #{Time.now.utc}. Error: #{e.message}")
       end
     end
     imap.expunge
@@ -55,7 +55,9 @@ class Inbox
       transactions.each do |transaction|
         transaction.fiscal_year = user.active_fiscal_year
         matcher.match(transaction)
-        transaction.save!
+        unless transaction.save
+          Rails.logger.error "Not able to save transaction #{transaction.inspect}"
+        end
       end
     end
   end

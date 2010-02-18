@@ -64,7 +64,7 @@ class Transaction < ActiveRecord::Base
   end
   
   def set_attachment_no
-    self.attachment_no = (self.fiscal_year.transactions.maximum(:attachment_no) || 0) + 1 if self.attachment_no == 0
+    self.attachment_no = (self.fiscal_year.transactions.maximum(:attachment_no) || 0) + 1 if self.attachment_no == 0 && self.fiscal_year
   end
 
   def set_customer
