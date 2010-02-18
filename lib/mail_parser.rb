@@ -150,7 +150,7 @@ class MailParser
     # end
     
     # { :amount => amount, :currency => currency, :note => description, :created_at => date, :account_no => account_no }
-    { :amount => amount, :currency => currency.upcase, :note => description, :created_at => date }
+    { :amount => (amount || 0.0), :currency => (currency || 'DKK').upcase, :note => description, :created_at => date }
   end
   
   def guess_date(body)
