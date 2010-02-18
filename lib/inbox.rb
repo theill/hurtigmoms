@@ -8,7 +8,7 @@ class Inbox
   end
   
   def perform
-    Rails.logger.debug("Checking inbox for new messages at #{Time.now.utc}")
+    Rails.logger.info("Checking inbox for new messages at #{Time.now.utc}")
     
     connect_and_parse_all_messages
     
@@ -26,7 +26,7 @@ class Inbox
     imap.select('INBOX')
     imap.search(["NOT", "DELETED"]).each do |message_id|
       begin
-        Rails.logger.debug("Processing message #{message_id}")
+        Rails.logger.info("Processing message #{message_id}")
         msg = imap.fetch(message_id, "RFC822")
         parse(TMail::Mail.parse(msg.first.attr["RFC822"]))
         imap.store(message_id, "+FLAGS", [:Deleted])
@@ -61,7 +61,7 @@ class Inbox
   end
   
   def setup_user(email, subject)
-    Rails.logger.debug "User with email #{email} not found so will be created"
+    Rails.logger.info "User with email #{email} not found so will be created"
     pwd = generate_password
     user = ::User.new(:email => email, :password => pwd, :password_confirmation => pwd, :company => 'Mit firmanavn')
     ::SignupMailer.deliver_created(user, pwd, subject) if user.save
