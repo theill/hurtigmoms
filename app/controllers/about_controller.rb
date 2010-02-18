@@ -23,5 +23,6 @@ class AboutController < ApplicationController
   
   def ping
     Inbox.new.perform
+    render :text => 'ok'
   end
 end
