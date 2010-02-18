@@ -3,9 +3,11 @@ class EqualizationsController < ApplicationController
   
   def create
     @equalization = @transaction.equalizations.new(params[:equalization])
-
+    
     respond_to do |format|
       if @equalization.save
+        @equalization.adjust_amount(@transaction)
+        
         format.js
       else
         format.js
