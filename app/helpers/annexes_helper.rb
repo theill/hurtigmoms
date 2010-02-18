@@ -3,9 +3,9 @@ require 'uri'
 
 module AnnexesHelper
   def render_annex(annex)
-    if ['application/pdf', 'application/x-pdf'].include?(annex.attachment_content_type)
+    if ['application/pdf', 'application/x-pdf'].include?(annex.attachment_content_type) || annex.attachment_file_name.ends_with?('.pdf')
   		format_as_pdf(annex)
-  	elsif @annex.attachment_content_type == 'text/html'
+  	elsif @annex.attachment_content_type == 'text/html' || annex.attachment_file_name.ends_with?('.html')
   		format_as_html(annex)
 		elsif ['image/jpg', 'image/png', 'image/gif'].include?(@annex.attachment_content_type)
 		  format_as_image(annex)

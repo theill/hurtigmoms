@@ -1,8 +1,9 @@
 <%- @meta = { :title => t('.title'), :description => t('.description') } -%>
-<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
 
 <%- if @customers.any? -%>
 	<div class="grid_12">
+		<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
+		
 		<div class="quick-buttons">
 			<%= link_to 'Tilføj kunde', new_customer_path, :class => 'new-customer button show' %>
 		</div>	

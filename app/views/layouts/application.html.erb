@@ -9,7 +9,7 @@
 		<%= stylesheet_link_tag('reset', 'text', '960', 'datePicker', 'autocomplete', 'base') %>
 		<%= yield :head -%>
 		<script type="text/javascript">
-			$(document).ready(function() {
+			$(function() {
 				<%= yield :js -%>
 			});
 		</script>
@@ -63,10 +63,6 @@
 		
 		<div class="container_12">
 			<div id="c">
-				<!-- <%- unless @meta.nil? || @meta[:title].blank? || @meta[:blank_header] -%>
-					<h1><%= @meta[:title] %><span class="description"><%= @meta[:description] %></span></h1>
-				<%- end -%> -->
-				
 				<%= yield %>
 				
 				<div class="clear"></div>

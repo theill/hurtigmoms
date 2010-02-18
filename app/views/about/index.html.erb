@@ -1,108 +1,110 @@
 <%- @meta = { :title => 'Bogføring for den lille virksomhed', :description => '', :blank_header => true } -%>
 
 <%- if signed_in? -%>
-	<h1>Oversigt</h1>
+	<div class="grid_12">
+		<h1>Oversigt</h1>
 	
-	<%- if @action_required -%>
-		<div class="action-required">
-			<%- if @incomplete_transactions.any? -%>
-				<p>
-					Du har <%= link_to('transaktioner', fiscal_year_transactions_path(current_user.active_fiscal_year)) %> der kræver handling.
-				</p>
-			<%- end -%>
-			
-			<%- if @transactions_with_wrong_fiscal_year.any? -%>
-				<h3>Transaktioner for regnskabsåret</h3>
-				<p>
-					Du har <%= pluralize(@transactions_with_wrong_fiscal_year.length, 'transaktion', 'transaktioner') %> 
-					der har en faktura- eller betalings-dato uden for dit valgte regnskabsår (<%= current_user.active_fiscal_year.name %>).
-				</p>
-				
-				<p>
-					<%= link_to('Vis transaktionerne', '#', :id => 'display-transactions-with-wrong-fiscal-year') %>
-				</p>
-				
-				<div id="transactions-with-wrong-fiscal-year" style="display: none">
-					<ul>
-						<% @transactions_with_wrong_fiscal_year.each do |t| %>
-							<li><%=h t.created_at.strftime("%d/%m-%Y") + ' - ' + t.note %></li>
-						<%- end -%>
-					</ul>
-				</div>
-				
-				<%- if @other_fiscal_years.any? -%>
+		<%- if @action_required -%>
+			<div class="action-required">
+				<%- if @incomplete_transactions.any? -%>
 					<p>
-						Vælg det regnskabsår du ønsker at flytte transaktionerne til.
+						Du har <%= link_to('transaktioner', fiscal_year_transactions_path(current_user.active_fiscal_year)) %> der kræver handling.
 					</p>
-					<%= form_tag(auto_correct_fiscal_year_transactions_path(current_user.active_fiscal_year)) %>
+				<%- end -%>
+			
+				<%- if @transactions_with_wrong_fiscal_year.any? -%>
+					<h3>Transaktioner for regnskabsåret</h3>
+					<p>
+						Du har <%= pluralize(@transactions_with_wrong_fiscal_year.length, 'transaktion', 'transaktioner') %> 
+						der har en faktura- eller betalings-dato uden for dit valgte regnskabsår (<%= current_user.active_fiscal_year.name %>).
+					</p>
+				
+					<p>
+						<%= link_to('Vis transaktionerne', '#', :id => 'display-transactions-with-wrong-fiscal-year') %>
+					</p>
+				
+					<div id="transactions-with-wrong-fiscal-year" style="display: none">
 						<ul>
-							<%- @other_fiscal_years.each do |fy| -%>
-								<li><%= radio_button_tag 'corrected_fiscal_year_id', fy.id %><label for="<%= 'corrected_fiscal_year_id_' + fy.id.to_s %>"><%=h fy.name %></label></li>
+							<% @transactions_with_wrong_fiscal_year.each do |t| %>
+								<li><%=h t.created_at.strftime("%d/%m-%Y") + ' - ' + t.note %></li>
 							<%- end -%>
 						</ul>
-						<%= submit_tag "Flyt" %>
-					</form>
-				<%- else -%>
-					<p>
-						Ønsker du at oprette et nyt regnskabsår og flytte disse transaktioner over?
-					</p>
-					<%= form_tag(auto_correct_fiscal_year_transactions_path(current_user.active_fiscal_year)) %>
-						<%= hidden_field_tag 'corrected_fiscal_year_id', '-1' %>
-						Ja, <%= submit_tag "overfør transaktionerne" %> til et nyoprettet regnskabsår.
-					</form>
+					</div>
+				
+					<%- if @other_fiscal_years.any? -%>
+						<p>
+							Vælg det regnskabsår du ønsker at flytte transaktionerne til.
+						</p>
+						<%= form_tag(auto_correct_fiscal_year_transactions_path(current_user.active_fiscal_year)) %>
+							<ul>
+								<%- @other_fiscal_years.each do |fy| -%>
+									<li><%= radio_button_tag 'corrected_fiscal_year_id', fy.id %><label for="<%= 'corrected_fiscal_year_id_' + fy.id.to_s %>"><%=h fy.name %></label></li>
+								<%- end -%>
+							</ul>
+							<%= submit_tag "Flyt" %>
+						</form>
+					<%- else -%>
+						<p>
+							Ønsker du at oprette et nyt regnskabsår og flytte disse transaktioner over?
+						</p>
+						<%= form_tag(auto_correct_fiscal_year_transactions_path(current_user.active_fiscal_year)) %>
+							<%= hidden_field_tag 'corrected_fiscal_year_id', '-1' %>
+							Ja, <%= submit_tag "overfør transaktionerne" %> til et nyoprettet regnskabsår.
+						</form>
+					<%- end -%>
 				<%- end -%>
-			<%- end -%>
 			
-			<%- if @transactions_without_related_transactions.any? -%>
-				<h3>Manglende bilag for automatisk bankafstemning</h3>
+				<%- if @transactions_without_related_transactions.any? -%>
+					<h3>Manglende bilag for automatisk bankafstemning</h3>
+					<p>
+						Du har <%= pluralize(@transactions_without_related_transactions.length, 'betalingstransaktion', 'betalingstransaktioner') %>
+						der ikke har en tilhørende købs- eller salgstransaktion. For at 
+						lette arbejdet med bankafstemningen, er det ikke muligt at bogføre
+						forud hvorfor det derfor er nødvendigt at afstemme disse 
+						transaktioner først.
+					</p>
+					<%= link_to('Vis transaktionerne', '#', :id => 'display-transactions-without-relations') %>
+					<div id="transactions-without-relations" style="display: none">
+						<ul>
+							<% @transactions_without_related_transactions.each do |t| %>
+								<li><%=h t.created_at.strftime("%d/%m-%Y") + ' - ' + t.note %></li>
+							<%- end -%>
+						</ul>
+					</div>
+				<%- end -%>
+			</div>
+		<%- else -%>
+			<div class="blank-slate">
 				<p>
-					Du har <%= pluralize(@transactions_without_related_transactions.length, 'betalingstransaktion', 'betalingstransaktioner') %>
-					der ikke har en tilhørende købs- eller salgstransaktion. For at 
-					lette arbejdet med bankafstemningen, er det ikke muligt at bogføre
-					forud hvorfor det derfor er nødvendigt at afstemme disse 
-					transaktioner først.
+					Du har ingen beskeder eller punkter der kræver handling.
 				</p>
-				<%= link_to('Vis transaktionerne', '#', :id => 'display-transactions-without-relations') %>
-				<div id="transactions-without-relations" style="display: none">
-					<ul>
-						<% @transactions_without_related_transactions.each do |t| %>
-							<li><%=h t.created_at.strftime("%d/%m-%Y") + ' - ' + t.note %></li>
-						<%- end -%>
-					</ul>
-				</div>
-			<%- end -%>
-		</div>
-	<%- else -%>
-		<div class="blank-slate">
-			<p>
-				Du har ingen beskeder eller punkter der kræver handling.
-			</p>
-		</div>
-	<%- end -%>
+			</div>
+		<%- end -%>
 	
-	<%- if @latest_import && (1.month.ago > @latest_import.created_at) -%>
-	  <div>
-	    <p>
-	      Det er mere end een måned siden du importerede dine kontoudtog fra banken.
-	    </p>
-	    <p>
-	      For at lette bogføringen anbefales det, at importere kontoudtog jævnligt
-	      så hvis du henter et nyt kontoudtog fra din bank, kan du genbruge dine 
-	      indstillinger fra sidste importering og måske gøre det med det samme.
-	    </p>
-	  </div>
-	<%- end -%>
+		<%- if @latest_import && (1.month.ago > @latest_import.created_at) -%>
+		  <div>
+		    <p>
+		      Det er mere end een måned siden du importerede dine kontoudtog fra banken.
+		    </p>
+		    <p>
+		      For at lette bogføringen anbefales det, at importere kontoudtog jævnligt
+		      så hvis du henter et nyt kontoudtog fra din bank, kan du genbruge dine 
+		      indstillinger fra sidste importering og måske gøre det med det samme.
+		    </p>
+		  </div>
+		<%- end -%>
 
-	<div class="quick-start">
-		<h3>Kom hurtigt i gang</h3>
-		<ol>
-			<li><%= link_to('Tilføj en indtægter eller udgifter', fiscal_year_transactions_path(current_user.active_fiscal_year)) %></li>
-			<!-- <li><%= link_to('Tilpas din kontoplan', accounts_path) %></li> -->
-			<li><%= link_to('Tilpas dine kunder', customers_path) %></li>
-			<!-- <li><%= link_to('Indlæs dine kontoudtog', new_posting_import_path) %></li> -->
-		</ol>
+		<div class="quick-start">
+			<h3>Kom hurtigt i gang</h3>
+			<ol>
+				<li><%= link_to('Tilføj en indtægter eller udgifter', fiscal_year_transactions_path(current_user.active_fiscal_year)) %></li>
+				<!-- <li><%= link_to('Tilpas din kontoplan', accounts_path) %></li> -->
+				<li><%= link_to('Tilpas dine kunder', customers_path) %></li>
+				<!-- <li><%= link_to('Indlæs dine kontoudtog', new_posting_import_path) %></li> -->
+			</ol>
+		</div>
 	</div>
-
+	
 	<%- content_for :js do -%>
 		$("#display-transactions-with-wrong-fiscal-year").live("click", function() {
 			$(this).hide();
