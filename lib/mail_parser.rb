@@ -1,5 +1,7 @@
 # Parses a single mail
 class MailParser
+  FILTERED_MIME_TYPES = ["application/pdf", "image/png", "image/gif", "image/jpeg", "image/pjpeg", "image/bmp", "application/x-compressed", "application/x-zip-compressed", "application/zip", "multipart/x-zip"]
+  
   def initialize(mail)
     @mail = mail
   end
@@ -13,11 +15,19 @@ class MailParser
     transaction = Transaction.new(parsed_attributes)
     
     subject = (@mail.subject || 'original-mail').parameterize.to_s[0, 40]
+    
+    attachments = []
+    @mail.attachments.each { |a| attachments << a } if @mail.has_attachments?
+    
+    # remove recognized attachments from mail (so it doesn't base64 encode lots of stuff)
+    @mail.parts.delete_if { |p| FILTERED_MIME_TYPES.include?(p.content_type) }
+    
+    # add actual mail as an attachment as well
     attachment = TMail::Attachment.new(@mail.to_s)
     attachment.original_filename = subject + '.txt'
     attachment.content_type = @mail.header['content-type']
-    attachments = [attachment]
-    @mail.attachments.each { |a| attachments << a } if @mail.has_attachments?
+    attachments << attachment
+    
     transaction.build_attachments(attachments)
     
     [@mail.from.to_s, transaction]
