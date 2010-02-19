@@ -24,7 +24,7 @@ class Transaction < ActiveRecord::Base
   named_scope :without_related_transactions, :conditions => ['transactions.transaction_type = ? and transactions.id NOT IN (select related_transaction_id FROM equalizations)', TRANSACTION_TYPES[:pay]], :order => 'created_at DESC'
   named_scope :between, lambda { |start_date, end_date| { :conditions => ['DATE(transactions.created_at) BETWEEN ? AND ?', start_date, end_date] } }
   named_scope :filtered, lambda { |query| { :conditions => ['(LOWER(transactions.note) LIKE ?) OR (LOWER(customers.name) LIKE ?) OR (transactions.amount > 0 AND transactions.amount = ?)', "%#{query.downcase}%", "%#{query.downcase}%", query.to_f], :include => :customer } }
-  named_scope :filter_by_type, lambda { |transaction_type| { :conditions => ['transaction_type = ?', transaction_type] } }
+  named_scope :filter_by_type, lambda { |transaction_type| { :conditions => ['transactions.transaction_type = ?', transaction_type] } }
   
   HUMANIZED_ATTRIBUTES = {
     :amount => I18n.t(:amount, :scope => :transaction)
@@ -41,7 +41,7 @@ class Transaction < ActiveRecord::Base
   def self.search(page, options)
     transactions = Transaction
     
-    if options[:transaction_type]
+    if options[:transaction_type] && TRANSACTION_TYPES.values.include?(options[:transaction_type].to_i)
       transactions = transactions.filter_by_type(options[:transaction_type])
     end
     

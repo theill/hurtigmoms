@@ -9,7 +9,7 @@
 <%- transaction.linked.each do |related_payment_transaction| -%>
 <tr id="<%= dom_id(related_payment_transaction) %>" class="transaction <%= dom_id(transaction, 'related') %> related <%= transaction_type_class(related_payment_transaction) %>">
 	<td class="actions date"><div class="buttons-container"><div class="buttons"><%= link_to(image_tag('navigation-000-frame.png', :width => 16, :height => 16), edit_fiscal_year_transaction_path(current_user.active_fiscal_year, related_payment_transaction), :class => 'edit hide') %></div></div><%=h related_payment_transaction.created_at.strftime("%d/%m-%Y") %></td>
-	<td></td>
+	<td><%= formatted_attachment_no(related_payment_transaction) %></td>
 	<td class="note"><%= note_for_overview(related_payment_transaction, params[:search]) %></td>
 	<td class="number"><%= formatted_income_amount(related_payment_transaction) %></td>
 	<td class="number"><%= formatted_expense_amount(related_payment_transaction) %></td>

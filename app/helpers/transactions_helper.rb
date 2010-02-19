@@ -7,6 +7,10 @@ module TransactionsHelper
     Transaction::TRANSACTION_TYPES.collect { |name, value| [I18n.t('transaction.transaction_type_' + name.to_s), value] }.sort_by { |name, value| value }
   end
   
+  def options_for_transaction_types(selected)
+    options_for_select(['', ''] | Transaction::TRANSACTION_TYPES.collect { |k, v| [I18n.t("transaction.transaction_type_#{k}"), v.to_s] }, selected)
+  end
+  
   # extract first line of note
   def note_for_overview(transaction, search=nil)
     first_line = highlight_words(h(extract_first_note_line(transaction)), search)
@@ -19,7 +23,7 @@ module TransactionsHelper
   end
   
   def extract_first_note_line(transaction)
-    truncate((transaction.note || '').split("\n").first || '', :length => 80)
+    truncate((transaction.note || '').split("\n").first || '', :length => 78)
   end
   
   def formatted_transaction_type(transaction)

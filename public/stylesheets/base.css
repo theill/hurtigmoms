@@ -415,6 +415,21 @@ table tr.row-editing div.box {
 		font-size: 14px;
 	}
 
+#transactions-filter {
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#f9f9f9));
+	background: -moz-linear-gradient(90deg, #ffffff, #f9f9f9);
+	border: 1px solid #f0f0f0;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+	#transactions-filter fieldset {
+		float: left;
+		margin-bottom: 0;
+		margin-right: 10px;
+	}
+	
 #transactions {}
 	#transactions thead .account-type {
 		color: #779;

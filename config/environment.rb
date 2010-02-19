@@ -25,6 +25,7 @@ Rails::Initializer.run do |config|
   config.gem 'fastercsv'
   config.gem 'will_paginate', :version => '>=2.3.11', :source => 'http://gemcutter.org'
   config.gem 'exceptional', :version => '>=2.0.10'
+  config.gem 'rubyzip', :lib => 'zip/zip'
   
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

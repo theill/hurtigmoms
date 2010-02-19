@@ -39,4 +39,15 @@ class FiscalYearsController < ApplicationController
     end
   end
   
+  def download_annexes
+    @fiscal_year = current_user.fiscal_years.find(params[:id])
+    t = @fiscal_year.zip_annexes
+    
+    # Send it using the right mime type, with a download window and some nice file name.
+    send_file t.path, :type => 'application/zip', :disposition => 'attachment', :filename => "some-brilliant-file-name.zip"
+
+    # The temp file will be deleted some time...
+    t.close
+  end
+  
 end

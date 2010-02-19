@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
   def index
     # @start_date = @fiscal_year.start_date
     # @end_date = @fiscal_year.end_date
-    @start_date, @end_date, @transaction_type = nil, nil, Transaction::TRANSACTION_TYPES[:pay]
+    @start_date, @end_date, @transaction_type = nil, nil, params[:transaction_type]
     
     @transactions = @fiscal_year.transactions.search(params[:page], :search => params[:search], :start_date => @start_date, :end_date => @end_date, :transaction_type => @transaction_type)
     
