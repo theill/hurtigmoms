@@ -16,7 +16,7 @@ class FiscalYear < ActiveRecord::Base
     
     # Give the path of the temp file to the zip outputstream, it won't try to open it as an archive.
     Zip::ZipOutputStream.open(t.path) do |zos|
-      transactions.each do |transaction|
+      transactions.all(:include => :annexes).each do |transaction|
         transaction.annexes.each do |annex|
           content = read_annex_content(annex)
           
