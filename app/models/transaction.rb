@@ -6,7 +6,7 @@ class Transaction < ActiveRecord::Base
   has_many :annexes, :dependent => :destroy
   # TODO: replace related_transactions with 'linked_to'
   has_many :related_transactions, :through => :equalizations
-  has_many :equalizations
+  has_many :equalizations, :dependent => :destroy
   
   has_many :relations_to, :foreign_key => 'transaction_id',  :class_name => 'Equalization'
   has_many :relations_from, :foreign_key => 'related_transaction_id', :class_name => 'Equalization'

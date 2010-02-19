@@ -1,0 +1,55 @@
+<%- @meta = { :title => t('.title'), :description => t('.description') } -%>
+
+<div class="grid_12">
+	<h1>Kassekladde<span></span></h1>
+
+	<table id="transactions">
+		<thead>
+			<tr>
+				<th class="created_at"><%= t('transaction.created_at') %></th>
+				<th class="attachment_no"><%= t('transaction.attachment_no') %></th>
+				<th><%= t('transaction.note') %></th>
+				<th><span class="income"><%= t('transaction.amount_in') %></span></th>
+				<th><span class="expense"><%= t('transaction.amount_out') %></span></th>
+			</tr>
+		</thead>
+		<tbody>
+			<%= render @transactions %>
+		</tbody>
+	</table>
+	
+	<h2>Manglende betalinger</h2>
+
+	<table id="transactions">
+		<thead>
+			<tr>
+				<th class="created_at"><%= t('transaction.created_at') %></th>
+				<th class="attachment_no"><%= t('transaction.attachment_no') %></th>
+				<th><%= t('transaction.note') %></th>
+				<th><span class="income"><%= t('transaction.amount_in') %></span></th>
+				<th><span class="expense"><%= t('transaction.amount_out') %></span></th>
+			</tr>
+		</thead>
+		<tbody>
+			<%= render @unrealized_income %>
+		</tbody>
+	</table>
+
+	<h2>Manglende bilag</h2>
+
+	<table id="transactions">
+		<thead>
+			<tr>
+				<th class="created_at"><%= t('transaction.created_at') %></th>
+				<th class="attachment_no"><%= t('transaction.attachment_no') %></th>
+				<th><%= t('transaction.note') %></th>
+				<th><span class="income"><%= t('transaction.amount_in') %></span></th>
+				<th><span class="expense"><%= t('transaction.amount_out') %></span></th>
+			</tr>
+		</thead>
+		<tbody>
+			<%= render @not_afstemt_expense %>
+		</tbody>
+	</table>
+	
+</div>

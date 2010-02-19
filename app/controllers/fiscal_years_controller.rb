@@ -39,6 +39,16 @@ class FiscalYearsController < ApplicationController
     end
   end
   
+  def overview
+    fiscal_year = current_user.fiscal_years.find(params[:id], :include => :transactions)
+    
+    @transactions = fiscal_year.transactions.payments.all(:include => [:linked_from, :linked_to, :annexes, :customer], :order => 'transactions.created_at DESC')
+
+    @unrealized_income = fiscal_year.transactions.filter_by_type(Transaction::TRANSACTION_TYPES[:sell]).all(:order => 'transactions.created_at DESC').delete_if { |t| t.equalizations.count > 0 }
+    @not_afstemt_expense = fiscal_year.transactions.filter_by_type(Transaction::TRANSACTION_TYPES[:buy]).all(:order => 'transactions.created_at DESC').delete_if { |t| t.equalizations.count > 0 }
+    
+  end
+  
   def download_annexes
     @fiscal_year = current_user.fiscal_years.find(params[:id])
     t = @fiscal_year.zip_annexes
