@@ -5,6 +5,7 @@
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		<meta http-equiv="imagetoolbar" content="no" />
 		<meta name="description" content="<%=h description %>" />
+		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 		<%= javascript_include_tag('jquery-1.4.1.min', 'jquery-ui.min', 'jquery.ui.datepicker-da', 'jquery.form', 'date', 'date_da', 'jquery.autocomplete', 'jquery.numberformatter-1.1.2.min', 'application') %>
 		<%= stylesheet_link_tag('reset', 'text', '960', 'datePicker', 'autocomplete', 'base') %>
 		<%= yield :head -%>
@@ -21,7 +22,8 @@
 				<div class="grid_6 navigation">
 					<%- if signed_in? -%>
 						<ul>
-							<li class="application-name"><%=h current_user.active_fiscal_year.name + ' for ' + company_title %></li>
+							<!-- <li style="float: right"><%= link_to(h(current_user.active_fiscal_year.name), current_user.active_fiscal_year) %> <span>for <%=h company_title %></span></li> -->
+							<!-- <li class="application-name"><%=h current_user.active_fiscal_year.name + ' for ' + company_title %></li> -->
 							<%= menu_tag(t('.home'), root_path) %>
 							<%= menu_tag(t('.transactions'), fiscal_year_transactions_path(current_user.active_fiscal_year)) %>
 							<%# menu_tag(t('.accounts'), accounts_path) %>
@@ -41,7 +43,6 @@
 							<!-- soon <li><div><form method="get"><input type="text" autocomplete="off" size="25" maxlength="100" placeholder="Search" title="Search" value="" tabindex="1" results="0" name="q" id="q"/></form></div></li> -->
 							<%= menu_tag(t('.help'), help_path) %>
 							<%= menu_tag(t('.settings'), settings_path) %>
-							<%= yield :content_search %>
 						</ul>
 					<%- else -%>
 						<%= render :partial => 'shared/navigation' %>
@@ -68,7 +69,13 @@
 				<div class="clear"></div>
 			</div>
 			<div id="f">
-				Commanigy &copy;<%= Date.today.year %>
+				<ul>
+					<li><%= link_to('Sikkerhed', privacy_path) %></li>
+				</ul>
+				<div>
+					<%= link_to('Hjælp', help_path) %><br />
+					<%= t('application.name') %> er udviklet er <a href="http://commanigy.com" title="Commanigy">Commanigy</a>
+				</div>
 			</div>
 		</div>
 	</body>

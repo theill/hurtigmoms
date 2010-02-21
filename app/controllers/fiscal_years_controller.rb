@@ -5,6 +5,10 @@ class FiscalYearsController < ApplicationController
     @fiscal_years = current_user.fiscal_years
   end
   
+  def show
+    @fiscal_year = current_user.fiscal_years.find(params[:id])
+  end
+  
   def new
     @fiscal_year = current_user.fiscal_years.new
   end
@@ -40,13 +44,11 @@ class FiscalYearsController < ApplicationController
   end
   
   def overview
-    fiscal_year = current_user.fiscal_years.find(params[:id], :include => :transactions)
-    
-    @transactions = fiscal_year.transactions.payments.all(:include => [:linked_from, :linked_to, :annexes, :customer], :order => 'transactions.created_at DESC')
+    @fiscal_year = current_user.fiscal_years.find(params[:id])
 
-    @unrealized_income = fiscal_year.transactions.filter_by_type(Transaction::TRANSACTION_TYPES[:sell]).all(:order => 'transactions.created_at DESC').delete_if { |t| t.equalizations.count > 0 }
-    @not_afstemt_expense = fiscal_year.transactions.filter_by_type(Transaction::TRANSACTION_TYPES[:buy]).all(:order => 'transactions.created_at DESC').delete_if { |t| t.equalizations.count > 0 }
-    
+    @transactions = @fiscal_year.transactions.payments.all(:include => [:linked_from, :linked_to, :annexes, :customer], :order => 'transactions.created_at DESC')
+    @unrealized_income = @fiscal_year.transactions.filter_by_type(Transaction::TRANSACTION_TYPES[:sell]).all(:order => 'transactions.created_at DESC').delete_if { |t| t.equalizations.count > 0 }
+    @not_afstemt_expense = @fiscal_year.transactions.filter_by_type(Transaction::TRANSACTION_TYPES[:buy]).all(:order => 'transactions.created_at DESC').delete_if { |t| t.equalizations.count > 0 }
   end
   
   def download_annexes

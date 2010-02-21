@@ -33,6 +33,7 @@ ActionController::Routing::Routes.draw do |map|
   map.tour 'tour', :controller => 'about', :action => 'tour'
   map.help 'hjaelp', :controller => 'about', :action => 'help'
   map.contact 'kontakt', :controller => 'about', :action => 'contact'
+  map.privacy 'sikkerhed', :controller => :about, :action => :privacy
   
   map.root :controller => 'about'
   

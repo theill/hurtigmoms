@@ -1,5 +1,8 @@
 <%- @meta = { :title => h(extract_first_note_line(@transaction)), :description => '' } -%>
-<h1><%=h extract_first_note_line(@transaction) %></h1>
+
+<div class="grid_12">
+	<h1><%=h extract_first_note_line(@transaction) %></h1>
+</div>
 
 <div class="grid_9">
 	<div id="attachment-frame">

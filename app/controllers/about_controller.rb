@@ -25,4 +25,8 @@ class AboutController < ApplicationController
     Inbox.new.perform
     render :text => 'ok'
   end
+  
+  def privacy
+    
+  end
 end

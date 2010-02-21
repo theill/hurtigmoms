@@ -26,6 +26,26 @@ module TransactionsHelper
     truncate((transaction.note || '').split("\n").first || '', :length => 78)
   end
   
+  def formatted_pdf_line(transaction)
+  	[
+  	  transaction.created_at.strftime("%d/%m-%Y"),
+  	  transaction.attachment_no ? ('%04d' % transaction.attachment_no) : '',
+  	  extract_first_note_line(transaction),
+  	  (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:sell] || (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:pay] && transaction.amount > 0)) ? number_to_currency(transaction.amount, :unit => current_user.default_currency) : '',
+  	  (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:buy] || (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:pay] && transaction.amount < 0)) ? number_to_currency(transaction.amount, :unit => current_user.default_currency) : ''
+  	]
+  end
+
+  def formatted_related_pdf_line(transaction)
+  	[
+  	  transaction.created_at.strftime("%d/%m-%Y"),
+  	  transaction.attachment_no ? ('%04d' % transaction.attachment_no) : '',
+  	  'REF: ' + extract_first_note_line(transaction),
+  	  (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:sell] || (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:pay] && transaction.amount > 0)) ? number_to_currency(transaction.amount, :unit => current_user.default_currency) : '',
+  	  (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:buy] || (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:pay] && transaction.amount < 0)) ? number_to_currency(transaction.amount, :unit => current_user.default_currency) : ''
+  	]
+  end
+  
   def formatted_transaction_type(transaction)
     translation_key = Transaction::TRANSACTION_TYPES.find { |k, v| v == transaction.transaction_type }.first.to_s
     I18n.t('transaction.transaction_type_' + translation_key)

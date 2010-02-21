@@ -1,23 +1,27 @@
-<h1><%= t('.sign_in') %></h1>
+<div id="page-header" class="grid_12">
+	<h1><%= t('.sign_in') %></h1>
+</div>
 
-<% form_for(:session, {:url => session_path, :html => { :id => 'new_session'}}) do |f| %>
-  <fieldset>
-    <%= f.label :email, t('user.email') %>
-    <%= f.text_field :email %>
-  </fieldset>
-  <fieldset>
-    <%= f.label :password, t('user.password') %>
-    <%= f.password_field :password %>
-  </fieldset>
-  <fieldset>
-    <%= f.submit t('.sign_in') %>
-  </fieldset>
-<% end %>
+<div class="grid_12">
+	<% form_for(:session, {:url => session_path, :html => { :id => 'new_session'}}) do |f| %>
+	  <fieldset>
+	    <%= f.label :email, t('user.email') %>
+	    <%= f.text_field :email %>
+	  </fieldset>
+	  <fieldset>
+	    <%= f.label :password, t('user.password') %>
+	    <%= f.password_field :password %>
+	  </fieldset>
+	  <fieldset>
+	    <%= f.submit t('.sign_in') %>
+	  </fieldset>
+	<% end %>
 
-<ul>
-  <li><%= link_to t('users.new.title'), new_user_path %></li>
-  <li><%= link_to t('.forgot_password'), new_password_path %></li>
-</ul>
+	<ul>
+	  <li><%= link_to t('users.new.title'), new_user_path %></li>
+	  <li><%= link_to t('.forgot_password'), new_password_path %></li>
+	</ul>
+</div>
 
 <% content_for :js do %>
   $("#new_session").focusFirstFormElement();

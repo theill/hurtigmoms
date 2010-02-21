@@ -1,9 +1,11 @@
 <%- @meta = { :title => 'Bogføring for den lille virksomhed', :description => '', :blank_header => true } -%>
 
 <%- if signed_in? -%>
-	<div class="grid_12">
-		<h1>Oversigt</h1>
+	<div id="page-header" class="grid_12">
+		<h1>Overblik for <%=h current_user.active_fiscal_year.name %></h1>
+	</div>
 	
+	<div class="grid_12">
 		<%- if @action_required -%>
 			<div class="action-required">
 				<%- if @incomplete_transactions.any? -%>

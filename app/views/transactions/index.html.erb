@@ -1,17 +1,10 @@
 <%- @meta = { :title => t('.title'), :description => t('.description') } -%>
 
-<%- content_for :content_search do -%>
-	<li>
-	<%- form_tag request.path, :method => 'get' do -%>
-		<%= label_tag :search, t('.search') %>&nbsp;
-		<%= text_field_tag :search, params[:search] %>
-	<%- end -%>
-	</li>
-<%- end -%>
+<div id="page-header" class="grid_12">
+	<h1><%= t('.title') %><span>Endnu ikke bogførte transaktioner</span></h1>
+</div>
 
 <div class="grid_12">
-	<h1><%= t('.title') %><span>Endnu ikke bogførte transaktioner</span></h1>
-
 	<div id="transactions-filter">
 		<%- form_tag request.path, :method => 'get' do -%>
 			<fieldset>

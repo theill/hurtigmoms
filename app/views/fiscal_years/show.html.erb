@@ -1,0 +1,5 @@
+<%- @meta = { :title => t('.title'), :description => t('.description') } -%>
+<div class="grid_12">
+	<h1><%=h @fiscal_year.name %><span><%= "Gældende fra perioden #{@fiscal_year.start_date.strftime("%d/%m-%Y")} til #{@fiscal_year.end_date.strftime("%d/%m-%Y")}" %></span></h1>
+	
+</div>

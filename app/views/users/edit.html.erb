@@ -1,34 +1,39 @@
 <%- @meta = { :title => t('.title'), :description => t('.description') } -%>
-<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
 
-<%- form_for @user do |f| -%>
-	<%= f.error_messages %>
-	
-	<fieldset>
-		<%= f.label :company, t('user.company') + ' <span class="req">*</span>'%>
-		<%= f.text_field :company %>
-		<p class="hint">Firmanavn vises fx på udskrevne rapporter</p>
-	</fieldset>
-	
-	<fieldset>
-		<%= f.label :cvr, t('user.cvr') %>
-		<%= f.text_field :cvr %>
-	</fieldset>
-	
-	<fieldset>
-		<%= f.label :active_fiscal_year_id, t('user.active_fiscal_year') %>
-		<%= f.select(:active_fiscal_year_id, options_from_collection_for_select(@user.fiscal_years, 'id', 'name', @user.active_fiscal_year_id)) %>
-	</fieldset>
-	
-	<fieldset>
-		<%= f.label :password, t('user.password') %>
-		<%= f.password_field :password, :autocomplete => :off %>
-	</fieldset>
+<div id="page-header" class="grid_12">
+	<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
+</div>
 
-	<fieldset>
-		<%= f.label :password_confirmation, t('user.password_confirmation') %>
-		<%= f.password_field :password_confirmation, :autocomplete => :off %>
-	</fieldset>
+<div class="grid_12">
+	<%- form_for @user do |f| -%>
+		<%= f.error_messages %>
 	
-	<%= f.submit t('buttons.save') %>
-<%- end -%>
+		<fieldset>
+			<%= f.label :company, t('user.company') + ' <span class="req">*</span>'%>
+			<%= f.text_field :company %>
+			<p class="hint">Firmanavn vises fx på udskrevne rapporter</p>
+		</fieldset>
+	
+		<fieldset>
+			<%= f.label :cvr, t('user.cvr') %>
+			<%= f.text_field :cvr %>
+		</fieldset>
+	
+		<fieldset>
+			<%= f.label :active_fiscal_year_id, t('user.active_fiscal_year') %>
+			<%= f.select(:active_fiscal_year_id, options_from_collection_for_select(@user.fiscal_years, 'id', 'name', @user.active_fiscal_year_id)) %>
+		</fieldset>
+	
+		<fieldset>
+			<%= f.label :password, t('user.password') %>
+			<%= f.password_field :password, :autocomplete => :off %>
+		</fieldset>
+
+		<fieldset>
+			<%= f.label :password_confirmation, t('user.password_confirmation') %>
+			<%= f.password_field :password_confirmation, :autocomplete => :off %>
+		</fieldset>
+	
+		<%= f.submit t('buttons.save') %>
+	<%- end -%>
+</div>
