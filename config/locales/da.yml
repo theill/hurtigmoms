@@ -107,6 +107,9 @@ da:
       sessions:
         unconfirmed_email: Konto er endnu ikke konfirmeret. Konfirmerings mail vil blive gensendt
         bad_email_or_password: Forkert e-mail og kodeord kombination
+      passwords:
+        unknown_email: Ukendt e-mail adresse
+        deliver_change_password: Du vil modtage en e-mail om nogle få minutter. Den beskriver hvordan du skifter dit kodeord.
 
   pagination:
     previous: Forrige

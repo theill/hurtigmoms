@@ -2,9 +2,6 @@
   $("#transactions tbody").prepend("<%= escape_javascript(render(@transaction)) %>");
   $("#<%= dom_id(@transaction) %>").effect("highlight");
 
-	$("#total-income").html("<%= escape_javascript(render(:partial => 'total', :locals => { :amount => @total_income })) %>");
-	$("#total-expense").html("<%= escape_javascript(render(:partial => 'total', :locals => { :amount => @total_expense })) %>");
-  
 	// FIXME: move to live handler (use livequery?)
 	$("#<%= dom_id(@transaction) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
 

@@ -1,7 +1,11 @@
 class AboutController < ApplicationController
+  before_filter :redirect_to_overview, :only => :index
+  
   def index
-    render :layout => 'frontpage' and return unless signed_in?
-    
+    render :layout => 'frontpage'
+  end
+  
+  def overview
     @transactions_with_wrong_fiscal_year = current_user.active_fiscal_year.transactions.wrong_fiscal_year
     @incomplete_transactions = current_user.active_fiscal_year.transactions.incomplete
     @transactions_without_related_transactions = current_user.active_fiscal_year.transactions.without_related_transactions
@@ -29,4 +33,11 @@ class AboutController < ApplicationController
   def privacy
     
   end
+  
+  private
+  
+  def redirect_to_overview
+    render :overview if signed_in?
+  end
+  
 end

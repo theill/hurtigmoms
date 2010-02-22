@@ -1,0 +1,98 @@
+body.frontpage {
+	background-color: #fff;
+}
+
+	body.frontpage .shot {
+		border: 10px solid #eee;
+		text-align: center;
+	}	
+
+	body.frontpage a.elastic img {
+		border: 1px solid #bbb;
+		width: 278px;
+	}
+
+	body.frontpage a {
+		color: #666;
+		text-decoration: underline;
+	}
+	
+	body.frontpage #h {
+		margin: 0;
+	}
+	
+		body.frontpage .intro {
+			background-image: url(/images/bg-clouds.png);
+			height: 190px;
+		}
+
+			body.frontpage .intro h1,
+			body.frontpage .intro h3 {
+				text-shadow: 0 0 5px #000;
+			}
+		
+			body.frontpage .intro h1 {
+				font-family: "Cambria","Georgia","Times New Roman",Times,sans-serif;
+				font-size: 48px;
+				color: #fff;
+				margin: 20px 0 0 0;
+			}
+				body.frontpage .intro h1 a {
+					color: #fff;
+					text-decoration: none;
+				}
+			body.frontpage .intro h3 {
+				font-size: 22px;
+				color: #fff;
+				text-indent: 30px;
+				margin-top: -5px;
+			}
+		
+	body.frontpage .callout {
+		margin-top: 20px;
+		font-size: 18px;
+		letter-spacing: -0.075em;
+	}
+	
+	body.frontpage .signup-box {
+		background-color: #ffc;
+		background: -webkit-gradient(linear, right top, right bottom, from(#ffffcc), to(#ffff99));
+		background: -moz-linear-gradient(-90deg, #ffffcc, #ffff99);
+		padding: 20px;
+		margin-top: -80px;
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+		-moz-box-shadow: 0 0 10px #666;
+		-webkit-box-shadow: 0 0 10px #666;
+	}
+
+		body.frontpage .signup-box fieldset {
+			width: 160px;
+			margin-right: 20px;
+			float: left;
+		}
+
+			body.frontpage .signup-box fieldset.last {
+				margin: 0;
+			}
+
+			body.frontpage .signup-box fieldset input[type=text] {
+				width: 146px;
+				font-size: 18px;
+				border: solid 1px #999;
+			}
+
+	body.frontpage .button {
+		font-family: "Cambria","Georgia","Times New Roman",Times,sans-serif;
+		font-size: 20px;
+		
+		background: -webkit-gradient(linear, right top, left bottom, from(#6be7c5), to(#1dbc75));
+		background: -moz-linear-gradient(-90deg, #6be7c5, #1dbc75);
+		text-decoration: none;
+		text-transform: none;
+		color: #fff;
+	}
+
+	body.frontpage #f {
+		margin-top: 180px;
+	}

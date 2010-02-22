@@ -1,11 +1,15 @@
-<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
+<div id="page-header" class="grid_12">
+	<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
+</div>
 
-<% form_for :password, :url => passwords_path do |form| %>
-	<fieldset>
-    <%= form.label :email, t('user.email') %>
-    <%= form.text_field :email %>
-  </fieldset>
-	<fieldset>
-    <%= form.submit t('.buttons.reset') %>
-  </fieldset>
-<% end %>
+<div class="grid_12">
+	<% form_for :password, :url => passwords_path do |form| %>
+		<fieldset>
+	    <%= form.label :email, t('user.email') %>
+	    <%= form.text_field :email %>
+	  </fieldset>
+		<fieldset>
+	    <%= form.submit t('.buttons.reset') %>
+	  </fieldset>
+	<% end %>
+</div>

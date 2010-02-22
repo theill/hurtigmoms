@@ -6,7 +6,7 @@
 		<meta http-equiv="imagetoolbar" content="no" />
 		<meta name="description" content="<%=h description %>" />
 		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-		<%= javascript_include_tag('jquery-1.4.1.min', 'jquery-ui.min', 'jquery.ui.datepicker-da', 'jquery.form', 'date', 'date_da', 'jquery.autocomplete', 'jquery.numberformatter-1.1.2.min', 'application') %>
+		<%= javascript_include_tag('jquery-1.4.2.min', 'jquery-ui.min', 'jquery.ui.datepicker-da', 'jquery.form', 'date', 'date_da', 'jquery.autocomplete', 'jquery.numberformatter-1.1.2.min', 'application') %>
 		<%= stylesheet_link_tag('reset', 'text', '960', 'datePicker', 'autocomplete', 'base') %>
 		<%= yield :head -%>
 		<script type="text/javascript">
@@ -54,10 +54,8 @@
 		
 		<%- if flash[:success] || flash[:failure] || flash[:notice] -%>
 			<div class="container_12">
-  			<div id="flash" class="<%= flash.keys.to_s %>">
-					<div class="grid_12">
-						<%= flash[:success] || flash[:failure] || flash[:notice] %>
-					</div>
+  			<div id="flash" class="grid_12 <%= flash.keys.to_s %>">
+					<%= flash[:success] || flash[:failure] || flash[:notice] %>
 				</div>
 			</div>
 		<%- end -%>

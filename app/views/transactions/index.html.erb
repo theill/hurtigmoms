@@ -51,13 +51,6 @@
 				<%= render @transactions %>
 				<%# render :partial => 'grouped', :collection => @transactions %>
 			</tbody>
-			<tfoot>
-				<tr>
-					<td colspan="3"></td>
-					<td class="number income" id="total-income"><%= render(:partial => 'total', :locals => { :amount => @total_income }) %></td>
-					<td class="number expense" id="total-expense"><%= render(:partial => 'total', :locals => { :amount => @total_expense }) %></td>
-				</tr>
-			</tfoot>
 			<%- if @transactions.total_pages > 1 -%>
 			<tfoot>
 				<tr>

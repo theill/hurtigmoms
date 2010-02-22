@@ -1,9 +1,7 @@
-<%- @meta = { :title => 'Bogføring for den lille virksomhed', :description => '', :blank_header => true } -%>
-
 <div class="intro">
 	<div class="container_12">
 		<div class="grid_12">
-			<h1><a href="/"><%= t('application.name') %></a></h1>
+			<h1>hurtigmoms</h1>
 			<h3>intelligent bogføring for din virksomhed</h3>
 		</div>
 	</div>
@@ -31,30 +29,27 @@
 	<div class="grid_5">
 		<div class="signup-box">
 			
-			<h2>Tilmeld dig vores beta</h2>
-			<p>
-				<%= t('application.name') %> er for øjeblikket i lukket beta hvilket 
-				betyder, at du ikke kan oprette en konto. Du er dog velkommen til at
-				tilmelde dig vores beta og vi vil sende dig et login.
-			</p>
-			<p>
-				<form action="http://commanigy.createsend.com/t/y/s/hduruy/" method="post">
-				<div>
-					<fieldset>
-						<label for="name">Navn:</label> <input type="text" name="cm-name" id="name" />
-					</fieldset>
-					<fieldset class="last">
-						<label for="hduruy-hduruy">E-mail:</label> <input type="text" name="cm-hduruy-hduruy" id="hduruy-hduruy" />
-					</fieldset>
+			<!-- <form action="http://commanigy.createsend.com/t/y/s/hduruy/" method="post">
+			<div>
+			<label for="name">Name:</label><br /><input type="text" name="cm-name" id="name" /><br />
+			<label for="hduruy-hduruy">Email:</label><br /><input type="text" name="cm-hduruy-hduruy" id="hduruy-hduruy" /><br />
 
-					<div class="clear"></div>
-					
-					<input type="submit" value="Tilmeld" /> og få et login via e-mail
-				</div>
-				</form>
-			</p>
+			<input type="submit" value="Skriv mig op" />
+			</div>
+			</form> -->
+			
+			<h2>Prøv det gratis i 60 dage</h2>
 			<p>
-				Er du allerede en bruger? <%= link_to("Log ind", new_session_path) %> med det
+				Hurtigmoms er i <b>beta</b> og det er derfor gratis at tilmelde sig. 
+				Du kan enten vælge at:
+			</p>
+			<ol>
+				<li>sende et bilag på <code>bilag@hurtigmoms.dk</code> og 
+				vi opretter en konto til dig inden for et minut.</li>
+				<li>benytter vores <%= link_to('tilmeldingsformular', sign_up_path) %></li>
+			</ol>
+			<p>
+				Allerede bruger? <%= link_to("Log ind", new_session_path) %> med det
 				samme.
 			</p>
 		</div>
@@ -90,13 +85,7 @@
 	<div class="clear"></div>
 	
 	<div id="f">
-		<ul>
-			<li><%= link_to('Sikkerhed', privacy_path) %></li>
-		</ul>
-		<div>
-			<%= link_to('Hjælp', help_path) %><br />
-			<%= t('application.name') %> er udviklet er <a href="http://commanigy.com" title="Commanigy">Commanigy</a>
-		</div>
+		Udviklet af <%= link_to('Commanigy', 'http://commanigy.com/') %> 
 	</div>
 	
 	<%- content_for :js do -%>

@@ -1,6 +1,10 @@
-<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
+<div id="page-header" class="grid_12">
+	<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
+</div>
 
-<% form_for @user do |f| %>
-  <%= render :partial => 'form', :object => f %>
-  <%= f.submit t('.buttons.save') %>
-<% end %>
+<div class="grid_12">
+	<% form_for @user do |f| %>
+	  <%= render :partial => 'form', :object => f %>
+	  <%= f.submit t('.buttons.save') %>
+	<% end %>
+</div>
