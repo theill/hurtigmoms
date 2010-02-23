@@ -37,7 +37,7 @@ class AboutController < ApplicationController
   private
   
   def redirect_to_overview
-    render :overview if signed_in?
+    redirect_to :overview if signed_in?
   end
   
 end

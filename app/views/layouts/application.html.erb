@@ -24,7 +24,7 @@
 						<ul>
 							<!-- <li style="float: right"><%= link_to(h(current_user.active_fiscal_year.name), current_user.active_fiscal_year) %> <span>for <%=h company_title %></span></li> -->
 							<!-- <li class="application-name"><%=h current_user.active_fiscal_year.name + ' for ' + company_title %></li> -->
-							<%= menu_tag(t('.home'), root_path) %>
+							<%= menu_tag(t('.home'), overview_path) %>
 							<%= menu_tag(t('.transactions'), fiscal_year_transactions_path(current_user.active_fiscal_year)) %>
 							<%# menu_tag(t('.accounts'), accounts_path) %>
 							<%# menu_tag(t('.reports'), reports_path) %>

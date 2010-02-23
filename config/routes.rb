@@ -28,6 +28,7 @@ ActionController::Routing::Routes.draw do |map|
   map.sign_in 'sign_in', :controller => :sessions, :action => 'new'
   map.sign_out 'sign_out', :controller => :sessions, :action => 'destroy', :method => :delete
   map.ping 'ping', :controller => :about, :action => :ping
+  map.overview 'oversigt', :controller => :about, :action => :overview
   
   map.api 'api', :controller => 'about', :action => 'api'
   map.tour 'tour', :controller => 'about', :action => 'tour'
