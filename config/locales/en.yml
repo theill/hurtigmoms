@@ -130,7 +130,8 @@ en:
 
   sessions:
     new:
-      sign_in: Sign in
+      title: Sign in
+      description: ''
       forgot_password: Forgot password?
 
   passwords:

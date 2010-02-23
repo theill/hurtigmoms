@@ -198,7 +198,8 @@ da:
         
   sessions:
     new:
-      sign_in: Log ind
+      title: Log ind
+      description: ''
       forgot_password: Glemt kodeord?
 
   passwords:
