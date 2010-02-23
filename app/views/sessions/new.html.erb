@@ -7,11 +7,11 @@
 <div class="grid_12">
 	<% form_for(:session, {:url => session_path, :html => { :id => 'new_session'}}) do |f| %>
 	  <fieldset>
-	    <%= f.label :email, t('user.email') %>
+	    <%= f.label :email, t('user.email') + ' <span class="req">*</span>' %>
 	    <%= f.text_field :email %>
 	  </fieldset>
 	  <fieldset>
-	    <%= f.label :password, t('user.password') %>
+	    <%= f.label :password, t('user.password') + ' <span class="req">*</span>' %>
 	    <%= f.password_field :password %>
 	  </fieldset>
 	  <fieldset>

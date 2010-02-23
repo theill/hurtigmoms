@@ -128,11 +128,22 @@ en:
       buttons:
         save: Save
 
+  reports:
+    index:
+      title: Reports
+      description: 'Income &amp; expenses in current fiscal year'
+
+  customers:
+    index:
+      title: Customers
+      description: All
+
   sessions:
     new:
       title: Sign in
       description: ''
       forgot_password: Forgot password?
+      sign_in: Log ind
 
   passwords:
     new:

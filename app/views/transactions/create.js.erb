@@ -16,7 +16,7 @@
 	// rebind events
 	$("#<%= dom_id(@transaction) %> form").ajaxForm({ dataType: "script" });
 	
-	$("#transaction_customer_name").autocomplete(hurtigmoms.customers_url, {
+	$("#transaction_customer_name").autocomplete(hurtigmoms.search_customers_url, {
 		dataType: 'json',
 		max: 25,
 		scroll: true,

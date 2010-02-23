@@ -201,6 +201,7 @@ da:
       title: Log ind
       description: ''
       forgot_password: Glemt kodeord?
+      sign_in: Log ind
 
   passwords:
     new:

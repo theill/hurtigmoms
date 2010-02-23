@@ -1,0 +1,20 @@
+$("#spinner").hide();
+
+$("#transactions").removeClass("filtering");
+$("#transactions tbody").html('');
+$("#transactions tfoot").html('');
+
+<%- if @transactions.any? -%>
+	$("#transactions").show();
+	$("#transactions-search-empty").hide();
+	
+	<%- @transactions.each do |transaction| -%>
+		$("#transactions").append("<%= escape_javascript(render(transaction)) %>");
+
+		// FIXME: move to live handler (use livequery?)
+		$("#<%= dom_id(transaction) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
+	<%- end -%>
+<%- else -%>
+	$("#transactions").hide();
+	$("#transactions-search-empty").show();
+<%- end -%>

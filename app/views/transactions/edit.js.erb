@@ -17,7 +17,7 @@ $("#transaction_amount").blur(function() {
 $("#transaction_amount").val('<%= number_to_currency(@transaction.amount, :unit => '', :format => '%n') %>');
 
 // move to generic 'edit/create' function
-$("#transaction_customer_name").autocomplete(hurtigmoms.customers_url, {
+$("#transaction_customer_name").autocomplete(hurtigmoms.search_customers_url, {
 	dataType: 'json',
 	max: 25,
 	scroll: true,

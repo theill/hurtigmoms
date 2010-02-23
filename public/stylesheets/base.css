@@ -71,6 +71,11 @@ fieldset label {
 	display: block;
 }
 
+#spinner {
+	display: none;
+	float: right;
+}
+
 .hint {
 	color: #999;
 	font-size: 11px;
@@ -464,6 +469,34 @@ table tr.row-editing div.box {
 		font-size: 14px;
 	}
 
+#transactions-search {}
+	#transactions-search h4 {
+		margin: 0;
+	}
+
+	#transactions-search .info {
+		font-size: 11px;
+	}
+	
+	#transactions-search #transactions-search-simple {}
+	
+	#transactions-search #transactions-search-advanced {
+		display: none;
+	}
+
+		#transactions-search-simple fieldset {
+			margin: 0;
+		}
+	
+		#transactions-search-simple #search {
+			font-size: 18px;
+			width: 320px;
+		}
+
+#transactions-search-empty {
+	display: none;
+}
+
 #transactions-filter {
 	background: -moz-linear-gradient(-90deg, #ffffff, #f9f9f9);
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#f9f9f9));
@@ -480,6 +513,10 @@ table tr.row-editing div.box {
 	}
 	
 #transactions {}
+	#transactions.filtering tbody {
+		opacity: 0.25;
+	}
+	
 	#transactions thead .account-type {
 		color: #779;
 	}
@@ -648,8 +685,8 @@ table tr.row-editing div.box {
 	}
 
 #attachment-frame {
-	-moz-box-shadow: 0 0 10px #999;
-	-webkit-box-shadow: 0 0 10px #999;
+/*	-moz-box-shadow: 0 0 10px #999;
+	-webkit-box-shadow: 0 0 10px #999;*/
 }
 
 	#attachment-frame img {

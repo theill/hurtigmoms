@@ -1,42 +1,50 @@
 <%- @meta = { :title => t('.title'), :description => t('.description') } -%>
 
 <div id="page-header" class="grid_12">
-	<h1><%= t('.title') %><span>Endnu ikke bogførte transaktioner</span></h1>
-</div>
-
-<div class="grid_12">
-	<div id="transactions-filter">
+	<!-- <h1><%= t('.title') %><span>Endnu ikke bogførte transaktioner</span></h1> -->
+	<div class="grid_9 alpha">
 		<%- form_tag request.path, :method => 'get' do -%>
-			<fieldset>
-				<%= label_tag :search, t('.search') %>
-				<%= text_field_tag :search, params[:search] %>
-			</fieldset>
-			<fieldset>
-				<label for="">Dato interval</label>
-				<%= select_date @start_date, :prefix => 'start_date', :prompt => true %> - <%= select_date @end_date, :prefix => 'end_date', :prompt => true %>
-			</fieldset>
-			<fieldset>
-				<label for="">Transaktionstype</label>
-				<%= select_tag 'transaction_type', options_for_transaction_types(@transaction_type) %>
-			</fieldset>
-			<fieldset>
-				<label for="">&nbsp;</label>
-				<%= submit_tag 'Filter' %>
-			</fieldset>
+			<div id="transactions-search">
+				<div id="transactions-search-simple" class="pane">
+					<h4>Filtrér transaktioner</h4>
+					<fieldset>
+						<%= text_field_tag :search, params[:search], :autocomplete => :off %> <div id="spinner">søger...</div>
+						<p class="info">eller <a href="#" class="toggle">søg i dato-interval eller efter type</a></p>
+					</fieldset>
+				</div>
+				<div id="transactions-search-advanced" class="pane">
+					<h4>Filtrer transaktioner</h4>
+					<fieldset>
+						<label for="">Dato interval</label>
+						<%= select_date @start_date, :prefix => 'start_date', :prompt => true %> - <%= select_date @end_date, :prefix => 'end_date', :prompt => true %>
+					</fieldset>
+					<fieldset>
+						<label for="">Transaktionstype</label>
+						<%= select_tag 'transaction_type', options_for_transaction_types(@transaction_type) %>
+					</fieldset>
+					<fieldset>
+						<label for="">&nbsp;</label>
+						<%= submit_tag 'Filter' %>
+						<p class="info">eller <a href="#" class="toggle">benyt fritekstsøgning</a></p>
+					</fieldset>
+				</div>
+			</div>
 		<%- end -%>
-		<div class="clear"></div>
 	</div>
-
-	<%- if @transactions.any? -%>
+	<div class="grid_3 omega">
 		<div class="quick-buttons">
 			<!-- <%= link_to 'Tilføj salg', new_fiscal_year_transaction_path(current_user.active_fiscal_year), { :class => 'button show income' } %>
 			<%= link_to 'Tilføj køb', new_fiscal_year_transaction_path(current_user.active_fiscal_year), { :class => 'button show expense' } %>
 			<%= link_to 'Tilføj betaling', new_fiscal_year_transaction_path(current_user.active_fiscal_year), { :class => 'button show payment' } %> -->
-			
+		
 			<%= link_to t('.buttons.add'), new_fiscal_year_transaction_path(current_user.active_fiscal_year), { :class => 'button show', :id => 'add-new-transaction' } %>
 			<!-- <%= link_to 'Import postings', new_posting_import_path, { :class => 'button' } %> -->
 		</div>
-		
+	</div>
+</div>
+
+<div class="grid_12">
+	<%- if @transactions.any? -%>
 		<table id="transactions" class="editable-table">
 			<thead>
 				<tr>
@@ -64,12 +72,12 @@
 			De har ingen registrerede posteringer.
 		</p>
 		
-		<div class="quick-buttons">
-			<%= link_to 'Tilføj postering', new_fiscal_year_transaction_path(current_user.active_fiscal_year), { :class => 'button show', :id => 'add-new-transaction' } %>
-		</div>
-		
 		<table id="transactions" class="editable-table"></table>
 	<%- end -%>
+	
+	<div id="transactions-search-empty">
+		Der er ingen transaktioner der matcher søgekriteriet.
+	</div>
 </div>
 
 <%- content_for :js do -%>
@@ -79,6 +87,14 @@
 //		$.get('<%= ping_fiscal_year_transactions_path(current_user.active_fiscal_year) %>', null, null, "script");
 //		retry();
 //	});
+	
+	$("#transactions-search").toggleable();
+	
+	$("#transactions-search #search").delayedObserver(function(d, e) {
+		$("#spinner").show();
+		$("#transactions").addClass("filtering");
+		$.get("<%= search_fiscal_year_transactions_path(current_user.active_fiscal_year) %>", $(this).closest("form").serialize(), null, "script");
+	});
 	
 	$("#transactions .transaction.pay td.note").live("mouseover", function() {
 		if (!$(this).data("init")) {

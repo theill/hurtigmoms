@@ -6,7 +6,7 @@
 		<meta http-equiv="imagetoolbar" content="no" />
 		<meta name="description" content="<%=h description %>" />
 		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-		<%= javascript_include_tag('jquery-1.4.2.min', 'jquery-ui.min', 'jquery.ui.datepicker-da', 'jquery.form', 'date', 'date_da', 'jquery.autocomplete', 'jquery.numberformatter-1.1.2.min', 'application') %>
+		<%= javascript_include_tag('jquery-1.4.2.min', 'jquery-ui.min', 'jquery.ui.datepicker-da', 'jquery.form', 'date', 'date_da', 'jquery.autocomplete.pack', 'jquery.numberformatter-1.1.2.min', 'application') %>
 		<%= stylesheet_link_tag('reset', 'text', '960', 'datePicker', 'autocomplete', 'base') %>
 		<%= yield :head -%>
 		<script type="text/javascript">
@@ -72,7 +72,7 @@
 				</ul>
 				<div>
 					<%= link_to('Hjælp', help_path) %><br />
-					<%= t('application.name') %> er udviklet er <a href="http://commanigy.com" title="Commanigy">Commanigy</a>
+					<b><%= t('application.name') %></b> er udviklet af <a href="http://commanigy.com" title="Commanigy">Commanigy</a>
 				</div>
 			</div>
 		</div>

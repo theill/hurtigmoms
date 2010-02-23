@@ -9,7 +9,7 @@ $("#<%= dom_id(@posting) %> form").bind("submit", function() {
 	return false;
 });
 
-$("#posting_customer_name").autocomplete(hurtigmoms.customers_url, {
+$("#posting_customer_name").autocomplete(hurtigmoms.search_customers_url, {
 	dataType: 'json',
 	max: 25,
 	scroll: true,
