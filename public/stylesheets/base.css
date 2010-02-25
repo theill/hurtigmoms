@@ -222,7 +222,7 @@ div.action-bar {
 			cursor: pointer;
 		}
 		
-		#h ul li.selected {
+		#h ul > li.selected {
 			background-color: #fff;
 			background: -moz-linear-gradient(-90deg, #eeeeee, #ffffff);
 			background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#eeeeee), to(#ffffff));
@@ -241,6 +241,52 @@ div.action-bar {
 		#h .search li {
 			float: right;
 		}
+
+		#nav {
+			display: inline-block;
+		}
+		
+		#nav li {
+			float: left;
+			position: relative;
+			list-style: none;
+		}
+
+		#nav li:hover > ul {
+			display: block;
+		}
+
+		#nav ul {
+			display: none;
+			background-color: #666;
+			position: absolute;
+			top: 33px;
+			right: 0;
+		}
+		#nav ul li {
+			float: none !important;
+			text-align: right;
+			font-size: 11px;
+			padding: 2px 10px 2px 40px;
+		}
+		
+			#nav li:hover ul li:hover {
+				background-color: #777;
+			}
+
+		/* clearfix */
+		#nav:after {
+			content: ".";
+			display: block;
+			clear: both;
+			visibility: hidden;
+			line-height: 0;
+			height: 0;
+		}
+
+
+
+
 
 /*#flash {
 	height: 40px;
@@ -297,6 +343,10 @@ div.action-bar {
 	-webkit-box-shadow: 2px 2px 5px #ccc;
 }
 
+	#c #no-page-header {
+		margin: 0 0 10px 0;
+	}
+
 	#c #page-header {
 		background-color: #efe;
 		background: -moz-linear-gradient(-90deg, #ffffff, #eeffee);
@@ -347,6 +397,7 @@ div.action-bar {
 	
 		#f ul li {
 			list-style: none;
+			float: left;
 		}
 
 .sidebar {}
@@ -476,6 +527,7 @@ table tr.row-editing div.box {
 
 	#transactions-search .info {
 		font-size: 11px;
+		margin: 0;
 	}
 	
 	#transactions-search #transactions-search-simple {}
@@ -520,6 +572,12 @@ table tr.row-editing div.box {
 	#transactions thead .account-type {
 		color: #779;
 	}
+	
+	#transactions thead .income, 
+	#transactions thead .expense {
+		width: 10%;
+	}
+
 	#transactions thead .created_at, #transactions thead .attachment_no {
 		width: 1%;
 	}

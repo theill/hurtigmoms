@@ -1,13 +1,18 @@
-<h1>Kontoudtog indlæst</h1>
+<div id="page-header" class="grid_12">
+	<h1>Kontoudtog indlæst</h1>
+</div>
 
-<p>
-	Dine posteringer er nu blevet importeret.
-</p>
+<div class="grid_12">
+	<p>
+		Dine betalings-transaktioner fra banken er nu blevet indlæst.
+	</p>
 
-<!-- <p>
-	Der blev i alt importeret <b><%= @success_count %></b> hvoraf <b><%= @duplicate_count %></b> var duplikater og <b><%= @failed_count %></b> fejlede.
-</p> -->
+	<!-- <p>
+		Der blev i alt importeret <b><%= @success_count %></b> hvoraf <b><%= @duplicate_count %></b> var duplikater og <b><%= @failed_count %></b> fejlede.
+	</p> -->
 
-<p>
-	Gå til <%= link_to(t('postings.index.title'), fiscal_year_transactions_path(current_user.active_fiscal_year)) %> for at se dine transaktioner.
-</p>
+	<p>
+		Gå til <%= link_to(t('transactions.index.title'), fiscal_year_transactions_path(current_user.active_fiscal_year)) %> 
+		for at se listen af alle dine transaktioner.
+	</p>
+</div>

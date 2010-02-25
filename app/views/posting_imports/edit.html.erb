@@ -1,47 +1,51 @@
-<h1>Kontoudtog <span>Match indlæste rækker</span></h1>
+<div id="page-header" class="grid_12">
+	<h1>Kontoudtog <span>Match indlæste rækker</span></h1>
+</div>
 
-<p>
-	Vi har modtaget omkring <b><%= @rows.length %></b> posteringer.
-</p>
-
-<p>
-	Du skal nu hjælpe med at matche disse kolonner.
-</p>
-
-<% form_for(@posting_import) do |f| %>
-  <%= f.error_messages %>
-
-	<table id="postings">
-		<thead>
-			<tr>
-				<%- @rows.headers.each do |header| -%>
-					<th><%=h header %></th>
-				<%- end -%>
-			</tr>
-		</thead>
-		<tfoot class="mapping">
-			<%- @rows.headers.to_a.each_with_index do |header, idx| -%>
-				<th>
-					<%= select_tag 'posting_import[mapping]['+idx.to_s+']', options_for_select([['', ''], ['Dato', 'created_at'], ['Tekst', 'note'], ['Beløb', 'amount']]), {:include_blank => true, :class => 'import-into-column'} %>
-				</th>
-			<%- end -%>
-		</tfoot>
-		<tbody>
-			<%# FIXME: make last three lines fade to white ... %>
-			<%- idx = 0 -%>
-			<%- @rows.each do |r| -%>
-				<tr>
-					<%- @rows.headers.each do |h| -%>
-						<td><%= r[h] %></td>
-					<%- end -%>
-				</tr>
-				<% idx += 1 %>
-				<% if idx >= 10 then break end %>
-			<%- end -%>
-		</tbody>
-	</table>
+<div class="grid_12">
+	<p>
+		Vi har modtaget omkring <b><%= @rows.length %></b> posteringer.
+	</p>
 
 	<p>
-	  <%= f.submit 'Match og importer rækker' %> eller annuller
+		Du skal nu hjælpe med at matche disse kolonner.
 	</p>
-<% end %>
+
+	<% form_for(@posting_import) do |f| %>
+	  <%= f.error_messages %>
+
+		<table id="postings">
+			<thead>
+				<tr>
+					<%- @rows.headers.each do |header| -%>
+						<th><%=h header %></th>
+					<%- end -%>
+				</tr>
+			</thead>
+			<tfoot class="mapping">
+				<%- @rows.headers.to_a.each_with_index do |header, idx| -%>
+					<th>
+						<%= select_tag 'posting_import[mapping]['+idx.to_s+']', options_for_select([['', ''], ['Dato', 'created_at'], ['Tekst', 'note'], ['Beløb', 'amount']]), {:include_blank => true, :class => 'import-into-column'} %>
+					</th>
+				<%- end -%>
+			</tfoot>
+			<tbody>
+				<%# FIXME: make last three lines fade to white ... %>
+				<%- idx = 0 -%>
+				<%- @rows.each do |r| -%>
+					<tr>
+						<%- @rows.headers.each do |h| -%>
+							<td><%= r[h] %></td>
+						<%- end -%>
+					</tr>
+					<% idx += 1 %>
+					<% if idx >= 10 then break end %>
+				<%- end -%>
+			</tbody>
+		</table>
+
+		<p>
+		  <%= f.submit 'Match og importer rækker' %> eller annuller
+		</p>
+	<% end %>
+</div>

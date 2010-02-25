@@ -1,7 +1,7 @@
 <%- @meta = { :title => 'Bogføring for den lille virksomhed', :description => '', :blank_header => true } -%>
 
-<div id="page-header" class="grid_12">
-	<h1>Overblik for <%=h current_user.active_fiscal_year.name %></h1>
+<div id="no-page-header" class="grid_12">
+	<!-- <h1>Overblik for <%=h current_user.active_fiscal_year.name %></h1> -->
 </div>
 
 <div class="grid_12">
@@ -105,7 +105,7 @@
 			<li><%= link_to('Tilføj en indtægter eller udgifter', fiscal_year_transactions_path(current_user.active_fiscal_year)) %></li>
 			<!-- <li><%= link_to('Tilpas din kontoplan', accounts_path) %></li> -->
 			<li><%= link_to('Tilpas dine kunder', customers_path) %></li>
-			<!-- <li><%= link_to('Indlæs dine kontoudtog', new_posting_import_path) %></li> -->
+			<li><%= link_to('Indlæs dine kontoudtog', new_posting_import_path) %></li>
 		</ol>
 	</div>
 </div>

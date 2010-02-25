@@ -17,18 +17,20 @@ ActionController::Routing::Routes.draw do |map|
     users.resource :confirmation, :controller => 'clearance/confirmations', :only => [:new, :create]
   end
   
-  map.resource  :session, :only => [:new, :create, :destroy]
+  map.resource :session, :only => [:new, :create, :destroy]
   
   map.namespace :admin do |admin|
     admin.resources :users
   end
   
   map.settings 'indstillinger', :controller => :users, :action => :edit
-  map.sign_up 'sign_up', :controller => :users, :action => 'new'
-  map.sign_in 'sign_in', :controller => :sessions, :action => 'new'
-  map.sign_out 'sign_out', :controller => :sessions, :action => 'destroy', :method => :delete
   map.ping 'ping', :controller => :about, :action => :ping
   map.overview 'oversigt', :controller => :about, :action => :overview
+
+  # override clearance
+  map.sign_out 'sign_out', :controller => :sessions, :action => :destroy, :method => :delete
+  map.resources :passwords, :as => 'kodeord', :controller => 'clearance/passwords', :only => [:new, :create]
+  
   
   map.api 'api', :controller => 'about', :action => 'api'
   map.tour 'tour', :controller => 'about', :action => 'tour'

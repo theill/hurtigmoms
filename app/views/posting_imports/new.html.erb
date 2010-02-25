@@ -1,19 +1,31 @@
-<h1>Kontoudtog <span>Importering</span></h1>
+<div id="page-header" class="grid_12">
+	<h1>Kontoudtog <span>Importering</span></h1>
+</div>
 
-<p>
-	Du har herfra mulighed for at importere transaktioner fra din bank. Du
-	skal først hente dine transaktioner via din netbank som en CSV fil.
-</p>
+<div class="grid_9">
+	<p>
+		Du har herfra mulighed for at importere transaktioner fra din bank. Du
+		skal først hente dine transaktioner via din netbank som en .csv fil.
+	</p>
 
-<% form_for(@posting_import, :html => {:multipart => true}) do |f| %>
-  <%= f.error_messages %>
+	<% form_for(@posting_import, :html => {:multipart => true}) do |f| %>
+	  <%= f.error_messages %>
 
-	<fieldset>
-		<%= f.file_field :file %>
-		<p class="hint">Vælg det kontoudtog du har hentet fra din bank</p>
-	</fieldset>
+		<fieldset>
+			<%= f.file_field :file %>
+			<p class="hint">Vælg det kontoudtog du har hentet fra din bank</p>
+		</fieldset>
 	
-  <p>
-    <%= f.submit 'Start importering' %>
-  </p>
-<% end %>
+	  <p>
+	    <%= f.submit 'Start importering' %>
+	  </p>
+	<% end %>
+</div>
+
+<div class="grid_3">
+	<h4>Hvad er en .csv fil?</h4>
+	<p>
+		CSV står for "komma-separerat værdier" og benyttes til at gemme en data
+		mængde.
+	</p>
+</div>

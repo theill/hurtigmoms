@@ -16,7 +16,6 @@ class AboutController < ApplicationController
       @other_fiscal_years = current_user.fiscal_years.delete_if { |fy| fy == current_user.active_fiscal_year }
     end
     
-    
     @latest_import = current_user.posting_imports.find(:first, :order => 'created_at DESC')
   end
   

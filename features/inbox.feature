@@ -10,7 +10,7 @@ Feature: Inbox mail parsing
 		Then I should see "Harvest Subscription"
 		And I should not see "Fwd: Harvest Subscription"
 		And I should see "04/09-2009"
-		And I should see "~DKK60.19"
+		And I should see "~DKK63.95"
  
 	Scenario: Parsing a Harvest invoice mail
 		Given I have signed in with "john.doe@hurtigmoms.test/password"

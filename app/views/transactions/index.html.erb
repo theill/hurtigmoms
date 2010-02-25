@@ -6,10 +6,10 @@
 		<%- form_tag request.path, :method => 'get' do -%>
 			<div id="transactions-search">
 				<div id="transactions-search-simple" class="pane">
-					<h4>Filtrér transaktioner</h4>
+					<h4>Søg efter transaktioner</h4>
 					<fieldset>
 						<%= text_field_tag :search, params[:search], :autocomplete => :off %> <div id="spinner">søger...</div>
-						<p class="info">eller <a href="#" class="toggle">søg i dato-interval eller efter type</a></p>
+						<!-- <p class="info">eller <a href="#" class="toggle">søg i dato-interval eller efter type</a></p> -->
 					</fieldset>
 				</div>
 				<div id="transactions-search-advanced" class="pane">
@@ -51,8 +51,8 @@
 					<th class="created_at"><%= t('transaction.created_at') %></th>
 					<th class="attachment_no"><%= t('transaction.attachment_no') %></th>
 					<th><%= t('transaction.note') %></th>
-					<th><span class="income"><%= t('transaction.amount_in') %></span></th>
-					<th><span class="expense"><%= t('transaction.amount_out') %></span></th>
+					<th class="income"><span class="income"><%= t('transaction.amount_in') %></span></th>
+					<th class="expense"><span class="expense"><%= t('transaction.amount_out') %></span></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -117,7 +117,9 @@
 			var url = '<%= fiscal_year_transaction_equalizations_path(current_user.active_fiscal_year, 0) %>'.replace(/\/0\//, '/' + transaction_id + '/');
 			$.post(url, { 'equalization[transaction_id]': transaction_id, 'equalization[related_transaction_id]': related_transaction_id }, null, "script");
 		}
-	});			
+	});
+	
+	$("#search").focus();
 
 <%- end -%>
 

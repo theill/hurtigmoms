@@ -28,6 +28,10 @@ class PostingImportsController < ApplicationController
     @posting_import = current_user.posting_imports.find(params[:id])
     
     @rows = @posting_import.parse
+    if @rows.blank?
+      flash[:failure] = "Det var ikke muligt at indlæse den angive fil."
+      render :action => :new
+    end
   end
 
   # POST /posting_imports

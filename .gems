@@ -5,3 +5,4 @@ fastercsv
 will_paginate --version '>=2.3.12' --source http://gemcutter.org
 rubyzip
 prawn --version '>=0.7.2'
+pdf-reader --version '>=0.8.3' --source http://gemcutter.org

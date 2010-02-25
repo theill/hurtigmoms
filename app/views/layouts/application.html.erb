@@ -38,14 +38,27 @@
 				</div>
 				<div class="grid_6 search">
 					<%- if signed_in? -%>
-						<ul>
-							<%= menu_tag(t('.sign_out'), sign_out_path) %>
+						<ul id="nav">
+							<%# menu_tag(t('.sign_out'), sign_out_path) %>
 							<!-- soon <li><div><form method="get"><input type="text" autocomplete="off" size="25" maxlength="100" placeholder="Search" title="Search" value="" tabindex="1" results="0" name="q" id="q"/></form></div></li> -->
-							<%= menu_tag(t('.help'), help_path) %>
-							<%= menu_tag(t('.settings'), settings_path) %>
+							<%# menu_tag(t('.help'), help_path) %>
+							<%# menu_tag(t('.settings'), settings_path) %>
+							<li><%= link_to(t('.account'), settings_path) %>
+								<ul>
+									<%= menu_tag(t('.settings'), settings_path) %>
+									<%= menu_tag(t('.help'), help_path) %>
+									<%= menu_tag(t('.sign_out'), sign_out_path) %>
+								</ul>
+								</li>
 						</ul>
 					<%- else -%>
-						<%= render :partial => 'shared/navigation' %>
+						<ul>
+							<!-- <li><%= link_to(t('layouts.application.sign_in'), sign_in_path) %></li>
+							<li><%= link_to(t('layouts.application.sign_up'), sign_up_path) %></li>
+							<li><%= link_to(t('layouts.application.api'), api_path) %></li>
+							<li><%= link_to(t('layouts.application.tour'), tour_path) %></li> -->
+							<!-- <li><%= link_to(t('layouts.application.home'), root_path) %></li> -->
+						</ul>
 					<%- end -%>
 				</div>
 				<div class="clear"></div>
@@ -68,10 +81,11 @@
 			</div>
 			<div id="f">
 				<ul>
+					<li><%= link_to('Hjælp', help_path) %></li>
 					<li><%= link_to('Sikkerhed', privacy_path) %></li>
 				</ul>
 				<div>
-					<%= link_to('Hjælp', help_path) %><br />
+					Intelligent bogføring for mindre virksomheder<br />
 					<b><%= t('application.name') %></b> er udviklet af <a href="http://commanigy.com" title="Commanigy">Commanigy</a>
 				</div>
 			</div>

@@ -88,7 +88,7 @@ module TransactionsHelper
   end
   
   def exchange_to(amount, from, to)
-    return amount if from == to
+    return amount if from == to # no conversion necessary
     
     exchange_rate = ((1.0 / EXCHANGE_RATES[to]) * EXCHANGE_RATES[from])
     amount / exchange_rate

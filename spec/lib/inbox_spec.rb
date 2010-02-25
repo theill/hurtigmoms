@@ -42,11 +42,4 @@ describe "An inbox instance" do
     
     User.find_by_email(@mail.from.to_s).should_not be_nil
   end
-  
-  it "should setup a DelayedJob when calling perform" do
-    @inbox.perform
-    Delayed::Job.count(:all).should eql(1)
-    # Delayed::Job.find(:first).run_at be_close(2, 0.5)
-  end
-  
 end

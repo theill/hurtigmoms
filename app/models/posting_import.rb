@@ -121,6 +121,8 @@ class PostingImport < ActiveRecord::Base
   
   def parse
     FasterCSV.parse(self.data, {:col_sep => column_seperator, :skip_blanks => true, :headers => headers?})
+  rescue
+    nil
   end
   
   # looking at rows and detecting if it contains a ',' or ';'

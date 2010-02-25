@@ -11,7 +11,7 @@ class Annex < ActiveRecord::Base
     :path => 'users/:user_id/attachments/:id/:basename.:extension',
     :s3_headers => { :content_disposition => 'attachment' }
   
-  def authenticated_url(expires_in = 10.seconds)
+  def authenticated_url(expires_in = 30.seconds)
     AWS::S3::S3Object.url_for(attachment.path, attachment.bucket_name, :expires_in => expires_in, :use_ssl => attachment.s3_protocol == 'https')
   end
 

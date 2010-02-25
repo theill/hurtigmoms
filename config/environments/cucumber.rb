@@ -20,7 +20,9 @@ config.i18n.default_locale = :en
 
 # HOST = "localhost"
 
-config.gem 'cucumber',    :lib => false,        :version => '>=0.4.3' unless File.directory?(File.join(Rails.root, 'vendor/plugins/cucumber'))
+config.gem "thoughtbot-shoulda", :lib => "shoulda", :source => "http://gemcutter.org"
+config.gem "thoughtbot-factory_girl", :version => '>= 1.2.2', :lib => "factory_girl", :source => "http://gems.github.com"
+config.gem 'cucumber',    :lib => false,        :version => '=0.4.3' unless File.directory?(File.join(Rails.root, 'vendor/plugins/cucumber'))
 config.gem 'webrat',      :lib => false,        :version => '>=0.5.0' unless File.directory?(File.join(Rails.root, 'vendor/plugins/webrat'))
 config.gem 'rspec',       :lib => false,        :version => '>=1.2.8' unless File.directory?(File.join(Rails.root, 'vendor/plugins/rspec'))
 config.gem 'rspec-rails', :lib => false,        :version => '>=1.2.7.1' unless File.directory?(File.join(Rails.root, 'vendor/plugins/rspec-rails'))

@@ -1,5 +1,5 @@
 # Parses a single mail
-class MailParser
+class MailParser < TextParser
   FILTERED_MIME_TYPES = ["application/pdf", "image/png", "image/gif", "image/jpeg", "image/pjpeg", "image/bmp", "application/x-compressed", "application/x-zip-compressed", "application/zip", "multipart/x-zip"]
   
   def initialize(mail)
@@ -11,7 +11,6 @@ class MailParser
     
     parsed_attributes = recognize_and_parse_mail(@mail).merge(:transaction_type => Transaction::TRANSACTION_TYPES[:buy], :attachment_no => 0)
     
-    # transaction = user.active_fiscal_year.transactions.create! parsed_attributes
     transaction = Transaction.new(parsed_attributes)
     
     subject = (@mail.subject || 'original-mail').parameterize.to_s[0, 40]
@@ -34,26 +33,6 @@ class MailParser
   end
   
   private
-  
-  # # lookup or create user
-  # def user
-  #   @user ||= (User.find_by_email(@mail.from) || setup_user(@mail.from.to_s, @mail.subject))
-  # end
-  # 
-  # def setup_user(address, subject)
-  #   Rails.logger.debug "User with email #{address} not found so will be created"
-  #   pwd = generate_password
-  #   user = ::User.new(:email => address, :password => pwd, :password_confirmation => pwd, :company => 'Mit firmanavn')
-  #   ::SignupMailer.deliver_created(user, pwd, subject) if user.save
-  #   user
-  # end
-  # 
-  # def generate_password(length=6)
-  #   chars = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789'
-  #   password = ''
-  #   length.times { |i| password << chars[rand(chars.length)] }
-  #   password
-  # end
   
   # def associate_mail_as_attachment(transaction)
   #   filename = "#{Rails.root}/tmp/#{transaction.id}_parsed_mail.txt"
@@ -161,63 +140,5 @@ class MailParser
 
     # { :amount => amount, :currency => currency, :note => description, :created_at => date, :account_no => account_no }
     { :amount => amount.to_f, :currency => currency.upcase, :note => description, :created_at => date }
-  end
-  
-  def guess_date(body)
-    t = body.scan(/date:\W?(\d{4}-\d{2}-\d{2})/i).flatten
-    if (t.length > 0)
-      date = t[0].to_datetime rescue nil
-    end
-    return date unless date.nil?
-    
-    t = body.scan(/date:\W?(.*)/i).flatten
-    if (t.length > 0)
-      date = t[0].to_datetime rescue nil
-    end
-    return date unless date.nil?
-    
-    nil
-  end
-  
-  def guess_amount(body)
-    parsed_amount = body.scan(/amount:\W?\$?([\d|\.|\,]*)\W?(DKK|USD|NOK|SEK|EUR)?/i).flatten
-    amount = (parsed_amount[0] if parsed_amount.length > 0)
-    currency = (parsed_amount[1] if parsed_amount.length > 1)
-    return [amount, currency] if amount #&& currency
-
-    parsed_amount = body.scan(/total:\W?\$?([\d|\.|\,]*)\W?(DKK|USD|NOK|SEK|EUR)?/i).flatten
-    amount = (parsed_amount[0] if parsed_amount.length > 0)
-    currency = (parsed_amount[1] if parsed_amount.length > 1)
-    return [amount, currency] if amount && currency
-    
-    parsed_amount = body.scan(/total:\W?(\$)?([\d|\.|\,]*)/i).flatten
-    amount = (parsed_amount[1] if parsed_amount.length > 1)
-    currency = (parsed_amount[0] if parsed_amount.length > 0)
-    currency = 'USD' if currency == "$"
-    return [amount, currency] if amount && currency
-
-    parsed_amount = body.scan(/beløb:\W?(kr\.)\W?([\d|\.|\,]*)/i).flatten
-    amount = (parsed_amount[1] if parsed_amount.length > 1)
-    currency = (parsed_amount[0] if parsed_amount.length > 0)
-    if (currency == 'kr.')
-      currency = 'DKK'
-      # replace "15.498,75" with "15498.75"
-      amount = amount.gsub(/\./, '')
-      amount = amount.gsub(/\,/, '.')
-    end
-    return [amount, currency] if amount && currency
-    
-    parsed_amount = body.scan(/\W+([\d|\.|\,]*)\W?(kr\.)/i).flatten
-    amount = (parsed_amount[0] if parsed_amount.length > 1)
-    currency = (parsed_amount[1] if parsed_amount.length > 0)
-    if (currency == 'kr.')
-      currency = 'DKK'
-      # replace "15.498,75" with "15498.75"
-      amount = amount.gsub(/\./, '')
-      amount = amount.gsub(/\,/, '.')
-    end
-    return [amount, currency] if amount && currency
-    
-    [nil, nil]
   end
 end
