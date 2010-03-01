@@ -39,9 +39,6 @@
 				<div class="grid_6 search">
 					<%- if signed_in? -%>
 						<ul id="nav">
-							<%# menu_tag(t('.sign_out'), sign_out_path) %>
-							<%# menu_tag(t('.help'), help_path) %>
-							<%# menu_tag(t('.settings'), settings_path) %>
 							<li class="account"><%= link_to(t('.account'), settings_path) %>
 								<ul>
 									<%= menu_tag(t('.settings'), settings_path) %>
@@ -49,14 +46,6 @@
 									<%= menu_tag(t('.sign_out'), sign_out_path) %>
 								</ul>
 								</li>
-						</ul>
-					<%- else -%>
-						<ul>
-							<!-- <li><%= link_to(t('layouts.application.sign_in'), sign_in_path) %></li>
-							<li><%= link_to(t('layouts.application.sign_up'), sign_up_path) %></li>
-							<li><%= link_to(t('layouts.application.api'), api_path) %></li>
-							<li><%= link_to(t('layouts.application.tour'), tour_path) %></li> -->
-							<!-- <li><%= link_to(t('layouts.application.home'), root_path) %></li> -->
 						</ul>
 					<%- end -%>
 				</div>

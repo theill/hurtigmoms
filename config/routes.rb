@@ -26,11 +26,10 @@ ActionController::Routing::Routes.draw do |map|
   map.settings 'indstillinger', :controller => :users, :action => :edit
   map.ping 'ping', :controller => :about, :action => :ping
   map.overview 'oversigt', :controller => :about, :action => :overview
-
-  # override clearance
-  map.sign_out 'sign_out', :controller => :sessions, :action => :destroy, :method => :delete
-  map.resources :passwords, :as => 'kodeord', :controller => 'clearance/passwords', :only => [:new, :create]
   
+  # override clearance
+  map.sign_out 'logud', :controller => :sessions, :action => :destroy, :method => :delete
+  map.resources :passwords, :as => 'kodeord', :controller => 'clearance/passwords', :only => [:new, :create]
   
   map.api 'api', :controller => 'about', :action => 'api'
   map.tour 'tour', :controller => 'about', :action => 'tour'
