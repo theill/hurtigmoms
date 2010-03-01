@@ -17,6 +17,8 @@ describe "A MailParser" do
   it "should remove attachments from mails" do
     mail = TMail::Mail.parse(File.read("#{RAILS_ROOT}/test/fixtures/mails/harvest_danish.txt"))
     
+    original_length = mail.to_s.length
+    
     email, transaction = MailParser.new(mail).parse
     email.should == "john.doe@hurtigmoms.test"
     transaction.note.should == 'Faktura #2009020 fra Commanigy'
@@ -26,7 +28,7 @@ describe "A MailParser" do
     transaction.annexes.should_not be_nil
     transaction.should have(2).annexes
     transaction.annexes.first.attachment_file_name.should eql("FAKTURA_2009020_Commanigy.pdf")
-    transaction.annexes.last.attachment_file_size.should < mail.to_s.length
+    transaction.annexes.last.attachment_file_size.should < original_length
   end
 
 end

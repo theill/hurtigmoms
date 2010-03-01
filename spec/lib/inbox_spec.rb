@@ -9,8 +9,6 @@ describe "An inbox instance" do
     
     Annex.any_instance.stubs(:save_attached_files).returns(true)
     Annex.any_instance.stubs(:destroy_attached_files).returns(true)
-    
-    Delayed::Job.delete_all
   end
   
   # required for "DelayedJob" to function

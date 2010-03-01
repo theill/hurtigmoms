@@ -11,47 +11,37 @@ class MailParser < TextParser
     
     parsed_attributes = recognize_and_parse_mail(@mail).merge(:transaction_type => Transaction::TRANSACTION_TYPES[:buy], :attachment_no => 0)
     
+    # if @mail.has_attachments? && (parsed_attributes[:amount].blank? || parsed_attributes[:amount] == 0.0)
+    #   # TODO: let's parse associated attachments in order to find amount
+    #   
+    # end
+    
     transaction = Transaction.new(parsed_attributes)
-    
-    subject = (@mail.subject || 'original-mail').parameterize.to_s[0, 40]
-    
-    attachments = []
-    @mail.attachments.each { |a| attachments << a } if @mail.has_attachments?
-    
-    # remove recognized attachments from mail (so it doesn't base64 encode lots of stuff)
-    @mail.parts.delete_if { |p| FILTERED_MIME_TYPES.include?(p.content_type) }
-    
-    # add actual mail as an attachment as well
-    attachment = TMail::Attachment.new(@mail.to_s)
-    attachment.original_filename = subject + '.txt'
-    attachment.content_type = @mail.header['content-type']
-    attachments << attachment
-    
-    transaction.build_attachments(attachments)
+    transaction.build_attachments(associate_attachments(@mail))
     
     [@mail.from.to_s, transaction]
   end
   
   private
   
-  # def associate_mail_as_attachment(transaction)
-  #   filename = "#{Rails.root}/tmp/#{transaction.id}_parsed_mail.txt"
-  #   File.open(filename, 'w') do |f|
-  #     f.write(@mail.to_s)
-  #   end
-  #   
-  #   File.open(filename, 'r') do |f|
-  #     transaction.annexes.build(:attachment => f)
-  #   end
-  #   
-  #   File.delete(filename)
-  #   
-  #   # a = Tempfile.new('mail')
-  #   # a.write(mail.to_s)
-  #   # a.rewind
-  #   # transaction.annexes.create(:attachment => a)
-  #   # a.close
-  # end
+  def associate_attachments(mail)
+    attachments = []
+    
+    if mail.has_attachments?
+      mail.attachments.each { |a| attachments << a }
+      
+      # remove recognized attachments from mail (so we don't need to store base64 encoded version)
+      mail.parts.delete_if { |p| FILTERED_MIME_TYPES.include?(p.content_type) }
+    end
+    
+    # add actual mail as an attachment as well
+    attachment = TMail::Attachment.new(mail.to_s)
+    attachment.original_filename = (mail.subject || 'original-mail').parameterize.to_s[0, 40] + '.txt'
+    attachment.content_type = mail.header['content-type']
+    attachments << attachment
+    
+    attachments
+  end
   
   def recognize_and_parse_mail(mail)
     amount = 0.0
@@ -60,7 +50,7 @@ class MailParser < TextParser
     # account_no = nil
     
     # trim forwarding and replying rules from subject
-    description = (mail.subject || '').gsub(/^Fwd: /i, '').gsub(/^Fw: /i, '').gsub(/^Re: /i, '').gsub(/^VS: /i, '').gsub(/^SV: /i, '')
+    description = (mail.subject || '').gsub(/^fwd: /i, '').gsub(/^fw: /i, '').gsub(/^re: /i, '').gsub(/^vs: /i, '').gsub(/^sv: /i, '')
     
     # remove additional whitespaces
     description = description.split.join(' ').gsub(/=C2=A0/, ' ')

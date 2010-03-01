@@ -30,7 +30,6 @@ class PdfTextReceiver
 end
 
 class PdfParser < TextParser
-  attr_accessor :pdf
   attr_accessor :receiver
   
   def initialize(pdf)

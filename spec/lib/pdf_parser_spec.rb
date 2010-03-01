@@ -33,6 +33,15 @@ describe "A PdfParser" do
     o[:currency].should == "USD"
   end
 
+  it "should correctly parse amount from copenhouse" do
+    p = "#{RAILS_ROOT}/test/fixtures/pdf/copenhouse.pdf"
+    
+    o = PdfParser.new(p).parse
+    o[:amount].should == 6250.00
+    o[:currency].should == "DKK"
+  end
+
+
   # it "should correctly parse amount from gratisdns" do
   #   p = "#{RAILS_ROOT}/test/fixtures/pdf/gratisdns.pdf"
   #   
