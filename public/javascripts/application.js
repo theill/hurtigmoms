@@ -159,6 +159,12 @@ $(document).ready(function() {
 		return false;
 	});
 	
+	$("#h .account > a").bind("click", function() {
+		var li = $(this).parent();
+		li.addClass("selected").find("ul").toggle();
+		return false;
+	});
+	
 	// bind all generic events
 	$(".close").live("click", function() {
 		$(this).closest("tr").remove();

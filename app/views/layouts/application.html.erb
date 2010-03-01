@@ -40,10 +40,9 @@
 					<%- if signed_in? -%>
 						<ul id="nav">
 							<%# menu_tag(t('.sign_out'), sign_out_path) %>
-							<!-- soon <li><div><form method="get"><input type="text" autocomplete="off" size="25" maxlength="100" placeholder="Search" title="Search" value="" tabindex="1" results="0" name="q" id="q"/></form></div></li> -->
 							<%# menu_tag(t('.help'), help_path) %>
 							<%# menu_tag(t('.settings'), settings_path) %>
-							<li><%= link_to(t('.account'), settings_path) %>
+							<li class="account"><%= link_to(t('.account'), settings_path) %>
 								<ul>
 									<%= menu_tag(t('.settings'), settings_path) %>
 									<%= menu_tag(t('.help'), help_path) %>
