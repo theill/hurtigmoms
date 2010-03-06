@@ -587,6 +587,18 @@ table tr.row-editing div.box {
 	#transactions thead .account-type {
 		color: #779;
 	}
+
+	#transactions .transaction.pay th.drag-handle,
+	#transactions .transaction.pay td.drag-handle {
+		width: 16px;
+		text-indent: -100px;
+		padding: 2px 0;
+		cursor: move;
+	}
+	
+	#transactions .transaction.pay td.drag-handle {
+		background: transparent url(../images/ui-splitter-horizontal.png) no-repeat scroll 0px 2px;
+	}
 	
 	#transactions thead .income, 
 	#transactions thead .expense {

@@ -2,3 +2,15 @@ $(".<%= dom_id(@equalization.transaction, 'related') %>").remove();
 $("#<%= dom_id(@equalization.transaction) %>").replaceWith("<%= escape_javascript(render(:partial => 'transactions/transaction', :locals => { :transaction => @equalization.transaction })) %>");
 
 $("#<%= dom_id(@equalization.transaction) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
+
+// FIXME: same as transactions#index.html
+$("#<%= dom_id(@equalization.transaction) %>").droppable({
+	accept: '#transactions .transaction.pay',
+	hoverClass: 'drophover',
+	drop: function(ev, ui) {
+		var transaction_id = $(this).attr("id").replace(/transaction_/, '');
+		var related_transaction_id = ui.draggable.attr("id").replace(/transaction_/, '');
+		var url = '<%= fiscal_year_transaction_equalizations_path(current_user.active_fiscal_year, 0) %>'.replace(/\/0\//, '/' + transaction_id + '/');
+		$.post(url, { 'equalization[transaction_id]': transaction_id, 'equalization[related_transaction_id]': related_transaction_id }, null, "script");
+	}
+});

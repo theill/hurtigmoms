@@ -48,6 +48,7 @@
 		<table id="transactions" class="editable-table">
 			<thead>
 				<tr>
+					<th class="drag-handle"></th>
 					<th class="created_at"><%= t('transaction.created_at') %></th>
 					<th class="attachment_no"><%= t('transaction.attachment_no') %></th>
 					<th><%= t('transaction.note') %></th>
@@ -62,7 +63,7 @@
 			<%- if @transactions.total_pages > 1 -%>
 			<tfoot>
 				<tr>
-					<td colspan="5"><%= will_paginate :previous_label => t('pagination.previous'), :next_label => t('pagination.next') %></td>
+					<td colspan="6"><%= will_paginate :previous_label => t('pagination.previous'), :next_label => t('pagination.next') %></td>
 				</tr>
 			</tfoot>
 			<%- end -%>
@@ -96,24 +97,37 @@
 		$.get("<%= search_fiscal_year_transactions_path(current_user.active_fiscal_year) %>", $(this).closest("form").serialize(), null, "script");
 	});
 	
-	$("#transactions .transaction.pay td.note").live("mouseover", function() {
+//	$("#transactions .transaction.pay td.note").live("mouseover", function() {
+//		if (!$(this).data("init")) {
+//			$(this).data("init", true);
+//			$(this).draggable({
+//				cancel: 'a.ui-icon',// clicking an icon won't initiate dragging
+//				revert: 'invalid', // when not dropped, the item will revert back to its initial position
+//				helper: 'clone',
+//				cursor: 'move'
+//			});
+//		}
+//	});
+
+	$("#transactions tr.transaction.pay").live("mouseover", function() {
 		if (!$(this).data("init")) {
 			$(this).data("init", true);
 			$(this).draggable({
 				cancel: 'a.ui-icon',// clicking an icon won't initiate dragging
+				handle: '.drag-handle',
 				revert: 'invalid', // when not dropped, the item will revert back to its initial position
 				helper: 'clone',
 				cursor: 'move'
 			});
 		}
 	});
-	
-	$("#transactions .transaction.buy td.note, #transactions .transaction.sell td.note").droppable({
-		accept: '#transactions .transaction.pay td.note',
+
+	$("#transactions .transaction.buy, #transactions .transaction.sell").droppable({
+		accept: '#transactions .transaction.pay',
 		hoverClass: 'drophover',
 		drop: function(ev, ui) {
-			var transaction_id = $(this).parent().attr("id").replace(/transaction_/, '');
-			var related_transaction_id = ui.draggable.parent().attr("id").replace(/transaction_/, '');
+			var transaction_id = $(this).attr("id").replace(/transaction_/, '');
+			var related_transaction_id = ui.draggable.attr("id").replace(/transaction_/, '');
 			var url = '<%= fiscal_year_transaction_equalizations_path(current_user.active_fiscal_year, 0) %>'.replace(/\/0\//, '/' + transaction_id + '/');
 			$.post(url, { 'equalization[transaction_id]': transaction_id, 'equalization[related_transaction_id]': related_transaction_id }, null, "script");
 		}
