@@ -17,12 +17,12 @@ class TextParser
   end
   
   def guess_amount(body)
-    parsed_amount = body.scan(/amount:?\W?\$?([\d|\.|\,]*)\W?(DKK|USD|NOK|SEK|EUR)?/i).flatten
+    parsed_amount = body.scan(/amount:?\W?\$?([\d|\.|\,]*)\W?(DKK|USD|GBP|NOK|SEK|EUR)?/i).flatten
     amount = (parsed_amount[0] if parsed_amount.length > 0)
     currency = (parsed_amount[1] if parsed_amount.length > 1)
     return [amount, currency] if amount.present? #&& currency
 
-    parsed_amount = body.scan(/[^sub]total:?\W?\$?([\d|\.|\,]*)\W?(kr\.?|$|DKK|USD|NOK|SEK|EUR)?/i).flatten
+    parsed_amount = body.scan(/[^sub]total:?\W?\$?([\d|\.|\,]*)\W?(kr\.?|$|DKK|USD|GBP|NOK|SEK|EUR)?/i).flatten
     amount = (parsed_amount[0] if parsed_amount.length > 0)
     currency = (parsed_amount[1] if parsed_amount.length > 1)
     return convert_localized_currency(amount, currency) if amount.present? && currency.present?
@@ -39,7 +39,7 @@ class TextParser
     return convert_localized_currency(amount, currency) if amount.present? && currency.present?
     
     # e.g. ...kr.750,00Ialtkr.3.750,00NoterAn...
-    parsed_amount = body.scan(/I\W?alt:?\W?(kr\.|DKK|USD|NOK|SEK|EUR)\W?([\d|\.|\,]*)/i).flatten
+    parsed_amount = body.scan(/I\W?alt:?\W?(kr\.|DKK|USD|GBP|NOK|SEK|EUR)\W?([\d|\.|\,]*)/i).flatten
     amount = (parsed_amount[1] if parsed_amount.length > 1)
     currency = (parsed_amount[0] if parsed_amount.length > 0)
     return convert_localized_currency(amount, currency) if amount.present? && currency.present?
@@ -50,7 +50,7 @@ class TextParser
     return convert_localized_currency(amount, currency) if amount.present? && currency.present?
     
     # e.g. ...PSTSmallUSD $12.00*GitHub Inc.\n582 M...
-    parsed_amount = body.scan(/(DKK|USD|NOK|SEK|EUR)\W?\$?([\d|\.|\,]*)/i).flatten
+    parsed_amount = body.scan(/(DKK|USD|GBP|NOK|SEK|EUR)\W?\$?([\d|\.|\,]*)/i).flatten
     amount = (parsed_amount[1] if parsed_amount.length > 1)
     currency = (parsed_amount[0] if parsed_amount.length > 0)
     return convert_localized_currency(amount.to_f, currency) if amount.present? && currency.present?

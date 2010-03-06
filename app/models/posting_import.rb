@@ -73,7 +73,7 @@ class PostingImport < ActiveRecord::Base
         
         if self.user.default_currency == 'DKK'
           # do special parsing for "Nordea" statements
-          matches = (p.note || '').scan /Visa køb (USD|EUR)\W*(\d+(\,(\d+))?)/
+          matches = (p.note || '').scan /Visa køb (USD|EUR|GBP)\W*(\d+(\,(\d+))?)/
           other_amount = matches[0] ? (matches[0][1].gsub(/,/, '.').to_f) : 0.0
           if other_amount > 0.0
             detected_currency = matches[0][0]

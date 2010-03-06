@@ -1,4 +1,4 @@
 module Currency
-  SUPPORTED = ['DKK', 'USD', 'EUR']
+  SUPPORTED = ['DKK', 'USD', 'GBP', 'EUR']
   
 end

@@ -20,7 +20,7 @@ class TransactionMatcher
       end
       
       # do special parsing for "Nordea" statements
-      matches = (t.note || '').scan /Visa køb (USD|EUR)\W*(\d+(\,(\d+))?)/
+      matches = (t.note || '').scan /Visa køb (USD|GBP|EUR)\W*(\d+(\,(\d+))?)/
       other_amount = matches[0] ? (matches[0][1].gsub(/,/, '.').to_f) : 0.0
       if other_amount > 0.0
         currency = matches[0][0]

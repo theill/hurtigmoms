@@ -57,7 +57,7 @@ class MailParser < TextParser
     
     if (mail.body && mail.body.include?('support@getharvest.com'))
       # do Harvest parsing
-      parsed_amount = mail.body.scan(/amount:\W?(\$)?([\d|\.]*)\W?\(?(DKK|USD|NOK|SEK|EUR)?\)?/i).flatten
+      parsed_amount = mail.body.scan(/amount:\W?(\$)?([\d|\.]*)\W?\(?(DKK|USD|GBP|NOK|SEK|EUR)?\)?/i).flatten
       amount = (parsed_amount[1] if parsed_amount.length > 1) || amount
       currency = (parsed_amount[2] if parsed_amount.length > 2) || currency
       
@@ -65,7 +65,7 @@ class MailParser < TextParser
       date = (parsed_date.length > 0) ? parsed_date[0].to_datetime : Time.now.utc.to_datetime
     elsif (mail.body && mail.body.include?('support@github.com'))
       # do GitHub parsing
-      parsed_amount = mail.body.scan(/amount:\W?(DKK|USD|NOK|SEK|EUR)?\W?\$?([\d|\.]*)/i).flatten
+      parsed_amount = mail.body.scan(/amount:\W?(DKK|USD|GBP|NOK|SEK|EUR)?\W?\$?([\d|\.]*)/i).flatten
       amount = (parsed_amount[1] if parsed_amount.length > 1) || amount
       currency = (parsed_amount[0] if parsed_amount.length > 0) || currency
       
@@ -113,7 +113,7 @@ class MailParser < TextParser
       parsed_date = mail.body.scan(/INVOICE.*(\d{4}-\d{2}-\d{2})/im).flatten
       date = (parsed_date.length > 0) ? parsed_date[0].to_datetime : Time.now.utc.to_datetime
     else
-      # parsed_amount = mail.body.scan(/amount:\W?\$?([\d|\.]*)\W?(DKK|USD|NOK|SEK|EUR)?/i).flatten
+      # parsed_amount = mail.body.scan(/amount:\W?\$?([\d|\.]*)\W?(DKK|USD|GBP|NOK|SEK|EUR)?/i).flatten
       # amount = (parsed_amount[0] if parsed_amount.length > 0) || amount
       # currency = (parsed_amount[1] if parsed_amount.length > 1) || currency
       
