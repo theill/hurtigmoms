@@ -5,7 +5,7 @@
  * 
  */
 
-hurtigmoms = {
+var hurtigmoms = {
 	locale: 'da',
 	locale_fix: 'dk',
 	currency: 'DKK',
