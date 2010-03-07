@@ -36,7 +36,7 @@ class MailParser < TextParser
     
     # add actual mail as an attachment as well
     attachment = TMail::Attachment.new(mail.to_s)
-    attachment.original_filename = (mail.subject || 'original-mail').parameterize.to_s[0, 40] + '.txt'
+    attachment.original_filename = (mail.subject || 'original-mail').slugify[0, 40] + '.txt'
     attachment.content_type = mail.header['content-type']
     attachments << attachment
     
