@@ -34,7 +34,13 @@ class PdfParser < TextParser
   
   def initialize(pdf)
     @receiver = PdfTextReceiver.new
-    @pdf = PDF::Reader.file(pdf, @receiver)
+    
+    if pdf.is_a?(String)
+      @pdf = PDF::Reader.file(pdf, @receiver)
+    elsif pdf.is_a?(Tempfile)
+      pdf_reader = PDF::Reader.new
+      @pdf = pdf_reader.parse(pdf, @receiver)
+    end
   end
   
   def parse

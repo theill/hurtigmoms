@@ -11,10 +11,16 @@ class MailParser < TextParser
     
     parsed_attributes = recognize_and_parse_mail(@mail).merge(:transaction_type => Transaction::TRANSACTION_TYPES[:buy], :attachment_no => 0)
     
-    # if @mail.has_attachments? && (parsed_attributes[:amount].blank? || parsed_attributes[:amount] == 0.0)
-    #   # TODO: let's parse associated attachments in order to find amount
-    #   
-    # end
+    if @mail.has_attachments? && (parsed_attributes[:amount].blank? || parsed_attributes[:amount] == 0.0)
+      @mail.attachments.delete_if { |a| a.content_type != 'application/pdf' }.each do |attachment|
+        o = PdfParser.new(attachment).parse
+        
+        unless (o[:amount].blank? || o[:currency].blank?)
+          parsed_attributes[:amount] = o[:amount]
+          parsed_attributes[:currency] = o[:currency]
+        end
+      end
+    end
     
     transaction = Transaction.new(parsed_attributes)
     transaction.build_attachments(associate_attachments(@mail))
