@@ -35,7 +35,8 @@
 			<p>
 				<%= t('application.name') %> er for øjeblikket i lukket beta hvilket 
 				betyder, at du ikke kan oprette en konto. Du er dog velkommen til at
-				tilmelde dig vores beta og vi vil sende dig et login.
+				tilmelde dig vores beta og vi vil sende dig en mail når det er muligt
+				at oprette en konto.
 			</p>
 			<p>
 				<form action="http://commanigy.createsend.com/t/y/s/hduruy/" method="post">
@@ -49,12 +50,12 @@
 
 					<div class="clear"></div>
 					
-					<input type="submit" value="Tilmeld" /> og få et login via e-mail
+					<input type="submit" value="Tilmeld" /> og få en mail når vi åbner
 				</div>
 				</form>
 			</p>
 			<p>
-				Er du allerede en bruger? <%= link_to("Log ind", new_session_path) %> med det
+				Er du allerede bruger? <%= link_to("Log ind", new_session_path) %> med det
 				samme.
 			</p>
 		</div>
