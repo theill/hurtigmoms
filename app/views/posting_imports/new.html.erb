@@ -1,12 +1,20 @@
 <div id="page-header" class="grid_12">
-	<h1>Kontoudtog <span>Importering</span></h1>
+	<h1>Kontoudtog <span>Indlæsning fra bank</span></h1>
 </div>
 
 <div class="grid_9">
 	<p>
-		Du har herfra mulighed for at importere transaktioner fra din bank. Du
-		skal først hente dine transaktioner via din netbank som en .csv fil.
+		Du har herfra mulighed for at indlæse transaktioner fra din bank. Hvis 
+		du ikke allerede har hentet dine transaktioner skal du først hente dem
+		som en .csv fil fra din netbank. <a href="/hjaelp/udlaesning-af-transaktioner-fra-bank" id="help-export-transactions-from-bank">Hvordan gør jeg det?</a>
 	</p>
+	
+	<div id="howto-export-transactions-from-bank">
+		<h2>Hvordan udlæser jeg transaktioner fra min bank?</h2>
+		<p>
+			Gå ind i din netbank. Vælg den periode du ønsker at udlæse, fx 1/1-2009 til 30/6-2009.
+		</p>
+	</div>
 
 	<% form_for(@posting_import, :html => {:multipart => true}) do |f| %>
 	  <%= f.error_messages %>
@@ -29,3 +37,10 @@
 		mængde.
 	</p>
 </div>
+
+<%- content_for :js do -%>
+$("#help-export-transactions-from-bank").bind("click", function() {
+	$("#howto-export-transactions-from-bank").slideDown();
+	return false;
+});
+<%- end -%>

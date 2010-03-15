@@ -674,6 +674,10 @@ table tr.row-editing div.box {
 			background-color: #f9f9f9;
 		}
 
+#howto-export-transactions-from-bank {
+	display: none;
+}
+
 #accounts {}
 	#accounts .account .actions {
 		width: 20px;

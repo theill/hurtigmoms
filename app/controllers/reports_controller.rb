@@ -7,7 +7,7 @@ class ReportsController < ApplicationController
 
     # @total_income_months = current_user.active_fiscal_year.postings.total_income(2009).group_by(&:month)
     # @total_expenses_months = current_user.active_fiscal_year.postings.total_expense(2009).group_by(&:month)
-
+    
     total_income_months = current_user.active_fiscal_year.postings.find(:all, :select => 'EXTRACT(month from postings.created_at) AS month, SUM(postings.amount) AS amount', :joins => :account, :conditions => ['EXTRACT (YEAR FROM postings.created_at) = ? AND accounts.account_no >= 1000 AND accounts.account_no < 1300', 2009], :order => '(extract(month from postings.created_at))', :group => '(extract(month from postings.created_at))')
     total_expenses_months = current_user.active_fiscal_year.postings.find(:all, :select => 'EXTRACT(month from postings.created_at) AS month, SUM(postings.amount) AS amount', :joins => :account, :conditions => ['EXTRACT (YEAR FROM postings.created_at) = ? AND accounts.account_no >= 1300 AND accounts.account_no < 5000', 2009], :order => '(extract(month from postings.created_at))', :group => '(extract(month from postings.created_at))')
     

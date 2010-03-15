@@ -4,16 +4,17 @@
 
 <div class="grid_12">
 	<p>
-		Vi har modtaget omkring <b><%= @rows.length %></b> posteringer.
+		Vi har modtaget omkring <b><%= @rows.length %></b> transaktioner hvoraf de første
+		ti er vist nedenfor.
 	</p>
-
+	
 	<p>
 		Du skal nu hjælpe med at matche disse kolonner.
 	</p>
-
+	
 	<% form_for(@posting_import) do |f| %>
-	  <%= f.error_messages %>
-
+		<%= f.error_messages %>
+		
 		<table id="postings">
 			<thead>
 				<tr>
@@ -25,22 +26,26 @@
 			<tfoot class="mapping">
 				<%- @rows.headers.to_a.each_with_index do |header, idx| -%>
 					<th>
-						<%= select_tag 'posting_import[mapping]['+idx.to_s+']', options_for_select([['', ''], ['Dato', 'created_at'], ['Tekst', 'note'], ['Beløb', 'amount']]), {:include_blank => true, :class => 'import-into-column'} %>
+						<%= select_tag 'posting_import[mapping][' + idx.to_s + ']', options_for_select([['', ''], [t('transaction.created_at'), 'created_at'], [t('transaction.note'), 'note'], [t('transaction.amount'), 'amount']], match_header_to_column(header)), {:include_blank => true, :class => 'import-into-column'} %>
 					</th>
 				<%- end -%>
 			</tfoot>
 			<tbody>
-				<%# FIXME: make last three lines fade to white ... %>
-				<%- idx = 0 -%>
-				<%- @rows.each do |r| -%>
+				<%- @rows.by_row[0..9].each do |r| -%>
 					<tr>
 						<%- @rows.headers.each do |h| -%>
 							<td><%= r[h] %></td>
 						<%- end -%>
 					</tr>
-					<% idx += 1 %>
-					<% if idx >= 10 then break end %>
 				<%- end -%>
+				<!-- fade last couple of rows into white 
+				<%# @rows.by_row[5..9].each_with_index do |r, idx| -%>
+					<tr>
+						<%# @rows.headers.each do |h| -%>
+							<td style="color: rgb(<%# ([150+idx*15]*3).join(',') %>)"><%# r[h] %></td>
+						<%# end -%>
+					</tr>
+				<%# end -%> -->
 			</tbody>
 		</table>
 
