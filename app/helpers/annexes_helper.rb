@@ -24,7 +24,21 @@ module AnnexesHelper
       nil
     end
   end
-
+  
+  def format_as(content, format)
+    if format == 'mail'
+      m = TMail::Mail.parse(content)
+      mail_part = m.parts.find { |a| a.content_type == 'text/html' }
+      if mail_part
+        mail_part.body
+      else
+        "<pre>#{m.body}</pre>"
+      end
+    else
+      content
+    end
+  end
+  
   private
   
   def format_as_pdf(annex)
@@ -36,11 +50,11 @@ module AnnexesHelper
   end
   
   def format_as_image(annex)
-    "<img src=\"" + annex.authenticated_url + "\" />"
+    "<img src=\"#{annex.authenticated_url}\" />"
   end
   
   def format_as_mail(annex)
-    # msg = File.read("#{RAILS_ROOT}/test/fixtures/mails/harvest.txt")
+    # mail = TMail::Mail.parse(File.read("#{RAILS_ROOT}/test/fixtures/mails/harvest.txt")) rescue nil
     mail = TMail::Mail.parse(read_content(annex)) rescue nil
     
     if mail
@@ -51,12 +65,12 @@ module AnnexesHelper
 <fieldset><label>Date:</label> #{mail.date}</fieldset>
 </div>
 
-<pre>#{mail.body}</pre></div>"
+<iframe width=\"100%\" height=\"480\" src=\"#{preview_fiscal_year_transaction_annex_path(current_user.active_fiscal_year, annex.transaction, annex, :as => 'mail')}\"></iframe>
+</div>"
     else
-      "<div id=\"mail-warning-display\"><h3>Det var ikke muligt at vise denne besked</h3>
+      "<div id=\"mail-warning-display\"><h3>Det var ikke muligt at vise denne vedhæftning</h3>
       <p>
-        Vi understøtter endnu ikke formattet på denne besked. Du bliver nødt 
-        til at hente beskeden ned på din egen maskine for at se det.
+        Vi understøtter endnu ikke formattet. Du bliver nødt til at hente vedhæftningen ned på din egen maskine for at se den.
       </p>
       </div>"
     end

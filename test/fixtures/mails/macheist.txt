@@ -1,0 +1,96 @@
+MIME-Version: 1.0
+Received: by 10.103.138.18 with HTTP; Tue, 9 Mar 2010 00:45:11 -0800 (PST)
+In-Reply-To: <001636c92ede81b3ad04815a24b3@google.com>
+References: <001636c92ede81b3ad04815a24b3@google.com>
+Date: Tue, 9 Mar 2010 09:45:11 +0100
+Delivered-To: theill@gmail.com
+Message-ID: <701dc5891003090045hf3563efwf537a1002a5c8643@mail.gmail.com>
+Subject: Fwd: Your MacHeist nanoBundle 2 Receipt
+From: Peter Theill <peter@commanigy.com>
+To: bilag <bilag@hurtigmoms.dk>
+Content-Type: multipart/alternative; boundary=0016e656b73625a07304815a3384
+
+--0016e656b73625a07304815a3384
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Peter Theill, Commanigy
+Frederiksholms Kanal 4, 3.
+DK-1220 Copenhagen K
+email: peter@commanigy.com
+web: http://commanigy.com
+mobile: +45 6171 5096 | intl: +1 (304) 584-3455
+
+
+---------- Forwarded message ----------
+From: MacHeist Directorate <bounce@macheist.com>
+Date: Tue, Mar 9, 2010 at 09:41
+Subject: Your MacHeist nanoBundle 2 Receipt
+To: Peter Theill <peter@theill.com>
+
+
+   Hello Peter Theill,
+
+Thank you for purchasing the MacHeist nanoBundle 2!
+
+All the serial numbers and licensing information for your apps, as well as
+download instructions, can be found at this link:
+
+http://www.macheist.com/order/nano/0E260491L0372031N/
+ $19.95
+Amount paid via Credit Card
+March 9th, 2010 =E2=80=A2 3:41 am
+Transaction ID: 0E260491L0372031N
+<http://www.macheist.com/order/mh3/0E260491L0372031N/>
+
+--0016e656b73625a07304815a3384
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<br clear=3D"all">Peter Theill, Commanigy<br>Frederiksholms Kanal 4, 3.<br>=
+DK-1220 Copenhagen K<br>email: <a href=3D"mailto:peter@commanigy.com">peter=
+@commanigy.com</a><br>web: <a href=3D"http://commanigy.com">http://commanig=
+y.com</a><br>
+mobile: +45 6171 5096 | intl: +1 (304) 584-3455<br>
+<br><br><div class=3D"gmail_quote">---------- Forwarded message ----------<=
+br>From: <b class=3D"gmail_sendername">MacHeist Directorate</b> <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:bounce@macheist.com">bounce@macheist.com</a>=
+&gt;</span><br>
+Date: Tue, Mar 9, 2010 at 09:41<br>Subject: Your MacHeist nanoBundle 2 Rece=
+ipt<br>To: Peter Theill &lt;<a href=3D"mailto:peter@theill.com">peter@theil=
+l.com</a>&gt;<br><br><br>
+		<div>
+			<div style=3D"margin:5px 20px 30px 20px;width:647px;font-size:15px;font-=
+family:Helvetica">
+				<img src=3D"http://static.macheist.com/mailings/nano2/logo.jpg">
+		=09
+				<img src=3D"http://static.macheist.com/mailings/nano2/bundleReceiptHead=
+er.jpg">
+			=09
+				<div style=3D"background:#ecedef;padding:1px 25px 30px 25px">
+					<h1 style=3D"font-size:16px;margin-top:0px">Hello Peter Theill,</h1>
+					<p>Thank you for purchasing the MacHeist nanoBundle 2!</p>
+					<p>All the serial numbers and licensing information for your apps, as =
+well as download instructions, can be found at this link:</p>
+				=09
+					<p><a href=3D"http://www.macheist.com/order/nano/0E260491L0372031N/" s=
+tyle=3D"font-size:21px" target=3D"_blank">http://www.macheist.com/order/nan=
+o/0E260491L0372031N/</a></p>
+					<a href=3D"http://www.macheist.com/order/mh3/0E260491L0372031N/" style=
+=3D"text-decoration:none" target=3D"_blank">
+					<table style=3D"width:100%;margin:10px 0px 0px 0px;padding:15px 10px;b=
+ackground:#d6d6d6"><tbody><tr>
+						<td style=3D"width:140px"><div style=3D"font-weight:bold;font-size:40=
+px;text-align:center;text-decoration:none">$19.95</div></td>
+						<td style=3D"text-decoration:none"><div style=3D"font-weight:bold;fon=
+t-size:20px;text-decoration:none">Amount paid via Credit Card</div>
+							March 9th, 2010 =E2=80=A2 3:41 am<br>
+							Transaction ID: 0E260491L0372031N</td>
+					</tr></tbody></table>
+					</a>
+				=09
+				</div></div>
+		</div>
+		</div><br>
+
+--0016e656b73625a07304815a3384--
