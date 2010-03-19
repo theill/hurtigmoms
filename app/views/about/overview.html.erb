@@ -86,16 +86,20 @@
 		</div>
 	<%- end -%>
 
-	<%- if @latest_import && (1.month.ago > @latest_import.created_at) -%>
-	  <div>
+	<%- if @latest_import && (-1.month.ago > @latest_import.created_at) -%>
+	  <div class="action-required">
 	    <p>
-	      Det er mere end een måned siden du importerede dine kontoudtog fra banken.
+				Det er mere end een måned siden du sidst indlæste dine kontoudtog fra 
+				banken.
 	    </p>
 	    <p>
-	      For at lette bogføringen anbefales det, at importere kontoudtog jævnligt
-	      så hvis du henter et nyt kontoudtog fra din bank, kan du genbruge dine 
-	      indstillinger fra sidste importering og måske gøre det med det samme.
+	      For at lette den løbende bogføringen anbefales det, at indlæse kontoudtog
+				jævnligt. Der holdes styr på hvilke transaktioner der allerede er indlæst
+				så der opstår ikke duplikater hvis en del af samme periode indlæses igen.
 	    </p>
+			<p>
+				Ønsker du at <%= link_to('indlæse kontoudtog', new_posting_import_path) %> nu?
+			</p>
 	  </div>
 	<%- end -%>
 
