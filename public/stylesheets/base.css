@@ -29,6 +29,13 @@ form h3 {
 	font-size: 16px;
 }
 
+ul.empty {
+	list-style: none;
+}
+	ul.empty li {
+		margin-left: 10px;
+	}
+
 a.button {
 	background-color: #555555;
 	border: outset 1px #555555;
@@ -108,6 +115,15 @@ strong.highlight {
 	background: -moz-linear-gradient(-90deg, #ffdddd, #ffffff);
 	background: -webkit-gradient(linear, left top, left bottom, from(#ffdddd), to(#ffffff));
 }
+
+.action {
+	display: none;
+}
+
+	.show-action {
+		color: #333;
+		text-decoration: none;
+	}
 
 .income {
 	color: #339900;
