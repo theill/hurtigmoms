@@ -9,10 +9,33 @@
 		som en .csv fil fra din netbank. <a href="/hjaelp/udlaesning-af-transaktioner-fra-bank" id="help-export-transactions-from-bank">Hvordan gør jeg det?</a>
 	</p>
 	
-	<div id="howto-export-transactions-from-bank">
+	<div id="howto-export-transactions-from-bank" class="howto">
 		<h2>Hvordan udlæser jeg transaktioner fra min bank?</h2>
+
 		<p>
-			Gå ind i din netbank. Vælg den periode du ønsker at udlæse, fx 1/1-2009 til 30/6-2009.
+			Gå først ind i din netbank fx på http://netbank.nordea.dk.
+		</p>
+
+		<img src="/images/export-transactions.png" width="678" height="339" alt="Hurtigmoms Export Transactions">
+
+		<p>
+			Du skal nu udlæse dine transaktioner.
+		</p>
+		
+		<ol>
+			<li>Vælg konto</li>
+			<li>Vælg periode du ønsker at udlæse, fx 1/1-2009 til 30/6-2009</li>
+			<li>Gem kontoudtoget på din computer</li>
+		</ol>
+		
+		<p>
+			Når du har klikket på kommandoen, åbner dialogboksen "Filoverførsel".
+		</p>
+		
+		<p>
+			Her klikker du på "Gem", hvorefter dialogboksen "Gem som" vises. Du 
+			skal nu vælge, hvor på din computer, du vil gemme filen. Det er 
+			fra denne placering du skal vælge filen når du ønsker at indlæse den.
 		</p>
 	</div>
 
@@ -25,7 +48,7 @@
 		</fieldset>
 	
 	  <p>
-	    <%= f.submit 'Start importering' %>
+	    <%= f.submit 'Begynd indlæsning', :class => 'button' %>
 	  </p>
 	<% end %>
 </div>

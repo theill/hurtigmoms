@@ -26,7 +26,7 @@
 		<%= link_to("Hent bilag", download_fiscal_year_transaction_annex_path(current_user.active_fiscal_year, @transaction, @annex), { :class => 'button' }) %>
 		<%= link_to("Slet bilag", fiscal_year_transaction_annex_path(current_user.active_fiscal_year, @transaction, @annex), :confirm => 'Are you sure?', :method => :delete, :class => 'button' ) %>
 	</div>
-
+	
 	<div id="transaction-properties">
 		<h4>Transaktionsdetaljer</h4>
 		<% form_for([@transaction.fiscal_year, @transaction], :html => {:autocomplete => 'off'}) do |f| -%>
@@ -38,13 +38,13 @@
 				<%= text_field_tag 'transaction_created_at_formatted', '', :class => 'date-field standard-field', :style => 'width: 220px' %>
 				<p class="hint">Fakturadato eller betalingsdato</p>
 			</fieldset>
-
+			
 			<fieldset>
 				<%= f.label :amount, t('transaction.amount') + ' <span class="req">*</span>' %>
-				<%= f.text_field :amount, :size => 10, :maxlength => 10, :class => 'amount-no-vat decimal standard-field', :style => 'width: 120px; margin-right: 10px' %><%= f.select :currency, Currency::SUPPORTED, {}, :class => 'standard-field', :style => 'width: 80px' %>
+				<%= f.text_field :amount_formatted, :size => 10, :maxlength => 10, :class => 'amount-no-vat decimal standard-field', :style => 'width: 120px; margin-right: 10px' %><%= f.select :currency, Currency::SUPPORTED, {}, :class => 'standard-field', :style => 'width: 80px' %>
 				<p class="hint"><%= t('transaction.including_vat') %></p>
 			</fieldset>
-
+			
 			<%= f.submit t('buttons.save') %>
 		<%- end -%>
 	</div>
@@ -54,10 +54,16 @@
 <div class="clear"></div>
 
 <%- content_for :js do -%>
+
 	$("#transaction_created_at_formatted").datepicker({ dateFormat: "d/m-yy", showAnim: "fadeIn",
 		onClose: function(dateText, inst) {
 			$("#transaction_created_at").val($.datepicker.formatDate("yy-mm-dd", $(this).datepicker('getDate')));
 			$(this).focus();
 		}
 	}).datepicker("setDate", $.datepicker.parseDate("yy-mm-dd", "<%= @transaction.created_at.strftime("%Y-%m-%d") %>"));
+	
+	$("#transaction_amount_formatted").blur(function() {
+		$(this).format({format: "#,###.00", locale: hurtigmoms.locale_fix});
+	});
+	
 <%- end -%>

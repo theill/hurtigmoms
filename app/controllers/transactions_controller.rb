@@ -71,6 +71,7 @@ class TransactionsController < ApplicationController
         format.html { redirect_to(params[:return_to] || fiscal_year_transactions_url(@fiscal_year)) }
         format.js {}
       else
+        format.html { redirect_to(params[:return_to] || fiscal_year_transactions_url(@fiscal_year)) }
         format.js
       end
     end

@@ -678,6 +678,17 @@ table tr.row-editing div.box {
 	display: none;
 }
 
+.howto {
+	padding: 10px;
+	margin-bottom: 10px;
+	border: solid 1px #eee;
+	border-radius: 5px;
+}
+	.howto h2 {
+		font-size: 18px;
+	}
+
+
 #accounts {}
 	#accounts .account .actions {
 		width: 20px;

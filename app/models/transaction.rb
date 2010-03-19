@@ -1,4 +1,6 @@
 class Transaction < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
+  
   TRANSACTION_TYPES = { :buy => 1, :sell => 2, :pay => 3 }
   
   belongs_to :fiscal_year
@@ -63,17 +65,25 @@ class Transaction < ActiveRecord::Base
     # 
     # transactions.paginate(:per_page => 20, :page => page)
   end
-
+  
   attr_accessor :customer_name
-
+  
   def customer_name
     @customer_name || (self.customer.name if self.customer)
+  end
+  
+  def amount_formatted
+    number_to_currency(self.amount, :unit => '', :format => '%n')
+  end
+  
+  def amount_formatted=(v)
+    self.amount = v.gsub(/\./, '').gsub(/,/, '.')
   end
   
   def linked
     self.linked_to | self.linked_from
   end
-
+  
   def relations
     self.relations_to | self.relations_from
   end
