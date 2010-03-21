@@ -1,10 +1,22 @@
 <%- @meta = { :title => 'Bogføring for den lille virksomhed', :description => '', :blank_header => true } -%>
 
-<div id="no-page-header" class="grid_12">
-	<!-- <h1>Overblik for <%=h current_user.active_fiscal_year.name %></h1> -->
+<div id="page-header" class="grid_12">
+	<h1><%=h "Oversigt for #{current_user.company}" %><span><%=h current_user.active_fiscal_year.name %></span></h1>
 </div>
 
-<div class="grid_12">
+<div class="grid_3">
+	<div id="page-actions">
+		<ul>
+			<li class="separator">Transaktioner</li>
+			<li><%= link_to 'Tilføj ny indtægt', new_fiscal_year_transaction_path(current_user.active_fiscal_year, :transaction_type => Transaction::TRANSACTION_TYPES[:sell]), { :class => 'button income' } %></li>
+			<li><%= link_to 'Tilføj ny udgift', new_fiscal_year_transaction_path(current_user.active_fiscal_year, :transaction_type => Transaction::TRANSACTION_TYPES[:buy]), { :class => 'button expense' } %></li>
+			<li class="separator">Kontoudtog</li>
+			<li><%= link_to 'Indlæs kontoudtog', new_posting_import_path, { :class => 'button' } %></li>
+		</ul>
+	</div>
+</div>
+
+<div class="grid_9">
 	<%- if @action_required -%>
 		<div class="action-required">
 			<h2>Opgaver der kræver handling</h2>
@@ -105,16 +117,26 @@
 			</p>
 		</div>
 	<%- end -%>
-
-	<div class="quick-start">
-		<h3>Kom hurtigt i gang</h3>
-		<ol>
-			<li><%= link_to('Tilføj en indtægter eller udgifter', fiscal_year_transactions_path(current_user.active_fiscal_year)) %></li>
-			<!-- <li><%= link_to('Tilpas din kontoplan', accounts_path) %></li> -->
-			<li><%= link_to('Tilpas dine kunder', customers_path) %></li>
-			<li><%= link_to('Indlæs dine kontoudtog', new_posting_import_path) %></li>
-		</ol>
-	</div>
+	
+	<%- if @latest_transactions.any? -%>
+		<div class="latest-transactions">
+			<h3>Seneste transaktioner</h3>
+			<table id="transactions">
+				<thead>
+					<tr>
+						<th class="drag-handle"></th>
+						<th class="created_at"><%= t('transaction.created_at') %></th>
+						<th><%= t('transaction.note') %></th>
+						<th class="income"><span class="income"><%= t('transaction.amount_in') %></span></th>
+						<th class="expense"><span class="expense"><%= t('transaction.amount_out') %></span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render @latest_transactions %>
+				</tbody>
+			</table>
+		</div>
+	<%- end -%>
 </div>
 
 <%- content_for :js do -%>

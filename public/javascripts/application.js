@@ -170,7 +170,11 @@ $(document).ready(function() {
 		$(this).closest("tr").remove();
 		return false;
 	});
-	$(".show").live("click", function() { $.get(this.href, null, null, "script"); return false; });
+	
+	$(".show").live("click", function() {
+		$.get(this.href, null, null, "script");
+		return false;
+	});
 	
 	$(".edit").live("click", function() {
 		$(this).closest("tr").toggleClass('row-loading');//.find("td").replaceWith("<td></td>");

@@ -19,6 +19,8 @@ class AboutController < ApplicationController
     if @transactions_with_wrong_fiscal_year.any?
       @other_fiscal_years = current_user.fiscal_years.delete_if { |fy| fy == current_user.active_fiscal_year }
     end
+    
+    @latest_transactions = current_user.active_fiscal_year.transactions.latest
   end
   
   def help

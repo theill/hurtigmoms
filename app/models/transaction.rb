@@ -27,6 +27,7 @@ class Transaction < ActiveRecord::Base
   named_scope :between, lambda { |start_date, end_date| { :conditions => ['DATE(transactions.created_at) BETWEEN ? AND ?', start_date, end_date] } }
   named_scope :filtered, lambda { |query| { :conditions => ['(LOWER(transactions.note) LIKE ?) OR (LOWER(customers.name) LIKE ?) OR (transactions.amount > 0 AND transactions.amount = ?)', "%#{query.downcase}%", "%#{query.downcase}%", query.to_f], :include => :customer } }
   named_scope :filter_by_type, lambda { |transaction_type| { :conditions => ['transactions.transaction_type = ?', transaction_type] } }
+  named_scope :latest, :order => 'created_at DESC', :limit => 5
   
   HUMANIZED_ATTRIBUTES = {
     :amount => I18n.t(:amount, :scope => :transaction)
