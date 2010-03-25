@@ -1,5 +1,5 @@
 <tr id="<%= dom_id(transaction) %>" class="transaction row-editing">
-	<td colspan="5">
+	<td colspan="4">
 		<div class="box">
 		<% form_for([transaction.fiscal_year, transaction], :html => {:autocomplete => 'off'}) do |f| -%>
 			<%= f.error_messages %>

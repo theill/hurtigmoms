@@ -69,6 +69,12 @@ module TransactionsHelper
   
   def formatted_amount(transaction)
     number_with_currency = number_to_currency(exchange_to(transaction.amount, transaction.currency, current_user.default_currency), :unit => current_user.default_currency)
+
+    if transaction.transaction_type == Transaction::TRANSACTION_TYPES[:sell]
+      number_with_currency = content_tag(:span, number_with_currency, :class => 'income')
+    elsif transaction.transaction_type == Transaction::TRANSACTION_TYPES[:buy]
+      number_with_currency = content_tag(:span, number_with_currency, :class => 'expense')
+    end
     
     if transaction.currency == current_user.default_currency
       number_with_currency

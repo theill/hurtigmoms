@@ -2,8 +2,7 @@
 	<td class="drag-handle"></td>
 	<td class="actions date"><div class="buttons-container"><div class="buttons"><%= link_to(image_tag('navigation-000-frame.png', :width => 16, :height => 16), edit_fiscal_year_transaction_path(current_user.active_fiscal_year, transaction), :class => 'edit hide') %></div></div><%=h transaction.created_at.strftime("%d/%m-%Y") %></td>
 	<td class="note"><%= note_for_overview(transaction, params[:search]) %><%# ("<br /><i>" + related_payment_transaction.note + "</i>") if related_payment_transaction %></td>
-	<td class="number"><%= formatted_income_amount(transaction) %></td>
-	<td class="number"><%= formatted_expense_amount(transaction) %></td>
+	<td class="number"><%= formatted_amount(transaction) %></td>
 </tr>
 
 <%- transaction.linked.each do |related_payment_transaction| -%>
@@ -11,7 +10,6 @@
 	<td class="drag-handle"></td>
 	<td class="actions date"><div class="buttons-container"><div class="buttons"><%= link_to(image_tag('navigation-000-frame.png', :width => 16, :height => 16), edit_fiscal_year_transaction_path(current_user.active_fiscal_year, related_payment_transaction), :class => 'edit hide') %></div></div><%=h related_payment_transaction.created_at.strftime("%d/%m-%Y") %></td>
 	<td class="note"><%= note_for_overview(related_payment_transaction, params[:search]) %></td>
-	<td class="number"><%= formatted_income_amount(related_payment_transaction) %></td>
-	<td class="number"><%= formatted_expense_amount(related_payment_transaction) %></td>
+	<td class="number"><%= formatted_amount(related_payment_transaction) %></td>
 </tr>
 <%- end -%>

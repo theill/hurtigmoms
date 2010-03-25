@@ -5,30 +5,40 @@
 		<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
 	</div>
 	<div class="grid_3 omega">
-		<div class="quick-buttons">
-			<%= link_to 'Tilføj kunde', new_customer_path, :class => 'new-customer button show' %>
-		</div>
+		&nbsp;
 	</div>
 </div>
 
+<div class="clear"></div>
+
 <%- if @customers.any? -%>
-	<div class="grid_12">
-		
-		<table id="customers" class="editable-table">
-			<thead>
-				<tr>
-					<th><%= t('customer.name') %></th>
-				</tr>
-			</thead>
-			<tbody>
-			<%= render @customers %>
-			</tbody>
-			<tfoot>
-				<tr>
-					<td><%= will_paginate @customers, :previous_label => t('pagination.previous'), :next_label => t('pagination.next') %></td>
-				</tr>
-			</tfoot>
-		</table>
+	<div style="position: relative; overflow: hidden">
+		<div class="vrule"></div>
+		<div class="grid_9">
+			<table id="customers" class="editable-table simple">
+				<thead>
+					<tr>
+						<th><%= t('customer.name') %></th>
+					</tr>
+				</thead>
+				<tbody>
+				<%= render @customers %>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td><%= will_paginate @customers, :previous_label => t('pagination.previous'), :next_label => t('pagination.next') %></td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+		<div class="grid_3">
+			<div id="page-actions">
+				<ul>
+					<li class="separator">Kunder</li>
+					<li><%= link_to('Tilføj kunde', new_customer_path, :class => 'new-customer button show') %></li>
+				</ul>
+			</div>
+		</div>
 	</div>
 <%- else -%>
 	<p>

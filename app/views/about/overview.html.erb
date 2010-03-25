@@ -1,142 +1,198 @@
 <%- @meta = { :title => 'Bogføring for den lille virksomhed', :description => '', :blank_header => true } -%>
 
 <div id="page-header" class="grid_12">
-	<h1><%=h "Oversigt for #{current_user.company}" %><span><%=h current_user.active_fiscal_year.name %></span></h1>
+	<h1><%=h "#{current_user.company} Oversigt" %><span><%=h current_user.active_fiscal_year.name %></span></h1>
 </div>
 
-<div class="grid_3">
-	<div id="page-actions">
-		<ul>
-			<li class="separator">Transaktioner</li>
-			<li><%= link_to 'Tilføj ny indtægt', new_fiscal_year_transaction_path(current_user.active_fiscal_year, :transaction_type => Transaction::TRANSACTION_TYPES[:sell]), { :class => 'button income' } %></li>
-			<li><%= link_to 'Tilføj ny udgift', new_fiscal_year_transaction_path(current_user.active_fiscal_year, :transaction_type => Transaction::TRANSACTION_TYPES[:buy]), { :class => 'button expense' } %></li>
-			<li class="separator">Kontoudtog</li>
-			<li><%= link_to 'Indlæs kontoudtog', new_posting_import_path, { :class => 'button' } %></li>
-		</ul>
-	</div>
-</div>
+<div class="clear"></div>
 
-<div class="grid_9">
-	<%- if @action_required -%>
-		<div class="action-required">
-			<h2>Opgaver der kræver handling</h2>
-			<ul>
-				<%- if @incomplete_transactions.any? -%>
-					<li>Du har <%= link_to('transaktioner', fiscal_year_transactions_path(current_user.active_fiscal_year)) %> der kræver handling.</li>
-				<%- end -%>
+<div style="position: relative; overflow: hidden">
+	<div class="vrule"></div>
 
-				<%- if @late_import -%>
+	<div class="grid_9">
+		<%- if @action_required -%>
+			<div class="action-required">
+				<h2>Opgaver der kræver handling</h2>
+				<ul>
+					<%- if @incomplete_transactions.any? -%>
+						<li>Du har <%= link_to('transaktioner', fiscal_year_transactions_path(current_user.active_fiscal_year)) %> der kræver handling.</li>
+					<%- end -%>
+
+					<%- if @late_import -%>
+						<li>
+							<a href="#" class="show-action">Det er mere end een måned siden du sidst indlæste dine kontoudtog fra banken</a>
+							<div class="action">
+								<p>
+									For at lette den løbende bogføringen anbefales det, at indlæse kontoudtog
+									jævnligt. Der holdes styr på hvilke transaktioner der allerede er indlæst
+									så der opstår ikke duplikater hvis en del af samme periode indlæses igen.
+								</p>
+								<p>
+									Ønsker du at <%= link_to('indlæse kontoudtog', new_posting_import_path) %> nu?
+								</p>
+							</div>
+						</li>
+					<%- end -%>
+			
+				<%- if @transactions_without_related_transactions.any? -%>
 					<li>
-						<a href="#" class="show-action">Det er mere end een måned siden du sidst indlæste dine kontoudtog fra banken</a>
-						<div class="action">
+						<a href="#" class="show-action">Manglende bilag for automatisk bankafstemning</a>
+						<div id="without-related-transactions" class="action">
 							<p>
-								For at lette den løbende bogføringen anbefales det, at indlæse kontoudtog
-								jævnligt. Der holdes styr på hvilke transaktioner der allerede er indlæst
-								så der opstår ikke duplikater hvis en del af samme periode indlæses igen.
+								Du har <%= pluralize(@transactions_without_related_transactions.length, 'betalingstransaktion', 'betalingstransaktioner') %>
+								der ikke har en tilhørende købs- eller salgstransaktion. For at 
+								lette arbejdet med bankafstemningen, er det ikke muligt at bogføre
+								forud hvorfor det derfor er nødvendigt at afstemme disse 
+								transaktioner først.
 							</p>
-							<p>
-								Ønsker du at <%= link_to('indlæse kontoudtog', new_posting_import_path) %> nu?
-							</p>
+							<%= link_to('Vis transaktionerne', '#', :id => 'display-transactions-without-relations') %>
+							<div id="transactions-without-relations" style="display: none">
+								<ul>
+									<% @transactions_without_related_transactions.each do |t| %>
+										<li><%= t.created_at.strftime("%d/%m-%Y") + ' - ' + h(t.note) + ' - ' + number_to_currency(t.amount, :unit => current_user.default_currency) %></li>
+									<%- end -%>
+								</ul>
+							</div>
 						</div>
 					</li>
 				<%- end -%>
 			
-			<%- if @transactions_without_related_transactions.any? -%>
-				<li>
-					<a href="#" class="show-action">Manglende bilag for automatisk bankafstemning</a>
-					<div id="without-related-transactions" class="action">
-						<p>
-							Du har <%= pluralize(@transactions_without_related_transactions.length, 'betalingstransaktion', 'betalingstransaktioner') %>
-							der ikke har en tilhørende købs- eller salgstransaktion. For at 
-							lette arbejdet med bankafstemningen, er det ikke muligt at bogføre
-							forud hvorfor det derfor er nødvendigt at afstemme disse 
-							transaktioner først.
-						</p>
-						<%= link_to('Vis transaktionerne', '#', :id => 'display-transactions-without-relations') %>
-						<div id="transactions-without-relations" style="display: none">
-							<ul>
-								<% @transactions_without_related_transactions.each do |t| %>
-									<li><%= t.created_at.strftime("%d/%m-%Y") + ' - ' + h(t.note) + ' - ' + number_to_currency(t.amount, :unit => current_user.default_currency) %></li>
-								<%- end -%>
-							</ul>
-						</div>
-					</div>
-				</li>
-			<%- end -%>
-			
-			<%- if @transactions_with_wrong_fiscal_year.any? -%>
-				<li>
-					<a href="#" class="show-action">Transaktioner uden for regnskabsåret</a>
-					<div id="wrong-fiscal-year" class="action">
-						<p>
-							Du har <%= pluralize(@transactions_with_wrong_fiscal_year.length, 'transaktion', 'transaktioner') %> 
-							der har en faktura- eller betalings-dato uden for dit valgte regnskabsår (<%= current_user.active_fiscal_year.name %>).
-						</p>
-			
-						<p>
-							<%= link_to('Vis transaktionerne', '#', :id => 'display-transactions-with-wrong-fiscal-year') %>
-						</p>
-			
-						<div id="transactions-with-wrong-fiscal-year" style="display: none">
-							<ul>
-								<% @transactions_with_wrong_fiscal_year.each do |t| %>
-									<li><%=h t.created_at.strftime("%d/%m-%Y") + ' - ' + t.note %></li>
-								<%- end -%>
-							</ul>
-						</div>
-			
-						<%- if @other_fiscal_years.any? -%>
+				<%- if @transactions_with_wrong_fiscal_year.any? -%>
+					<li>
+						<a href="#" class="show-action">Transaktioner uden for regnskabsåret</a>
+						<div id="wrong-fiscal-year" class="action">
 							<p>
-								Vælg det regnskabsår du ønsker at flytte transaktionerne til.
+								Du har <%= pluralize(@transactions_with_wrong_fiscal_year.length, 'transaktion', 'transaktioner') %> 
+								der har en faktura- eller betalings-dato uden for dit valgte regnskabsår (<%= current_user.active_fiscal_year.name %>).
 							</p>
-							<%= form_tag(auto_correct_fiscal_year_transactions_path(current_user.active_fiscal_year)) %>
-								<ul class="empty">
-									<%- @other_fiscal_years.each do |fy| -%>
-										<li><%= radio_button_tag 'corrected_fiscal_year_id', fy.id %><label for="<%= 'corrected_fiscal_year_id_' + fy.id.to_s %>"><%=h fy.name %></label></li>
+			
+							<p>
+								<%= link_to('Vis transaktionerne', '#', :id => 'display-transactions-with-wrong-fiscal-year') %>
+							</p>
+			
+							<div id="transactions-with-wrong-fiscal-year" style="display: none">
+								<ul>
+									<% @transactions_with_wrong_fiscal_year.each do |t| %>
+										<li><%=h t.created_at.strftime("%d/%m-%Y") + ' - ' + t.note %></li>
 									<%- end -%>
 								</ul>
-								<%= submit_tag "Flyt" %>
-							</form>
-						<%- else -%>
-							<p>
-								Ønsker du at oprette et nyt regnskabsår og flytte disse transaktioner over?
-							</p>
-							<%= form_tag(auto_correct_fiscal_year_transactions_path(current_user.active_fiscal_year)) %>
-								<%= hidden_field_tag 'corrected_fiscal_year_id', '-1' %>
-								Ja, <%= submit_tag "overfør transaktionerne" %> til et nyoprettet regnskabsår.
-							</form>
-						<%- end -%>
-					</div>
-				</li>
-			<%- end -%>
-		</div>
-	<%- else -%>
-		<div class="blank-slate">
-			<p>
-				Du har ingen beskeder eller punkter der kræver handling.
-			</p>
-		</div>
-	<%- end -%>
+							</div>
+			
+							<%- if @other_fiscal_years.any? -%>
+								<p>
+									Vælg det regnskabsår du ønsker at flytte transaktionerne til.
+								</p>
+								<%= form_tag(auto_correct_fiscal_year_transactions_path(current_user.active_fiscal_year)) %>
+									<ul class="empty">
+										<%- @other_fiscal_years.each do |fy| -%>
+											<li><%= radio_button_tag 'corrected_fiscal_year_id', fy.id %><label for="<%= 'corrected_fiscal_year_id_' + fy.id.to_s %>"><%=h fy.name %></label></li>
+										<%- end -%>
+									</ul>
+									<%= submit_tag "Flyt" %>
+								</form>
+							<%- else -%>
+								<p>
+									Ønsker du at oprette et nyt regnskabsår og flytte disse transaktioner over?
+								</p>
+								<%= form_tag(auto_correct_fiscal_year_transactions_path(current_user.active_fiscal_year)) %>
+									<%= hidden_field_tag 'corrected_fiscal_year_id', '-1' %>
+									Ja, <%= submit_tag "overfør transaktionerne" %> til et nyoprettet regnskabsår.
+								</form>
+							<%- end -%>
+						</div>
+					</li>
+				<%- end -%>
+			</div>
+		<%- end -%>
 	
-	<%- if @latest_transactions.any? -%>
-		<div class="latest-transactions">
-			<h3>Seneste transaktioner</h3>
-			<table id="transactions">
-				<thead>
-					<tr>
-						<th class="drag-handle"></th>
-						<th class="created_at"><%= t('transaction.created_at') %></th>
-						<th><%= t('transaction.note') %></th>
-						<th class="income"><span class="income"><%= t('transaction.amount_in') %></span></th>
-						<th class="expense"><span class="expense"><%= t('transaction.amount_out') %></span></th>
-					</tr>
-				</thead>
-				<tbody>
-					<%= render @latest_transactions %>
-				</tbody>
+		<div class="clear"></div>
+	
+		<div class="grid_3 alpha">
+			<h3>Momsregnskab</h3>
+			<table class="overview">
+				<tr>
+					<td>Salgsmoms</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>Købsmoms</td>
+					<td>-</td>
+				</tr>
 			</table>
 		</div>
-	<%- end -%>
+		<div class="grid_3">
+			<h3>Årsregnskab</h3>
+			<table class="overview">
+				<tr>
+					<td>Indtægter</td>
+					<td class="number"><%= number_to_currency(@income_dkk, :unit => 'DKK') %></td>
+				</tr>
+				<%- if @income_usd > 0 -%>
+				<tr>
+					<td></td>
+					<td class="number"><%= number_to_currency(@income_usd, :unit => 'USD') %></td>
+				</tr>
+				<%- end -%>
+				<tr>
+					<td>Udgifter</td>
+					<td class="number"><%= number_to_currency(@expense_dkk, :unit => 'DKK') %></td>
+				</tr>
+				<%- if @expense_usd > 0 -%>
+				<tr>
+					<td></td>
+					<td class="number"><%= number_to_currency(@expense_usd, :unit => 'USD') %></td>
+				</tr>
+				<%- end -%>
+				<tr>
+					<td>Årets resultat før skat</td>
+					<td>-</td>
+				</tr>
+			</table>
+		</div>
+		<div class="grid_3 omega">
+			<h3>Indbakke</h3>
+			<p>
+				Tilføj nye bilag ved at sende en mail til bilag@hurtigmoms.dk.
+			</p>
+			<!-- <p>
+				Du har sendt 3 bilag til din indbakke på "bilag+<b>token</b>@hurtigmoms.dk"
+			</p> -->
+		</div>
+	
+		<div class="clear"></div>
+	
+		<%- if @latest_transactions.any? -%>
+			<div class="latest-transactions">
+				<h3>Seneste transaktioner</h3>
+				<table id="transactions" class="simple">
+					<thead>
+						<tr>
+							<th class="drag-handle"></th>
+							<th class="created_at"><%= t('transaction.created_at') %></th>
+							<th class="note"><%= t('transaction.note') %></th>
+							<th><%= t('transaction.amount') %></th>
+						</tr>
+					</thead>
+					<tbody>
+						<%= render @latest_transactions %>
+					</tbody>
+				</table>
+			</div>
+		<%- end -%>
+	</div>
+
+	<div class="grid_3">
+		<div id="page-actions">
+			<ul>
+				<li class="separator">Transaktioner</li>
+				<!-- <li><%= link_to 'Tilføj ny indtægt', new_fiscal_year_transaction_path(current_user.active_fiscal_year, :transaction_type => Transaction::TRANSACTION_TYPES[:sell]), { :class => 'button income' } %></li>
+				<li><%= link_to 'Tilføj ny indtægt', new_fiscal_year_transaction_path(current_user.active_fiscal_year, :transaction_type => Transaction::TRANSACTION_TYPES[:sell]), { :class => 'button income' } %></li> -->
+				<li><%= link_to 'Tilføj ny indtægt/udgift', fiscal_year_transactions_path(current_user.active_fiscal_year), { :class => 'button' } %></li>
+				<li class="separator">Kontoudtog</li>
+				<li><%= link_to 'Indlæs kontoudtog fra bank', new_posting_import_path, { :class => 'button' } %></li>
+			</ul>
+		</div>
+	</div>
 </div>
 
 <%- content_for :js do -%>

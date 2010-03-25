@@ -32,27 +32,21 @@
 		<%- end -%>
 	</div>
 	<div class="grid_3 omega">
-		<div class="quick-buttons">
-			<!-- <%= link_to 'Tilføj salg', new_fiscal_year_transaction_path(current_user.active_fiscal_year), { :class => 'button show income' } %>
-			<%= link_to 'Tilføj køb', new_fiscal_year_transaction_path(current_user.active_fiscal_year), { :class => 'button show expense' } %>
-			<%= link_to 'Tilføj betaling', new_fiscal_year_transaction_path(current_user.active_fiscal_year), { :class => 'button show payment' } %> -->
-		
-			<%= link_to t('.buttons.add'), new_fiscal_year_transaction_path(current_user.active_fiscal_year), { :class => 'button show', :id => 'add-new-transaction' } %>
-			<!-- <%= link_to 'Import postings', new_posting_import_path, { :class => 'button' } %> -->
-		</div>
+		<%= link_to t('.buttons.add'), new_fiscal_year_transaction_path(current_user.active_fiscal_year), { :class => 'button show', :id => 'add-new-transaction' } %>
 	</div>
 </div>
 
 <div class="grid_12">
 	<%- if @transactions.any? -%>
-		<table id="transactions" class="editable-table">
+		<table id="transactions" class="editable-table simple">
 			<thead>
 				<tr>
-					<th class="drag-handle"></th>
+					<th class="drag-handle"><div style="width: 8px; height: 1px; overflow: hidden">&nbsp;</div></th>
 					<th class="created_at"><%= t('transaction.created_at') %></th>
-					<th><%= t('transaction.note') %></th>
-					<th class="income"><span class="income"><%= t('transaction.amount_in') %></span></th>
-					<th class="expense"><span class="expense"><%= t('transaction.amount_out') %></span></th>
+					<th class="note"><%= t('transaction.note') %></th>
+					<!-- <th class="income"><span class="income"><%= t('transaction.amount_in') %></span></th>
+					<th class="expense"><span class="expense"><%= t('transaction.amount_out') %></span></th> -->
+					<th><%= t('transaction.amount') %></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -79,6 +73,20 @@
 		Der er ingen transaktioner der matcher søgekriteriet.
 	</div>
 </div>
+
+<!-- <div class="grid_3">
+	<div id="page-actions">
+		<ul>
+			<li class="separator">Transaktioner</li>
+			<%= link_to 'Tilføj salg', new_fiscal_year_transaction_path(current_user.active_fiscal_year), { :class => 'button show income' } %>
+			<%= link_to 'Tilføj køb', new_fiscal_year_transaction_path(current_user.active_fiscal_year), { :class => 'button show expense' } %>
+			<%= link_to 'Tilføj betaling', new_fiscal_year_transaction_path(current_user.active_fiscal_year), { :class => 'button show payment' } %>
+		
+			<li><%= link_to t('.buttons.add'), new_fiscal_year_transaction_path(current_user.active_fiscal_year), { :class => 'button show', :id => 'add-new-transaction' } %></li>
+			<%= link_to 'Import postings', new_posting_import_path, { :class => 'button' } %>
+		</ul>
+	</div>
+</div> -->
 
 <%- content_for :js do -%>
 	hurtigmoms.transactions = [<%= @transactions.collect { |t| t.id }.join(',') %>];

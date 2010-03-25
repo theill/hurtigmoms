@@ -82,7 +82,7 @@ class PostingImport < ActiveRecord::Base
         end
         
         # now do actual match based on parsed values
-        (transaction.amount == amount) && (transaction.currency == detected_currency) && (transaction.created_at.to_date..(transaction.created_at.to_date + 3.days)).include?(p.created_at.to_date)
+        (transaction.amount == amount) && (transaction.currency == detected_currency) && ((transaction.created_at.to_date - 5.days)..(transaction.created_at.to_date + 5.days)).include?(p.created_at.to_date)
       end
       
       if match

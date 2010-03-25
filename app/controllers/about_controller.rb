@@ -20,6 +20,11 @@ class AboutController < ApplicationController
       @other_fiscal_years = current_user.fiscal_years.delete_if { |fy| fy == current_user.active_fiscal_year }
     end
     
+    @income_dkk = current_user.active_fiscal_year.transactions.income.sum(:amount)
+    @expense_dkk = current_user.active_fiscal_year.transactions.expense.sum(:amount)
+    @income_usd = current_user.active_fiscal_year.transactions.income('USD').sum(:amount)
+    @expense_usd = current_user.active_fiscal_year.transactions.expense('USD').sum(:amount)
+    
     @latest_transactions = current_user.active_fiscal_year.transactions.latest
   end
   

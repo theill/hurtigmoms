@@ -1,5 +1,5 @@
 <div id="page-header" class="grid_12">
-	<h1>Kontoudtog <span>Match indlæste rækker</span></h1>
+	<h1>Kontoudtog <span>Match af indlæste transaktioner</span></h1>
 </div>
 
 <div class="grid_12">
@@ -15,7 +15,7 @@
 	<% form_for(@posting_import) do |f| %>
 		<%= f.error_messages %>
 		
-		<table id="postings">
+		<table id="postings" class="simple">
 			<thead>
 				<tr>
 					<%- @rows.headers.each do |header| -%>
