@@ -1002,10 +1002,6 @@ table tr.row-editing div.box {
 		
 	}
 
-.ui-draggable {
-	cursor: move;
-}
-
 /* Interaction states
 ----------------------------------*/
 .ui-state-default, .ui-widget-content .ui-state-default { background: #fff; font-weight: normal; color: #555555; outline: none; }
