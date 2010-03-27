@@ -123,24 +123,16 @@
 		<div class="grid_3">
 			<h3>Årsregnskab</h3>
 			<table class="overview">
+				<%- @incomes.each do |currency, income| -%>
 				<tr>
 					<td>Indtægter</td>
-					<td class="number"><%= number_to_currency(@income_dkk, :unit => 'DKK') %></td>
-				</tr>
-				<%- if @income_usd > 0 -%>
-				<tr>
-					<td></td>
-					<td class="number"><%= number_to_currency(@income_usd, :unit => 'USD') %></td>
+					<td class="number"><%= number_to_currency(income, :unit => currency) %></td>
 				</tr>
 				<%- end -%>
+				<%- @expenses.each do |currency, expense| -%>
 				<tr>
 					<td>Udgifter</td>
-					<td class="number"><%= number_to_currency(@expense_dkk, :unit => 'DKK') %></td>
-				</tr>
-				<%- if @expense_usd > 0 -%>
-				<tr>
-					<td></td>
-					<td class="number"><%= number_to_currency(@expense_usd, :unit => 'USD') %></td>
+					<td class="number"><%= number_to_currency(expense, :unit => currency) %></td>
 				</tr>
 				<%- end -%>
 				<tr>

@@ -21,8 +21,8 @@ class Transaction < ActiveRecord::Base
   before_save :set_customer
   
   named_scope :payments, :conditions => ['transaction_type = ?', TRANSACTION_TYPES[:pay]]
-  named_scope :income, lambda { |*currency| { :conditions => ['transaction_type = ? AND currency = ?', TRANSACTION_TYPES[:sell], currency.first || 'DKK'] } }
-  named_scope :expense, lambda { |*currency| { :conditions => ['transaction_type = ? AND currency = ?', TRANSACTION_TYPES[:buy], currency.first || 'DKK'] } }
+  named_scope :income, :conditions => ['transaction_type = ?', TRANSACTION_TYPES[:sell]]
+  named_scope :expense, :conditions => ['transaction_type = ?', TRANSACTION_TYPES[:buy]]
   named_scope :incomplete, :conditions => 'amount IS NULL OR created_at IS NULL OR currency IS NULL'
   named_scope :wrong_fiscal_year, :conditions => 'DATE(transactions.created_at) > fiscal_years.end_date OR DATE(transactions.created_at) < fiscal_years.start_date', :joins => :fiscal_year, :order => 'created_at DESC'
   named_scope :without_related_transactions, :conditions => ['transactions.transaction_type = ? and transactions.id NOT IN (select related_transaction_id FROM equalizations)', TRANSACTION_TYPES[:pay]], :order => 'created_at DESC'
