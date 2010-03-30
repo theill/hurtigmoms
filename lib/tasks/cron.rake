@@ -5,4 +5,6 @@ task :cron => :environment do
 	
 	# process incoming emails
 	Inbox.new.perform
+	
+	ExchangeRate.refresh
 end

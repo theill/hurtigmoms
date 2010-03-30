@@ -27,7 +27,7 @@ class AboutController < ApplicationController
   end
   
   def help
-    @exchange_rates = ExchangeRate.all(:order => 'currency')
+    @exchange_rates = ExchangeRate.latest.all(:order => 'currency')
     
   end
   

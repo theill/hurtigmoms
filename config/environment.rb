@@ -67,7 +67,7 @@ Rails::Initializer.run do |config|
 end
 
 # create quick lookup table for performing currency conversion calculations
-EXCHANGE_RATES = ExchangeRate.all.inject({}) { |initial, er| initial.merge({er.currency => er.rate}) } if ExchangeRate.table_exists?
+EXCHANGE_RATES = ExchangeRate.latest.all.inject({}) { |initial, er| initial.merge({er.currency => er.rate}) } if ExchangeRate.table_exists?
 
 DO_NOT_REPLY = "bilag@hurtigmoms.dk"
 
