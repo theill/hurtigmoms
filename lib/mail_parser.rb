@@ -11,6 +11,8 @@ class MailParser < TextParser
     
     parsed_attributes = recognize_and_parse_mail(@mail).merge(:transaction_type => Transaction::TRANSACTION_TYPES[:buy], :attachment_no => 0)
     
+    # try reading amount and currency in PDF attachments in case we didn't
+    # find any in regular mail body
     if @mail.has_attachments? && (parsed_attributes[:amount].blank? || parsed_attributes[:amount] == 0.0)
       @mail.attachments.delete_if { |a| a.content_type != 'application/pdf' }.each do |attachment|
         o = PdfParser.new(attachment).parse
@@ -54,6 +56,12 @@ class MailParser < TextParser
     date = Time.now.utc.to_datetime
     currency = 'DKK'
     # account_no = nil
+
+    # parse original "From" header from body of message. we do this because
+    # mail will always be forwarded from users own email address so we can't
+    # just read a regular "From: " header
+    parsed_from = mail.body.match(/From:\W?(.*)\W<(.*)>/) || []
+    from = { :name => parsed_from[1], :email => parsed_from[2] }
     
     # trim forwarding and replying rules from subject
     description = (mail.subject || '').gsub(/^fwd: /i, '').gsub(/^fw: /i, '').gsub(/^re: /i, '').gsub(/^vs: /i, '').gsub(/^sv: /i, '')
@@ -61,7 +69,7 @@ class MailParser < TextParser
     # remove additional whitespaces
     description = description.split.join(' ').gsub(/=C2=A0/, ' ')
     
-    if (mail.body && mail.body.include?('support@getharvest.com'))
+    if (from[:email] == 'support@getharvest.com')
       # do Harvest parsing
       parsed_amount = mail.body.scan(/amount:\W?(\$)?([\d|\.]*)\W?\(?(DKK|USD|GBP|NOK|SEK|EUR)?\)?/i).flatten
       amount = (parsed_amount[1] if parsed_amount.length > 1) || amount
@@ -69,7 +77,7 @@ class MailParser < TextParser
       
       parsed_date = mail.body.scan(/date:\W?(\d\d \w{3} \w{4})/i).flatten
       date = (parsed_date.length > 0) ? parsed_date[0].to_datetime : Time.now.utc.to_datetime
-    elsif (mail.body && mail.body.include?('support@github.com'))
+    elsif (from[:email] =='support@github.com')
       # do GitHub parsing
       parsed_amount = mail.body.scan(/amount:\W?(DKK|USD|GBP|NOK|SEK|EUR)?\W?\$?([\d|\.]*)/i).flatten
       amount = (parsed_amount[1] if parsed_amount.length > 1) || amount
@@ -77,7 +85,7 @@ class MailParser < TextParser
       
       parsed_date = mail.body.scan(/GITHUB RECEIPT - (\d\d? \w{3} \w{4})/i).flatten
       date = (parsed_date.length > 0) ? parsed_date[0].to_datetime : Time.now.utc.to_datetime
-    elsif (mail.body && mail.body.include?('info@campaignmonitor.com'))
+    elsif (from[:email] == 'info@campaignmonitor.com')
       # do Campaign Monitor parsing
       
       # further process caption by removing start of subject
@@ -94,7 +102,7 @@ class MailParser < TextParser
       # get date (of order)
       parsed_date = mail.body.scan(/Order Date\s*(\d{1,} \w{3} \d{4})/).flatten
       date = (parsed_date.length > 0) ? parsed_date[0].to_datetime : Time.now.utc.to_datetime
-    elsif (mail.body && mail.body.include?('no-reply@spotify.com'))
+    elsif (from[:email] == 'no-reply@spotify.com')
       # do Spotify parsing
       
       # what kind of item did we buy?
@@ -107,7 +115,7 @@ class MailParser < TextParser
       
       parsed_date = mail.body.gsub(/=C2=A0/, ' ').scan(/^Date:.*(\d{4}-\d{2}-\d{2})/).flatten
       date = (parsed_date.length > 0) ? parsed_date[0].to_datetime : Time.now.utc.to_datetime
-    elsif (mail.body && mail.body.include?('billing@37signals.com'))
+    elsif (from[:email] == 'billing@37signals.com')
       # do Basecamp parsing
       
       description = mail.body.scan(/Price[\n]-*.*([^\$]*)/i).flatten.to_s.gsub(/-/, '').gsub(/>/, '').squish
@@ -135,6 +143,6 @@ class MailParser < TextParser
     # end
 
     # { :amount => amount, :currency => currency, :note => description, :created_at => date, :account_no => account_no }
-    { :amount => amount.to_f, :currency => currency.upcase, :note => description, :created_at => date }
+    { :amount => amount.to_f, :currency => currency.upcase, :note => description, :created_at => date, :customer_name => from[:name] }
   end
 end

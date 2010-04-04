@@ -12,6 +12,7 @@ describe "A MailParser" do
     transaction.created_at.should == Date.new(2009, 9, 4)
     transaction.annexes.should_not be_nil
     transaction.should have(1).annexes
+    transaction.customer_name.should == "Harvest Billing"
   end
 
   it "should remove attachments from mails" do
