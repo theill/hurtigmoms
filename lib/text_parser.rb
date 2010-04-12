@@ -17,7 +17,12 @@ class TextParser
   end
   
   def guess_amount(body)
-    parsed_amount = body.scan(/amount:?\W?\$?([\d|\.|\,]*)\W?(DKK|USD|GBP|NOK|SEK|EUR)?/i).flatten
+    # explicit dollar symbol
+    parsed_amount = body.scan(/amount:?\W?\$\W?([\d|\.|\,]*)/i).flatten
+    amount = (parsed_amount[0] if parsed_amount.length > 0)
+    return [amount, 'USD'] if amount.present?
+    
+    parsed_amount = body.scan(/amount:?\W?\$?\W?([\d|\.|\,]*)\W?(DKK|USD|GBP|NOK|SEK|EUR)?/i).flatten
     amount = (parsed_amount[0] if parsed_amount.length > 0)
     currency = (parsed_amount[1] if parsed_amount.length > 1)
     return [amount, currency] if amount.present? #&& currency
