@@ -10,9 +10,6 @@ $("#transactions tfoot").html('');
 	
 	<%- @transactions.each do |transaction| -%>
 		$("#transactions").append("<%= escape_javascript(render(transaction)) %>");
-
-		// FIXME: move to live handler (use livequery?)
-		$("#<%= dom_id(transaction) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
 	<%- end -%>
 	
 	$("#transactions tr.transaction.pay").live("mouseover", function() {

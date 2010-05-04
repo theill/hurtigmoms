@@ -1,5 +1,2 @@
 $("#<%= dom_id(@customer) %>").replaceWith("<%= escape_javascript(render(@customer)) %>");
 $("#<%= dom_id(@customer) %>").effect("highlight");
-
-// FIXME: move to live handler (use livequery?)
-$("#<%= dom_id(@customer) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });

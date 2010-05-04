@@ -2,8 +2,6 @@
 	$("#customers").prepend("<%= escape_javascript(render(@customer)) %>");
 	$("#<%= dom_id(@customer) %>").effect("highlight");
 
-	$("#<%= dom_id(@customer) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
-	
   // reset form
   $("#new_customer #customer_name, #new_customer #customer_description").val('');
 	$("#new_customer").focusFirstFormElement();  

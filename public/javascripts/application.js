@@ -143,6 +143,18 @@ jQuery.fn.focusFirstFormElement = function() {
 	return this;
 };
 
+jQuery.fn.simpleHover = function() {
+	$(this).live('mouseover mouseout', function(evt) {
+		if (evt.type == 'mouseover') {
+			$(this).addClass("hover");
+		}
+		else {
+			$(this).removeClass("hover");
+		}
+	});
+	return this;
+};
+
 $.fn.toggleable = function() {
 	var p = $(this);
 	p.find(".pane a.toggle").live("click", function() {
@@ -153,7 +165,7 @@ $.fn.toggleable = function() {
 };
 
 $(document).ready(function() {
-	$(".editable-table .row").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
+	$(".editable-table .row").simpleHover();
 	$(".editable-table .row.hover").live("click", function() {
 		$(this).find(".edit").trigger("click");
 		return false;

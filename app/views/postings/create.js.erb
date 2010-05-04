@@ -2,9 +2,6 @@
   $("#postings").prepend("<%= escape_javascript(render(@posting)) %>");
   $("#<%= dom_id(@posting) %>").effect("highlight");
   
-	// FIXME: move to live handler (use livequery?)
-	$("#<%= dom_id(@posting) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
-
 	$("tr#new_posting").remove();
   
   // reset form

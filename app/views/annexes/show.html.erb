@@ -1,33 +1,32 @@
 <%- @meta = { :title => h(extract_first_note_line(@transaction)), :description => '' } -%>
 
 <%- content_for :js do %>
-	$(".quick-edit").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
+	$(".quick-edit").simpleHover();
 	$(".quick-edit").live("click", function() {
 		$(this).hide().siblings(".quick-edit-container").show().focusFirstFormElement();
 	});
+	
+	$(".edit_transaction").ajaxForm({	dataType: "script" });
 <%- end %>
 
 <div id="page-header" class="grid_12">
-	<h1 class="quick-edit"><%=h extract_first_note_line(@transaction) %></h1>
-	<div class="quick-edit-container" style="display: none">
-		<% form_for([@transaction.fiscal_year, @transaction], :html => {:autocomplete => 'off'}) do |f| -%>
-			<%= hidden_field_tag 'return_to', request.path %>
-			<%= f.text_field :note, :size => 60, :style => 'font-family: xAnivers, Arial, Helvetica, Verdana, Sans-serif; font-weight: bold; letter-spacing: -1px; font-size: 22px' %>
-			
-			<%= f.submit t('buttons.save') %>
-		<%- end -%>
-	</div>
+	<%= render :partial => 'quick_note_edit' %>
 </div>
 
 <div class="grid_9">
 	<div id="attachment-frame">
 		<%= render_annex(@annex) %>
 	</div>
+	
+	<div class="quick-buttons">
+		<%= link_to("Hent bilag", download_fiscal_year_transaction_annex_path(current_user.active_fiscal_year, @transaction, @annex), { :class => 'button' }) %>
+		<%= link_to("Slet bilag", fiscal_year_transaction_annex_path(current_user.active_fiscal_year, @transaction, @annex), :confirm => 'Are you sure?', :method => :delete, :class => 'button' ) %>
+	</div>
 </div>
 
 <div class="grid_3">
 	<fieldset>
-		<label>Filnavn:</label>
+		<label>Originalt filnavn:</label>
 		<%= @annex.attachment_file_name %>
 	</fieldset>
 	
@@ -37,11 +36,6 @@
 
 	<fieldset><label for="created_at">Arkiveret dato:</label><%= @annex.created_at.strftime("%x") %></fieldset>
 	
-	<div class="quick-buttons">
-		<%= link_to("Hent bilag", download_fiscal_year_transaction_annex_path(current_user.active_fiscal_year, @transaction, @annex), { :class => 'button' }) %>
-		<%= link_to("Slet bilag", fiscal_year_transaction_annex_path(current_user.active_fiscal_year, @transaction, @annex), :confirm => 'Are you sure?', :method => :delete, :class => 'button' ) %>
-	</div>
-	
 	<div id="transaction-properties">
 		<h4>Transaktionsdetaljer</h4>
 		<% form_for([@transaction.fiscal_year, @transaction], :html => {:autocomplete => 'off'}) do |f| -%>
@@ -50,7 +44,7 @@
 			<fieldset>
 				<%= f.label :created_at, t('transaction.created_at') + ' <span class="req">*</span>' %>
 				<%= f.hidden_field :created_at, :class => 'date-field standard-field' %>
-				<%= text_field_tag 'transaction_created_at_formatted', '', :class => 'date-field standard-field', :style => 'width: 220px' %>
+				<%= text_field_tag 'transaction_created_at_formatted', '', :class => 'date-field standard-field', :style => 'width: 210px' %>
 				<p class="hint">Fakturadato eller betalingsdato</p>
 			</fieldset>
 			

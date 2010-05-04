@@ -1,10 +1,14 @@
 <%- if @transaction.errors.empty? %>
-	$(".<%= dom_id(@transaction, 'related') %>").remove();
-  $("#<%= dom_id(@transaction) %>").replaceWith("<%= escape_javascript(render(@transaction)) %>");
-  $("#<%= dom_id(@transaction) %>").effect("highlight");
-
-  // FIXME: move to live handler (use livequery?)
-  $("#<%= dom_id(@transaction) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
+	<%- if @quick -%>
+//	  $("#<%= dom_id(@transaction, 'quick-edit') %>").replaceWith("<%= escape_javascript(render(@transaction)) %>");
+		$("#<%= dom_id(@transaction, 'quick-edit') %>").replaceWith("<%= escape_javascript(render :partial => 'annexes/quick_note_edit') %>");
+		
+		$("#<%= dom_id(@transaction, 'quick-edit') %> .edit_transaction").ajaxForm({	dataType: "script" });
+	<%- else -%>
+		$(".<%= dom_id(@transaction, 'related') %>").remove();
+	  $("#<%= dom_id(@transaction) %>").replaceWith("<%= escape_javascript(render(@transaction)) %>");
+	  $("#<%= dom_id(@transaction) %>").effect("highlight");
+	<%- end -%>
 <%- else -%>
   // render edit form (again but now with errors)
   $("#<%= dom_id(@transaction) %>").replaceWith("<%= escape_javascript(render(:partial => 'edit', :locals => { :transaction => @transaction })) %>");

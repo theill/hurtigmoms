@@ -1,8 +1,6 @@
 $(".<%= dom_id(@equalization.transaction, 'related') %>").remove();
 $("#<%= dom_id(@equalization.transaction) %>").replaceWith("<%= escape_javascript(render(:partial => 'transactions/transaction', :locals => { :transaction => @equalization.transaction })) %>");
 
-$("#<%= dom_id(@equalization.transaction) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
-
 // FIXME: same as transactions#index.html
 $("#<%= dom_id(@equalization.transaction) %>").droppable({
 	accept: '#transactions .transaction.pay',

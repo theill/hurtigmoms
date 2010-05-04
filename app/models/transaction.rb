@@ -16,6 +16,7 @@ class Transaction < ActiveRecord::Base
   has_many :linked_from, :through => :relations_from, :source => :transaction
 
   validates_presence_of :fiscal_year_id, :amount
+  validates_presence_of :created_at, :on => :update
 
   before_validation_on_create :set_attachment_no
   before_save :set_customer

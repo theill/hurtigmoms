@@ -61,7 +61,9 @@ class TransactionsController < ApplicationController
   
   def update
     @transaction = @fiscal_year.transactions.find(params[:id])
-
+    
+    @quick = params[:quick]
+    
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
         if @transaction.related_transactions.empty?

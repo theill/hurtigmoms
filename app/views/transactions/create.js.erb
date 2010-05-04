@@ -2,9 +2,6 @@
   $("#transactions tbody").prepend("<%= escape_javascript(render(@transaction)) %>");
   $("#<%= dom_id(@transaction) %>").effect("highlight");
 
-	// FIXME: move to live handler (use livequery?)
-	$("#<%= dom_id(@transaction) %>").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
-
 	$("tr#new_transaction").remove();
 	
 	hurtigmoms.transactions.push(<%= @transaction.id %>);
