@@ -73,3 +73,4 @@ EXCHANGE_RATES = ExchangeRate.latest.all.inject({}) { |initial, er| initial.merg
 DO_NOT_REPLY = "bilag@hurtigmoms.dk"
 
 require 'slugify'
+require 'memcached'
