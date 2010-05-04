@@ -181,6 +181,13 @@ strong.highlight {
 	margin-bottom: 20px;
 }
 
+.quick-edit {}
+.quick-edit.hover {
+	background-color: #ffc;
+	cursor: pointer;
+}
+
+
 .action {
 	display: none;
 }

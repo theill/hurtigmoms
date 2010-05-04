@@ -1,7 +1,22 @@
 <%- @meta = { :title => h(extract_first_note_line(@transaction)), :description => '' } -%>
 
+<%- content_for :js do %>
+	$(".quick-edit").hover(function() { $(this).addClass("hover"); }, function() { $(this).removeClass("hover"); });
+	$(".quick-edit").live("click", function() {
+		$(this).hide().siblings(".quick-edit-container").show().focusFirstFormElement();
+	});
+<%- end %>
+
 <div id="page-header" class="grid_12">
-	<h1><%=h extract_first_note_line(@transaction) %></h1>
+	<h1 class="quick-edit"><%=h extract_first_note_line(@transaction) %></h1>
+	<div class="quick-edit-container" style="display: none">
+		<% form_for([@transaction.fiscal_year, @transaction], :html => {:autocomplete => 'off'}) do |f| -%>
+			<%= hidden_field_tag 'return_to', request.path %>
+			<%= f.text_field :note, :size => 60, :style => 'font-family: xAnivers, Arial, Helvetica, Verdana, Sans-serif; font-weight: bold; letter-spacing: -1px; font-size: 22px' %>
+			
+			<%= f.submit t('buttons.save') %>
+		<%- end -%>
+	</div>
 </div>
 
 <div class="grid_9">

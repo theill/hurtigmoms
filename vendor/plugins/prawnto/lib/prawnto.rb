@@ -1,7 +1,11 @@
 require 'action_controller'
 require 'action_view'
 
-require 'prawn'
+begin
+  require 'prawn'
+rescue LoadError
+  # prawn might not be installed
+end
 begin 
   require "prawn/layout" # give people what they probably want
 rescue LoadError
