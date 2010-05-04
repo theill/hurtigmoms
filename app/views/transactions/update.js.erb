@@ -1,6 +1,5 @@
 <%- if @transaction.errors.empty? %>
 	<%- if @quick -%>
-//	  $("#<%= dom_id(@transaction, 'quick-edit') %>").replaceWith("<%= escape_javascript(render(@transaction)) %>");
 		$("#<%= dom_id(@transaction, 'quick-edit') %>").replaceWith("<%= escape_javascript(render :partial => 'annexes/quick_note_edit') %>");
 		
 		$("#<%= dom_id(@transaction, 'quick-edit') %> .edit_transaction").ajaxForm({	dataType: "script" });

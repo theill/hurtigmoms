@@ -25,6 +25,7 @@ class Transaction < ActiveRecord::Base
   named_scope :income, :conditions => ['transaction_type = ?', TRANSACTION_TYPES[:sell]]
   named_scope :expense, :conditions => ['transaction_type = ?', TRANSACTION_TYPES[:buy]]
   named_scope :incomplete, :conditions => 'amount IS NULL OR created_at IS NULL OR currency IS NULL'
+  named_scope :in_fiscal_year, lambda { |fiscal_year| { :conditions => ['fiscal_year_id = ?', fiscal_year.id] } }
   named_scope :wrong_fiscal_year, :conditions => 'DATE(transactions.created_at) > fiscal_years.end_date OR DATE(transactions.created_at) < fiscal_years.start_date', :joins => :fiscal_year, :order => 'created_at DESC'
   named_scope :without_related_transactions, :conditions => ['transactions.transaction_type = ? and transactions.id NOT IN (select related_transaction_id FROM equalizations)', TRANSACTION_TYPES[:pay]], :order => 'created_at DESC'
   named_scope :between, lambda { |start_date, end_date| { :conditions => ['DATE(transactions.created_at) BETWEEN ? AND ?', start_date, end_date] } }
@@ -74,6 +75,10 @@ class Transaction < ActiveRecord::Base
   
   def customer_name
     @customer_name || (self.customer.name if self.customer)
+  end
+  
+  def amount_in(to_currency)
+    ExchangeRate.exchange_to(amount, currency, to_currency)
   end
   
   def amount_formatted

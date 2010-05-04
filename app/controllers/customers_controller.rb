@@ -4,7 +4,7 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.xml
   def index
-    @customers = current_user.customers.paginate(:per_page => 20, :page => params[:page], :order => 'name')
+    @customers = current_user.customers.paginate(:per_page => 20, :page => params[:page], :order => 'name', :include => :transactions)
 
     respond_to do |format|
       format.html # index.html.erb

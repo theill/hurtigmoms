@@ -79,6 +79,8 @@ da:
   customer:
     name: Navn
     description: Beskrivelse
+    income: Indtægter
+    expenses: Udgifter
 
   posting_import:
     data: Filnavn

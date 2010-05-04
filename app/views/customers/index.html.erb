@@ -18,7 +18,9 @@
 			<table id="customers" class="editable-table simple">
 				<thead>
 					<tr>
-						<th><%= t('customer.name') %></th>
+						<th class="name"><%= t('customer.name') %></th>
+						<th class="income number" style="width: 20%"><%= t('customer.income') %></th>
+						<th class="expense number" style="width: 20%"><%= t('customer.expenses') %></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -26,7 +28,7 @@
 				</tbody>
 				<tfoot>
 					<tr>
-						<td><%= will_paginate @customers, :previous_label => t('pagination.previous'), :next_label => t('pagination.next') %></td>
+						<td colspan="3"><%= will_paginate @customers, :previous_label => t('pagination.previous'), :next_label => t('pagination.next') %></td>
 					</tr>
 				</tfoot>
 			</table>
@@ -38,6 +40,9 @@
 					<li><%= link_to('Tilføj kunde', new_customer_path, :class => 'new-customer button show') %></li>
 				</ul>
 			</div>
+			<p>
+				Indtægter og udgifter er gældende for <b><%=h current_user.active_fiscal_year.name %></b>.
+			</p>
 		</div>
 	</div>
 <%- else -%>

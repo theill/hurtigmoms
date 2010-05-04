@@ -1,4 +1,4 @@
-<%- @meta = { :title => h(extract_first_note_line(@transaction)), :description => '' } -%>
+<%- @meta = { :title => extract_first_note_line(@transaction), :description => '' } -%>
 
 <%- content_for :js do %>
 	$(".quick-edit").simpleHover();

@@ -209,6 +209,11 @@ strong.highlight {
 	color: #3399CC;
 }
 
+th.number {
+	text-align: right !important;
+	white-space: nowrap;
+}
+
 td.number {
 	text-align: right;
 	white-space: nowrap;

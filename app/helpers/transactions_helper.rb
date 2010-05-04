@@ -68,7 +68,7 @@ module TransactionsHelper
   end
   
   def formatted_amount(transaction)
-    number_with_currency = number_to_currency(exchange_to(transaction.amount, transaction.currency, current_user.default_currency), :unit => current_user.default_currency)
+    number_with_currency = number_to_currency(ExchangeRate.exchange_to(transaction.amount, transaction.currency, current_user.default_currency), :unit => current_user.default_currency)
 
     if transaction.transaction_type == Transaction::TRANSACTION_TYPES[:sell]
       number_with_currency = content_tag(:span, number_with_currency, :class => 'income')
@@ -93,10 +93,4 @@ module TransactionsHelper
     end
   end
   
-  def exchange_to(amount, from, to)
-    return amount if from == to # no conversion necessary
-    
-    exchange_rate = ((1.0 / (EXCHANGE_RATES[to] || 1.0)) * (EXCHANGE_RATES[from] || 1.0))
-    amount / exchange_rate
-  end
 end

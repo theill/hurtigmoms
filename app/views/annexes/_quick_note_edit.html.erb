@@ -1,5 +1,5 @@
 <div id="<%= dom_id(@transaction, 'quick-edit') %>">
-	<h1 class="quick-edit"><%=h extract_first_note_line(@transaction) %></h1>
+	<h1 class="quick-edit"><%= [h(extract_first_note_line(@transaction)), content_tag(:i, 'Unavngivet')].reject(&:blank?).first %></h1>
 	<div class="quick-edit-container" style="display: none">
 		<% form_for([@transaction.fiscal_year, @transaction], :html => {:autocomplete => 'off'}) do |f| -%>
 			<%= hidden_field_tag 'return_to', request.path %>
