@@ -71,7 +71,7 @@ class TransactionsController < ApplicationController
           @transaction.save if matcher.match(@transaction)
         end
         format.html { redirect_to(params[:return_to] || fiscal_year_transactions_url(@fiscal_year)) }
-        format.js {}
+        format.js
       else
         format.html { redirect_to(params[:return_to] || fiscal_year_transactions_url(@fiscal_year)) }
         format.js

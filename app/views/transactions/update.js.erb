@@ -6,7 +6,11 @@
 	<%- else -%>
 		$(".<%= dom_id(@transaction, 'related') %>").remove();
 	  $("#<%= dom_id(@transaction) %>").replaceWith("<%= escape_javascript(render(@transaction)) %>");
-	  $("#<%= dom_id(@transaction) %>").effect("highlight");
+		$("#<%= dom_id(@transaction) %>").effect("highlight");
+		
+		// when updating on annex page
+		$("#transaction-properties").effect("highlight");
+		$("#transaction-properties .status").text("<%= t('status.saved') %>").show().fadeOut(3000);
 	<%- end -%>
 <%- else -%>
   // render edit form (again but now with errors)

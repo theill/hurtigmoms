@@ -933,6 +933,9 @@ table tr.row-editing div.box {
 	#transaction-properties h4 {
 		margin-bottom: 5px;
 	}
+	#transaction-properties .status {
+		font-size: 11px;
+	}
 	
 #mail-display {}
 

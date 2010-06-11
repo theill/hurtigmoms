@@ -7,6 +7,17 @@
 	});
 	
 	$(".edit_transaction").ajaxForm({	dataType: "script" });
+	
+	$("#transaction_created_at_formatted").datepicker({ dateFormat: "d/m-yy", showAnim: "fadeIn",
+		onClose: function(dateText, inst) {
+			$("#transaction_created_at").val($.datepicker.formatDate("yy-mm-dd", $(this).datepicker('getDate')));
+			$(this).focus();
+		}
+	}).datepicker("setDate", $.datepicker.parseDate("yy-mm-dd", "<%= @transaction.created_at.strftime("%Y-%m-%d") %>"));
+	
+	$("#transaction_amount_formatted").blur(function() {
+		$(this).format({format: "#,###.00", locale: hurtigmoms.locale_fix});
+	});
 <%- end %>
 
 <div id="page-header" class="grid_12">
@@ -54,25 +65,10 @@
 				<p class="hint"><%= t('transaction.including_vat') %></p>
 			</fieldset>
 			
-			<%= f.submit t('buttons.save') %>
+			<%= f.submit t('buttons.save') %> <span class="status"></span>
 		<%- end -%>
 	</div>
 	
 </div>
 
 <div class="clear"></div>
-
-<%- content_for :js do -%>
-
-	$("#transaction_created_at_formatted").datepicker({ dateFormat: "d/m-yy", showAnim: "fadeIn",
-		onClose: function(dateText, inst) {
-			$("#transaction_created_at").val($.datepicker.formatDate("yy-mm-dd", $(this).datepicker('getDate')));
-			$(this).focus();
-		}
-	}).datepicker("setDate", $.datepicker.parseDate("yy-mm-dd", "<%= @transaction.created_at.strftime("%Y-%m-%d") %>"));
-	
-	$("#transaction_amount_formatted").blur(function() {
-		$(this).format({format: "#,###.00", locale: hurtigmoms.locale_fix});
-	});
-	
-<%- end -%>

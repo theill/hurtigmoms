@@ -12,6 +12,13 @@ en:
     close: Close
     delete: Delete
 
+  status:
+    saving: Saving
+    saved: Saved
+
+  inline:
+    or: or
+
   user:
     company: Company
     cvr: CVR

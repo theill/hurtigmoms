@@ -11,6 +11,10 @@ da:
     wait: Vent venligst...
     close: Luk
     delete: Slet
+    
+  status:
+    saving: Gemmer
+    saved: Gemt
 
   inline:
     or: eller
