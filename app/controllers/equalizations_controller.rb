@@ -16,7 +16,7 @@ class EqualizationsController < ApplicationController
   end
   
   def destroy
-    @equalization = @transaction.equalizations.find(params[:id])
+    @equalization = @transaction.relations.find { |e| e.id == params[:id].to_i }
     @equalization.destroy
 
     respond_to do |format|
