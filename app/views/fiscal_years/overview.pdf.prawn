@@ -7,8 +7,9 @@ items = []
 end
 
 pdf.repeat :all do
-	pdf.text "#{@fiscal_year.user.company}", :at => pdf.bounds.top_left, :size => 8
-	pdf.text "Side #{pdf.page_number} af #{pdf.page_count}", :align => :right, :valign => :bottom, :size => 8
+	# pdf.text "#{@fiscal_year.user.company}", :at => pdf.bounds.top_left, :size => 8
+	pdf.text "#{@fiscal_year.user.company}", :align => :left, :valign => :top, :size => 7
+	pdf.text "Side #{pdf.page_number} af #{pdf.page_count}", :align => :right, :valign => :bottom, :size => 7
 end
 
 pdf.table items, :border_style => :underline_header,

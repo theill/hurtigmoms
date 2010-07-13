@@ -31,8 +31,8 @@ module TransactionsHelper
   	  transaction.created_at.strftime("%d/%m-%Y"),
   	  transaction.attachment_no ? ('%04d' % transaction.attachment_no) : '',
   	  extract_first_note_line(transaction),
-  	  (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:sell] || (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:pay] && transaction.amount > 0)) ? number_to_currency(transaction.amount, :unit => current_user.default_currency) : '',
-  	  (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:buy] || (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:pay] && transaction.amount < 0)) ? number_to_currency(transaction.amount, :unit => current_user.default_currency) : ''
+  	  (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:sell] || (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:pay] && transaction.amount > 0)) ? number_to_currency(transaction.amount, :unit => transaction.currency) : '',
+  	  (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:buy] || (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:pay] && transaction.amount < 0)) ? number_to_currency(transaction.amount, :unit => transaction.currency) : ''
   	]
   end
 
@@ -41,8 +41,8 @@ module TransactionsHelper
   	  transaction.created_at.strftime("%d/%m-%Y"),
   	  transaction.attachment_no ? ('%04d' % transaction.attachment_no) : '',
   	  'REF: ' + extract_first_note_line(transaction),
-  	  (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:sell] || (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:pay] && transaction.amount > 0)) ? number_to_currency(transaction.amount, :unit => current_user.default_currency) : '',
-  	  (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:buy] || (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:pay] && transaction.amount < 0)) ? number_to_currency(transaction.amount, :unit => current_user.default_currency) : ''
+  	  (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:sell] || (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:pay] && transaction.amount > 0)) ? number_to_currency(transaction.amount, :unit => transaction.currency) : '',
+  	  (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:buy] || (transaction.transaction_type == Transaction::TRANSACTION_TYPES[:pay] && transaction.amount < 0)) ? number_to_currency(transaction.amount, :unit => transaction.currency) : ''
   	]
   end
   

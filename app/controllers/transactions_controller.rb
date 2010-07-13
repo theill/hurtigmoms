@@ -23,6 +23,7 @@ class TransactionsController < ApplicationController
     @transaction = @fiscal_year.transactions.find(params[:id])
     
     respond_to do |format|
+      format.html { render :text => 'NOT FOUND', :status => 404 }
       format.js
     end
   end
