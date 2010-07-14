@@ -1,0 +1,126 @@
+<%- @meta = { :title => extract_first_note_line(@transaction), :description => '' } -%>
+
+<%- content_for :js do %>
+	$(".quick-edit").simpleHover();
+	$(".quick-edit").live("click", function() {
+		$(this).hide().siblings(".quick-edit-container").show().focusFirstFormElement();
+	});
+	
+	// bind events
+	$("form").bind("submit", function() {
+		$(this).find("input[type=submit]").attr("disabled", "disabled");
+		$("#transaction_amount").val($("#transaction_amount").parse({locale: hurtigmoms.locale_fix}));
+		return true;
+	});
+
+	$("#transaction_amount").blur(function() {
+		$(this).format({format: "#,###.00", locale: hurtigmoms.locale_fix});
+	});
+
+	$("#transaction_amount").val('<%= number_to_currency(@transaction.amount, :unit => '', :format => '%n') %>');
+
+	// move to generic 'edit/create' function
+	$("#transaction_customer_name").autocomplete(hurtigmoms.search_customers_url, {
+		dataType: 'json',
+		max: 25,
+		scroll: true,
+		scrollHeight: 190,
+		parse: function(data) {
+			return $.map(eval(data), function(row) {
+				return {
+					data: row.customer,
+					value: '' + row.customer.id,
+					result: row.customer.name
+				}
+			});
+		},
+		formatItem: function(customer, idx, total) {
+			return "<div class=\"company\">" + customer.name + "</div>";
+		}
+	});
+
+	// important to set this -after- autocomplete field
+	$("form").focusFirstFormElement();
+
+	$("#transaction_created_at_formatted").datepicker({ dateFormat: "d/m-yy", showAnim: "fadeIn",
+		onClose: function(dateText, inst) {
+			$("#transaction_created_at").val($.datepicker.formatDate("yy-mm-dd", $(this).datepicker('getDate')));
+			$(this).focus();
+		}
+	}).datepicker("setDate", $.datepicker.parseDate("yy-mm-dd", "<%= @transaction.created_at.strftime("%Y-%m-%d") %>"));
+	
+<%- end %>
+
+<div id="page-header" class="grid_12">
+	<%= render :partial => 'annexes/quick_note_edit' %>
+</div>
+
+<div class="grid_9">
+	<% form_for([@transaction.fiscal_year, @transaction], :html => {:autocomplete => 'off'}) do |f| -%>
+		<%= f.error_messages %>
+
+		<fieldset>
+			<%= f.label :transaction_type, t('transaction.transaction_type') + ' <span class="req">*</span>' %>
+			<%= f.select :transaction_type, transaction_types, {:prompt => "Vælg type"}, :class => 'standard-field', :style => 'width: 140px; margin-right: 10px' %>
+		</fieldset>
+
+		<fieldset>
+			<%= f.label :created_at, t('transaction.created_at') + ' <span class="req">*</span>' %>
+			<%# date_select :transaction, :created_at, {}, :class => 'standard-field' %><!--<a id="date-pick" href="#"><%= image_tag('calendar-select.png', :width => 16, :height => 16, :alt => t('transaction.created_at')) %></a>-->
+			<%= f.hidden_field :created_at, :class => 'date-field standard-field', :style => 'width: 220px; margin-right: 10px' %>
+			<%= text_field_tag 'transaction_created_at_formatted', '', :class => 'date-field standard-field', :style => 'width: 220px; margin-right: 10px' %>
+			<p class="hint">Fakturadato eller betalingsdato</p>
+		</fieldset>
+
+		<fieldset>
+			<%= f.label :customer_name, t('transaction.customer_id') %>
+			<%= f.text_field :customer_name, :class => 'search-field standard-field', :style => 'width: 300px; margin-right: 10px' %>
+			<p class="hint">Indtast del af kundenavnet</p>
+		</fieldset>
+
+		<fieldset>
+			<%= f.label :amount, t('transaction.amount') + ' <span class="req">*</span>' %>
+			<%= f.text_field :amount, :size => 10, :maxlength => 10, :class => 'amount-no-vat decimal standard-field', :style => 'width: 140px; margin-right: 10px' %> <%= f.select :currency, Currency::SUPPORTED, {}, :class => 'standard-field', :style => 'width: 73px' %>
+			<p class="hint"><%= t('transaction.including_vat') %></p>
+		</fieldset>
+
+		<fieldset>
+			<%= f.label :attachment_no, t('transaction.attachment_no') %>
+			<%= f.text_field :attachment_no, :size => 4, :maxlength => 4, :class => 'standard-field', :style => 'width: 140px' %>
+		</fieldset>
+
+		<fieldset>
+			<%= f.label :note, t('transaction.note') %>
+			<%= f.text_area :note, :rows => 2, :cols => 60, :class => 'standard-field', :style => "width: 773px; height: 50px" %>
+			<p class="hint">Kun første linie vises i oversigten</p>
+		</fieldset>
+		
+		<%= f.submit t('.buttons.save') %> <%= t('inline.or') %> <%= link_to t('links.back').downcase, fiscal_year_transactions_path(current_user.active_fiscal_year) %>
+		
+	<% end %>	
+</div>
+
+<div class="grid_3">
+	<%- if @transaction.annexes.any? -%>
+		<label>Arkiverede bilag</label>
+		<ul>
+			<%- @transaction.annexes.each_with_index do |a, index| -%>
+				<li><%= link_to(h("#{a.attachment_file_name} (#{number_to_human_size(a.attachment_file_size)})"), fiscal_year_transaction_annex_path(current_user.active_fiscal_year, @transaction, a)) %></li>
+			<%- end -%>
+		</ul>
+	<%- end -%>
+
+	<%- if @transaction.linked.any? -%>
+		<label>Relaterede transaktioner</label>
+		<ul>
+			<%- @transaction.relations.each do |equalization| -%>
+				<li id="<%= dom_id(equalization) %>">
+					<div class="delete-question"><%= note_for_overview(equalization.transaction == @transaction ? equalization.related_transaction : equalization.transaction) %> (<%= link_to('fjern relation', fiscal_year_transaction_equalization_path(current_user.active_fiscal_year, @transaction, equalization), :class => 'delete') %>)</div>
+					<div class="delete-confirmation"></div>
+				 </li>
+			<%- end -%>
+		</ul>
+	<%- end -%>
+</div>
+
+<div class="clear"></div>

@@ -86,7 +86,7 @@
 				<%- if transaction.new_record? -%>
 				  <%= f.submit t('.buttons.save') %> <%= t('inline.or') %> <%= link_to(t('buttons.close'), fiscal_year_transactions_path(current_user.active_fiscal_year), :class => 'close', :accesskey => 'S') %>
 				<%- else -%>
-					<%= f.submit t('.buttons.save') %> <%= t('inline.or') %> <%= link_to t('buttons.close').downcase, fiscal_year_transaction_path(current_user.active_fiscal_year, transaction, :format => :js), :class => 'show', :accesskey => 'S' %>
+					<%= f.submit t('.buttons.save') %>, <%= link_to t('buttons.close').downcase, fiscal_year_transaction_path(current_user.active_fiscal_year, transaction, :format => :js), :class => 'show', :accesskey => 'S' %> <%= t('inline.or') %> <%= link_to(t('.links.edit_details'), edit_fiscal_year_transaction_path(current_user.active_fiscal_year, transaction)) %>
 				
 					<div class="inline-actions">
 						<div class="delete-question"><%= t('.delete_transaction', :delete_link => link_to(t('buttons.delete'), [current_user.active_fiscal_year, transaction], :class => 'delete')) %></div>

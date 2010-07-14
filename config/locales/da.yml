@@ -15,7 +15,10 @@ da:
   status:
     saving: Gemmer
     saved: Gemt
-
+    
+  links:
+    back: Tilbage
+    
   inline:
     or: eller
     
@@ -189,8 +192,10 @@ da:
       delete_transaction: '{{delete_link}} denne transaktion'
       download_attachment: '{{download_link}}'
       download: Download
+      links:
+        edit_details: Redigér alle detaljer
       buttons:
-        save: Gem
+        save: Gem ændringer
     
   reports:
     index:
