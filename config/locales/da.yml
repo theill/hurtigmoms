@@ -189,8 +189,8 @@ da:
       buttons:
         save: Opret transaktion
     edit:
-      delete_transaction: '{{delete_link}} denne transaktion'
-      download_attachment: '{{download_link}}'
+      delete_transaction: '%{delete_link} denne transaktion'
+      download_attachment: '%{download_link}'
       download: Download
       links:
         edit_details: Redigér alle detaljer

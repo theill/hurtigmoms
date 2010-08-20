@@ -129,8 +129,8 @@ en:
       buttons:
         save: Create transaction
     edit:
-      delete_transaction: '{{delete_link}} this transaction'
-      download_attachment: '{{download_link}}'
+      delete_transaction: '%{delete_link} this transaction'
+      download_attachment: '%{download_link}'
       download: Download
       buttons:
         save: Save
