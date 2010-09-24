@@ -10,9 +10,12 @@ class Inbox
   def perform
     Rails.logger.info("Checking inbox for new messages at #{Time.now.utc}")
     
-    connect_and_parse_all_messages
-    
-    associate_users_with_transactions
+    begin
+      connect_and_parse_all_messages
+      associate_users_with_transactions
+    rescue Net::IMAP::NoResponseError => x
+      Rails.logger.error("Unable to get a response from mail server. #{x}")
+    end
     
     # # recheck inbox in one minute
     # Delayed::Job.enqueue(::Inbox.new, 0, 1.minute.from_now)
