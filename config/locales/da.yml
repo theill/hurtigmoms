@@ -25,6 +25,7 @@ da:
   user:
     company: Firmanavn
     cvr: CVR
+    dropbox: Personlige indbakke
     email: E-mail
     password: Kodeord
     password_confirmation: Bekræft kodeord

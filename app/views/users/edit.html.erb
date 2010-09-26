@@ -18,6 +18,11 @@
 			<%= f.label :cvr, t('user.cvr') %>
 			<%= f.text_field :cvr %>
 		</fieldset>
+		
+		<fieldset>
+			<%= f.label :dropbox, t('user.dropbox') %>
+			<%= mail_to "bilag+#{@user.cvr}@hurtigmoms.dk" %>
+		</fieldset>
 	
 		<fieldset>
 			<%= f.label :active_fiscal_year_id, t('user.active_fiscal_year') %>

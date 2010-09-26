@@ -22,6 +22,7 @@ en:
   user:
     company: Company
     cvr: CVR
+    dropbox: Personal dropbox
     email: Email
     password: Password
     password_confirmation: Confirm password

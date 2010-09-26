@@ -42,7 +42,7 @@ class Inbox
   end
   
   def parse(mail)
-    email, transaction = MailParser.new(mail).parse
+    email, dropbox, transaction = MailParser.new(mail).parse
     if self.messages.include?(email)
       self.messages[email] << transaction
     else

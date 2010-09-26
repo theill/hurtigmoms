@@ -27,7 +27,7 @@ class MailParser < TextParser
     transaction = Transaction.new(parsed_attributes)
     transaction.build_attachments(associate_attachments(@mail))
     
-    [@mail.from.to_s, transaction]
+    [@mail.from.to_s, @mail.to.to_s, transaction]
   end
   
   private
