@@ -39,6 +39,8 @@ class Inbox
     end
     imap.expunge
     imap.logout
+  rescue OpenSSL::SSL::SSLError => e
+    Rails.logger.error("Unable to connect to Google Mail account caused by SSL error: #{e}")
   end
   
   def parse(mail)
