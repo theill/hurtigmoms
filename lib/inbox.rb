@@ -50,7 +50,7 @@ class Inbox
     dropbox_identifier = dropbox.match(/bilag[-\+]([^@]*)@hurtigmoms\.dk/i)
     if dropbox_identifier.present? && dropbox_identifier.length == 2
       dropbox_user = User.find_by_dropbox(dropbox_identifier[1])
-      email = dropbox_user if dropbox_user
+      email = dropbox_user.email if dropbox_user
     end
     
     if self.messages.include?(email)
