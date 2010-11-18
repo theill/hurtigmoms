@@ -49,7 +49,7 @@ class Inbox
     # lookup users email based on dropbox and use that instead if available
     dropbox_identifier = dropbox.match(/bilag[-\+]([^@]*)@hurtigmoms\.dk/i)
     if dropbox_identifier.present? && dropbox_identifier.length == 2
-      dropbox_user = User.find_by_dropbox(dropbox_identifier[1])
+      dropbox_user = User.find_by_dropbox(dropbox_identifier[1].to_s)
       email = dropbox_user.email if dropbox_user
     end
     
