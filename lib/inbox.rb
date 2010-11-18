@@ -47,8 +47,9 @@ class Inbox
     email, dropbox, transaction = MailParser.new(mail).parse
     
     # lookup users email based on dropbox and use that instead if available
-    if dropbox.present? && dropbox != 'bilag@hurtigmoms.dk'
-      dropbox_user = User.find_by_dropbox(dropbox)
+    dropbox_identifier = dropbox.match(/bilag[-\+]([^@]*)@hurtigmoms\.dk/i)
+    if dropbox_identifier.present? && dropbox_identifier.length == 2
+      dropbox_user = User.find_by_dropbox(dropbox_identifier[1])
       email = dropbox_user if dropbox_user
     end
     
