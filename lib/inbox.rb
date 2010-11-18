@@ -45,6 +45,13 @@ class Inbox
   
   def parse(mail)
     email, dropbox, transaction = MailParser.new(mail).parse
+    
+    # lookup users email based on dropbox and use that instead if available
+    if dropbox.present? && dropbox != 'bilag@hurtigmoms.dk'
+      dropbox_user = User.find_by_dropbox(dropbox)
+      email = dropbox_user if dropbox_user
+    end
+    
     if self.messages.include?(email)
       self.messages[email] << transaction
     else

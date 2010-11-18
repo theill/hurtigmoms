@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100330193122) do
+ActiveRecord::Schema.define(:version => 20101118114353) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20100330193122) do
     t.string   "company"
     t.string   "cvr"
     t.integer  "active_fiscal_year_id"
+    t.string   "dropbox"
   end
 
   add_index "users", ["confirmation_token", "id"], :name => "index_users_on_id_and_confirmation_token"

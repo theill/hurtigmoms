@@ -21,7 +21,8 @@
 		
 		<fieldset>
 			<%= f.label :dropbox, t('user.dropbox') %>
-			<%= mail_to "bilag+#{@user.cvr}@hurtigmoms.dk" %>
+			bilag+<%= f.text_field :dropbox %>@hurtigmoms.dk
+			<p class="hint">Det er altid muligt at sende dit bilag til bilag@hurtigmoms.dk men du kan også benytte ovenstående adresse, hvis du ønsker at sende bilag fra en anden mail konto.</p>
 		</fieldset>
 	
 		<fieldset>

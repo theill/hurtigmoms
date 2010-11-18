@@ -9,16 +9,18 @@ class User < ActiveRecord::Base
   
   after_create :setup_default_accounts, :set_active_fiscal_year
   
-  attr_accessible :company, :cvr, :active_fiscal_year_id
+  attr_accessible :company, :cvr, :dropbox, :active_fiscal_year_id
   
   validates_presence_of :company
   validates_format_of :cvr, :with => /^[\d]+$/, :allow_nil => true, :allow_blank => true
   validates_length_of :cvr, :is => 8, :allow_nil => true, :allow_blank => true
+  validates_uniqueness_of :dropbox, :allow_nil => true
 
   HUMANIZED_ATTRIBUTES = {
     :company => I18n.t(:company, :scope => :user),
     :email => I18n.t(:email, :scope => :user),
-    :password => I18n.t(:password, :scope => :user)
+    :password => I18n.t(:password, :scope => :user),
+    :dropbox => I18n.t(:dropbox, :scope => :user)
   }
 
   def self.human_attribute_name(attr)
