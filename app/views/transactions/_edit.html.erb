@@ -71,7 +71,7 @@
 								<ul>
 									<%- transaction.relations.each do |equalization| -%>
 										<li id="<%= dom_id(equalization) %>">
-											<div class="delete-question"><%= note_for_overview(equalization.transaction == transaction ? equalization.related_transaction : equalization.transaction) %> (<%= link_to('fjern relation', fiscal_year_transaction_equalization_path(current_user.active_fiscal_year, transaction, equalization), :class => 'delete') %>)</div>
+											<div class="delete-question"><%= note_for_transaction_overview(equalization.transaction == transaction ? equalization.related_transaction : equalization.transaction) %> (<%= link_to('fjern relation', fiscal_year_transaction_equalization_path(current_user.active_fiscal_year, transaction, equalization), :class => 'delete') %>)</div>
 											<div class="delete-confirmation"></div>
 										 </li>
 									<%- end -%>

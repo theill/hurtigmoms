@@ -12,7 +12,7 @@ module TransactionsHelper
   end
   
   # extract first line of note
-  def note_for_overview(transaction, search=nil)
+  def note_for_transaction_overview(transaction, search=nil)
     first_line = highlight_words(h(extract_first_note_line(transaction)), search)
     
     if transaction.customer
