@@ -11,6 +11,7 @@
 	
 	<p>
 		(only for development use): <%= link_to "download alle bilag", download_annexes_fiscal_year_path(@fiscal_year) %> |
-		<%= link_to("download overblik", formatted_overview_fiscal_year_path(@fiscal_year, :format => :pdf)) %>
+		<%= link_to("download overblik", formatted_overview_fiscal_year_path(@fiscal_year, :format => :pdf)) %> |
+		<%= link_to("download overblik som CSV", formatted_overview_fiscal_year_path(@fiscal_year, :format => :csv)) %>
 	</p>
 </div>

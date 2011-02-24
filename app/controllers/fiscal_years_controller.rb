@@ -49,8 +49,30 @@ class FiscalYearsController < ApplicationController
     @transactions = @fiscal_year.transactions.payments.all(:include => [:linked_from, :linked_to, :annexes, :customer], :order => 'transactions.created_at DESC')
     @unrealized_income = @fiscal_year.transactions.filter_by_type(Transaction::TRANSACTION_TYPES[:sell]).all(:order => 'transactions.created_at DESC').delete_if { |t| t.equalizations.count > 0 }
     @not_afstemt_expense = @fiscal_year.transactions.filter_by_type(Transaction::TRANSACTION_TYPES[:buy]).all(:order => 'transactions.created_at DESC').delete_if { |t| t.equalizations.count > 0 }
+    
+    respond_to do |format|
+      format.csv { render_csv }
+    end
   end
   
+  def render_csv(filename = nil)
+    filename ||= params[:action]
+    filename += '.csv'
+
+    if request.env['HTTP_USER_AGENT'] =~ /msie/i
+      headers['Pragma'] = 'public'
+      headers["Content-type"] = "text/plain" 
+      headers['Cache-Control'] = 'no-cache, must-revalidate, post-check=0, pre-check=0'
+      headers['Content-Disposition'] = "attachment; filename=\"#{filename}\"" 
+      headers['Expires'] = "0" 
+    else
+      headers["Content-Type"] ||= 'text/csv'
+      headers["Content-Disposition"] = "attachment; filename=\"#{filename}\"" 
+    end
+
+    render :layout => false
+  end
+    
   def download_annexes
     @fiscal_year = current_user.fiscal_years.find(params[:id])
     t = @fiscal_year.zip_annexes

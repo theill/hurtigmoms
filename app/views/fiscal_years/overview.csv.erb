@@ -1,0 +1,17 @@
+Dato,Bilag,Note,Indtægt,Udgift
+<%=
+  items = []
+  @transactions.each do |transaction|
+  	items << formatted_pdf_line(transaction)
+  	transaction.linked.map do |related_payment_transaction|
+  		items << formatted_related_pdf_line(related_payment_transaction)
+  	end
+  end
+
+  # FasterCSV.generate(:col_sep => ";", :row_sep => "\r\n") do |csv|
+  FasterCSV.generate do |csv|
+    items.each do |item|
+      csv << item
+    end
+  end
+%>
