@@ -1,4 +1,4 @@
-rails -v 2.3.8
+rails -v 2.3.11
 pg
 aws-s3
 thoughtbot-clearance --version '>=0.8.2' --source http://gems.github.com
