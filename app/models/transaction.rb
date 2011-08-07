@@ -17,6 +17,7 @@ class Transaction < ActiveRecord::Base
 
   validates_presence_of :fiscal_year_id, :amount
   validates_presence_of :created_at, :on => :update
+  validates_uniqueness_of :attachment_no, :scope => :customer_id, :allow_nil => true
 
   before_validation_on_create :set_attachment_no
   before_save :set_customer
@@ -102,9 +103,19 @@ class Transaction < ActiveRecord::Base
   end
   
   def set_attachment_no
-    self.attachment_no = (self.fiscal_year.transactions.maximum(:attachment_no) || 0) + 1 if self.attachment_no == 0 && self.fiscal_year
+    if self.attachment_no == "0" || self.attachment_no.blank? && self.fiscal_year.present?
+      attachment_no_maximum = (self.fiscal_year.transactions.maximum(:attachment_no) || "00000")[4..-1].to_i # cut out year
+      self.attachment_no = "#{self.fiscal_year.start_date.year}#{'%.5d' % (attachment_no_maximum + 1)}"
+    end
   end
 
+  # force new attachment no
+  def assign_attachment_no!
+    self.attachment_no = nil
+    self.set_attachment_no
+    self.save
+  end
+  
   def set_customer
     self.customer = self.fiscal_year.user.customers.find_or_create_by_name(self.customer_name) unless self.customer_name.blank?
   end
