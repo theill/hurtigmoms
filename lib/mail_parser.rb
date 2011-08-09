@@ -9,7 +9,7 @@ class MailParser < TextParser
   def parse
     Rails.logger.debug "Got mail #{@mail.subject} from #{@mail.from} #{@mail.has_attachments? ? 'with' : 'without'} attachments"
     
-    parsed_attributes = recognize_and_parse_mail(@mail).merge(:transaction_type => Transaction::TRANSACTION_TYPES[:buy], :attachment_no => 0)
+    parsed_attributes = recognize_and_parse_mail(@mail).merge(:transaction_type => Transaction::TRANSACTION_TYPES[:buy], :attachment_no => nil)
     
     # try reading amount and currency in PDF attachments in case we didn't
     # find any in regular mail body

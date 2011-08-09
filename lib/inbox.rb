@@ -68,6 +68,9 @@ class Inbox
       transactions.each do |transaction|
         transaction.fiscal_year = user.active_fiscal_year
         matcher.match(transaction)
+        Rails.logger.info("We have a transaction: #{transaction.inspect}")
+        transaction.set_attachment_no
+        Rails.logger.info("after setting attachment no we have: #{transaction.inspect}")
         unless transaction.save
           Rails.logger.error "Not able to save transaction #{transaction.inspect}: #{transaction.errors.inspect}"
         end
