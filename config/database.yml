@@ -43,7 +43,7 @@ test: &TEST
   database: hurtigmoms_test
   pool: 5
   username: postgres
-  password: belle0
+  password: postgres
 
 production:
   adapter: postgresql
