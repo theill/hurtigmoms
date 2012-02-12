@@ -4,24 +4,24 @@
 da:
   application:
     name: Hurtig Moms
-    
+
   buttons:
     save: Gem
     cancel: Annuller
     wait: Vent venligst...
     close: Luk
     delete: Slet
-    
+
   status:
     saving: Gemmer
     saved: Gemt
-    
+
   links:
     back: Tilbage
-    
+
   inline:
     or: eller
-    
+
   user:
     company: Firmanavn
     cvr: CVR
@@ -32,7 +32,7 @@ da:
     active_fiscal_year: Aktivt regnskabsår
     updated:
       success: Indstillingerne er gemt
-    
+
   posting:
     created_at: Dato
     note: Note
@@ -45,7 +45,7 @@ da:
     amount_out: Hævet
     including_vat: inkl. moms
     excluding_vat: eksl. moms
-  
+
   transaction:
     created_at: Dato
     note: Note
@@ -61,7 +61,7 @@ da:
     transaction_type_sell: Salg
     transaction_type_buy: Køb
     transaction_type_pay: Betaling
-    
+
   account:
     name: Navn
     description: Beskrivelse
@@ -72,7 +72,7 @@ da:
     amount: Saldo
     account_type_buy: Køb
     account_type_sell: Salg
-    account_type_unknown: -
+    account_type_unknown: '-'
     account_type_heading: Overskrift
     account_type_operating: Drift
     account_type_status: Status
@@ -83,7 +83,7 @@ da:
     vat_type_hotel: Hotelmoms
     vat_type_none: Momsfrit
     pick_vat_type: Vælg moms type
-  
+
   customer:
     name: Navn
     description: Beskrivelse
@@ -102,7 +102,7 @@ da:
   mails:
     signup:
       created: Du har fået en ny konto på hurtigmoms.dk
-    
+
   clearance:
     models:
       clearance_mailer:
@@ -127,7 +127,7 @@ da:
 
   signed_out: ''
   signed_in: ''
-    
+
   users:
     new:
       title: Opret konto
@@ -158,19 +158,19 @@ da:
     index:
       title: Kontoplan
       description: Alle konti for indeværende år
-      
+
     new:
       buttons:
         save: Opret konto
-        
+
     edit:
       delete_account: '%{delete_link} denne konto'
-  
+
   postings:
     index:
       title: Posteringer
       description: Hele året
-      
+
     new:
       buttons:
         save: Opret postering
@@ -197,7 +197,7 @@ da:
         edit_details: Redigér alle detaljer
       buttons:
         save: Gem ændringer
-    
+
   reports:
     index:
       title: Rapporter
@@ -207,7 +207,7 @@ da:
     index:
       title: Kunder
       description: 'Alle'
-        
+
   sessions:
     new:
       title: Log ind
@@ -221,26 +221,26 @@ da:
       description: Du vil modtage et link for at nulstille dit kodeord.
       buttons:
         reset: Nulstil kodeord
-      
+
     edit:
       title: Skift kodeord
       description: Dit kodeord er blevet nulstillet. Angiv dit nye kodeord nu.
       buttons:
         save: Gem nyt kodeord
-        
+
   about:
     help:
       title: Hjælp
       description: Ofte stillede spørgsmål, tips og tricks
-    
+
     api:
       title: API
       description: Benyt hurtigmoms funktionalitet med dine egne applikationer
-      
+
     index:
       title: hurtigmoms
       description: så går det hurtigt!
-        
+
   layouts:
     application:
       home: Oversigt
@@ -257,8 +257,7 @@ da:
       settings: Indstillinger
       account: 'Konto &#x25be;'
 
-      
-      
+
   # Danish translation file for standard Ruby on Rails internationalization
   # by Lars Hoeg (larshoeg@gmail.com, http://www.lenio.dk/)
 
@@ -273,7 +272,10 @@ da:
     abbr_day_names: [sø, ma, ti, 'on', to, fr, lø]
     month_names: [~, januar, februar, marts, april, maj, juni, juli, august, september, oktober, november, december]
     abbr_month_names: [~, jan, feb, mar, apr, maj, jun, jul, aug, sep, okt, nov, dec]
-    order: [ :day, :month, :year ]
+    order:
+      :day
+      :month
+      :year
 
   time:
     formats:

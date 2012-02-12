@@ -1,5 +1,7 @@
+# encoding: utf-8
+
 class TransactionsController < ApplicationController
-  before_filter :authenticate, :get_fiscal_year
+  before_filter :authorize, :get_fiscal_year
   
   def index
     # @start_date = @fiscal_year.start_date

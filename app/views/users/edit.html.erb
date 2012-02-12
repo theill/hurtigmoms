@@ -1,15 +1,15 @@
-<%- @meta = { :title => t('.title'), :description => t('.description') } -%>
+<% @meta = { :title => t('.title'), :description => t('.description') } %>
 
 <div id="page-header" class="grid_12">
 	<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
 </div>
 
 <div class="grid_12">
-	<%- form_for @user do |f| -%>
-		<%= f.error_messages %>
+	<%= form_for @user do |f| %>
+		<%# f.error_messages %>
 	
 		<fieldset>
-			<%= f.label :company, t('user.company') + ' <span class="req">*</span>'%>
+			<%= f.label :company, t('user.company') + ' <span class="req">*</span>' %>
 			<%= f.text_field :company %>
 			<p class="hint">Firmanavn vises fx på udskrevne rapporter</p>
 		</fieldset>

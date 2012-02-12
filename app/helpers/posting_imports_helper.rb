@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module PostingImportsHelper
   
   def match_header_to_column(header)

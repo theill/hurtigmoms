@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Equalization < ActiveRecord::Base
   belongs_to :transaction
   belongs_to :related_transaction, :class_name => 'Transaction'#, :foreign_key => 'related_transaction_id'

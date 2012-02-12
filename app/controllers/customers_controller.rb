@@ -1,5 +1,7 @@
+# encoding: utf-8
+
 class CustomersController < ApplicationController
-  before_filter :authenticate
+  before_filter :authorize
   
   # GET /customers
   # GET /customers.xml

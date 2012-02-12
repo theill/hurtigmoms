@@ -1,5 +1,7 @@
+# encoding: utf-8
+
 class ReportsController < ApplicationController
-  before_filter :authenticate
+  before_filter :authorize
   
   def index
     # @total_income = current_user.active_fiscal_year.postings.total_income(2009).sum(:amount)

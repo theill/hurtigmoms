@@ -1,5 +1,7 @@
+# encoding: utf-8
+
 class PostingImportsController < ApplicationController
-  before_filter :authenticate
+  before_filter :authorize
   
   # GET /posting_imports/1
   # GET /posting_imports/1.xml

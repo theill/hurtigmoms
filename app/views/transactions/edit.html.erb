@@ -56,7 +56,7 @@
 </div>
 
 <div class="grid_9">
-	<% form_for([@transaction.fiscal_year, @transaction], :html => {:autocomplete => 'off'}) do |f| -%>
+	<%= form_for([@transaction.fiscal_year, @transaction], :html => {:autocomplete => 'off'}) do |f| -%>
 		<%= f.error_messages %>
 
 		<fieldset>

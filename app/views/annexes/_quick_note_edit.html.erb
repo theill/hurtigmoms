@@ -1,7 +1,7 @@
 <div id="<%= dom_id(@transaction, 'quick-edit') %>">
 	<h1 class="quick-edit"><%= [h(extract_first_note_line(@transaction)), content_tag(:i, 'Unavngivet')].reject(&:blank?).first %></h1>
 	<div class="quick-edit-container" style="display: none">
-		<% form_for([@transaction.fiscal_year, @transaction], :html => {:autocomplete => 'off'}) do |f| -%>
+		<%= form_for([@transaction.fiscal_year, @transaction], :html => {:autocomplete => 'off'}) do |f| -%>
 			<%= hidden_field_tag 'return_to', request.path %>
 			<%= hidden_field_tag 'quick', true %>
 			<%= f.text_field :note, :size => 60, :style => 'font-family: xAnivers, Arial, Helvetica, Verdana, Sans-serif; font-weight: bold; letter-spacing: -1px; font-size: 22px' %>

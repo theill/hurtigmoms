@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module AccountsHelper
   def account_type_class(account)
     case account.account_type

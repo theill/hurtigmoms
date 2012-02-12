@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Admin::UsersController < ApplicationController
   before_filter :admin_required
 

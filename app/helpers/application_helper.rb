@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module ApplicationHelper
   def title
     I18n.t('application.name') + (' - ' + @meta[:title]) if @meta

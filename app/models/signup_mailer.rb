@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class SignupMailer < ActionMailer::Base
   # default_url_options[:host] = HOST
   

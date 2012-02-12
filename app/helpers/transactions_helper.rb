@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module TransactionsHelper
   def transaction_type_class(transaction)
     Transaction::TRANSACTION_TYPES.invert[transaction.transaction_type].to_s
@@ -16,7 +18,7 @@ module TransactionsHelper
     first_line = highlight_words(h(extract_first_note_line(transaction)), search)
     
     if transaction.customer
-      "<span class=\"customer-name\">#{highlight_words(h(transaction.customer.name), search)}</span> " + first_line
+      raw("<span class=\"customer-name\">#{highlight_words(h(transaction.customer.name), search)}</span> " + first_line)
     else
       first_line
     end

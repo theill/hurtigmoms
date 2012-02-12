@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module PostingsHelper
   def accounts
     current_user.accounts.collect { |a| ["#{'%05d' % a.account_no} #{a.name}", a.id] }.sort_by { |no| no }

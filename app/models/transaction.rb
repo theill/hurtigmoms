@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Transaction < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   
@@ -22,17 +24,17 @@ class Transaction < ActiveRecord::Base
   before_validation :set_attachment_no
   before_save :set_customer
   
-  named_scope :payments, :conditions => ['transaction_type = ?', TRANSACTION_TYPES[:pay]]
-  named_scope :income, :conditions => ['transaction_type = ?', TRANSACTION_TYPES[:sell]]
-  named_scope :expense, :conditions => ['transaction_type = ?', TRANSACTION_TYPES[:buy]]
-  named_scope :incomplete, :conditions => 'amount IS NULL OR created_at IS NULL OR currency IS NULL'
-  named_scope :in_fiscal_year, lambda { |fiscal_year| { :conditions => ['fiscal_year_id = ?', fiscal_year.id] } }
-  named_scope :wrong_fiscal_year, :conditions => 'DATE(transactions.created_at) > fiscal_years.end_date OR DATE(transactions.created_at) < fiscal_years.start_date', :joins => :fiscal_year, :order => 'created_at DESC'
-  named_scope :without_related_transactions, :conditions => ['transactions.transaction_type = ? and transactions.id NOT IN (select related_transaction_id FROM equalizations)', TRANSACTION_TYPES[:pay]], :order => 'created_at DESC'
-  named_scope :between, lambda { |start_date, end_date| { :conditions => ['DATE(transactions.created_at) BETWEEN ? AND ?', start_date, end_date] } }
-  named_scope :filtered, lambda { |query| { :conditions => ['(LOWER(transactions.note) LIKE ?) OR (LOWER(customers.name) LIKE ?) OR (transactions.amount > 0 AND transactions.amount = ?)', "%#{query.downcase}%", "%#{query.downcase}%", query.to_f], :include => :customer } }
-  named_scope :filter_by_type, lambda { |transaction_type| { :conditions => ['transactions.transaction_type = ?', transaction_type] } }
-  named_scope :latest, :order => 'created_at DESC', :limit => 5
+  scope :payments, :conditions => ['transaction_type = ?', TRANSACTION_TYPES[:pay]]
+  scope :income, :conditions => ['transaction_type = ?', TRANSACTION_TYPES[:sell]]
+  scope :expense, :conditions => ['transaction_type = ?', TRANSACTION_TYPES[:buy]]
+  scope :incomplete, :conditions => 'amount IS NULL OR created_at IS NULL OR currency IS NULL'
+  scope :in_fiscal_year, lambda { |fiscal_year| { :conditions => ['fiscal_year_id = ?', fiscal_year.id] } }
+  scope :wrong_fiscal_year, :conditions => 'DATE(transactions.created_at) > fiscal_years.end_date OR DATE(transactions.created_at) < fiscal_years.start_date', :joins => :fiscal_year, :order => 'created_at DESC'
+  scope :without_related_transactions, :conditions => ['transactions.transaction_type = ? and transactions.id NOT IN (select related_transaction_id FROM equalizations)', TRANSACTION_TYPES[:pay]], :order => 'created_at DESC'
+  scope :between, lambda { |start_date, end_date| { :conditions => ['DATE(transactions.created_at) BETWEEN ? AND ?', start_date, end_date] } }
+  scope :filtered, lambda { |query| { :conditions => ['(LOWER(transactions.note) LIKE ?) OR (LOWER(customers.name) LIKE ?) OR (transactions.amount > 0 AND transactions.amount = ?)', "%#{query.downcase}%", "%#{query.downcase}%", query.to_f], :include => :customer } }
+  scope :filter_by_type, lambda { |transaction_type| { :conditions => ['transactions.transaction_type = ?', transaction_type] } }
+  scope :latest, :order => 'created_at DESC', :limit => 5
   
   HUMANIZED_ATTRIBUTES = {
     :amount => I18n.t(:amount, :scope => :transaction)

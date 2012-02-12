@@ -1,5 +1,7 @@
+# encoding: utf-8
+
 class EqualizationsController < ApplicationController
-  before_filter :authenticate, :get_transaction
+  before_filter :authorize, :get_transaction
   
   def create
     @equalization = @transaction.equalizations.new(params[:equalization])

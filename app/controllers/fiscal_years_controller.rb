@@ -1,5 +1,7 @@
+# encoding: utf-8
+
 class FiscalYearsController < ApplicationController
-  before_filter :authenticate
+  before_filter :authorize
   
   def index
     @fiscal_years = current_user.fiscal_years
@@ -72,7 +74,7 @@ class FiscalYearsController < ApplicationController
 
     render :layout => false
   end
-    
+  
   def download_annexes
     @fiscal_year = current_user.fiscal_years.find(params[:id])
     t = @fiscal_year.zip_annexes

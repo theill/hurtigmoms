@@ -5,7 +5,7 @@
 </div>
 
 <div class="grid_12">
-	<% form_for @user do |f| %>
+	<%= form_for @user do |f| %>
 	  <%= render :partial => 'form', :object => f %>
 	  <%= f.submit t('.buttons.save') %>
 	<% end %>

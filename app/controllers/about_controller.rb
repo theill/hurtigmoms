@@ -1,5 +1,7 @@
+# encoding: utf-8
+
 class AboutController < ApplicationController
-  before_filter :authenticate, :only => [:overview]
+  before_filter :authorize, :only => [:overview]
   before_filter :redirect_to_overview, :only => :index
   
   def index

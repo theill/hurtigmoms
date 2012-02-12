@@ -49,7 +49,7 @@
 	
 	<div id="transaction-properties">
 		<h4>Transaktionsdetaljer</h4>
-		<% form_for([@transaction.fiscal_year, @transaction], :html => {:autocomplete => 'off'}) do |f| -%>
+		<%= form_for([@transaction.fiscal_year, @transaction], :html => {:autocomplete => 'off'}) do |f| -%>
 			<%= hidden_field_tag 'return_to', request.path %>
 			<%= f.error_messages %>
 			<fieldset>

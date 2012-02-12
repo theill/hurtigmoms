@@ -1,5 +1,10 @@
+# encoding: utf-8
+
 class User < ActiveRecord::Base
   include Clearance::User
+  extend  Clearance::User::ClassMethods
+  include Clearance::User::Validations
+  include Clearance::User::Callbacks
   
   has_many :accounts, :dependent => :destroy
   has_many :customers, :dependent => :destroy

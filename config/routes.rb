@@ -1,83 +1,121 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :fiscal_years, :as => 'regnskaber', :member => { :download_annexes => :get, :overview => :get } do |fy|
-    fy.resources :transactions, :as => 'transaktioner', :collection => { :search => :get, :ping => :get, :auto_correct => :post }, :path_names => { :search => 'find' } do |transaction|
-      transaction.resources :annexes, :as => 'bilag', :member => { :download => :get, :preview => :get }
-      transaction.resources :equalizations
+Hurtigmoms::Application.routes.draw do
+  resources :fiscal_years do
+  member do
+    get :download_annexes
+    get :overview
+  end
+      resources :transactions do
+        collection do
+    post :auto_correct
+    get :search
+    get :ping
     end
-    fy.resources :postings, :as => 'posteringer'
+    
+          resources :annexes do
+      
+            member do
+      get :download
+      get :preview
+      end
+      
+      end
+
+      resources :equalizations
+    end
+
+    resources :postings
   end
-  map.resources :accounts, :as => 'konti'
-  map.resources :reports, :as => 'rapporter'
-  map.resources :customers, :as => 'kunder', :collection => { :search => :get }, :path_names => { :search => 'find' }
-  map.resources :posting_imports, :as => 'kontoudtog-importeringer'
-  map.resources :equalizations
-  
-  map.resources :users do |users|
-    users.resource :password, :controller => 'clearance/passwords', :only => [:create, :edit, :update]
-    users.resource :confirmation, :controller => 'clearance/confirmations', :only => [:new, :create]
+
+  resources :accounts
+  resources :reports
+  resources :customers do
+    collection do
+  get :search
   end
   
-  map.resource :session, :only => [:new, :create, :destroy]
   
-  map.namespace :admin do |admin|
-    admin.resources :users
   end
+
+  resources :posting_imports
+  resources :equalizations
+  resources :users do
   
-  map.settings 'indstillinger', :controller => :users, :action => :edit
-  map.ping 'ping', :controller => :about, :action => :ping
-  map.overview 'oversigt', :controller => :about, :action => :overview
   
-  # override clearance
-  map.sign_out 'logud', :controller => :sessions, :action => :destroy, :method => :delete
-  map.resources :passwords, :as => 'kodeord', :controller => 'clearance/passwords', :only => [:new, :create]
-  
-  map.api 'api', :controller => 'about', :action => 'api'
-  map.tour 'tour', :controller => 'about', :action => 'tour'
-  map.help 'hjaelp', :controller => 'about', :action => 'help'
-  map.contact 'kontakt', :controller => 'about', :action => 'contact'
-  map.privacy 'sikkerhed', :controller => :about, :action => :privacy
-  
-  map.root :controller => 'about'
-  
-  # The priority is based upon order of creation: first created -> highest priority.
-  
+      resource :password, :only => [:create, :edit, :update]
+    resource :confirmation, :only => [:new, :create]
+  end
+
+  resource :session, :only => [:new, :create, :destroy]
+  namespace :admin do
+      resources :users
+  end
+
+  match 'indstillinger' => 'users#edit', :as => :settings
+  match 'ping' => 'about#ping', :as => :ping
+  match 'oversigt' => 'about#overview', :as => :overview
+  match 'logud' => 'sessions#destroy', :as => :sign_out, :method => :delete
+  resources :passwords, :only => [:new, :create]
+  match 'api' => 'about#api', :as => :api
+  match 'tour' => 'about#tour', :as => :tour
+  match 'hjaelp' => 'about#help', :as => :help
+  match 'kontakt' => 'about#contact', :as => :contact
+  match 'sikkerhed' => 'about#privacy', :as => :privacy
+  match '/' => 'about#index'
+
+  # The priority is based upon order of creation:
+  # first created -> highest priority.
+
   # Sample of regular route:
-  #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
+  #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
-  
+
   # Sample of named route:
-  #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
+  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   map.resources :products
+  #   resources :products
 
   # Sample resource route with options:
-  #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }
+  #   resources :products do
+  #     member do
+  #       get 'short'
+  #       post 'toggle'
+  #     end
+  #
+  #     collection do
+  #       get 'sold'
+  #     end
+  #   end
 
   # Sample resource route with sub-resources:
-  #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
+  #   resources :products do
+  #     resources :comments, :sales
+  #     resource :seller
+  #   end
+
   # Sample resource route with more complex sub-resources
-  #   map.resources :products do |products|
-  #     products.resources :comments
-  #     products.resources :sales, :collection => { :recent => :get }
+  #   resources :products do
+  #     resources :comments
+  #     resources :sales do
+  #       get 'recent', :on => :collection
+  #     end
   #   end
 
   # Sample resource route within a namespace:
-  #   map.namespace :admin do |admin|
-  #     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
-  #     admin.resources :products
+  #   namespace :admin do
+  #     # Directs /admin/products/* to Admin::ProductsController
+  #     # (app/controllers/admin/products_controller.rb)
+  #     resources :products
   #   end
 
-  # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  # map.root :controller => "welcome"
+  # You can have the root of your site routed with "root"
+  # just remember to delete public/index.html.
+  # root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 
-  # Install the default routes as the lowest priority.
-  # Note: These default routes make all actions in every controller accessible via GET requests. You should
-  # consider removing the them or commenting them out if you're using named routes and resources.
-  # map.connect ':controller/:action/:id'
-  # map.connect ':controller/:action/:id.:format'
+  # This is a legacy wild controller route that's not recommended for RESTful applications.
+  # Note: This route will make all actions in every controller accessible via GET requests.
+  # match ':controller(/:action(/:id(.:format)))'
 end

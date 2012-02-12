@@ -1,5 +1,7 @@
+# encoding: utf-8
+
 class PostingsController < ApplicationController
-  before_filter :authenticate, :get_fiscal_year
+  before_filter :authorize, :get_fiscal_year
   
   # GET /postings
   # GET /postings.xml

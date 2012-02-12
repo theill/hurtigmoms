@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Customer < ActiveRecord::Base
   belongs_to :user
   has_many :postings, :dependent => :nullify

@@ -3,7 +3,7 @@
 </div>
 
 <div class="grid_12">
-	<% form_for(:user, :url => user_password_path(@user, :token => @user.confirmation_token), :html => { :method => :put }) do |form| %>
+	<%= form_for(:user, :url => user_password_path(@user, :token => @user.confirmation_token), :html => { :method => :put }) do |form| %>
 		<fieldset>
 	    <%= form.label :password, t('user.password') %>
 	    <%= form.password_field :password %>

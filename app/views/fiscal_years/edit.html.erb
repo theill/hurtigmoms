@@ -1,17 +1,18 @@
-<%- @meta = { :title => t('.title'), :description => t('.description') } -%>
+<% @meta = { :title => t('.title'), :description => t('.description') } %>
 <div id="page-header" class="grid_12">
 	<h1><%= t('.title') %><span><%= t('.description') %></span></h1>
 </div>
 
 <div class="grid_12">
-	<% form_for @fiscal_year do |f| %>
+	<%= form_for @fiscal_year do |f| %>
 	  <%= render :partial => 'form', :object => f %>
 	  <%= f.submit t('.buttons.save') %>
 	<% end %>
 	
-	<p>
-		(only for development use): <%= link_to "download alle bilag", download_annexes_fiscal_year_path(@fiscal_year) %> |
-		<%= link_to("download overblik", formatted_overview_fiscal_year_path(@fiscal_year, :format => :pdf)) %> |
-		<%= link_to("download overblik som CSV", formatted_overview_fiscal_year_path(@fiscal_year, :format => :csv)) %>
-	</p>
+	<h4>Development Use</h4>
+	<ul>
+		<li><%= link_to("download alle bilag", download_annexes_fiscal_year_path(@fiscal_year)) %></li>
+		<li><%= link_to("download overblik", overview_fiscal_year_path(@fiscal_year, :format => :pdf)) %></li>
+		<li><%= link_to("download overblik som CSV", overview_fiscal_year_path(@fiscal_year, :format => :csv)) %></li>
+	</ul>
 </div>

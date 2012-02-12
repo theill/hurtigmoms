@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Posting < ActiveRecord::Base
   STATES = { :accepted => 'A', :pending => 'P', :imported => 'I', :deleted => 'D' }
   
@@ -27,10 +29,11 @@ class Posting < ActiveRecord::Base
     HUMANIZED_ATTRIBUTES[attr.to_sym] || super
   end
   
-  named_scope :total_income, lambda { |year| { :joins => :account, :conditions => ['EXTRACT (YEAR FROM postings.created_at) = ? AND accounts.account_no >= 1000 AND accounts.account_no < 1300', year] } }
-  named_scope :total_expense, lambda { |year| { :joins => :account, :conditions => ['EXTRACT (YEAR FROM postings.created_at) = ? AND accounts.account_no >= 1300 AND accounts.account_no < 5000', year] } }
+  scope :total_income, lambda { |year| { :joins => :account, :conditions => ['EXTRACT (YEAR FROM postings.created_at) = ? AND accounts.account_no >= 1000 AND accounts.account_no < 1300', year] } }
+  scope :total_expense, lambda { |year| { :joins => :account, :conditions => ['EXTRACT (YEAR FROM postings.created_at) = ? AND accounts.account_no >= 1300 AND accounts.account_no < 5000', year] } }
 
-  before_validation_on_create :set_attachment_no, :set_currency
+  before_validation :set_attachment_no, :on => :create
+  before_validation :set_currency, :on => :create
   before_save :reset_state, :set_customer
   # after_create :adjust_operating_accounts, :adjust_vat_accounts
   

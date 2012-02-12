@@ -1,5 +1,7 @@
+# encoding: utf-8
+
 class AccountsController < ApplicationController
-  before_filter :authenticate
+  before_filter :authorize
   
   def index
     @accounts = current_user.accounts.all(:order => 'account_no')

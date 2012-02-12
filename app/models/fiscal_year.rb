@@ -1,4 +1,7 @@
+# encoding: utf-8
+
 require 'zip/zip'
+require 'open-uri'
 # require 'zip/zipfilesystem'
 
 class FiscalYear < ActiveRecord::Base
@@ -22,7 +25,7 @@ class FiscalYear < ActiveRecord::Base
           
           if content
             # Create a new entry with some arbitrary name
-            zos.put_next_entry("#{'%04d' % transaction.attachment_no}-#{transaction.note.slugify[0, 80]}-#{annex.id}#{File.extname(annex.attachment_file_name)}")
+            zos.put_next_entry("#{transaction.created_at.strftime("%Y-%m-%d")}-#{transaction.note.slugify[0, 80]}-#{annex.id}#{File.extname(annex.attachment_file_name)}")
             
             # Add the contents of the file, don't read the stuff linewise if its binary, instead use direct IO
             zos.write content

@@ -1,7 +1,9 @@
+# encoding: utf-8
+
 require 'open-uri'
 
 class ExchangeRate < ActiveRecord::Base
-  named_scope :latest, :conditions => ['active = ?', true]
+  scope :latest, :conditions => ['active = ?', true]
   
   # refresh exchange rates from an external source
   def self.refresh
@@ -24,7 +26,7 @@ class ExchangeRate < ActiveRecord::Base
   def self.exchange_to(amount, from, to)
     return amount if from == to # no conversion necessary
     
-    exchange_rate = ((1.0 / (EXCHANGE_RATES[to] || 1.0)) * (EXCHANGE_RATES[from] || 1.0))
+    exchange_rate = ((1.0 / (ExchangeRate::EXCHANGE_RATES[to] || 1.0)) * (ExchangeRate::EXCHANGE_RATES[from] || 1.0))
     amount / exchange_rate
   end
   

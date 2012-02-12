@@ -1,5 +1,7 @@
+# encoding: utf-8
+
 class UsersController < Clearance::UsersController
-  before_filter :authenticate, :only => :edit
+  before_filter :authorize, :only => :edit
   
   def edit
     @user = current_user

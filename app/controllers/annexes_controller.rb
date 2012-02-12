@@ -1,5 +1,7 @@
+# encoding: utf-8
+
 class AnnexesController < ApplicationController
-  before_filter :authenticate, :get_transaction
+  before_filter :authorize, :get_transaction
 
   def show
     @annex = @transaction.annexes.find(params[:id])

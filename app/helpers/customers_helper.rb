@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module CustomersHelper
   def formatted_customer_amount(amount)
     return '&nbsp' if amount.nil? || amount.to_f == 0

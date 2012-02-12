@@ -8,8 +8,10 @@ Dato,Bilag,Note,Indtægt,Udgift
   	end
   end
 
+  require 'csv'
+
   # FasterCSV.generate(:col_sep => ";", :row_sep => "\r\n") do |csv|
-  FasterCSV.generate do |csv|
+  CSV.generate do |csv|
     items.each do |item|
       csv << item
     end

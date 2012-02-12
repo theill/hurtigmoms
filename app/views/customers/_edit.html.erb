@@ -1,7 +1,7 @@
 <tr id="<%= dom_id(customer) %>" class="customer row-editing">
 	<td colspan="3">
 		<div class="box">
-			<% form_for(customer, :html => {:autocomplete => 'off'}) do |f| %>
+			<%= form_for(customer, :html => {:autocomplete => 'off'}) do |f| %>
 			  <%= f.error_messages %>
 
 			  <fieldset>

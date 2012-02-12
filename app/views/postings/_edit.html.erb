@@ -1,7 +1,7 @@
 <tr id="<%= dom_id(posting) %>" class="posting row-editing">
 	<td colspan="6">
 		<div class="box">
-		<% form_for([posting.fiscal_year, posting], :html => {:autocomplete => 'off'}) do |f| -%>
+		<%= form_for([posting.fiscal_year, posting], :html => {:autocomplete => 'off'}) do |f| -%>
 			<%= f.error_messages %>
 			
 			<table>

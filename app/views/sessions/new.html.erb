@@ -5,7 +5,7 @@
 </div>
 
 <div class="grid_12">
-	<% form_for(:session, {:url => session_path, :html => { :id => 'new_session'}}) do |f| %>
+	<%= form_for(:session, {:url => session_path, :html => { :id => 'new_session'}}) do |f| %>
 	  <fieldset>
 	    <%= f.label :email, t('user.email') + ' <span class="req">*</span>' %>
 	    <%= f.text_field :email %>
