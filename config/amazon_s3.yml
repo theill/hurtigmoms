@@ -1,0 +1,15 @@
+development:
+  access_key_id: your_key
+  secret_access_key: your_secret
+  bucket: hurtigmoms-development
+  # bucket: hurtigmoms
+
+test:
+  access_key_id: your_key
+  secret_access_key: your_secret
+  bucket: hurtigmoms-test
+
+production:
+  access_key_id: your_key
+  secret_access_key: your_secret
+  bucket: hurtigmoms

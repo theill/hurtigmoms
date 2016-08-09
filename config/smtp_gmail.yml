@@ -1,0 +1,15 @@
+development:
+  :user_name: foo
+  :password: bar
+  
+test:
+  :user_name: foo
+  :password: bar
+
+cucumber:
+  :user_name: foo
+  :password: bar
+
+production:
+  :user_name: foo
+  :password: bar
